@@ -2,7 +2,7 @@ import osmnx as ox
 import random
 
 # Specify the name that is used to search for the data
-place = 'Piedmont, CA, USA'
+place = 'Frabosa Soprana, Cuneo, Piemonte'
 
 utn = ox.settings.useful_tags_node
 oxna = ox.settings.osm_xml_node_attrs
@@ -21,7 +21,7 @@ G = ox.project_graph(G)
 
 # Initialize number of people in each node to 0
 for node in G.nodes(data=True):
-    node[1]['pers'] = 0
+    node[1]['pers'] = int(0)
     node[1]['event'] = "none"
     node[1]['connection'] = random.randint(0, 3)
 
@@ -29,5 +29,5 @@ for node in G.nodes(data=True):
 # ox.plot_graph(G, filepath='images/graph.svg', save=True)
 # ox.plot_graph(G, filepath='images/graph.png', save=True)
 
-ox.save_graphml(G, filepath='images/graph.graphml')
+ox.save_graphml(G, filepath='graph/graph.graphml')
 
