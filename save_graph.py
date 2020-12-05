@@ -1,5 +1,6 @@
 import osmnx as ox
 import random
+from read_ontology import random_event
 
 # Specify the name that is used to search for the data
 place = 'Frabosa Soprana, Cuneo, Piemonte'
@@ -22,7 +23,8 @@ G = ox.project_graph(G)
 # Initialize number of people in each node to 0
 for node in G.nodes(data=True):
     node[1]['pers'] = int(0)
-    node[1]['event'] = "none"
+    node[1]['situation'] = random_event()[0]
+    node[1]['object'] = random_event()[1]
     node[1]['connection'] = random.randint(0, 3)
 
 # Plot the streets
