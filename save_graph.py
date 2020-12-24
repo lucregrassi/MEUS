@@ -20,16 +20,16 @@ G = ox.graph_from_place(place, network_type='all')
 G = ox.project_graph(G)
 # G_simple = ox.simplify_graph(G, strict=True, remove_rings=True)
 
-# Initialize number of people in each node to 0
+# Initialize content of nodes
 for node in G.nodes(data=True):
     node[1]['pers'] = int(0)
     node[1]['situation'] = random_event()[0]
     node[1]['object'] = random_event()[1]
-    node[1]['connection'] = random.randint(0, 3)
+    node[1]['connection'] = '0'
 
 # Plot the streets
 # ox.plot_graph(G, filepath='images/graph.svg', save=True)
 # ox.plot_graph(G, filepath='images/graph.png', save=True)
 
-ox.save_graphml(G, filepath='graph/graph.graphml')
+ox.save_graphml(G, filepath='graph/graph_temp.graphml')
 

@@ -3,14 +3,13 @@ from person import Person
 import random
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 from PIL import Image
 import glob
 import os
 from read_ontology import get_cls_at_dist
 
 n_pers = 200
-steps = 100
+steps = 10
 loop_distance = 20
 
 G = ox.load_graphml('graph/graph.graphml')
@@ -20,28 +19,14 @@ def color():
     node_color = []
     for node in G.nodes(data=True):
         if node[1]['pers'] == 1:
-            node_color.append('r')
+            node_color.append('#AAA')
         elif node[1]['pers'] == 2:
-            node_color.append('g')
+            node_color.append('#7F7F7F')
         elif node[1]['pers'] == 3:
-            node_color.append('b')
+            node_color.append('#333')
         else:
             node_color.append('w')
     return node_color
-
-
-def size():
-    node_size = []
-    for node in G.nodes(data=True):
-        if node[1]['pers'] == 1:
-            node_size.append(10)
-        elif node[1]['pers'] == 2:
-            node_size.append(20)
-        elif node[1]['pers'] == 3:
-            node_size.append(30)
-        else:
-            node_size.append(5)
-    return node_size
 
 
 def compute_destination(current_node):
@@ -148,7 +133,6 @@ for i in range(n_pers):
     i += 1
 
 nc = color()
-ns = size()
 ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath="images/img0.png")
 plt.close()
 
