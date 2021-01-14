@@ -1,10 +1,12 @@
 from owlready2 import *
 import random
 
+# Import and load the ontology from the owl file
 onto = get_ontology("ontology/MEUS.owl")
 onto.load()
 
 
+# This function takes a random leaf of a class
 def get_leaf(cls):
     leafs = []
     for c in onto.search(is_a=cls, subclasses=[]):
@@ -38,11 +40,10 @@ def append_value(dict_obj, key, value):
         if not isinstance(dict_obj[key], list):
             # If type is not list then make it list
             dict_obj[key] = [dict_obj[key]]
-        # Append the value in list
+        # Append the value in the list
         dict_obj[key].append(value)
     else:
-        # As key is not in dict,
-        # so, add key-value pair
+        # As key is not in dict, add key-value pair
         dict_obj[key] = value
 
 
@@ -79,6 +80,7 @@ def recursive_down(start_cls, dictionary, i):
         return
 
 
+# Return a randomly chosen class among those at a certain distance from the starting one
 def get_cls_at_dist(start_cls_name, distance):
     start_cls = onto.Situation
     for cls in onto.classes():

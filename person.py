@@ -8,6 +8,9 @@ class Person:
         self.moving = moving
         self.visited_nodes = []
         self.seen_events = []
+        self.global_conn = []
+        self.local_conn = []
+        self.met_people = []
 
     def __repr__(self):
         return "Person id: " + str(self.n) + " \n " \
@@ -17,5 +20,8 @@ class Person:
                 "error: " + str(self.error) + " \n " \
                "moving: " + str(self.moving) + " \n "  \
                "visited nodes: " + str(self.visited_nodes) + " \n "  \
-                "seen_events: " + str(self.seen_events)
+                "seen_events: " + str(self.seen_events) + " \n "  \
+                "global_conn: " + str(self.global_conn) + " \n "  \
+                "local_conn: " + str(self.local_conn) + " \n "  \
+                "met_people: " + str(self.met_people)
 
