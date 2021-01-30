@@ -29,9 +29,9 @@ G = ox.project_graph(G)
 
 # Initialize content of nodes
 for node in G.nodes(data=True):
-
     # Number of people in that node
-    node[1]['pers'] = int(0)
+    node[1]['n_agents'] = '0'
+    node[1]['id_agents'] = '0'
     node[1]['situation'] = random_event()[0]
     node[1]['object'] = random_event()[1]
     # Type of connection available in the node

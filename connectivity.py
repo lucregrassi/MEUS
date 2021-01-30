@@ -50,9 +50,9 @@ def setup_connection(graph, connection, hubs, radius):
             for n in graph.nodes(data=True):
                 if minLong < n[1]['lon'] < maxLong and minLat < n[1]['lat'] < maxLat:
                     if str(connection) not in n[1]['connection']:
-                        n[1]['connection'] = str(n[1]['connection']) + str(connection)
+                        n[1]['connection'] = str(n[1]['connection']) + ',' + str(connection) + ','
                         if '0' in list(n[1]['connection']):
-                            n[1]['connection'] = n[1]['connection'][1:]
+                            n[1]['connection'] = n[1]['connection'][2:]
     return graph
 
 

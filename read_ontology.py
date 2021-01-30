@@ -53,7 +53,7 @@ def recursive_up(cls, dictionary, i):
         dictionary[i] = [parent_cls]
     else:
         append_value(dictionary, i, parent_cls)
-    if parent_cls == onto.Situation or parent_cls == onto.Object:
+    if parent_cls == onto.Situation or parent_cls == onto.Object or parent_cls == onto.Thing:
         return
     else:
         i = i+1

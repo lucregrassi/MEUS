@@ -1,16 +1,22 @@
 import osmnx as ox
-from person import Person
+from Agent import Agent
 import random
 import matplotlib.pyplot as plt
 from PIL import Image
 from read_ontology import get_cls_at_dist
+from InformationElement import InformationElement, DirectObservation
 
-# Initialize number of people exploring the graph
-n_pers = 200
+# Initialize number of agents exploring the graph
+n_agents = 100
 # Number of iterations
-steps = 10
+steps = 5
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
+
+# Instances of agents moving in the graph
+agents = []
+# Dictionary where the keys are the nodes and the values are lists containing the IDs of agents in those nodes
+node_state = {}
 
 # Load the graph from the graphml file previously saved
 G = ox.load_graphml('graph/graph.graphml')
@@ -20,11 +26,11 @@ G = ox.load_graphml('graph/graph.graphml')
 def color():
     node_color = []
     for node in G.nodes(data=True):
-        if node[1]['pers'] == 1:
+        if node[1]['n_agents'] == 1:
             node_color.append('#AAA')
-        elif node[1]['pers'] == 2:
+        elif node[1]['n_agents'] == 2:
             node_color.append('#7F7F7F')
-        elif node[1]['pers'] == 3:
+        elif node[1]['n_agents'] == 3:
             node_color.append('#333')
         else:
             node_color.append('w')
@@ -64,46 +70,70 @@ def compute_destination(current_node):
     return destination_node, distance
 
 
+# Function called after the initialization (loop 0) and after the update of the positions in each loop
+def exchange_information(loop):
+    for key in node_state:
+        # If there is more than one agent in a node, they should exchange their info
+        if len(node_state[key]) > 1:
+            print(key, node_state[key])
+            # for a in agents:
+            # if a.n in node_state[key]:
+            # TODO: exchange the info among people in the same node
+
+
 # Update a specific person's attributes
-def update_position(p):
+def update_position(a, loop):
     # print("\nUpdating position of person " + str(p.n))
     # Update only if the person is not moving
-    if not p.moving:
-        previous_node = p.curr_node
-        p.curr_node = p.dest_node
-        destination_node, distance = compute_destination(p.dest_node)
-        p.dest_node = destination_node
-        p.distance = distance
-        p.moving = True
+    if not a.moving:
+        # Arrived to destination node
+        previous_node = a.curr_node
+        a.curr_node = a.dest_node
+        destination_node, distance = compute_destination(a.dest_node)
+        a.dest_node = destination_node
+        a.distance = distance
+        a.moving = True
 
         node_situation = []
         node_object = []
         # Update the counters in the nodes and acquire the situation and the object in the new current node
         for n in G.nodes.data():
             if n[0] == previous_node:
-                n[1]['pers'] = int(n[1]['pers']) - 1
-            elif n[0] == p.curr_node:
-                n[1]['pers'] = int(n[1]['pers']) + 1
+                n[1]['n_agents'] = int(n[1]['n_agents']) - 1
+                # If it has still not been removed from that node, delete it so that no exchange is possible
+                if node_state.get(str(n[0])):
+                    node_state[str(n[0])].remove(a.n)
+
+            elif n[0] == a.curr_node:
+                n[1]['n_agents'] = int(n[1]['n_agents']) + 1
+                # if this node is not yet in the dictionary, create the key-value pair
+                if not node_state.get(str(n[0])):
+                    node_state[str(n[0])] = [a.n]
+                # if the node is already in the dictionary, append to the value the agent's id
+                else:
+                    node_state[str(n[0])].append(a.n)
+
                 node_situation = n[1]['situation']
                 node_object = n[1]['object']
 
         # Add the new current node to the list of visited nodes of the person
-        p.visited_nodes.append(p.curr_node)
+        a.visited_nodes.append(a.curr_node)
         # The actual situation and object seen by the person depend on its trustworthiness
-        seen_sit = get_cls_at_dist(node_situation, p.error)
-        seen_obj = get_cls_at_dist(node_object, p.error)
+        seen_sit = get_cls_at_dist(node_situation, a.error)
+        seen_obj = get_cls_at_dist(node_object, a.error)
         seen_ev = seen_sit, seen_obj
-        # Add what the person thinks to have seen to its list of seen events
-        p.seen_events.append(seen_ev)
+        a.seen_events.append(seen_ev)
+        # Add what the person thinks to have seen to its list of information elements
+        a.ies.append(InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error)))
     else:
         # If the person is moving, check if it has reached the destination
-        if p.distance > 0:
+        if a.distance > 0:
             # If it has not reached the destination, move of the defined distance
-            p.distance = p.distance - loop_distance
+            a.distance = a.distance - loop_distance
         else:
             # If the distance is 0 or negative it means that the destination has been reached
-            p.moving = False
-    print(p)
+            a.moving = False
+    print(a)
 
 
 # This function generates a GIF starting from the images
@@ -120,38 +150,46 @@ def create_gif():
                    duration=500, Loop=0)
 
 
-people = []
 i = 1
-
 # Initialize people's positions in random nodes
-for i in range(n_pers):
+for i in range(n_agents):
     curr_node = random.choice(list(n[0] for n in G.nodes.data()))
     situation = {}
     obj = []
     # Update the counter of the number of people in that node and get the situation and the object
     for elem in G.nodes(data=True):
         if elem[0] == curr_node:
-            elem[1]['pers'] = int(elem[1]['pers']) + 1
+            # Increment the number of people in that node
+            elem[1]['n_agents'] = int(elem[1]['n_agents']) + 1
+            # Add person id to the node
+            if not node_state.get(str(curr_node)):
+                node_state[str(curr_node)] = [i]
+            else:
+                node_state[str(curr_node)].append(i)
+
             situation = elem[1]['situation']
             obj = elem[1]['object']
 
     dest_node, dist = compute_destination(curr_node)
     # Instantiate the Person class passing the arguments
-    person = Person(i, curr_node, dest_node, dist, random.randint(0, 2))
-    person.visited_nodes.append(curr_node)
+    agent = Agent(i, curr_node, dest_node, dist, random.randint(0, 2))
+    agent.visited_nodes.append(curr_node)
 
     # Add the event that the person thinks to have seen to the list
-    seen_situation = get_cls_at_dist(situation, person.error)
-    seen_object = get_cls_at_dist(obj, person.error)
-    seen_event = seen_situation, seen_object
-    person.seen_events.append(seen_event)
+    seen_situation = get_cls_at_dist(situation, agent.error)
+    seen_object = get_cls_at_dist(obj, agent.error)
+    seen_event = (seen_situation, seen_object)
+
+    agent.seen_events.append(seen_event)
+    agent.ies.append(InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error)))
 
     # Initialize the connections owned by the person
     # person.global_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
     # person.local_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
-    people.append(person)
+    agents.append(agent)
     i += 1
 
+print(node_state)
 
 # Array of colors of the nodes based on the number of people contained
 nc = color()
@@ -159,11 +197,14 @@ nc = color()
 ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath="images/img0.png")
 plt.close()
 
+exchange_information(0)
+
 # Loop through the predefined # of steps and update the people's positions
 for i in range(1, steps):
     print("\nIteration " + str(i))
-    for pers in people:
-        update_position(pers)
+    for ag in agents:
+        update_position(ag, i)
+    exchange_information(i)
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
@@ -175,8 +216,3 @@ for i in range(1, steps):
 
 # Generate the GIF from the saved sequence of images
 create_gif()
-
-
-
-
-
