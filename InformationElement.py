@@ -1,6 +1,7 @@
 class InformationElement:
-    def __init__(self, n, where=0, when=0, what=None, root=None):
+    def __init__(self, n, history, where=0, when=0, what=None, root=None):
         self.n = n
+        self.history = history
         self.where = where
         self.when = when
         # Information element or direct observation
@@ -8,7 +9,7 @@ class InformationElement:
         self.root = root
 
     def __str__(self):
-        return "[Information Element: " + str(self.n) + ", " + str(self.where) + ", " + str(self.when) + ", " \
+        return "[Information Element: " + str(self.n) + ", " + str(self.history) + ", " + str(self.where) + ", " + str(self.when) + ", " \
                 + str(self.what) + "]"
 
     def __eq__(self, other):

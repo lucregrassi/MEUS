@@ -7,9 +7,9 @@ from read_ontology import get_cls_at_dist
 from InformationElement import InformationElement, DirectObservation
 
 # Initialize number of agents exploring the graph
-n_agents = 100
+n_agents = 200
 # Number of iterations
-steps = 2
+steps = 10
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -72,34 +72,35 @@ def compute_destination(current_node):
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
 def exchange_information(loop):
+    delete = []
     for k in node_state_dict.keys():
         # If there is more than one agent in a node, they should exchange their info
         if len(node_state_dict[k]) > 1:
+            delete.append(k)
             print("\nINFORMATION EXCHANGE")
             print(k, node_state_dict[k])
             for agent_id in node_state_dict[k]:
                 listener = agents_dict[str(agent_id)]
-                # print("Listener before exchange: ")
-                # print(listener)
                 for ag_id in node_state_dict[k]:
                     if agents_dict[str(ag_id)].n != listener.n:
                         teller = agents_dict[str(ag_id)]
                         listener.met_agents.append(teller.n)
                         listener.met_in_node.append(int(k))
                         listener.met_in_loop.append(loop)
-
-                        for ie in teller.ies:
+                        for in_el in teller.ies:
                             # print("Teller root", ie.root)
                             already_told = False
                             for inf_el in listener.ies:
                                 # print("Listener root", inf_el.root)
-                                if ie.root == inf_el.root:
-                                    already_told = True
-                            if already_told is False:
-                                listener.ies.append(InformationElement(teller.n, int(k), loop, ie, ie.root))
-
-    delete = [k for k in node_state_dict if len(node_state_dict[k]) > 1]
-    # delete the key
+                                if in_el.root == inf_el.root:
+                                    if listener.n in in_el.history:
+                                        already_told = True
+                            if not already_told:
+                                hist = in_el.history
+                                hist.append(listener.n)
+                                listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
+                                for el in listener.ies:
+                                    print(el)
     for k in delete:
         del node_state_dict[k]
 
@@ -148,8 +149,8 @@ def update_position(a, loop):
         seen_ev = seen_sit, seen_obj
         a.seen_events.append(seen_ev)
         # Add what the person thinks to have seen to its list of information elements
-        root = InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error))
-        a.ies.append(InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error), root))
+        root = InformationElement(a.n, [a.n], a.curr_node, loop, DirectObservation(seen_ev, a.error))
+        a.ies.append(InformationElement(a.n, [a.n], a.curr_node, loop, DirectObservation(seen_ev, a.error), root))
     else:
         # If the person is moving, check if it has reached the destination
         if a.distance > 0:
@@ -206,8 +207,7 @@ for i in range(n_agents):
 
     agent.seen_events.append(seen_event)
     ie_root = InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))
-    agent.ies.append(InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
-
+    agent.ies.append(InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
     # Initialize the connections owned by the person
     # person.global_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
     # person.local_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
