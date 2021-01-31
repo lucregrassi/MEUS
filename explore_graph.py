@@ -9,14 +9,14 @@ from InformationElement import InformationElement, DirectObservation
 # Initialize number of agents exploring the graph
 n_agents = 100
 # Number of iterations
-steps = 5
+steps = 2
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
 # Instances of agents moving in the graph
-agents = []
+agents_dict = {}
 # Dictionary where the keys are the nodes and the values are lists containing the IDs of agents in those nodes
-node_state = {}
+node_state_dict = {}
 
 # Load the graph from the graphml file previously saved
 G = ox.load_graphml('graph/graph.graphml')
@@ -72,13 +72,36 @@ def compute_destination(current_node):
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
 def exchange_information(loop):
-    for key in node_state:
+    for k in node_state_dict.keys():
         # If there is more than one agent in a node, they should exchange their info
-        if len(node_state[key]) > 1:
-            print(key, node_state[key])
-            # for a in agents:
-            # if a.n in node_state[key]:
-            # TODO: exchange the info among people in the same node
+        if len(node_state_dict[k]) > 1:
+            print("\nINFORMATION EXCHANGE")
+            print(k, node_state_dict[k])
+            for agent_id in node_state_dict[k]:
+                listener = agents_dict[str(agent_id)]
+                # print("Listener before exchange: ")
+                # print(listener)
+                for ag_id in node_state_dict[k]:
+                    if agents_dict[str(ag_id)].n != listener.n:
+                        teller = agents_dict[str(ag_id)]
+                        listener.met_agents.append(teller.n)
+                        listener.met_in_node.append(int(k))
+                        listener.met_in_loop.append(loop)
+
+                        for ie in teller.ies:
+                            # print("Teller root", ie.root)
+                            already_told = False
+                            for inf_el in listener.ies:
+                                # print("Listener root", inf_el.root)
+                                if ie.root == inf_el.root:
+                                    already_told = True
+                            if already_told is False:
+                                listener.ies.append(InformationElement(teller.n, int(k), loop, ie, ie.root))
+
+    delete = [k for k in node_state_dict if len(node_state_dict[k]) > 1]
+    # delete the key
+    for k in delete:
+        del node_state_dict[k]
 
 
 # Update a specific person's attributes
@@ -101,17 +124,18 @@ def update_position(a, loop):
             if n[0] == previous_node:
                 n[1]['n_agents'] = int(n[1]['n_agents']) - 1
                 # If it has still not been removed from that node, delete it so that no exchange is possible
-                if node_state.get(str(n[0])):
-                    node_state[str(n[0])].remove(a.n)
+                if str(n[0]) in node_state_dict:
+                    if a.n in node_state_dict[str(n[0])]:
+                        node_state_dict[str(n[0])].remove(a.n)
 
             elif n[0] == a.curr_node:
                 n[1]['n_agents'] = int(n[1]['n_agents']) + 1
                 # if this node is not yet in the dictionary, create the key-value pair
-                if not node_state.get(str(n[0])):
-                    node_state[str(n[0])] = [a.n]
+                if not node_state_dict.get(str(n[0])):
+                    node_state_dict[str(n[0])] = [a.n]
                 # if the node is already in the dictionary, append to the value the agent's id
                 else:
-                    node_state[str(n[0])].append(a.n)
+                    node_state_dict[str(n[0])].append(a.n)
 
                 node_situation = n[1]['situation']
                 node_object = n[1]['object']
@@ -124,7 +148,8 @@ def update_position(a, loop):
         seen_ev = seen_sit, seen_obj
         a.seen_events.append(seen_ev)
         # Add what the person thinks to have seen to its list of information elements
-        a.ies.append(InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error)))
+        root = InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error))
+        a.ies.append(InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error), root))
     else:
         # If the person is moving, check if it has reached the destination
         if a.distance > 0:
@@ -133,7 +158,6 @@ def update_position(a, loop):
         else:
             # If the distance is 0 or negative it means that the destination has been reached
             a.moving = False
-    print(a)
 
 
 # This function generates a GIF starting from the images
@@ -162,10 +186,10 @@ for i in range(n_agents):
             # Increment the number of people in that node
             elem[1]['n_agents'] = int(elem[1]['n_agents']) + 1
             # Add person id to the node
-            if not node_state.get(str(curr_node)):
-                node_state[str(curr_node)] = [i]
+            if not node_state_dict.get(str(curr_node)):
+                node_state_dict[str(curr_node)] = [i]
             else:
-                node_state[str(curr_node)].append(i)
+                node_state_dict[str(curr_node)].append(i)
 
             situation = elem[1]['situation']
             obj = elem[1]['object']
@@ -181,15 +205,17 @@ for i in range(n_agents):
     seen_event = (seen_situation, seen_object)
 
     agent.seen_events.append(seen_event)
-    agent.ies.append(InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error)))
+    ie_root = InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))
+    agent.ies.append(InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
 
     # Initialize the connections owned by the person
     # person.global_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
     # person.local_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
-    agents.append(agent)
+    agents_dict[str(i)] = agent
     i += 1
 
-print(node_state)
+# print(agents_dict)
+# print(node_state_dict)
 
 # Array of colors of the nodes based on the number of people contained
 nc = color()
@@ -197,14 +223,29 @@ nc = color()
 ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath="images/img0.png")
 plt.close()
 
+# Exchange info between agents in the initial position
 exchange_information(0)
 
-# Loop through the predefined # of steps and update the people's positions
+# Print the state of all the agents along with their IEs
+for key in agents_dict.keys():
+    print(agents_dict[key])
+    for ie in agents_dict[key].ies:
+        print(ie)
+
+# Loop through the predefined # of steps and update the agent's positions
 for i in range(1, steps):
     print("\nIteration " + str(i))
-    for ag in agents:
-        update_position(ag, i)
+    for key in agents_dict.keys():
+        # Update the position of the agent
+        update_position(agents_dict[key], i)
+
     exchange_information(i)
+
+    # Print the updated state of the agents along with their IEs
+    for key in agents_dict.keys():
+        print(agents_dict[key])
+        for ie in agents_dict[key].ies:
+            print(ie)
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
