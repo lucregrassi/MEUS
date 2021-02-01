@@ -30,7 +30,7 @@ python3 save_graph.py
 ## Initialize global connections
 To setup the global connections in the grap (4G, 5G and Wi-Fi), open the terminal and run:
 ```
-python3 connections.py
+python3 connectivity.py
 ```
 
 ## Start the simulation
