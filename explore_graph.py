@@ -83,27 +83,59 @@ def exchange_information(loop):
             for agent_id in node_state_dict[k]:
                 listener = agents_dict[str(agent_id)]
                 for ag_id in node_state_dict[k]:
-                    if agents_dict[str(ag_id)].n != listener.n:
-                        teller = agents_dict[str(ag_id)]
-                        listener.met_agents.append(teller.n)
-                        listener.met_in_node.append(int(k))
-                        listener.met_in_loop.append(loop)
-                        for in_el in teller.ies:
-                            # print("Teller root", ie.root)
-                            already_told = False
-                            for inf_el in listener.ies:
-                                # print("Listener root", inf_el.root)
-                                if in_el.root == inf_el.root:
-                                    if listener.n in in_el.history:
-                                        already_told = True
-                            if not already_told:
-                                hist = copy.deepcopy(in_el.history)
-                                hist.append(listener.n)
-                                listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
-
-                                listener.ies[-1].history = hist
-                                # for el in listener.ies:
-                                    # print(el)
+                    # If the teller has a different id (is not the listener), and if they both have
+                    candidate = agents_dict[str(ag_id)]
+                    if candidate.n != listener.n:
+                        perform_exchange = False
+                        # Look for common local connections
+                        if any(j in candidate.local_conn for j in listener.local_conn):
+                            print("\nCommon local connection found for agents ", candidate.n, "and", listener.n)
+                            perform_exchange = True
+                        else:
+                            print("\nNo common local connections found bewteen", candidate.n, "and", listener.n)
+                            print("Looking for global connections...")
+                            # Check global connections if no common local connection is found
+                            common_global = [value for value in candidate.global_conn if value in listener.global_conn]
+                            print("Listener", listener.n, "->", listener.global_conn)
+                            print("Teller", candidate.n, "->", candidate.global_conn)
+                            print("Common global connections: ", common_global)
+                            # If there is a common global connection, check if the connection is available in that node
+                            if common_global:
+                                node_conn = G.nodes[int(k)]['connection']
+                                print("Node", k, "connections: ", list(node_conn))
+                                for conn in common_global:
+                                    if str(conn) in node_conn:
+                                        print("Common global connection", conn, "found in node!", )
+                                        perform_exchange = True
+                                        break
+                                if not perform_exchange:
+                                    print("Common global connection not available in the node :(")
+                            else:
+                                print("No common global connections!")
+                        # If there is at least a common local connections or a common global connection available
+                        if perform_exchange:
+                            teller = candidate
+                            listener.met_agents.append(teller.n)
+                            listener.met_in_node.append(int(k))
+                            listener.met_in_loop.append(loop)
+                            # Loop through all Information Elements of the teller
+                            for in_el in teller.ies:
+                                already_told = False
+                                # Loop through all Information Elements of the listener
+                                for inf_el in listener.ies:
+                                    # If the IEs have the same root
+                                    if in_el.root == inf_el.root:
+                                        # If the listener is not already in the history of the IE of the teller
+                                        if listener.n in in_el.history:
+                                            already_told = True
+                                if not already_told:
+                                    # Deepcopy the history of the teller to avoid references!!
+                                    hist = copy.deepcopy(in_el.history)
+                                    # Add the listener id to create the history of its new IE
+                                    hist.append(listener.n)
+                                    # Append the new IE to the listener
+                                    listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
+    # Avoid that they can meet again once they exchange their info and they are still in the same node
     for k in delete:
         del node_state_dict[k]
 
@@ -212,8 +244,9 @@ for i in range(n_agents):
     ie_root = InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))
     agent.ies.append(InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
     # Initialize the connections owned by the person
-    # person.global_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
-    # person.local_conn.append(random.choices([1, 2, 3], k=random.randint(1, 3))
+    agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
+    # Initialize array of local connections, choosing randomly, removing duplicates
+    agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
     agents_dict[str(i)] = agent
     i += 1
 
@@ -246,9 +279,9 @@ for i in range(1, steps):
 
     # # Print the updated state of the agents along with their IEs
     for key in agents_dict.keys():
-         print(agents_dict[key])
-         for ie in agents_dict[key].ies:
-             print(ie)
+        print(agents_dict[key])
+        for ie in agents_dict[key].ies:
+            print(ie)
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"

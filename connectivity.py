@@ -53,6 +53,11 @@ def setup_connection(graph, connection, hubs, radius):
                         n[1]['connection'] = str(n[1]['connection']) + ',' + str(connection) + ','
                         if '0' in list(n[1]['connection']):
                             n[1]['connection'] = n[1]['connection'][2:]
+                # Remove final comma if present
+                if n[1]['connection'][-1] == ',':
+                    n[1]['connection'] = n[1]['connection'][:-1]
+
+
     return graph
 
 
