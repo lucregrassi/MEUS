@@ -28,7 +28,7 @@ python3 save_graph.py
 ```
 
 ## Initialize global connections
-To setup the global connections in the grap (4G, 5G and Wi-Fi), open the terminal and run:
+To setup the global connections in the graph (4G, 5G and Wi-Fi), open the terminal and run:
 ```
 python3 connectivity.py
 ```
@@ -40,4 +40,4 @@ Once all the parameters have been set, open the terminal and type:
 ```
 python3 explore_graph.py
 ```
-For each loop, this script will print the state of each peson in the graph and it will eventually generate a GIF containing the result of the simulation. 
+For each loop, this script will print the state of each person in the graph and it will eventually generate a GIF containing the result of the simulation. 
