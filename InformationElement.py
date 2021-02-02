@@ -1,5 +1,5 @@
 class InformationElement:
-    def __init__(self, n, history, where=0, when=0, what=None, root=None):
+    def __init__(self, n, history=None, where=0, when=0, what=None, root=None):
         self.n = n
         self.history = history
         self.where = where

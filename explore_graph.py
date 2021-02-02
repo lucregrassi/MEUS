@@ -1,4 +1,5 @@
 import osmnx as ox
+import copy
 from Agent import Agent
 import random
 import matplotlib.pyplot as plt
@@ -77,8 +78,8 @@ def exchange_information(loop):
         # If there is more than one agent in a node, they should exchange their info
         if len(node_state_dict[k]) > 1:
             delete.append(k)
-            print("\nINFORMATION EXCHANGE")
-            print(k, node_state_dict[k])
+            # print("\nINFORMATION EXCHANGE")
+            # print(k, node_state_dict[k])
             for agent_id in node_state_dict[k]:
                 listener = agents_dict[str(agent_id)]
                 for ag_id in node_state_dict[k]:
@@ -96,11 +97,13 @@ def exchange_information(loop):
                                     if listener.n in in_el.history:
                                         already_told = True
                             if not already_told:
-                                hist = in_el.history
+                                hist = copy.deepcopy(in_el.history)
                                 hist.append(listener.n)
                                 listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
-                                for el in listener.ies:
-                                    print(el)
+
+                                listener.ies[-1].history = hist
+                                # for el in listener.ies:
+                                    # print(el)
     for k in delete:
         del node_state_dict[k]
 
@@ -241,11 +244,11 @@ for i in range(1, steps):
 
     exchange_information(i)
 
-    # Print the updated state of the agents along with their IEs
+    # # Print the updated state of the agents along with their IEs
     for key in agents_dict.keys():
-        print(agents_dict[key])
-        for ie in agents_dict[key].ies:
-            print(ie)
+         print(agents_dict[key])
+         for ie in agents_dict[key].ies:
+             print(ie)
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"

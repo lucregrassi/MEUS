@@ -37,6 +37,7 @@ for node in G.nodes(data=True):
     node[1]['connection'] = '0'
     # print(node)
 
+
 # Save the graph in a graphml file
 # Note: the file is named "temp" because the connections are still not initialized.
 ox.save_graphml(G, filepath='graph/graph_temp.graphml')
