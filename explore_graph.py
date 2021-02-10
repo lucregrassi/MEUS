@@ -65,7 +65,8 @@ def compute_destination(current_node):
         else:
             edges_of_interest = G[destination_node][current_node]
         for edge in edges_of_interest.values():
-            distance = edge.get('length')
+            # distance = edge.get('length')
+            distance = edge['geometry'].length
 
     # print("Distance: " + str(distance))
     return destination_node, distance
@@ -282,6 +283,9 @@ for i in range(1, steps):
         print(agents_dict[key])
         for ie in agents_dict[key].ies:
             print(ie)
+            print(type(ie.history))
+            print(type(ie.what))
+            print("type of ie.root is " + str(type(ie.root))) 
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
