@@ -134,19 +134,12 @@ def compute_destination(current_node):
             edges_of_interest = G[destination_node][current_node]
         counter = 1
         for edge in edges_of_interest.values():
-<<<<<<< HEAD
             distance = edge.get('length')
             ls = compute_intermediate_dist(edge)
             if distance < 0:
                 logging.error("distance is negative!!!")
     return destination_node, distance, ls
-=======
-            # distance = edge.get('length')
-            distance = edge['geometry'].length
 
-    # print("Distance: " + str(distance))
-    return destination_node, distance
->>>>>>> origin/master
 
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
