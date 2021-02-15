@@ -82,8 +82,12 @@ def geolocalise_me(agent):
                 y1 = agent.path[key]['UTM_coordinates'][0][1]
 
 
-                x = x1 + (agent.road / rel_dist * agent.path[key]['dist'])
-                y = ((y2 - y1) / (x2 - x1) ) * (x -x1) + y1
+                m       = (y2 - y1) / (x2 - x1) 
+                theta   = math.degrees(math.atan(m))
+
+
+                x = x1 + ((agent.road / rel_dist * agent.path[key]['dist'])) / math.cos(theta)
+                y = m * (x - x1) + y1
 
                 estimated_UTM = (x, y)
 
@@ -97,12 +101,6 @@ def geolocalise_me(agent):
         logging.info("traveled road is > than agent.distance. \ntraveled_road: " +str(agent.road) + "\nagent.distance: " +str(agent.distance))
 
     logging.info("| returning from geolocalise_me()")
-
-
-
-
-
-
 
 
 
@@ -367,15 +365,6 @@ for i in range(1, steps):
         print(agents_dict[key])
         for ie in agents_dict[key].ies:
             print(ie)
-<<<<<<< HEAD
-            # print(type(ie.history))
-            # print(type(ie.what))
-            # print("type of ie.root is " + str(type(ie.root))) 
-=======
-            print(type(ie.history))
-            print(type(ie.what))
-            print("type of ie.root is " + str(type(ie.root))) 
->>>>>>> origin/master
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
