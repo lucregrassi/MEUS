@@ -1,16 +1,20 @@
 import osmnx as ox
 import copy
+import math
 from Agent import Agent
 import random
 import matplotlib.pyplot as plt
 from PIL import Image
 from read_ontology import get_cls_at_dist
 from InformationElement import InformationElement, DirectObservation
+import logging
+
+logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
 
 # Initialize number of agents exploring the graph
 n_agents = 200
 # Number of iterations
-steps = 10
+steps = 4
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -22,6 +26,8 @@ node_state_dict = {}
 # Load the graph from the graphml file previously saved
 G = ox.load_graphml('graph/graph.graphml')
 
+
+counter = 0
 
 # This function returns an array containing the colors of each node, based on the number of people
 def color():
@@ -36,6 +42,68 @@ def color():
         else:
             node_color.append('w')
     return node_color
+
+
+def compute_intermediate_dist(target_edge):
+    dist = []
+    path = {}
+    for i in range(len(target_edge['geometry'].coords)-1):
+        # distance between each and every subnode
+        dist = math.sqrt(   (target_edge['geometry'].coords[i][0] - target_edge['geometry'].coords[i+1][0])**2 + \
+                            (target_edge['geometry'].coords[i][1] - target_edge['geometry'].coords[i+1][1])**2)
+        path[str(i+1) + '-' + str(i+2)] = {'edgeID': target_edge['osmid'], 'dist': dist, \
+                                                'UTM_coordinates': [target_edge['geometry'].coords[i], target_edge['geometry'].coords[i+1]]}
+        
+    return path
+
+
+def geolocalise_me(agent):
+
+    logging.info("| geolocalise_me()")
+
+    rel_dist = 0
+
+    # if the agent has yet to reach the destination node
+    if agent.road < agent.distance:
+        for key in agent.path:
+            # if I am between the first couple of subnodes in the path
+            rel_dist += agent.path[key]['dist']
+            # if counter==0:
+            if (agent.road <= rel_dist):
+                logging.info("Agent: " + str(agent.n) + ". counter: " + str(counter) + "\n \
+                    my destination is at " + str(agent.distance) +"[m], I have traveled " + str(agent.road) + " [m]. I am between positions: " + \
+                    str(agent.path[key]['UTM_coordinates']) + ".")
+                target_key = key
+
+                x2 = agent.path[key]['UTM_coordinates'][1][0]
+                x1 = agent.path[key]['UTM_coordinates'][0][0]
+
+                y2 = agent.path[key]['UTM_coordinates'][1][1]
+                y1 = agent.path[key]['UTM_coordinates'][0][1]
+
+
+                x = x1 + (agent.road / rel_dist * agent.path[key]['dist'])
+                y = ((y2 - y1) / (x2 - x1) ) * (x -x1) + y1
+
+                estimated_UTM = (x, y)
+
+                return estimated_UTM
+            else:
+                pass
+
+    elif agent.road==agent.distance:
+        logging.info("I am on the destination node")
+    else:
+        logging.info("traveled road is > than agent.distance. \ntraveled_road: " +str(agent.road) + "\nagent.distance: " +str(agent.distance))
+
+    logging.info("| returning from geolocalise_me()")
+
+
+
+
+
+
+
 
 
 # This function computes the destination node, based on the current node - the destination is randomly chosen among
@@ -64,11 +132,13 @@ def compute_destination(current_node):
             edges_of_interest = G[current_node][destination_node]
         else:
             edges_of_interest = G[destination_node][current_node]
+        counter = 1
         for edge in edges_of_interest.values():
             distance = edge.get('length')
-
-    # print("Distance: " + str(distance))
-    return destination_node, distance
+            ls = compute_intermediate_dist(edge)
+            if distance < 0:
+                logging.error("distance is negative!!!")
+    return destination_node, distance, ls
 
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
@@ -144,14 +214,18 @@ def exchange_information(loop):
 def update_position(a, loop):
     # print("\nUpdating position of person " + str(p.n))
     # Update only if the person is not moving
+    logging.info("| update_position()")
+    global counter
     if not a.moving:
         # Arrived to destination node
-        previous_node = a.curr_node
-        a.curr_node = a.dest_node
-        destination_node, distance = compute_destination(a.dest_node)
-        a.dest_node = destination_node
-        a.distance = distance
-        a.moving = True
+        previous_node                       = a.curr_node
+        a.curr_node                         = a.dest_node
+        destination_node, distance, path    = compute_destination(a.dest_node)
+        a.dest_node                         = destination_node
+        a.distance                          = distance
+        a.path                              = path
+        a.moving                            = True
+        a.road                              = 0
 
         node_situation = []
         node_object = []
@@ -188,12 +262,23 @@ def update_position(a, loop):
         a.ies.append(InformationElement(a.n, [a.n], a.curr_node, loop, DirectObservation(seen_ev, a.error), root))
     else:
         # If the person is moving, check if it has reached the destination
+        # logging.info("| agent before geolocalisation: " +str(a))
         if a.distance > 0:
             # If it has not reached the destination, move of the defined distance
             a.distance = a.distance - loop_distance
+            a.road += loop_distance 
+            # logging.info("a.road: " +str(a.road))
+            # logging.info("###########################################################################")
+            # logging.info("Agent" + str(a.n) + "| a.road: " + str(a.road) + "[m]")
+            # logging.info("###########################################################################")
+            geolocalise_me(a)
+            counter += 1
+            # logging.info("| agent after geolocalisation: " +str(a))
+
         else:
             # If the distance is 0 or negative it means that the destination has been reached
             a.moving = False
+    logging.info("| returning from update_position()")
 
 
 # This function generates a GIF starting from the images
@@ -230,9 +315,9 @@ for i in range(n_agents):
             situation = elem[1]['situation']
             obj = elem[1]['object']
 
-    dest_node, dist = compute_destination(curr_node)
+    dest_node, dist, path = compute_destination(curr_node)
     # Instantiate the Person class passing the arguments
-    agent = Agent(i, curr_node, dest_node, dist, random.randint(0, 2))
+    agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
     agent.visited_nodes.append(curr_node)
 
     # Add the event that the person thinks to have seen to the list
@@ -250,8 +335,7 @@ for i in range(n_agents):
     agents_dict[str(i)] = agent
     i += 1
 
-# print(agents_dict)
-# print(node_state_dict)
+logging.info("| DESTINATIONS COMPUTED")
 
 # Array of colors of the nodes based on the number of people contained
 nc = color()
@@ -274,14 +358,17 @@ for i in range(1, steps):
     for key in agents_dict.keys():
         # Update the position of the agent
         update_position(agents_dict[key], i)
+    logging.info("bigcounter: " +str(i))
 
     exchange_information(i)
-
-    # # Print the updated state of the agents along with their IEs
+    #  Print the updated state of the agents along with their IEs
     for key in agents_dict.keys():
         print(agents_dict[key])
         for ie in agents_dict[key].ies:
             print(ie)
+            # print(type(ie.history))
+            # print(type(ie.what))
+            # print("type of ie.root is " + str(type(ie.root))) 
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
