@@ -134,11 +134,19 @@ def compute_destination(current_node):
             edges_of_interest = G[destination_node][current_node]
         counter = 1
         for edge in edges_of_interest.values():
+<<<<<<< HEAD
             distance = edge.get('length')
             ls = compute_intermediate_dist(edge)
             if distance < 0:
                 logging.error("distance is negative!!!")
     return destination_node, distance, ls
+=======
+            # distance = edge.get('length')
+            distance = edge['geometry'].length
+
+    # print("Distance: " + str(distance))
+    return destination_node, distance
+>>>>>>> origin/master
 
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
@@ -366,9 +374,15 @@ for i in range(1, steps):
         print(agents_dict[key])
         for ie in agents_dict[key].ies:
             print(ie)
+<<<<<<< HEAD
             # print(type(ie.history))
             # print(type(ie.what))
             # print("type of ie.root is " + str(type(ie.root))) 
+=======
+            print(type(ie.history))
+            print(type(ie.what))
+            print("type of ie.root is " + str(type(ie.root))) 
+>>>>>>> origin/master
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
