@@ -1,6 +1,7 @@
 import osmnx as ox
 import copy
 import math
+from angles import normalize
 from Agent import Agent
 import random
 import matplotlib.pyplot as plt
@@ -8,7 +9,11 @@ from PIL import Image
 from read_ontology import get_cls_at_dist
 from InformationElement import InformationElement, DirectObservation
 import logging
+import matplotlib.pyplot as plt
+from shapely.geometry import LineString
 
+
+plt.style.use('fivethirtyeight')
 logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
 
 # Initialize number of agents exploring the graph
@@ -57,10 +62,28 @@ def compute_intermediate_dist(target_edge):
     return path
 
 
+def plotter(agent, realTimePos):
+    xs = []
+    ys = []
+    breaks = []
+    for key in agent.path:
+        xs.extend([agent.path[key]['UTM_coordinates'][0][0], agent.path[key]['UTM_coordinates'][1][0]])
+        ys.extend([agent.path[key]['UTM_coordinates'][0][1], agent.path[key]['UTM_coordinates'][1][1]])
+    for i in range(len(xs)):
+        plt.scatter(xs[i], ys[i], s=20, c='k', marker='*')
+    plt.plot(xs, ys, 'b-', label='path', linewidth=0.8)
+    plt.scatter(realTimePos[0], realTimePos[1], s=30, c='r', marker='o')
+    plt.axis('equal')
+    plt.legend(loc='upper left')
+    plt.xlabel('x [m]')
+    plt.ylabel('y [m]')
+    plt.tight_layout()
+    # plt.show()
+
+
 def geolocalise_me(agent):
 
     logging.info("| geolocalise_me()")
-
     rel_dist = 0
 
     # if the agent has yet to reach the destination node
@@ -68,7 +91,6 @@ def geolocalise_me(agent):
         for key in agent.path:
             # if I am between the first couple of subnodes in the path
             rel_dist += agent.path[key]['dist']
-            # if counter==0:
             if (agent.road <= rel_dist):
                 logging.info("Agent: " + str(agent.n) + ". counter: " + str(counter) + "\n \
                     my destination is at " + str(agent.distance) +"[m], I have traveled " + str(agent.road) + " [m]. I am between positions: " + \
@@ -82,14 +104,43 @@ def geolocalise_me(agent):
                 y1 = agent.path[key]['UTM_coordinates'][0][1]
 
 
-                m       = (y2 - y1) / (x2 - x1) 
-                theta   = math.degrees(math.atan(m))
+                m       = (y2 - y1) / (x2 - x1)
+                theta   = normalize(math.atan2(y2 - y1, x2 - x1), 0, 2*math.pi)
+                theta2  = math.atan(m)
+                b       = (x2*y1 - x1*y2)/(x2-x1)
 
+                perc    = agent.road - (rel_dist - agent.path[key]['dist'])
+                x_prop  = perc/math.cos(theta)
 
-                x = x1 + ((agent.road / rel_dist * agent.path[key]['dist'])) / math.cos(theta)
-                y = m * (x - x1) + y1
+                x = x1 + x_prop
+                y = m*x + b
 
                 estimated_UTM = (x, y)
+
+                if agent.n==8:
+                    logging.info("| (x,y)   = " +str(x) + "," +str(y)+"\n \
+                                m           = "+ str(m)+ "\n \
+                                theta       = " + str(theta)+"\n \
+                                theta2      = " + str(theta2) + "\n \
+                                cos(theta)  = " + str(math.cos(theta))+"\n \
+                                perc        = " +str(perc) +"\n \
+                                x1          = " + str(x1) + "\n \
+                                b           = " + str(b) )
+                    # if ((perc / math.cos(theta)) + x1 != x):
+                    #     logging.info("| Somethings wrong!\n \
+                    #                     perc/math.cos(theta) = " + str((perc/math.cos(theta))) + "\n \
+                    #                     x1                   = " + str(x1) + "\n \
+                    #                     x1 + x_prop          = " + str(x1+x_prop) + "\n \
+                    #                     x1 + x_prop (2)      = " + str(x1+(perc/math.cos(theta))) + "\n \
+                    #                     x                    = " + str(x) )
+                    plotter(agent, estimated_UTM)
+                    input("hit enter")
+                    # plt.scatter(x1, y1, s=10, c='b', marker='o')
+                    # plt.scatter(x2, y2, s=10, c='b', marker='o')
+                    # plt.scatter(x, y, s=10, c='r', marker='o')
+                    plt.show()
+                    return estimated_UTM
+
 
                 return estimated_UTM
             else:
@@ -214,7 +265,6 @@ def update_position(a, loop):
     # print("\nUpdating position of person " + str(p.n))
     # Update only if the person is not moving
     logging.info("| update_position()")
-    global counter
     if not a.moving:
         # Arrived to destination node
         previous_node                       = a.curr_node
@@ -261,22 +311,16 @@ def update_position(a, loop):
         a.ies.append(InformationElement(a.n, [a.n], a.curr_node, loop, DirectObservation(seen_ev, a.error), root))
     else:
         # If the person is moving, check if it has reached the destination
-        # logging.info("| agent before geolocalisation: " +str(a))
         if a.distance > 0:
             # If it has not reached the destination, move of the defined distance
             a.distance = a.distance - loop_distance
             a.road += loop_distance 
-            # logging.info("a.road: " +str(a.road))
-            # logging.info("###########################################################################")
-            # logging.info("Agent" + str(a.n) + "| a.road: " + str(a.road) + "[m]")
-            # logging.info("###########################################################################")
             geolocalise_me(a)
-            counter += 1
-            # logging.info("| agent after geolocalisation: " +str(a))
 
         else:
             # If the distance is 0 or negative it means that the destination has been reached
             a.moving = False
+            # here maybe to recompute the destination for a second time
     logging.info("| returning from update_position()")
 
 
