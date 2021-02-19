@@ -104,43 +104,13 @@ def geolocalise_me(agent):
                 y1 = agent.path[key]['UTM_coordinates'][0][1]
 
 
-                m       = (y2 - y1) / (x2 - x1)
-                theta   = normalize(math.atan2(y2 - y1, x2 - x1), 0, 2*math.pi)
-                theta2  = math.atan(m)
-                b       = (x2*y1 - x1*y2)/(x2-x1)
+                l    = agent.road - (rel_dist - agent.path[key]['dist'])
+                L = agent.path[key]['dist']
 
-                perc    = agent.road - (rel_dist - agent.path[key]['dist'])
-                x_prop  = perc/math.cos(theta)
-
-                x = x1 + x_prop
-                y = m*x + b
+                x = x1 + (x2-x1)*l/L
+                y = y1 + (y2-y1)*l/L
 
                 estimated_UTM = (x, y)
-
-                if agent.n==8:
-                    logging.info("| (x,y)   = " +str(x) + "," +str(y)+"\n \
-                                m           = "+ str(m)+ "\n \
-                                theta       = " + str(theta)+"\n \
-                                theta2      = " + str(theta2) + "\n \
-                                cos(theta)  = " + str(math.cos(theta))+"\n \
-                                perc        = " +str(perc) +"\n \
-                                x1          = " + str(x1) + "\n \
-                                b           = " + str(b) )
-                    # if ((perc / math.cos(theta)) + x1 != x):
-                    #     logging.info("| Somethings wrong!\n \
-                    #                     perc/math.cos(theta) = " + str((perc/math.cos(theta))) + "\n \
-                    #                     x1                   = " + str(x1) + "\n \
-                    #                     x1 + x_prop          = " + str(x1+x_prop) + "\n \
-                    #                     x1 + x_prop (2)      = " + str(x1+(perc/math.cos(theta))) + "\n \
-                    #                     x                    = " + str(x) )
-                    plotter(agent, estimated_UTM)
-                    input("hit enter")
-                    # plt.scatter(x1, y1, s=10, c='b', marker='o')
-                    # plt.scatter(x2, y2, s=10, c='b', marker='o')
-                    # plt.scatter(x, y, s=10, c='r', marker='o')
-                    plt.show()
-                    return estimated_UTM
-
 
                 return estimated_UTM
             else:
@@ -357,6 +327,10 @@ for i in range(n_agents):
 
             situation = elem[1]['situation']
             obj = elem[1]['object']
+            # print("situation: " + str(situation))
+            # print("obj: " + str(obj))
+            # print("elem[1]: " + str(elem[1]))
+            # input("hit enter")
 
     dest_node, dist, path = compute_destination(curr_node)
     # Instantiate the Person class passing the arguments
@@ -368,8 +342,14 @@ for i in range(n_agents):
     seen_object = get_cls_at_dist(obj, agent.error)
     seen_event = (seen_situation, seen_object)
 
+    # print("seen situation: " +str(seen_situation))
+    # print("seen object: " +str(seen_object))
+    # print("seen event: " +str(seen_event))
+    # input("hit enter")
+
     agent.seen_events.append(seen_event)
-    ie_root = InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))
+    # ask Lucre this problem
+    ie_root = InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error))
     agent.ies.append(InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
     # Initialize the connections owned by the person
     agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
@@ -394,6 +374,14 @@ for key in agents_dict.keys():
     print(agents_dict[key])
     for ie in agents_dict[key].ies:
         print(ie)
+        # logging.info("####################################################")
+        # logging.info(ie.what)
+        # if next(iter(ie))#if isinstance(ie.what, DirectObservation):
+        #     logging.info(ie.what.event)
+        #     logging.info(type(ie.what.event))
+        #     logging.info(ie.what.event[0])
+        #     logging.info(type(ie.what.event[0]))
+        # print(type(ie.what))
 
 # Loop through the predefined # of steps and update the agent's positions
 for i in range(1, steps):
