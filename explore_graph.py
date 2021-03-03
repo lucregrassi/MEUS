@@ -1,17 +1,24 @@
-import osmnx as ox
 import copy
 import math
-from angles import normalize
-from Agent import Agent
 import random
-import matplotlib.pyplot as plt
+import logging
+import osmnx as ox
 from PIL import Image
+from Agent import Agent
+from angles import normalize
+import matplotlib.pyplot as plt
 from read_ontology import get_cls_at_dist
 from InformationElement import InformationElement, DirectObservation
-import logging
+
 import matplotlib.pyplot as plt
 from shapely.geometry import LineString
+from utils import preProcessing, IEtoDict
+import requests
+import json
+import pprint
 
+
+BASE = "http://127.0.0.1:5000/"
 
 plt.style.use('fivethirtyeight')
 logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
@@ -60,25 +67,6 @@ def compute_intermediate_dist(target_edge):
                                                 'UTM_coordinates': [target_edge['geometry'].coords[i], target_edge['geometry'].coords[i+1]]}
         
     return path
-
-
-def plotter(agent, realTimePos):
-    xs = []
-    ys = []
-    breaks = []
-    for key in agent.path:
-        xs.extend([agent.path[key]['UTM_coordinates'][0][0], agent.path[key]['UTM_coordinates'][1][0]])
-        ys.extend([agent.path[key]['UTM_coordinates'][0][1], agent.path[key]['UTM_coordinates'][1][1]])
-    for i in range(len(xs)):
-        plt.scatter(xs[i], ys[i], s=20, c='k', marker='*')
-    plt.plot(xs, ys, 'b-', label='path', linewidth=0.8)
-    plt.scatter(realTimePos[0], realTimePos[1], s=30, c='r', marker='o')
-    plt.axis('equal')
-    plt.legend(loc='upper left')
-    plt.xlabel('x [m]')
-    plt.ylabel('y [m]')
-    plt.tight_layout()
-    # plt.show()
 
 
 def geolocalise_me(agent):
@@ -294,6 +282,38 @@ def update_position(a, loop):
     logging.info("| returning from update_position()")
 
 
+def send_info(agent):
+
+    conn = G.nodes.get(agent.curr_node)['connection']
+    conn = conn.split(",")
+    conn_new = [int(i) for i in conn]
+
+    if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0:
+        knowledge = []
+        for ie in agent.ies:
+            ie = IEtoDict(ie)
+            knowledge.append(ie)
+
+        print("knowledge: " +str(knowledge))
+        # input("lets try!")
+        response = requests.put(BASE + "IE/1", json.dumps(knowledge))
+        print(response.json())
+        agent.ies.clear()
+        # input("check 1 explore_graph.py")
+        
+        # response = requests.get(BASE + "IE/1" )
+        # print(response.json())
+        # # input("check 2 explore_graph.py")
+        
+        # response = requests.delete(BASE + "IE/1" )
+        # print(response.json()) 
+        # # input("check 3 explore_graph.py")
+    else:
+        logging.info("| It has not been possible to send information on the database!")
+
+
+
+
 # This function generates a GIF starting from the images
 def create_gif():
     frames = []
@@ -374,14 +394,7 @@ for key in agents_dict.keys():
     print(agents_dict[key])
     for ie in agents_dict[key].ies:
         print(ie)
-        # logging.info("####################################################")
-        # logging.info(ie.what)
-        # if next(iter(ie))#if isinstance(ie.what, DirectObservation):
-        #     logging.info(ie.what.event)
-        #     logging.info(type(ie.what.event))
-        #     logging.info(ie.what.event[0])
-        #     logging.info(type(ie.what.event[0]))
-        # print(type(ie.what))
+
 
 # Loop through the predefined # of steps and update the agent's positions
 for i in range(1, steps):
@@ -395,8 +408,11 @@ for i in range(1, steps):
     #  Print the updated state of the agents along with their IEs
     for key in agents_dict.keys():
         print(agents_dict[key])
+        # print("type(agents_dict[key].ies): " + str(type(agents_dict[key].ies)))
         for ie in agents_dict[key].ies:
             print(ie)
+        send_info(agents_dict[key])
+    logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
@@ -405,6 +421,16 @@ for i in range(1, steps):
     # Save the graph with the updated positions in the image
     ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath=img_path)
     plt.close()
+
+input("check 2 explore_graph.py")
+response = requests.get(BASE + "IE/1" )
+pprint.pprint(response.json())
+
+
+input("check 3 explore_graph.py")
+response = requests.delete(BASE + "IE/1" )
+pprint.pprint(response.json()) 
+
 
 # Generate the GIF from the saved sequence of images
 create_gif()
