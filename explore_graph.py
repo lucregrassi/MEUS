@@ -41,6 +41,7 @@ G = ox.load_graphml('graph/graph.graphml')
 
 counter = 0
 
+
 # This function returns an array containing the colors of each node, based on the number of people
 def color():
     node_color = []
@@ -110,7 +111,6 @@ def geolocalise_me(agent):
     logging.info("| returning from geolocalise_me()")
 
 
-
 # This function computes the destination node, based on the current node - the destination is randomly chosen among
 # adjacent nodes. It returns the destination node and the distance (in meters) from it.
 def compute_destination(current_node):
@@ -146,14 +146,13 @@ def compute_destination(current_node):
     return destination_node, distance, ls
 
 
-
-
 def checkIfDuplicates_1(listOfElems):
     ''' Check if given list contains any duplicates '''
     if len(listOfElems) == len(set(listOfElems)):
         return False
     else:
         return True
+
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
 def exchange_information(loop):
@@ -215,10 +214,9 @@ def exchange_information(loop):
                                 for inf_el in listener.ies:#old_listeners_ies:
                                     # If the IEs have the same root and 
                                     # If the listener is not already in the history of the IE of the teller
-                                    if in_el.root == inf_el.root and (listener.n in in_el.history or \
-                                        teller.n in inf_el.history):
+                                    if in_el.root == inf_el.root and (listener.n in in_el.history or teller.n in inf_el.history):
                                         already_told = True
-                                print("*** already_told final: " +str(already_told))
+                                print("*** already_told final: " + str(already_told))
                                 if not already_told:
                                     # Add the listener to the history of the IE of the teller
                                     in_el.history.append(listener.n)
