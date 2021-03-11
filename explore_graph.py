@@ -26,7 +26,7 @@ logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode=
 # Initialize number of agents exploring the graph
 n_agents = 200
 # Number of iterations
-steps = 30
+steps = 10
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -99,8 +99,6 @@ def geolocalise_me(agent):
                 estimated_UTM = (x, y)
 
                 return estimated_UTM
-            else:
-                pass
 
     elif agent.road==agent.distance:
         logging.info("I am on the destination node")
@@ -146,14 +144,6 @@ def compute_destination(current_node):
     return destination_node, distance, ls
 
 
-
-
-def checkIfDuplicates_1(listOfElems):
-    ''' Check if given list contains any duplicates '''
-    if len(listOfElems) == len(set(listOfElems)):
-        return False
-    else:
-        return True
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
 def exchange_information(loop):
@@ -334,16 +324,23 @@ def send_info(agent):
     conn = conn.split(",")
     conn_new = [int(i) for i in conn]
 
-    if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0:
+    # if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0:
+    if agent.n > 100 and len(agent.ies) and agent.num_info_sent < len(agent.ies):
         knowledge = []
-        for ie in agent.ies:
-            ie = IEtoDict(ie)
-            knowledge.append(ie)
+        if agent.num_info_sent >= len(agent.ies):
+            print("agent.num_info_sent: ", agent.num_info_sent)
+            print("len(agent.ies): ", len(agent.ies))
+            input("send_info()")
+        for i in range(agent.num_info_sent, len(agent.ies)):
+            copia_ie = copy.deepcopy(agent.ies[i])
+            copia_ie = IEtoDict(copia_ie)
+            knowledge.append(copia_ie)
 
         print("knowledge: " +str(knowledge))
         response = requests.put(BASE + "IE/1", json.dumps(knowledge))
         print(response.json())
-        agent.ies.clear()
+        agent.num_info_sent += len(agent.ies)
+        # agent.ies.clear()
     else:
         logging.info("| It has not been possible to send information on the database!")
 
