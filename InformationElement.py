@@ -53,12 +53,3 @@ class DirectObservation:
     
     def asdict(self):
         return {'event': self.event, 'error': self.error}
-
-# agent 1
-# [1, 10, 5, [persona morta, 0]]          [2, 12, 6, [2, 5, 4, [cane, 1]]]
-
-# agent 2
-# [2, 5, 4, [cane, 1]]                    [1, 12, 6, [1, 10, 5, [persona morta, 0]]]
-
-# InformationElement(1, 10, 5, DirectObservation("persona morta", 0))
-# InformationElement(2, 12, 6, InformationElement(2, 5, 4, DirectObservation("cane", 1)))

@@ -234,7 +234,7 @@ def delete_(DO_id):
     # do = dirObsTab.query.filter_by(id=DO_id).first()
     # ih = infoHistoryTab.query.filter_by(id=DO_id).first()
 
-    if not do: #or not ih:
+    if not do: # or not ih:
         abort(404, message="This DO associated with this ID is not in the database")
 
     result_do = []
