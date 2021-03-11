@@ -136,6 +136,10 @@ def put(DO_id):
     flag = False
     if not data_do:
         print("2")
+        print("_________________________________________________")
+        print(data_do)
+        print("No input data provided")
+        input("checking")
         return {"message": "No input data provided"}, 400
     # Validate and deserialize input
     elif not data_ih:
