@@ -211,17 +211,17 @@ def exchange_information(loop):
                             for in_el in teller.ies:
                                 already_told = False
                                 # Loop through all Information Elements of the listener
-                                for inf_el in listener.ies:#old_listeners_ies:
+                                for inf_el in listener.ies:
                                     # If the IEs have the same root and 
-                                    # If the listener is not already in the history of the IE of the teller
+                                    # If the teller is not already in the history of the IE of the listener
                                     if in_el.root == inf_el.root and (listener.n in in_el.history or teller.n in inf_el.history):
                                         already_told = True
                                 print("*** already_told final: " + str(already_told))
                                 if not already_told:
-                                    # Add the listener to the history of the IE of the teller
-                                    in_el.history.append(listener.n)
                                     # Deepcopy the history of the teller to avoid references
                                     hist = copy.deepcopy(in_el.history)
+                                    # Add the listener to the history of the listener!
+                                    hist.append(listener.n)
                                     # Append the new IE to the listener
                                     listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
                                     print(" * I have added\n" +str(listener.ies[-1]) + "\nto the listener knowledge")
