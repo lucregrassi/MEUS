@@ -14,8 +14,6 @@ class InformationElement:
 
     def __eq__(self, other):
         if isinstance(other, InformationElement):
-            # print("Teller IE root: ", self.n, self.where, self.what)
-            # print("Listener IE root: ", other.n, other.where, other.what)
             if self.n == other.n and self.where == other.where and self.what == other.what and \
                 self.history == other.history and self.when == other.when:
                 return True
