@@ -210,10 +210,10 @@ def exchange_information(loop):
                                         already_told = True
                                 print("*** already_told final: " +str(already_told))
                                 if not already_told:
-                                    # Deepcopy the history of the teller to avoid references!!
+                                    # Add the listener to the history of the IE of the teller
+                                    in_el.history.append(listener.n)
+                                    # Deepcopy the history of the teller to avoid references
                                     hist = copy.deepcopy(in_el.history)
-                                    # Add the listener id to create the history of its new IE
-                                    hist.append(listener.n)
                                     # Append the new IE to the listener
                                     listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
                                     print(" * I have added\n" +str(listener.ies[-1]) + "\nto the listener knowledge")
