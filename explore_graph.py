@@ -26,7 +26,7 @@ logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode=
 # Initialize number of agents exploring the graph
 n_agents = 200
 # Number of iterations
-steps = 4
+steps = 30
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -70,7 +70,6 @@ def compute_intermediate_dist(target_edge):
 
 
 def geolocalise_me(agent):
-
     logging.info("| geolocalise_me()")
     rel_dist = 0
 
@@ -80,10 +79,9 @@ def geolocalise_me(agent):
             # if I am between the first couple of subnodes in the path
             rel_dist += agent.path[key]['dist']
             if (agent.road <= rel_dist):
-                logging.info("Agent: " + str(agent.n) + ". counter: " + str(counter) + "\n \
-                    my destination is at " + str(agent.distance) +"[m], I have traveled " + str(agent.road) + " [m]. I am between positions: " + \
-                    str(agent.path[key]['UTM_coordinates']) + ".")
-                target_key = key
+                # logging.info("Agent: " + str(agent.n) + ". counter: " + str(counter) + "\n \
+                #     my destination is at " + str(agent.distance) +"[m], I have traveled " + str(agent.road) + " [m]. I am between positions: " + \
+                #     str(agent.path[key]['UTM_coordinates']) + ".")
 
                 x2 = agent.path[key]['UTM_coordinates'][1][0]
                 x1 = agent.path[key]['UTM_coordinates'][0][0]
@@ -149,17 +147,24 @@ def compute_destination(current_node):
 
 
 
+
+def checkIfDuplicates_1(listOfElems):
+    ''' Check if given list contains any duplicates '''
+    if len(listOfElems) == len(set(listOfElems)):
+        return False
+    else:
+        return True
+
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
 def exchange_information(loop):
     delete = []
+    # old_listeners_ies = []
     for k in node_state_dict.keys():
         # If there is more than one agent in a node, they should exchange their info
         if len(node_state_dict[k]) > 1:
             delete.append(k)
-            # print("\nINFORMATION EXCHANGE")
-            # print(k, node_state_dict[k])
             for agent_id in node_state_dict[k]:
-                listener = agents_dict[str(agent_id)]
+                listener = agents_dict[str(agent_id)] 
                 for ag_id in node_state_dict[k]:
                     # If the teller has a different id (is not the listener), and if they both have
                     candidate = agents_dict[str(ag_id)]
@@ -190,22 +195,30 @@ def exchange_information(loop):
                                     print("Common global connection not available in the node :(")
                             else:
                                 print("No common global connections!")
-                        # If there is at least a common local connections or a common global connection available
+                        # If there is at least a common local connection or a common global connection available
                         if perform_exchange:
                             teller = candidate
                             listener.met_agents.append(teller.n)
                             listener.met_in_node.append(int(k))
                             listener.met_in_loop.append(loop)
+                            print("teller("+str(teller.n)+"):" )
+                            for ie in teller.ies:
+                                print(ie)
+                            print("listener("+str(listener.n)+"):")
+                            for ie in listener.ies:
+                                print(ie)
                             # Loop through all Information Elements of the teller
+                            # old_listeners_ies = copy.deepcopy(listener.ies)
                             for in_el in teller.ies:
                                 already_told = False
                                 # Loop through all Information Elements of the listener
-                                for inf_el in listener.ies:
-                                    # If the IEs have the same root
-                                    if in_el.root == inf_el.root:
-                                        # If the listener is not already in the history of the IE of the teller
-                                        if listener.n in in_el.history:
-                                            already_told = True
+                                for inf_el in listener.ies:#old_listeners_ies:
+                                    # If the IEs have the same root and 
+                                    # If the listener is not already in the history of the IE of the teller
+                                    if in_el.root == inf_el.root and (listener.n in in_el.history or \
+                                        teller.n in inf_el.history):
+                                        already_told = True
+                                print("*** already_told final: " +str(already_told))
                                 if not already_told:
                                     # Deepcopy the history of the teller to avoid references!!
                                     hist = copy.deepcopy(in_el.history)
@@ -213,6 +226,39 @@ def exchange_information(loop):
                                     hist.append(listener.n)
                                     # Append the new IE to the listener
                                     listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
+                                    print(" * I have added\n" +str(listener.ies[-1]) + "\nto the listener knowledge")
+                                # print("counter_teller: " +str(counter_teller))
+                                # counter_teller += 1
+                            # for i in range(len(teller.ies)):
+                            #     for j in range(i+1, len(teller.ies)):
+                            #         if teller.ies[i].root == teller.ies[j].root and \
+                            #             teller.ies[i].history == teller.ies[j].history:
+                            #             print("###################################################")
+                            #             print(teller.ies[i])
+                            #             print(teller.ies[j])
+                            #             input("Houston teller!!!!!")
+                for i in range(len(listener.ies)):
+                    for j in range(i+1, len(listener.ies)):
+                        if (listener.ies[i].root == listener.ies[j].root and \
+                            listener.ies[i].history == listener.ies[j].history) or \
+                                (listener.ies[i].history[-2:] == listener.ies[j].history[-2:] and \
+                                    listener.ies[i].root == listener.ies[j].root):
+                            print("###################################################")
+                            print(listener.ies[i])
+                            # print(listener.ies[i].root)
+                            print("i: " +str(i))
+                            print(listener.ies[j])
+                            # print(listener.ies[j].root)
+                            print("j: " +str(j))
+                            input("Houston!!!!!")
+                    for l in range(len(listener.ies[i].history)):
+                        for n in range(l+1, len(listener.ies[i].history)):
+                            if listener.ies[i].history[l] == listener.ies[i].history[n]:
+                                print("###################################################")
+                                print("listener.ies[i]("+str(listener.n)+"): ")
+                                for ie in listener.ies:
+                                    print(ie)
+                                input("Houston repetition!!!!!") 
     # Avoid that they can meet again once they exchange their info and they are still in the same node
     for k in delete:
         del node_state_dict[k]
@@ -295,19 +341,9 @@ def send_info(agent):
             knowledge.append(ie)
 
         print("knowledge: " +str(knowledge))
-        # input("lets try!")
         response = requests.put(BASE + "IE/1", json.dumps(knowledge))
         print(response.json())
         agent.ies.clear()
-        # input("check 1 explore_graph.py")
-        
-        # response = requests.get(BASE + "IE/1" )
-        # print(response.json())
-        # # input("check 2 explore_graph.py")
-        
-        # response = requests.delete(BASE + "IE/1" )
-        # print(response.json()) 
-        # # input("check 3 explore_graph.py")
     else:
         logging.info("| It has not been possible to send information on the database!")
 

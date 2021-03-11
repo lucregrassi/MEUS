@@ -1,15 +1,14 @@
 import json
+import pprint
+import operator
+from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
 from InformationElement import DirectObservation
-from functools import reduce  # forward compatibility for Python 3
-import operator
-import pprint
 
 
 def plotter(agent, realTimePos):
     xs = []
     ys = []
-    breaks = []
     for key in agent.path:
         xs.extend([agent.path[key]['UTM_coordinates'][0][0], agent.path[key]['UTM_coordinates'][1][0]])
         ys.extend([agent.path[key]['UTM_coordinates'][0][1], agent.path[key]['UTM_coordinates'][1][1]])
@@ -71,7 +70,7 @@ def plotter(agent, realTimePos):
 def preProcessing(json_data):
     data_ih = []    # list of dictionaries storying the exchange of the information
     data_do = []    # list of direct observation informations
-    avoid_duplicates = [] # list to avoid putting 2 identical direct observation objects
+    # avoid_duplicates = [] # list to avoid putting 2 identical direct observation objects
 
 
     print ("json_data: " +str(json_data))
@@ -84,13 +83,26 @@ def preProcessing(json_data):
         prev_nest = json_data[j]
         next_nest = json_data[j].get('what')
         data_ih.append([])
+        more_than_1_nest = False
         while( next(iter(next_nest)) != 'situation'):
-
+            more_than_1_nest = True
             if not len(prev_nest['history'])==1:
 
                 data_ih[j].append({
+                    'observer': prev_nest['id'],
+                    'a1':       prev_nest['history'][-2],
+                    'a2':       prev_nest['history'][-1],
+                    'sender':   json_data[j]['id'],
+                    'where':    prev_nest['where'],
+                    'when':     prev_nest['when']
+                })
+            else:
+                # if the agent is actually the observer
+                data_ih[j].append({
+                    'observer': prev_nest['id'],
                     'a1':       prev_nest['history'][0],
-                    'a2':       prev_nest['history'][1],
+                    'a2':       prev_nest['history'][0],
+                    'sender':   json_data[j]['id'],
                     'where':    prev_nest['where'],
                     'when':     prev_nest['when']
                 })
@@ -108,24 +120,34 @@ def preProcessing(json_data):
         data_do[j]['when']      = prev_nest['when']
         data_do[j]['where']     = prev_nest['where']
         data_do[j]['who']       = prev_nest['id']
+
+        if not more_than_1_nest:
+            data_ih[j].append({
+                    'observer': prev_nest['id'],
+                    'a1':       prev_nest['history'][0],
+                    'a2':       prev_nest['history'][0],
+                    'sender':   json_data[j]['id'],
+                    'where':    prev_nest['where'],
+                    'when':     prev_nest['when']
+                })
         
-        if not data_do[j] in avoid_duplicates:
-            avoid_duplicates.append(data_do[j])
-        else:
-            for k in range(len(avoid_duplicates)):
-                if data_do[j]==avoid_duplicates[k]:
-                    # print("data_ih[k] before: " +str(data_ih[k]))
-                    # print("data_ih[j] before: " +str(data_ih[j]))
-                    data_ih[k].extend(data_ih[j])
-                    data_ih[j].clear()
-            #         print("data_ih[k] after: " +str(data_ih[k]))
-            #         print("data_ih[j] after: " +str(data_ih[j]))
-            # print("**********************************************************")
-            print(data_do)
-            print(data_ih)
-            print(str(data_do[j]) + " was already in the list")
+        # if not data_do[j] in avoid_duplicates:
+        #     avoid_duplicates.append(data_do[j])
+        # else:
+        #     for k in range(len(avoid_duplicates)):
+        #         if data_do[j]==avoid_duplicates[k]:
+        #             # print("data_ih[k] before: " +str(data_ih[k]))
+        #             # print("data_ih[j] before: " +str(data_ih[j]))
+        #             data_ih[k].extend(data_ih[j])
+        #             data_ih[j].clear()
+        #     #         print("data_ih[k] after: " +str(data_ih[k]))
+        #     #         print("data_ih[j] after: " +str(data_ih[j]))
+        #     print("**********************************************************")
+        #     print(data_do)
+        #     print(data_ih)
+        #     print(str(data_do[j]) + " was already in the list")
     
-    data_do = avoid_duplicates
+    # data_do = avoid_duplicates
 
     return data_do, data_ih
 
