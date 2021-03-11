@@ -208,8 +208,6 @@ def exchange_information(loop):
                                         already_told = True
                                 print("*** already_told final: " + str(already_told))
                                 if not already_told:
-                                    # Add the listener to the history of the IE of the teller
-                                    in_el.history.append(listener.n)
                                     # Deepcopy the history of the teller to avoid references!!
                                     hist = copy.deepcopy(in_el.history)
                                     # Add the listener id to create the history of its new IE
