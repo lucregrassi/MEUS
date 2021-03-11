@@ -26,7 +26,7 @@ logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode=
 # Initialize number of agents exploring the graph
 n_agents = 200
 # Number of iterations
-steps = 10
+steps = 50
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -322,13 +322,13 @@ def send_info(agent):
     conn = conn.split(",")
     conn_new = [int(i) for i in conn]
 
-    # if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0:
-    if agent.n > 100 and len(agent.ies) and agent.num_info_sent < len(agent.ies):
+    if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) and agent.num_info_sent > len(agent.ies)> 0:
+    # if agent.n > 100 and len(agent.ies) and agent.num_info_sent < len(agent.ies):
         knowledge = []
-        if agent.num_info_sent >= len(agent.ies):
-            print("agent.num_info_sent: ", agent.num_info_sent)
-            print("len(agent.ies): ", len(agent.ies))
-            input("send_info()")
+        # if agent.num_info_sent >= len(agent.ies):
+        #     print("agent.num_info_sent: ", agent.num_info_sent)
+        #     print("len(agent.ies): ", len(agent.ies))
+        #     input("send_info()")
         for i in range(agent.num_info_sent, len(agent.ies)):
             copia_ie = copy.deepcopy(agent.ies[i])
             copia_ie = IEtoDict(copia_ie)

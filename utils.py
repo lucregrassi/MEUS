@@ -92,7 +92,7 @@ def preProcessing(json_data):
                     'observer': prev_nest['id'],
                     'a1':       prev_nest['history'][-2],
                     'a2':       prev_nest['history'][-1],
-                    'sender':   json_data[j]['id'],
+                    'sender':   json_data[0]['id'],
                     'where':    prev_nest['where'],
                     'when':     prev_nest['when']
                 })
@@ -102,7 +102,7 @@ def preProcessing(json_data):
                     'observer': prev_nest['id'],
                     'a1':       prev_nest['history'][0],
                     'a2':       prev_nest['history'][0],
-                    'sender':   json_data[j]['id'],
+                    'sender':   json_data[0]['id'],
                     'where':    prev_nest['where'],
                     'when':     prev_nest['when']
                 })
@@ -126,7 +126,7 @@ def preProcessing(json_data):
                     'observer': prev_nest['id'],
                     'a1':       prev_nest['history'][0],
                     'a2':       prev_nest['history'][0],
-                    'sender':   json_data[j]['id'],
+                    'sender':   json_data[0]['id'],
                     'where':    prev_nest['where'],
                     'when':     prev_nest['when']
                 })
