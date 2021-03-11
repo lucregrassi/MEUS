@@ -1,11 +1,12 @@
 class Agent:
-    def __init__(self, n, curr_node=0, dest_node=0, distance=0, error=0, moving=False):
+    def __init__(self, n, curr_node=0, dest_node=0, distance=0, path={}, error=0, moving=False):
         self.n = n
-        self.curr_node = curr_node
-        self.dest_node = dest_node
-        self.distance = distance
-        self.error = error
-        self.moving = moving
+        self.curr_node  = curr_node
+        self.dest_node  = dest_node
+        self.distance   = distance
+        self.path       = path
+        self.error      = error
+        self.moving     = moving
         self.visited_nodes = []
         self.seen_events = []
         self.met_agents = []
