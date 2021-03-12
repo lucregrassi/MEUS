@@ -322,7 +322,10 @@ def send_info(agent):
     conn = conn.split(",")
     conn_new = [int(i) for i in conn]
 
-    if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) and agent.num_info_sent > len(agent.ies)> 0:
+    # input("check 1")
+
+    if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
+        # input("check 2")
     # if agent.n > 100 and len(agent.ies) and agent.num_info_sent < len(agent.ies):
         knowledge = []
         # if agent.num_info_sent >= len(agent.ies):
@@ -338,8 +341,10 @@ def send_info(agent):
         response = requests.put(BASE + "IE/1", json.dumps(knowledge))
         print(response.json())
         agent.num_info_sent += len(agent.ies)
+        # input("check 3")
         # agent.ies.clear()
     else:
+        # input("check 4")
         logging.info("| It has not been possible to send information on the database!")
 
 
