@@ -92,7 +92,7 @@ def exchange_information(loop):
                             print("\nCommon local connection found for agents ", candidate.n, "and", listener.n)
                             perform_exchange = True
                         else:
-                            print("\nNo common local connections found bewteen", candidate.n, "and", listener.n)
+                            print("\nNo common local connections found between", candidate.n, "and", listener.n)
                             print("Looking for global connections...")
                             # Check global connections if no common local connection is found
                             common_global = [value for value in candidate.global_conn if value in listener.global_conn]
@@ -119,22 +119,32 @@ def exchange_information(loop):
                             listener.met_in_node.append(int(k))
                             listener.met_in_loop.append(loop)
                             # Loop through all Information Elements of the teller
-                            for in_el in teller.ies:
+                            for IE_teller in teller.ies:
+                                same_root = False
                                 already_told = False
+                                same_root_IE_listener = []
                                 # Loop through all Information Elements of the listener
-                                for inf_el in listener.ies:
-                                    # If the IEs have the same root
-                                    if in_el.root == inf_el.root:
-                                        # If the listener is not already in the history of the IE of the teller
-                                        if listener.n in in_el.history:
-                                            already_told = True
+                                for IE_listener in listener.ies:
+                                    # print(IE_listener)
+                                    # If the IEs have the same root (can happen only once)
+                                    if IE_teller[0] == IE_listener[0]:
+                                        same_root = True
+                                        same_root_IE_listener = copy.deepcopy(IE_listener)
+                                        # For each quadrupla in the IE
+                                        for quadrupla in IE_teller[1:]:
+                                            # If the listener is not a teller in a tuple of the IE,
+                                            # or the teller has not previously told the information to the listener
+                                            if quadrupla[0] == listener.n or \
+                                                    (quadrupla[0] == teller.n and quadrupla[1] == listener.n):
+                                                already_told = True
+
                                 if not already_told:
-                                    # Deepcopy the history of the teller to avoid references!!
-                                    hist = copy.deepcopy(in_el.history)
-                                    # Add the listener id to create the history of its new IE
-                                    hist.append(listener.n)
-                                    # Append the new IE to the listener
-                                    listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
+                                    if same_root:
+                                        same_root_IE_listener.append((teller.n, listener.n, int(k), loop))
+                                    else:
+                                        # Append the new IE to the listener (making a deepcopy of the IE of the teller)
+                                        listener.ies.append(copy.deepcopy(IE_teller))
+                                        listener.ies[-1].append((teller.n, listener.n, int(k), loop))
     # Avoid that they can meet again once they exchange their info and they are still in the same node
     for k in delete:
         del node_state_dict[k]
@@ -184,8 +194,8 @@ def update_position(a, loop):
         seen_ev = seen_sit, seen_obj
         a.seen_events.append(seen_ev)
         # Add what the person thinks to have seen to its list of information elements
-        root = InformationElement(a.n, [a.n], a.curr_node, loop, DirectObservation(seen_ev, a.error))
-        a.ies.append(InformationElement(a.n, [a.n], a.curr_node, loop, DirectObservation(seen_ev, a.error), root))
+        # root = InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error))
+        a.ies.append([InformationElement(a.n, a.curr_node, loop, DirectObservation(seen_ev, a.error))])
     else:
         # If the person is moving, check if it has reached the destination
         if a.distance > 0:
@@ -241,8 +251,8 @@ for i in range(n_agents):
     seen_event = (seen_situation, seen_object)
 
     agent.seen_events.append(seen_event)
-    ie_root = InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))
-    agent.ies.append(InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
+    # ie_root = InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))
+    agent.ies.append([InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))])
     # Initialize the connections owned by the person
     agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
     # Initialize array of local connections, choosing randomly, removing duplicates
@@ -281,7 +291,7 @@ for i in range(1, steps):
     for key in agents_dict.keys():
         print(agents_dict[key])
         for ie in agents_dict[key].ies:
-            print(ie)
+            print(ie[0], ",", ie[1:])
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
