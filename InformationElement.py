@@ -21,22 +21,27 @@ class InformationElement:
 
     def asdict(self):
         return {'id': self.n, 'history': self.history, 'where': self.where, 'when': self.when, 'what': self.what}#, 'root': self.root}
-    
-#     def __iter__(self):
-#         return InformationElementIterator(self)
 
-# class InformationElementIterator:
-#     def __init__(self, infoelem):#, nestedLevels):
-#         self._infoelem = infoelem
-#         self._index = nestedLevels
-    
-#     def __next__(self):
-#         # iterate over the 'what' fields
-#         if self._index > 0:
-#             result = self._infoelem.what
-#             self._index -= 1
+class NewInformationElement:
+    def __init__(self, n, where=0, when=0, what=None):
+            self.n = n
+            self.where = where
+            self.when = when
+            self.what = what
 
-#         return result
+    def __str__(self):
+        return "IE: " + str(self.n) + "," + str(self.where) + ", " + str(self.when) + ", " \
+            + str(self.what)
+
+    def __eq__(self, other):
+        if isinstance(other, NewInformationElement):
+            if self.n == other.n and self.where == other.where and self.what == other.what and \
+                self.when == other.when:
+                return True
+        return False
+
+    def asdict(self):
+        return {'id': self.n, 'where': self.where, 'when': self.when, 'what': self.what}
 
 class DirectObservation:
     def __init__(self, event=None, error=0):
@@ -45,6 +50,28 @@ class DirectObservation:
 
     def __str__(self):
         return "[Direct Observation: " + str(self.event) + ", " + str(self.error) + "]"
+
+    def __eq__(self, other):
+        if self.event == other.event and self.error == other.error:
+            return True
+        return False
+    
+    def asdict(self):
+        return {'event': self.event, 'error': self.error}
+
+
+class NewDirectObservation:
+    def __init__(self, event=None, error=0):
+        # self.who = who
+        # self.where = where
+        # self.when = when
+        self.event = event
+        self.error = error
+
+    def __str__(self):
+        # return "[Direct Observation: " + str(self.who) + ", " + str(self.where) + ", " +\
+        #     str(self.when) + ", " + str(self.event) + ", " + str(self.error) + "]"
+        return "DO: " + str(self.event) + ", " + str(self.error)
 
     def __eq__(self, other):
         if self.event == other.event and self.error == other.error:
