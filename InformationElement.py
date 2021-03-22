@@ -1,3 +1,5 @@
+import json
+
 class InformationElement:
     def __init__(self, n, history=None, where=0, when=0, what=None, root=None):
         self.n = n
@@ -43,6 +45,9 @@ class NewInformationElement:
     def asdict(self):
         return {'id': self.n, 'where': self.where, 'when': self.when, 'what': self.what}
 
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
+
 class DirectObservation:
     def __init__(self, event=None, error=0):
         self.event = event
@@ -80,3 +85,6 @@ class NewDirectObservation:
     
     def asdict(self):
         return {'event': self.event, 'error': self.error}
+    
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__)

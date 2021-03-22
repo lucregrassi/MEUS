@@ -136,7 +136,7 @@ def NewpreProcessing(json_data):
     data_ih = []    # list of dictionaries storying the exchange of the information
     data_do = []    # list of direct observation informations
 
-    for i in range(len(json_data)):
+    for i in range(len(json_data)-1):
         data_do.append({
             'dir_obs':  json_data[i][0]['what'],
             'when':     json_data[i][0]['when'],
@@ -150,7 +150,7 @@ def NewpreProcessing(json_data):
                     'observer': json_data[i][0]['id'],
                     'a1':       json_data[i][1:][j][0],
                     'a2':       json_data[i][1:][j][1],
-                    'sender':   json_data[0][0]['id'],
+                    'sender':   json_data[-1]['db_sender'],
                     'where':    json_data[i][1:][j][2],
                     'when':     json_data[i][1:][j][3]
                 })
@@ -159,7 +159,7 @@ def NewpreProcessing(json_data):
                     'observer': json_data[i][0]['id'],
                     'a1':       json_data[i][0]['id'],
                     'a2':       json_data[i][0]['id'],
-                    'sender':   json_data[0][0]['id'],
+                    'sender':   json_data[-1]['db_sender'],
                     'where':    json_data[i][0]['where'],
                     'when':     json_data[i][0]['when']
                 }) 
