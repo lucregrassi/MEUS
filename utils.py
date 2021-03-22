@@ -70,8 +70,6 @@ def plotter(agent, realTimePos):
 def preProcessing(json_data):
     data_ih = []    # list of dictionaries storying the exchange of the information
     data_do = []    # list of direct observation informations
-    # avoid_duplicates = [] # list to avoid putting 2 identical direct observation objects
-
 
     print ("json_data: " +str(json_data))
     print("type of json_data: " +str(type(json_data)))
@@ -130,81 +128,44 @@ def preProcessing(json_data):
                     'where':    prev_nest['where'],
                     'when':     prev_nest['when']
                 })
-        
-        # if not data_do[j] in avoid_duplicates:
-        #     avoid_duplicates.append(data_do[j])
-        # else:
-        #     for k in range(len(avoid_duplicates)):
-        #         if data_do[j]==avoid_duplicates[k]:
-        #             # print("data_ih[k] before: " +str(data_ih[k]))
-        #             # print("data_ih[j] before: " +str(data_ih[j]))
-        #             data_ih[k].extend(data_ih[j])
-        #             data_ih[j].clear()
-        #     #         print("data_ih[k] after: " +str(data_ih[k]))
-        #     #         print("data_ih[j] after: " +str(data_ih[j]))
-        #     print("**********************************************************")
-        #     print(data_do)
-        #     print(data_ih)
-        #     print(str(data_do[j]) + " was already in the list")
-    
-    # data_do = avoid_duplicates
 
     return data_do, data_ih
 
 
-#   Preprocessing function for the incoming PUT method
-# def preProcessing(json_data):
-#     data_ih = []    # list of dictionaries storying the exchange of the information
-#     data_do = []    # list of direct observation informations
+def NewpreProcessing(json_data):
+    data_ih = []    # list of dictionaries storying the exchange of the information
+    data_do = []    # list of direct observation informations
 
+    for i in range(len(json_data)):
+        data_do.append({
+            'dir_obs':  json_data[i][0]['what'],
+            'when':     json_data[i][0]['when'],
+            'where':    json_data[i][0]['where'],
+            'who':      json_data[i][0]['id']
+        })
+        data_ih.append([])
+        if len(json_data[i][1:]) > 0:
+            for j in range(len(json_data[i][1:])):
+                data_ih[i].append({
+                    'observer': json_data[i][0]['id'],
+                    'a1':       json_data[i][1:][j][0],
+                    'a2':       json_data[i][1:][j][1],
+                    'sender':   json_data[0][0]['id'],
+                    'where':    json_data[i][1:][j][2],
+                    'when':     json_data[i][1:][j][3]
+                })
+        else:
+           data_ih[i].append({
+                    'observer': json_data[i][0]['id'],
+                    'a1':       json_data[i][0]['id'],
+                    'a2':       json_data[i][0]['id'],
+                    'sender':   json_data[0][0]['id'],
+                    'where':    json_data[i][0]['where'],
+                    'when':     json_data[i][0]['when']
+                }) 
 
-#     # print ("json_data: " +str(json_data))
-#     # print("type of json_data: " +str(type(json_data)))
+    return data_do, data_ih
 
-#     # print("len(json_data): " + str(len(json_data)))
-#     # input("check check double check")
-#     i = 0
-#     for j in range(len(json_data)):
-#         # Retrieving the Direct Observation information
-#         if not isinstance(json_data[j], dict): json_data[j] = json_data[j].asdict()
-#         prev_nest = json_data[j]
-#         next_nest = json_data[j].get('what')
-#         data_ih.append([])
-#         # while( next(iter(next_nest)) != 'event'):
-#         while( not isinstance(next_nest, DirectObservation)):
-
-#             data_ih[j].append({
-#                 'a1':       prev_nest['history'][0],
-#                 'a2':       prev_nest['history'][1],
-#                 'where':    prev_nest['where'],
-#                 'when':     prev_nest['when']
-#             })
-#             # updating nesting levels
-#             next_nest = next_nest.asdict()
-#             prev_nest = next_nest
-#             next_nest = next_nest['what']
-
-#             print("counter: "+str(i))
-#             i += 1
-
-
-#         # convert the dir obs object into a dictionary
-#         next_nest = next_nest.asdict()
-#         next_nest['event'] = {  'situation': str(next_nest['event'][0]).split(".", 1)[1],
-#                                 'object': str(next_nest['event'][1]).split(".", 1)[1]
-#                                 }
-#         data_do.append({})
-#         data_do[j]['dir_obs']   = next_nest#next_nest['event']
-#         data_do[j]['when']      = prev_nest['when']
-#         data_do[j]['where']     = prev_nest['where']
-#         data_do[j]['who']       = prev_nest['id']
-
-
-#     # print("data_do: " +str(data_do))
-#     # print("data_ih: " +str(data_ih))
-#     # input("check check double check")
-
-#     return data_do, data_ih
 
 
 
@@ -240,7 +201,6 @@ def IEtoDict(IE):
     
     # convert the dir obs object into a dictionary
     root = ['what' for i in range(counter+1)]
-
     # print("########################################")
     # pprint.pprint(get_by_path(IE, root))
     # pprint.pprint(get_by_path(IE, root)['event'])
@@ -255,6 +215,20 @@ def IEtoDict(IE):
     # print("processed IE: " +str(IE))
     # input("cheeky check")
     return IE
+
+
+def NewIEtoDict(lis):
+    lis[0]  = lis[0].asdict()
+    lis[0]['what']  = lis[0]['what'].asdict() 
+
+    lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]).split(".", 1)[1],
+                        'object':       str(lis[0]['what']['event'][1]).split(".", 1)[1]
+                        }
+
+    # print(lis)
+    # input("NewIEtooDict() check")
+    return lis
+
 
     
 

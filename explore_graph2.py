@@ -11,7 +11,7 @@ from InformationElement import NewInformationElement, NewDirectObservation
 
 import matplotlib.pyplot as plt
 from shapely.geometry import LineString
-from utils import preProcessing, IEtoDict
+from utils import preProcessing, IEtoDict, NewIEtoDict
 import requests
 import json
 import pprint
@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode=
 # Initialize number of agents exploring the graph
 n_agents = 200
 # Number of iterations
-steps = 20
+steps = 100
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -197,20 +197,6 @@ def exchange_information(loop):
                             for IE_teller in teller.ies:
                                 same_root = False
                                 already_told = False
-                                # same_root_IE_listener = []
-                                # Loop through all Information Elements of the listener
-                                # for IE_listener in listener.ies:
-                                #     # If the IEs have the same root (can happen only once)
-                                #     if IE_teller[0] == IE_listener[0]:
-                                #         same_root = True
-                                #         # same_root_IE_listener = copy.deepcopy(IE_listener)
-                                #         # For each quadrupla in the IE
-                                #         for quadrupla in IE_teller[1:]:
-                                #             # If the listener is not a teller in a tuple of the IE,
-                                #             # or the teller has not previously told the information to the listener
-                                #             if quadrupla[0] == listener.n or \
-                                #                     (quadrupla[0] == teller.n and quadrupla[1] == listener.n):
-                                #                 already_told = True
                                 for i in range(len(listener.ies)):
                                     # If the IEs have the same root (can happen only once)
                                     if IE_teller[0] == listener.ies[i][0]:
@@ -221,11 +207,13 @@ def exchange_information(loop):
                                         for quadrupla in IE_teller[1:]:
                                             # If the listener is not a teller in a tuple of the IE,
                                             # or the teller has not previously told the information to the listener
-                                            if quadrupla[0] == listener.n or \
-                                                    (quadrupla[0] == teller.n and quadrupla[1] == listener.n):
+                                            if quadrupla[0] == listener.n:
                                                 already_told = True
                                                 break
-
+                                        for tup in listener.ies[i][1:]:
+                                           if (tup[0] == teller.n and tup[1] == listener.n):
+                                               already_told = True
+                                               break
                                 if not already_told:
                                     if same_root:
                                         # same_root_IE_listener.append((teller.n, listener.n, int(k), loop))
@@ -233,19 +221,37 @@ def exchange_information(loop):
                                             target_extend = []
                                             target_extend.append((teller.n, listener.n, int(k), loop))
                                             for elem in IE_teller[1:]:
-                                                target_extend.append(elem)
+                                                if elem not in listener.ies[index]:
+                                                    target_extend.append(elem)
                                             # communicating the information to the listener
                                             listener.ies[index].extend(target_extend)
                                         else:
                                             listener.ies[index].append((teller.n, listener.n, int(k), loop))
-                                        print("###################################################")
-                                        print("I have added:")
-                                        print(listener.ies[index][0], ", ", listener.ies[index][1:])
-                                        input("check")
+                                        # print("###################################################")
+                                        # print("I have added:")
+                                        # print(listener.ies[index][0], ", ", listener.ies[index][1:])
+                                        # input("check")
                                     else:
                                         # Append the new IE to the listener (making a deepcopy of the IE of the teller)
                                         listener.ies.append(copy.deepcopy(IE_teller))
                                         listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+
+                for c in range(len(listener.ies)):
+                    for m in range(len(listener.ies[c][1:])):
+                        for n in range(m+1, len(listener.ies[c][1:])):
+                            if listener.ies[c][1:][m] == listener.ies[c][1:][n]:
+                                print("###################################################")
+                                print("there's a repetition!")
+                                print(listener.ies[c][0], ", ", listener.ies[c][1:])
+                                input()
+                    for g in range(c+1, len(listener.ies)):
+                        if listener.ies[c][0] == listener.ies[g][0]:
+                            print("###################################################")
+                            print("there's a root repetition!")
+                            print(listener.ies[c][0], ", ", listener.ies[c][1:])
+                            print(listener.ies[g][0], ", ", listener.ies[g][1:])
+                            input()
+
     # Avoid that they can meet again once they exchange their info and they are still in the same node
     for k in delete:
         del node_state_dict[k]
@@ -315,6 +321,8 @@ def update_position(a, loop):
     logging.info("| returning from update_position()")
 
 
+
+
 def send_info(agent):
 
     conn = G.nodes.get(agent.curr_node)['connection']
@@ -333,7 +341,8 @@ def send_info(agent):
         #     input("send_info()")
         for i in range(agent.num_info_sent, len(agent.ies)):
             copia_ie = copy.deepcopy(agent.ies[i])
-            copia_ie = IEtoDict(copia_ie)
+            # copia_ie = IEtoDict(copia_ie)
+            copia_ie = NewIEtoDict(copia_ie)
             knowledge.append(copia_ie)
 
         print("knowledge: " +str(knowledge))
@@ -448,7 +457,7 @@ for i in range(1, steps):
         for ie in agents_dict[key].ies:
             # print(ie)
             print(ie[0], ",", ie[1:])
-        # send_info(agents_dict[key])
+        send_info(agents_dict[key])
     logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
 
     # Define the path of the image in which the updated graph will be saved
@@ -459,14 +468,14 @@ for i in range(1, steps):
     ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath=img_path)
     plt.close()
 
-# input("check 2 explore_graph.py")
-# response = requests.get(BASE + "IE/1" )
-# pprint.pprint(response.json())
+input("check 2 explore_graph.py")
+response = requests.get(BASE + "IE/1" )
+pprint.pprint(response.json())
 
 
-# input("check 3 explore_graph.py")
-# response = requests.delete(BASE + "IE/1" )
-# pprint.pprint(response.json()) 
+input("check 3 explore_graph.py")
+response = requests.delete(BASE + "IE/1" )
+pprint.pprint(response.json()) 
 
 
 # Generate the GIF from the saved sequence of images
