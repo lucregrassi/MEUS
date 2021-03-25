@@ -9,12 +9,13 @@ import matplotlib.pyplot as plt
 from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
 
-import matplotlib.pyplot as plt
 from shapely.geometry import LineString
 from utils import preProcessing, IEtoDict, NewIEtoDict
 import requests
 import json
 import pprint
+import time
+import decimal
 
 
 BASE = "http://127.0.0.1:5000/"
@@ -36,6 +37,9 @@ node_state_dict = {}
 
 # Load the graph from the graphml file previously saved
 G = ox.load_graphml('graph/graph.graphml')
+
+# list of events present in the environment
+events = []
 
 
 # This function returns an array containing the colors of each node, based on the number of people
@@ -185,14 +189,14 @@ def exchange_information(loop):
                             listener.met_agents.append(teller.n)
                             listener.met_in_node.append(int(k))
                             listener.met_in_loop.append(loop)
-                            print("teller("+str(teller.n)+"):" )
-                            for ie in teller.ies:
-                                # print(ie)
-                                print(ie[0], ",", ie[1:])
-                            print("listener("+str(listener.n)+"):")
-                            for ie in listener.ies:
-                                # print(ie)
-                                print(ie[0], ",", ie[1:])
+                            # print("teller("+str(teller.n)+"):" )
+                            # for ie in teller.ies:
+                            #     # print(ie)
+                            #     print(ie[0], ",", ie[1:])
+                            # print("listener("+str(listener.n)+"):")
+                            # for ie in listener.ies:
+                            #     # print(ie)
+                            #     print(ie[0], ",", ie[1:])
                             # Loop through all Information Elements of the teller
                             for IE_teller in teller.ies:
                                 same_root = False
@@ -236,21 +240,21 @@ def exchange_information(loop):
                                         listener.ies.append(copy.deepcopy(IE_teller))
                                         listener.ies[-1].append((teller.n, listener.n, int(k), loop))
 
-                for c in range(len(listener.ies)):
-                    for m in range(len(listener.ies[c][1:])):
-                        for n in range(m+1, len(listener.ies[c][1:])):
-                            if listener.ies[c][1:][m] == listener.ies[c][1:][n]:
-                                print("###################################################")
-                                print("there's a repetition!")
-                                print(listener.ies[c][0], ", ", listener.ies[c][1:])
-                                input()
-                    for g in range(c+1, len(listener.ies)):
-                        if listener.ies[c][0] == listener.ies[g][0]:
-                            print("###################################################")
-                            print("there's a root repetition!")
-                            print(listener.ies[c][0], ", ", listener.ies[c][1:])
-                            print(listener.ies[g][0], ", ", listener.ies[g][1:])
-                            input()
+                # for c in range(len(listener.ies)):
+                #     for m in range(len(listener.ies[c][1:])):
+                #         for n in range(m+1, len(listener.ies[c][1:])):
+                #             if listener.ies[c][1:][m] == listener.ies[c][1:][n]:
+                #                 print("###################################################")
+                #                 print("there's a repetition!")
+                #                 print(listener.ies[c][0], ", ", listener.ies[c][1:])
+                #                 input()
+                #     for g in range(c+1, len(listener.ies)):
+                #         if listener.ies[c][0] == listener.ies[g][0]:
+                #             print("###################################################")
+                #             print("there's a root repetition!")
+                #             print(listener.ies[c][0], ", ", listener.ies[c][1:])
+                #             print(listener.ies[g][0], ", ", listener.ies[g][1:])
+                #             input()
 
     # Avoid that they can meet again once they exchange their info and they are still in the same node
     for k in delete:
@@ -275,6 +279,7 @@ def update_position(a, loop):
 
         node_situation = []
         node_object = []
+        flag = False
         # Update the counters in the nodes and acquire the situation and the object in the new current node
         for n in G.nodes.data():
             if n[0] == previous_node:
@@ -293,19 +298,24 @@ def update_position(a, loop):
                 else:
                     node_state_dict[str(n[0])].append(a.n)
 
-                node_situation = n[1]['situation']
-                node_object = n[1]['object']
+                if n[1]['situation'] != 'None':
+                    flag = True
+                    node_situation = n[1]['situation']
+                    node_object = n[1]['object']
 
         # Add the new current node to the list of visited nodes of the person
         a.visited_nodes.append(a.curr_node)
         # The actual situation and object seen by the person depend on its trustworthiness
-        seen_sit = get_cls_at_dist(node_situation, a.error)
-        seen_obj = get_cls_at_dist(node_object, a.error)
-        seen_ev = seen_sit, seen_obj
-        a.seen_events.append(seen_ev)
+        if flag:
+            seen_sit = get_cls_at_dist(node_situation, a.error)
+            seen_obj = get_cls_at_dist(node_object, a.error)
+            seen_ev = seen_sit, seen_obj
+            a.seen_events.append(seen_ev)
+            # print("a.seen_events: ", a.seen_events)
+            # input("hit enter")
         # Add what the person thinks to have seen to its list of information elements
         # root = NewDirectObservation(a.n, a.curr_node, loop, seen_ev, a.error)
-        a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
+            a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
     else:
         # If the person is moving, check if it has reached the destination
         if a.distance > 0:
@@ -323,7 +333,7 @@ def update_position(a, loop):
 
 
 
-def send_info(agent):
+def send_info(agent, loop):
 
     conn = G.nodes.get(agent.curr_node)['connection']
     conn = conn.split(",")
@@ -332,6 +342,7 @@ def send_info(agent):
     # input("check 1")
 
     if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
+    # if (((1 in agent.global_conn) and (1 in conn_new)) or (2 in agent.global_conn and 2 in conn_new)) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
         # input("check 2")
     # if agent.n > 100 and len(agent.ies) and agent.num_info_sent < len(agent.ies):
         knowledge = []
@@ -345,15 +356,26 @@ def send_info(agent):
             copia_ie = NewIEtoDict(copia_ie)
             knowledge.append(copia_ie)
 
-        print("knowledge: " +str(knowledge))
+        knowledge.append({'db_sender': agent.n, "time": loop})
+        # print("knowledge: " +str(knowledge))
         response = requests.put(BASE + "IE/1", json.dumps(knowledge))
-        print(response.json())
+        # print(response.json())
         agent.num_info_sent += len(agent.ies)
         # input("check 3")
         # agent.ies.clear()
     else:
         # input("check 4")
         logging.info("| It has not been possible to send information to the database!")
+
+
+# def events_db_status(events):
+#     for i in range(len(events)):
+#         response = requests.get(BASE + "IE/events-status/" + \
+#                                         events[i]['situation'] + "/" +\
+#                                         events[i]['object'] + "/" +\
+#                                         events[i]['when'] + "/" +\
+#                                         events[i]['where'] + "/" +\
+#                                         events[i]['who'])
 
 
 
@@ -372,6 +394,24 @@ def create_gif():
                    duration=500, Loop=0)
 
 
+# collecting events in the environment
+for node in G.nodes(data=True):
+    #     print(node)
+    # input("checking nodes")
+    if node[1]['situation'] != 'None':
+        events.append({
+            'situation':    node[1]['situation'],
+            'object':       node[1]['object']
+        })
+
+pprint.pprint(events)
+print("number of events in the environment: ", len(events))
+print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
+print("percentage of events per node:       ", (100*len(events)/len(list(G.nodes(data=True)))))
+input("checking events list")
+
+tic = time.perf_counter()
+
 i = 1
 # Initialize people's positions in random nodes
 for i in range(n_agents):
@@ -379,6 +419,16 @@ for i in range(n_agents):
     situation = {}
     obj = []
     # Update the counter of the number of people in that node and get the situation and the object
+    # for node in G.nodes(data=True):
+    #     print(node)
+    # input("checking nodes")
+
+    dest_node, dist, path = compute_destination(curr_node)
+    # Instantiate the Person class passing the arguments
+    agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
+    agent.visited_nodes.append(curr_node)
+    
+    # counter = 0
     for elem in G.nodes(data=True):
         if elem[0] == curr_node:
             # Increment the number of people in that node
@@ -388,38 +438,31 @@ for i in range(n_agents):
                 node_state_dict[str(curr_node)] = [i]
             else:
                 node_state_dict[str(curr_node)].append(i)
+        
+            if elem[1]['situation'] != 'None':
+                situation = elem[1]['situation']
+                obj = elem[1]['object']
+        
+                # Add the event that the person thinks to have seen to the list
+                # print(counter)
+                # print(elem)
+                # input("seen sit")
+                seen_situation = get_cls_at_dist(situation, agent.error)
+                seen_object = get_cls_at_dist(obj, agent.error)
+                seen_event = (seen_situation, seen_object)
 
-            situation = elem[1]['situation']
-            obj = elem[1]['object']
-            # print("situation: " + str(situation))
-            # print("obj: " + str(obj))
-            # print("elem[1]: " + str(elem[1]))
-            # input("hit enter")
+                agent.seen_events.append(seen_event)
+                agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
+        # print("counter: ", counter)
+        # counter += 1
 
-    dest_node, dist, path = compute_destination(curr_node)
-    # Instantiate the Person class passing the arguments
-    agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
-    agent.visited_nodes.append(curr_node)
 
-    # Add the event that the person thinks to have seen to the list
-    seen_situation = get_cls_at_dist(situation, agent.error)
-    seen_object = get_cls_at_dist(obj, agent.error)
-    seen_event = (seen_situation, seen_object)
-
-    # print("seen situation: " +str(seen_situation))
-    # print("seen object: " +str(seen_object))
-    # print("seen event: " +str(seen_event))
-    # input("hit enter")
-
-    agent.seen_events.append(seen_event)
-    # ie_root = InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error))
-    # agent.ies.append(InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
-    agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
     # Initialize the connections owned by the person
     agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
     # Initialize array of local connections, choosing randomly, removing duplicates
     agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
     agents_dict[str(i)] = agent
+    print("i: ", i)
     i += 1
 
 logging.info("| DESTINATIONS COMPUTED")
@@ -434,11 +477,11 @@ plt.close()
 exchange_information(0)
 
 # Print the state of all the agents along with their IEs
-for key in agents_dict.keys():
-    print(agents_dict[key])
-    for ie in agents_dict[key].ies:
-        # print(ie)
-        print(ie[0], ",", ie[1:])
+# for key in agents_dict.keys():
+#     print(agents_dict[key])
+#     for ie in agents_dict[key].ies:
+#         # print(ie)
+#         print(ie[0], ",", ie[1:])
 
 
 # Loop through the predefined # of steps and update the agent's positions
@@ -455,22 +498,25 @@ for i in range(1, steps):
         print(agents_dict[key])
         # print("type(agents_dict[key].ies): " + str(type(agents_dict[key].ies)))
         for ie in agents_dict[key].ies:
-            # print(ie)
             print(ie[0], ",", ie[1:])
-        send_info(agents_dict[key])
+        send_info(agents_dict[key], i)
+        # res = events_db_status()
     logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
 
     # Define the path of the image in which the updated graph will be saved
-    img_path = "images/img" + str(i) + ".png"
-    # Initialize color map on the basis of the people in each node
-    nc = color()
-    # Save the graph with the updated positions in the image
-    ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath=img_path)
-    plt.close()
+    # img_path = "images/img" + str(i) + ".png"
+    # # Initialize color map on the basis of the people in each node
+    # nc = color()
+    # # Save the graph with the updated positions in the image
+    # ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath=img_path)
+    # plt.close()
 
-input("check 2 explore_graph.py")
-response = requests.get(BASE + "IE/1" )
-pprint.pprint(response.json())
+toc = time.perf_counter()
+print(f"Experiment finished in {toc - tic:0.4f} seconds")
+
+# input("check 2 explore_graph.py")
+# response = requests.get(BASE + "IE/1" )
+# pprint.pprint(response.json())
 
 
 input("check 3 explore_graph.py")
@@ -479,4 +525,4 @@ pprint.pprint(response.json())
 
 
 # Generate the GIF from the saved sequence of images
-create_gif()
+# create_gif()

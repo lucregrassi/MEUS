@@ -32,7 +32,7 @@ class NewInformationElement:
             self.what = what
 
     def __str__(self):
-        return "IE: " + str(self.n) + "," + str(self.where) + ", " + str(self.when) + ", " \
+        return "IE: " + str(self.n) + ", " + str(self.where) + ", " + str(self.when) + ", " \
             + str(self.what)
 
     def __eq__(self, other):

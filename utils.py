@@ -3,7 +3,6 @@ import pprint
 import operator
 from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
-from InformationElement import DirectObservation
 
 
 def plotter(agent, realTimePos):
@@ -147,26 +146,26 @@ def NewpreProcessing(json_data):
         if len(json_data[i][1:]) > 0:
             for j in range(len(json_data[i][1:])):
                 data_ih[i].append({
-                    'observer': json_data[i][0]['id'],
-                    'a1':       json_data[i][1:][j][0],
-                    'a2':       json_data[i][1:][j][1],
-                    'sender':   json_data[-1]['db_sender'],
-                    'where':    json_data[i][1:][j][2],
-                    'when':     json_data[i][1:][j][3]
+                    'observer':     json_data[i][0]['id'],
+                    'a1':           json_data[i][1:][j][0],
+                    'a2':           json_data[i][1:][j][1],
+                    'sender':       json_data[-1]['db_sender'],
+                    'where':        json_data[i][1:][j][2],
+                    'when':         json_data[i][1:][j][3],
+                    'sent_at_loop': json_data[-1]['time']
                 })
         else:
            data_ih[i].append({
-                    'observer': json_data[i][0]['id'],
-                    'a1':       json_data[i][0]['id'],
-                    'a2':       json_data[i][0]['id'],
-                    'sender':   json_data[-1]['db_sender'],
-                    'where':    json_data[i][0]['where'],
-                    'when':     json_data[i][0]['when']
+                    'observer':     json_data[i][0]['id'],
+                    'a1':           json_data[i][0]['id'],
+                    'a2':           json_data[i][0]['id'],
+                    'sender':       json_data[-1]['db_sender'],
+                    'where':        json_data[i][0]['where'],
+                    'when':         json_data[i][0]['when'],
+                    'sent_at_loop': json_data[-1]['time']
                 }) 
 
     return data_do, data_ih
-
-
 
 
 def get_by_path(root, items):
