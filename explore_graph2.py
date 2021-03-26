@@ -24,9 +24,9 @@ plt.style.use('fivethirtyeight')
 logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
 
 # Initialize number of agents exploring the graph
-n_agents = 200
+n_agents = 500
 # Number of iterations
-steps = 100
+steps = 250
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -307,9 +307,10 @@ def update_position(a, loop):
         a.visited_nodes.append(a.curr_node)
         # The actual situation and object seen by the person depend on its trustworthiness
         if flag:
-            seen_sit = get_cls_at_dist(node_situation, a.error)
-            seen_obj = get_cls_at_dist(node_object, a.error)
-            seen_ev = seen_sit, seen_obj
+            # seen_sit = get_cls_at_dist(node_situation, a.error)
+            # seen_obj = get_cls_at_dist(node_object, a.error)
+            # seen_ev = seen_sit, seen_obj
+            seen_ev = node_situation, node_object
             a.seen_events.append(seen_ev)
             # print("a.seen_events: ", a.seen_events)
             # input("hit enter")
@@ -331,7 +332,7 @@ def update_position(a, loop):
     logging.info("| returning from update_position()")
 
 
-
+t_all = 0
 
 def send_info(agent, loop):
 
@@ -360,6 +361,20 @@ def send_info(agent, loop):
         # print("knowledge: " +str(knowledge))
         response = requests.put(BASE + "IE/1", json.dumps(knowledge))
         # print(response.json())
+        res = response.json()
+
+        if 'first_time_db' in res:
+            if res['first_time_db'] in events:
+                toc_db = time.perf_counter()
+                t = toc_db - tic
+
+                index = events.index(res['first_time_db'])
+                events[index]['db_time'] = t
+
+        elif loop >= len(events) and 'all_events_db' in res:
+            toc_all_db = time.perf_counter()
+            t_all = toc_all_db - tic
+
         agent.num_info_sent += len(agent.ies)
         # input("check 3")
         # agent.ies.clear()
@@ -408,6 +423,9 @@ pprint.pprint(events)
 print("number of events in the environment: ", len(events))
 print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
 print("percentage of events per node:       ", (100*len(events)/len(list(G.nodes(data=True)))))
+
+response = requests.put(BASE + "/IE/events", json.dumps(events))
+pprint.pprint(response.json())
 input("checking events list")
 
 tic = time.perf_counter()
@@ -447,9 +465,11 @@ for i in range(n_agents):
                 # print(counter)
                 # print(elem)
                 # input("seen sit")
-                seen_situation = get_cls_at_dist(situation, agent.error)
-                seen_object = get_cls_at_dist(obj, agent.error)
-                seen_event = (seen_situation, seen_object)
+                # seen_situation = get_cls_at_dist(situation, agent.error)
+                # seen_object = get_cls_at_dist(obj, agent.error)
+                # seen_event = (seen_situation, seen_object)
+                seen_event = (situation, obj)
+
 
                 agent.seen_events.append(seen_event)
                 agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
@@ -495,10 +515,9 @@ for i in range(1, steps):
     exchange_information(i)
     #  Print the updated state of the agents along with their IEs
     for key in agents_dict.keys():
-        print(agents_dict[key])
-        # print("type(agents_dict[key].ies): " + str(type(agents_dict[key].ies)))
-        for ie in agents_dict[key].ies:
-            print(ie[0], ",", ie[1:])
+        # print(agents_dict[key])
+        # for ie in agents_dict[key].ies:
+            # print(ie[0], ",", ie[1:])
         send_info(agents_dict[key], i)
         # res = events_db_status()
     logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
@@ -512,6 +531,15 @@ for i in range(1, steps):
     # plt.close()
 
 toc = time.perf_counter()
+pprint.pprint(events)
+obs_ev = 0
+for counter in range(len(events)):
+    if 'db_time' in events[counter]:
+        obs_ev += 1
+perc_seen_ev = 100*obs_ev/len(events)
+print(f"observed {obs_ev} over {len(events)} events")
+print(f"percentage of events seen: {perc_seen_ev:0.2f}%")
+print("total time to get all events on the db: ", t_all)
 print(f"Experiment finished in {toc - tic:0.4f} seconds")
 
 # input("check 2 explore_graph.py")

@@ -1,4 +1,5 @@
 import json
+from pprint import pprint
 from utils import NewpreProcessing
 from flask import Flask, request
 from collections import defaultdict
@@ -95,7 +96,18 @@ ih_schemas  = infoHistorySchema(many=True)
     
 #     print("Found the do: ", do)
 #     input("events_db_status()")
-#     return{"event found": do}
+#     return{"event found": do}ù
+
+events = []
+
+@app.route("/IE/events", methods=["PUT"])
+def receiving_events_list():
+    json_data = json.loads(request.data)
+    events.extend(json_data)
+
+    pprint(events)
+
+    return{"message": "registered events in the environments", "events": events}
 
     
 
@@ -158,7 +170,9 @@ def put(DO_id):
     print("and here as well")
     # input("put() second check")
 
+    all_events_db = False
     flag = False
+    return_flag = False
     if not data_do:
         print("2")
         print("_________________________________________________")
@@ -203,12 +217,21 @@ def put(DO_id):
                                 where           = direct_obs[i]["where"],
                                 when            = direct_obs[i]["when"],
                                 who             = direct_obs[i]["who"])
+
+            # ackowledging we are adding a new direct observatino to the db
+            elem = {'situation': do.situation, 'object': do.obj}
+            for el in events:
+                if el['situation'] == do.situation and el['object'] == do.obj:
+                    return_flag = True
+                    events.remove(elem)
+            # print(return_flag)
+            # input("return_flag")
             db.session.add(do)
             result_do.append(do_schema.dump(do))
 
             if not flag:
                 for j in range(len(info_history[i])):
-                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],    
+                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],   
                                             a1              = info_history[i][j]['a1'],
                                             a2              = info_history[i][j]['a2'],
                                             sender          = info_history[i][j]['sender'],
@@ -225,16 +248,18 @@ def put(DO_id):
             print("10")
         # if the direct observation is already in the db
         else:
+            if len(events) == 0:
+                all_events_db = True
             result_ih = []
             if not flag:
                 for j in range(len(info_history[i])):
-                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],    
+                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],
                                             a1              = info_history[i][j]['a1'],
                                             a2              = info_history[i][j]['a2'],
                                             sender          = info_history[i][j]['sender'],
                                             where           = info_history[i][j]['where'],
                                             when            = info_history[i][j]['when'],
-                                            sent_at_loop    =info_history[i][j]['sent_at_loop'])
+                                            sent_at_loop    = info_history[i][j]['sent_at_loop'])
                     db.session.add(ih)
                     # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                     query_do.info_histories.append(ih)
@@ -242,13 +267,22 @@ def put(DO_id):
                     query_do.info_histories[j].dir_obs_id = query_do.id
                     result_ih.append(ih_schema.dump(ih))
                 result_do.append(result_ih)
-            print("10")
+            print("11")
 
-    print("11")
+    print("12")
 
     db.session.commit()
     # result_do = do_schema.dump(dirObsTab.query.get(do.id))
-    return {"message": "Created a new DO and IH.",  "DO": result_do}
+
+    # keep track if event has been uploaded on the db for the first time
+    if return_flag:
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "first_time_db": elem}
+    # keep track if all the events have been uploaded on the db
+    elif all_events_db:
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "all_events_db": events}
+    # if an element which was already in the db was being uploaded
+    elif not return_flag:
+        return {"message": "Created a new DO and IH.",  "DO": result_do}
 
 
 
