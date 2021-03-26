@@ -20,7 +20,9 @@ db = SQLAlchemy(app)
 
 class dirObsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)
-    dir_obs         = db.Column(db.JSON, nullable=False) 
+    # dir_obs         = db.Column(db.JSON, nullable=False)
+    situation       = db.Column(db.String(50), nullable=False)
+    obj             = db.Column(db.String(50), nullable=False)
     when            = db.Column(db.Integer, nullable=False)
     where           = db.Column(db.Integer, nullable=False)
     # Information element or direct observation
@@ -55,6 +57,8 @@ class dirObsSchema(Schema):
     #     unknown=INCLUDE
     id                  = mafields.Integer(dump_only=True)
     dir_obs             = mafields.Dict(keys=mafields.Str(), values=mafields.Str())
+    # situation           = mafields.Str()
+    # obj                 = mafields.Str()
     when                = mafields.Integer()
     where               = mafields.Integer()
     who                 = mafields.Integer()
@@ -183,15 +187,19 @@ def put(DO_id):
     print("9")
     result_do = []
     for i in range(len(direct_obs)):
-        query_do = dirObsTab.query.filter_by(   dir_obs = direct_obs[i]['dir_obs'],
-                                                when    = direct_obs[i]['when'],
-                                                where   = direct_obs[i]['where'],
-                                                who     = direct_obs[i]['who']).first()
+        query_do = dirObsTab.query.filter_by(   #dir_obs = direct_obs[i]['dir_obs'],
+                                                situation   = direct_obs[i]['dir_obs']['situation'],
+                                                obj         = direct_obs[i]['dir_obs']['object'],
+                                                when        = direct_obs[i]['when'],
+                                                where       = direct_obs[i]['where'],
+                                                who         = direct_obs[i]['who']).first()
         # if the direct observation is not in the db
         if not query_do:
             result_ih = []
             do  = dirObsTab(    #id              = DO_id,
-                                dir_obs         = direct_obs[i]["dir_obs"],
+                                # dir_obs         = direct_obs[i]["dir_obs"],
+                                situation       = direct_obs[i]['dir_obs']['situation'],
+                                obj             = direct_obs[i]['dir_obs']['object'],
                                 where           = direct_obs[i]["where"],
                                 when            = direct_obs[i]["when"],
                                 who             = direct_obs[i]["who"])
@@ -200,13 +208,13 @@ def put(DO_id):
 
             if not flag:
                 for j in range(len(info_history[i])):
-                    ih = infoHistoryTab(    observer    = info_history[i][j]['observer'],    
-                                            a1          = info_history[i][j]['a1'],
-                                            a2          = info_history[i][j]['a2'],
-                                            sender      = info_history[i][j]['sender'],
-                                            where       = info_history[i][j]['where'],
-                                            when        = info_history[i][j]['when'],
-                                            sent_at_loop    =info_history[i][j]['sent_at_loop'])
+                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],    
+                                            a1              = info_history[i][j]['a1'],
+                                            a2              = info_history[i][j]['a2'],
+                                            sender          = info_history[i][j]['sender'],
+                                            where           = info_history[i][j]['where'],
+                                            when            = info_history[i][j]['when'],
+                                            sent_at_loop    = info_history[i][j]['sent_at_loop'])
                     db.session.add(ih)
                     # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                     do.info_histories.append(ih)
@@ -220,12 +228,12 @@ def put(DO_id):
             result_ih = []
             if not flag:
                 for j in range(len(info_history[i])):
-                    ih = infoHistoryTab(    observer    = info_history[i][j]['observer'],    
-                                            a1          = info_history[i][j]['a1'],
-                                            a2          = info_history[i][j]['a2'],
-                                            sender      = info_history[i][j]['sender'],
-                                            where       = info_history[i][j]['where'],
-                                            when        = info_history[i][j]['when'],
+                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],    
+                                            a1              = info_history[i][j]['a1'],
+                                            a2              = info_history[i][j]['a2'],
+                                            sender          = info_history[i][j]['sender'],
+                                            where           = info_history[i][j]['where'],
+                                            when            = info_history[i][j]['when'],
                                             sent_at_loop    =info_history[i][j]['sent_at_loop'])
                     db.session.add(ih)
                     # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
@@ -250,6 +258,10 @@ def delete_(DO_id):
     do = dirObsTab.query.all()
     ih = infoHistoryTab.query.all()
     for i in range(len(do)):
+        for k in range(i+1, len(do)):
+            if do[i] == do[k]:
+                print("same dir obs in the db!")
+                input("hit enter")
         db.session.delete(do[i])
     for j in range(len(ih)):
         db.session.delete(ih[j])
