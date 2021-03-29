@@ -102,12 +102,17 @@ events = []
 
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
+
+    # if marker==0:
     json_data = json.loads(request.data)
     events.extend(json_data)
 
     pprint(events)
 
     return{"message": "registered events in the environments", "events": events}
+    # else:
+    #     events.clear()
+    #     return{"message": "I have cleared the events' list", "events": events}
 
     
 
@@ -218,12 +223,21 @@ def put(DO_id):
                                 when            = direct_obs[i]["when"],
                                 who             = direct_obs[i]["who"])
 
-            # ackowledging we are adding a new direct observatino to the db
+            # ackowledging we are adding a new direct observation to the db
             elem = {'situation': do.situation, 'object': do.obj}
             for el in events:
-                if el['situation'] == do.situation and el['object'] == do.obj:
+                if el['situation'] == elem['situation'] and el['object'] == elem['object']:
                     return_flag = True
-                    events.remove(elem)
+                    try:
+                        # index = events.index(el)
+                        # del events[index]
+                        events.remove(elem)
+                    except:
+                        print("remove operatione failed.")
+                        pprint(events)
+                        print("elem:    ", elem)
+                        print(bool(elem in events))
+                        input()
             # print(return_flag)
             # input("return_flag")
             db.session.add(do)
@@ -248,6 +262,7 @@ def put(DO_id):
             print("10")
         # if the direct observation is already in the db
         else:
+            # if all the events have been seen
             if len(events) == 0:
                 all_events_db = True
             result_ih = []

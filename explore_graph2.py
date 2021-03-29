@@ -1,3 +1,4 @@
+import csv
 import copy
 import math
 import random
@@ -23,8 +24,28 @@ BASE = "http://127.0.0.1:5000/"
 plt.style.use('fivethirtyeight')
 logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
 
+global t_all
+# t_all = 0
+
+fieldnames1 = ["event", "latency"]
+fieldnames2 = ["sizeTab1", "sizeTab2"]
+fieldnames3 = ["time", "perc_of_seen_events"]
+
+
+with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'w') as csv_file:
+            csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
+            csv_writer1.writeheader()
+
+with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'w') as csv_file:
+            csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
+            csv_writer2.writeheader()
+
+with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'w') as csv_file:
+            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+            csv_writer3.writeheader()
+
 # Initialize number of agents exploring the graph
-n_agents = 500
+n_agents = 50
 # Number of iterations
 steps = 250
 # Distance traveled (in meters) by each person in one loop cycle
@@ -39,7 +60,7 @@ node_state_dict = {}
 G = ox.load_graphml('graph/graph.graphml')
 
 # list of events present in the environment
-events = []
+global events
 
 
 # This function returns an array containing the colors of each node, based on the number of people
@@ -332,9 +353,11 @@ def update_position(a, loop):
     logging.info("| returning from update_position()")
 
 
-t_all = 0
 
 def send_info(agent, loop):
+
+    global t_all
+    global events
 
     conn = G.nodes.get(agent.curr_node)['connection']
     conn = conn.split(",")
@@ -342,20 +365,27 @@ def send_info(agent, loop):
 
     # input("check 1")
 
-    if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
-    # if (((1 in agent.global_conn) and (1 in conn_new)) or (2 in agent.global_conn and 2 in conn_new)) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
-        # input("check 2")
-    # if agent.n > 100 and len(agent.ies) and agent.num_info_sent < len(agent.ies):
+    # if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
+    if ((1 in agent.global_conn and 1 in conn_new) or (2 in agent.global_conn and 2 in conn_new)\
+        or (3 in agent.global_conn and 3 in conn_new)) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
+        
         knowledge = []
-        # if agent.num_info_sent >= len(agent.ies):
-        #     print("agent.num_info_sent: ", agent.num_info_sent)
-        #     print("len(agent.ies): ", len(agent.ies))
-        #     input("send_info()")
-        for i in range(agent.num_info_sent, len(agent.ies)):
-            copia_ie = copy.deepcopy(agent.ies[i])
-            # copia_ie = IEtoDict(copia_ie)
-            copia_ie = NewIEtoDict(copia_ie)
-            knowledge.append(copia_ie)
+        tab2 = 0
+        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
+            csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
+
+            for i in range(agent.num_info_sent, len(agent.ies)):
+                copia_ie = copy.deepcopy(agent.ies[i])
+                # copia_ie = IEtoDict(copia_ie)
+                copia_ie = NewIEtoDict(copia_ie)
+                info = {
+                    'event':    copia_ie[0]['what'],
+                    'latency':  loop - copia_ie[0]['when']
+                }
+                csv_writer1.writerow(info)
+                knowledge.append(copia_ie)
+                for el in copia_ie[1:]:
+                    tab2 += 1
 
         knowledge.append({'db_sender': agent.n, "time": loop})
         # print("knowledge: " +str(knowledge))
@@ -375,22 +405,24 @@ def send_info(agent, loop):
             toc_all_db = time.perf_counter()
             t_all = toc_all_db - tic
 
-        agent.num_info_sent += len(agent.ies)
+        prior_threshold = agent.num_info_sent
+        agent.num_info_sent +=  (len(agent.ies) - prior_threshold)
+
+
+        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'a') as csv_file:
+            csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
+
+            info = {
+                'sizeTab1': (len(agent.ies) - prior_threshold),
+                'sizeTab2': tab2
+            }
+            csv_writer2.writerow(info)
         # input("check 3")
         # agent.ies.clear()
     else:
         # input("check 4")
         logging.info("| It has not been possible to send information to the database!")
 
-
-# def events_db_status(events):
-#     for i in range(len(events)):
-#         response = requests.get(BASE + "IE/events-status/" + \
-#                                         events[i]['situation'] + "/" +\
-#                                         events[i]['object'] + "/" +\
-#                                         events[i]['when'] + "/" +\
-#                                         events[i]['where'] + "/" +\
-#                                         events[i]['who'])
 
 
 
@@ -409,148 +441,181 @@ def create_gif():
                    duration=500, Loop=0)
 
 
-# collecting events in the environment
-for node in G.nodes(data=True):
-    #     print(node)
-    # input("checking nodes")
-    if node[1]['situation'] != 'None':
-        events.append({
-            'situation':    node[1]['situation'],
-            'object':       node[1]['object']
-        })
 
-pprint.pprint(events)
-print("number of events in the environment: ", len(events))
-print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
-print("percentage of events per node:       ", (100*len(events)/len(list(G.nodes(data=True)))))
 
-response = requests.put(BASE + "/IE/events", json.dumps(events))
-pprint.pprint(response.json())
-input("checking events list")
+def main_execution():
+    i = 1
+    # Initialize people's positions in random nodes
+    for i in range(n_agents):
+        curr_node = random.choice(list(n[0] for n in G.nodes.data()))
+        situation = {}
+        obj = []
+        # Update the counter of the number of people in that node and get the situation and the object
+        # for node in G.nodes(data=True):
+        #     print(node)
+        # input("checking nodes")
 
-tic = time.perf_counter()
-
-i = 1
-# Initialize people's positions in random nodes
-for i in range(n_agents):
-    curr_node = random.choice(list(n[0] for n in G.nodes.data()))
-    situation = {}
-    obj = []
-    # Update the counter of the number of people in that node and get the situation and the object
-    # for node in G.nodes(data=True):
-    #     print(node)
-    # input("checking nodes")
-
-    dest_node, dist, path = compute_destination(curr_node)
-    # Instantiate the Person class passing the arguments
-    agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
-    agent.visited_nodes.append(curr_node)
-    
-    # counter = 0
-    for elem in G.nodes(data=True):
-        if elem[0] == curr_node:
-            # Increment the number of people in that node
-            elem[1]['n_agents'] = int(elem[1]['n_agents']) + 1
-            # Add person id to the node
-            if not node_state_dict.get(str(curr_node)):
-                node_state_dict[str(curr_node)] = [i]
-            else:
-                node_state_dict[str(curr_node)].append(i)
+        dest_node, dist, path = compute_destination(curr_node)
+        # Instantiate the Person class passing the arguments
+        agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
+        agent.visited_nodes.append(curr_node)
         
-            if elem[1]['situation'] != 'None':
-                situation = elem[1]['situation']
-                obj = elem[1]['object']
-        
-                # Add the event that the person thinks to have seen to the list
-                # print(counter)
-                # print(elem)
-                # input("seen sit")
-                # seen_situation = get_cls_at_dist(situation, agent.error)
-                # seen_object = get_cls_at_dist(obj, agent.error)
-                # seen_event = (seen_situation, seen_object)
-                seen_event = (situation, obj)
+        # counter = 0
+        for elem in G.nodes(data=True):
+            if elem[0] == curr_node:
+                # Increment the number of people in that node
+                elem[1]['n_agents'] = int(elem[1]['n_agents']) + 1
+                # Add person id to the node
+                if not node_state_dict.get(str(curr_node)):
+                    node_state_dict[str(curr_node)] = [i]
+                else:
+                    node_state_dict[str(curr_node)].append(i)
+            
+                if elem[1]['situation'] != 'None':
+                    situation = elem[1]['situation']
+                    obj = elem[1]['object']
+            
+                    # Add the event that the person thinks to have seen to the list
+                    # print(counter)
+                    # print(elem)
+                    # input("seen sit")
+                    # seen_situation = get_cls_at_dist(situation, agent.error)
+                    # seen_object = get_cls_at_dist(obj, agent.error)
+                    # seen_event = (seen_situation, seen_object)
+                    seen_event = (situation, obj)
 
 
-                agent.seen_events.append(seen_event)
-                agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
-        # print("counter: ", counter)
-        # counter += 1
+                    agent.seen_events.append(seen_event)
+                    agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
+            # print("counter: ", counter)
+            # counter += 1
 
 
-    # Initialize the connections owned by the person
-    agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
-    # Initialize array of local connections, choosing randomly, removing duplicates
-    agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
-    agents_dict[str(i)] = agent
-    print("i: ", i)
-    i += 1
+        # Initialize the connections owned by the person
+        agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
+        # Initialize array of local connections, choosing randomly, removing duplicates
+        agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
+        agents_dict[str(i)] = agent
+        print("i: ", i)
+        i += 1
 
-logging.info("| DESTINATIONS COMPUTED")
+    logging.info("| DESTINATIONS COMPUTED")
 
-# Array of colors of the nodes based on the number of people contained
-nc = color()
-# Save the initial graph (with people in their starting position)
-ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath="images/img0.png")
-plt.close()
-
-# Exchange info between agents in the initial position
-exchange_information(0)
-
-# Print the state of all the agents along with their IEs
-# for key in agents_dict.keys():
-#     print(agents_dict[key])
-#     for ie in agents_dict[key].ies:
-#         # print(ie)
-#         print(ie[0], ",", ie[1:])
-
-
-# Loop through the predefined # of steps and update the agent's positions
-for i in range(1, steps):
-    print("\nIteration " + str(i))
-    for key in agents_dict.keys():
-        # Update the position of the agent
-        update_position(agents_dict[key], i)
-    logging.info("bigcounter: " +str(i))
-
-    exchange_information(i)
-    #  Print the updated state of the agents along with their IEs
-    for key in agents_dict.keys():
-        # print(agents_dict[key])
-        # for ie in agents_dict[key].ies:
-            # print(ie[0], ",", ie[1:])
-        send_info(agents_dict[key], i)
-        # res = events_db_status()
-    logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
-
-    # Define the path of the image in which the updated graph will be saved
-    # img_path = "images/img" + str(i) + ".png"
-    # # Initialize color map on the basis of the people in each node
+    # # Array of colors of the nodes based on the number of people contained
     # nc = color()
-    # # Save the graph with the updated positions in the image
-    # ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath=img_path)
+    # # Save the initial graph (with people in their starting position)
+    # ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath="images/img0.png")
     # plt.close()
 
-toc = time.perf_counter()
-pprint.pprint(events)
-obs_ev = 0
-for counter in range(len(events)):
-    if 'db_time' in events[counter]:
-        obs_ev += 1
-perc_seen_ev = 100*obs_ev/len(events)
-print(f"observed {obs_ev} over {len(events)} events")
-print(f"percentage of events seen: {perc_seen_ev:0.2f}%")
-print("total time to get all events on the db: ", t_all)
-print(f"Experiment finished in {toc - tic:0.4f} seconds")
+    # Exchange info between agents in the initial position
+    exchange_information(0)
 
-# input("check 2 explore_graph.py")
-# response = requests.get(BASE + "IE/1" )
-# pprint.pprint(response.json())
+    # Print the state of all the agents along with their IEs
+    # for key in agents_dict.keys():
+    #     print(agents_dict[key])
+    #     for ie in agents_dict[key].ies:
+    #         # print(ie)
+    #         print(ie[0], ",", ie[1:])
 
 
-input("check 3 explore_graph.py")
-response = requests.delete(BASE + "IE/1" )
-pprint.pprint(response.json()) 
+    # Loop through the predefined # of steps and update the agent's positions
+    for i in range(1, steps):
+        print("\nIteration " + str(i))
+        for key in agents_dict.keys():
+            # Update the position of the agent
+            update_position(agents_dict[key], i)
+        logging.info("bigcounter: " +str(i))
+
+        exchange_information(i)
+        #  Print the updated state of the agents along with their IEs
+        for key in agents_dict.keys():
+            # print(agents_dict[key])
+            # for ie in agents_dict[key].ies:
+                # print(ie[0], ",", ie[1:])
+            send_info(agents_dict[key], i)
+            # res = events_db_status()
+        logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
+
+        # Define the path of the image in which the updated graph will be saved
+        # img_path = "images/img" + str(i) + ".png"
+        # # Initialize color map on the basis of the people in each node
+        # nc = color()
+        # # Save the graph with the updated positions in the image
+        # ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath=img_path)
+        # plt.close()
+
+    # Generate the GIF from the saved sequence of images
+    # create_gif()
+
+if __name__=="__main__":
+    
+    global t_all
+    global events
+    t_all = 0
 
 
-# Generate the GIF from the saved sequence of images
-# create_gif()
+    for u in range(50):
+
+        events = []
+        # collecting events in the environment
+        for node in G.nodes(data=True):
+            #     print(node)
+            # input("checking nodes")
+            if node[1]['situation'] != 'None':
+                events.append({
+                    'situation':    node[1]['situation'],
+                    'object':       node[1]['object']
+                })
+
+        pprint.pprint(events)
+        print("number of events in the environment: ", len(events))
+        print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
+        print(f"percentage of events per node:          {(100*len(events)/len(list(G.nodes(data=True)))):0.2f}%" )
+
+        response = requests.put(BASE + "/IE/events", json.dumps(events))
+        pprint.pprint(response.json())
+        # input("checking events list")
+
+        tic = time.perf_counter()
+        main_execution()
+        toc = time.perf_counter()
+
+        pprint.pprint(events)
+        obs_ev = 0
+        for counter in range(len(events)):
+            if 'db_time' in events[counter]:
+                obs_ev += 1
+        perc_seen_ev = 100*obs_ev/len(events)
+        print(f"observed {obs_ev} over {len(events)} events")
+        print(f"percentage of events seen: {perc_seen_ev:0.2f}%")
+        print("total time to get all events on the db: ", t_all)
+        print(f"Experiment finished in {toc - tic:0.4f} seconds")
+
+        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
+            delim_writer = csv.writer(csv_file)
+            delim_writer.writerow("#")
+        
+        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'a') as csv_file:
+            delim_writer = csv.writer(csv_file)
+            delim_writer.writerow("#")
+
+        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'a') as csv_file:
+            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+
+            info = {
+                'time':                 toc-tic,
+                'perc_of_seen_events':  perc_seen_ev
+            }
+            csv_writer3.writerow(info)
+
+        # input("check 2 explore_graph.py")
+        # response = requests.get(BASE + "IE/1" )
+        # pprint.pprint(response.json())
+
+        # response = requests.put(BASE + "/IE/events/1", json.dumps(events))
+        # pprint.pprint(response.json())
+
+
+        # input("check 3 explore_graph.py")
+        response = requests.delete(BASE + "IE/1" )
+        pprint.pprint(response.json())
