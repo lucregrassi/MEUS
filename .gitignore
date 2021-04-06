@@ -5,3 +5,8 @@ venv/
 .DS_Store
 images/
 simulation.gif
+databaseMEUS.db
+db_size.csv
+experiments.csv
+explore_graph.log
+performances.csv
