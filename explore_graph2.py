@@ -7,18 +7,14 @@ import osmnx as ox
 from PIL import Image
 from Agent import Agent
 import matplotlib.pyplot as plt
-from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
 
-from shapely.geometry import LineString
 from utils import preProcessing, IEtoDict, NewIEtoDict
 import requests
 import json
 import pprint
 import time
-import decimal
 from datetime import datetime
-
 
 # random.seed(datetime.now())
 
@@ -28,27 +24,27 @@ plt.style.use('fivethirtyeight')
 logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
 
 global t_all
-# t_all = 0
+global percentage
 
 fieldnames1 = ["event", "latency"]
 fieldnames2 = ["sizeTab1", "sizeTab2"]
 fieldnames3 = ["time", "perc_of_seen_events"]
 
+with open('experiments.csv', 'w') as csv_file:
+    csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
+    csv_writer1.writeheader()
 
-with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'w') as csv_file:
-            csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
-            csv_writer1.writeheader()
+with open('db_size.csv', 'w') as csv_file:
+    csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
+    csv_writer2.writeheader()
 
-with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'w') as csv_file:
-            csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
-            csv_writer2.writeheader()
-
-with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'w') as csv_file:
-            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
-            csv_writer3.writeheader()
+with open('performances.csv', 'w') as csv_file:
+    csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+    csv_writer3.writeheader()
 
 # Initialize number of agents exploring the graph
-n_agents = 50
+n_agents = 1
+percentage = 0.7
 # Number of iterations
 steps = 250
 # Distance traveled (in meters) by each person in one loop cycle
@@ -84,13 +80,14 @@ def color():
 def compute_intermediate_dist(target_edge):
     dist = []
     path = {}
-    for i in range(len(target_edge['geometry'].coords)-1):
+    for i in range(len(target_edge['geometry'].coords) - 1):
         # distance between each and every subnode
-        dist = math.sqrt(   (target_edge['geometry'].coords[i][0] - target_edge['geometry'].coords[i+1][0])**2 + \
-                            (target_edge['geometry'].coords[i][1] - target_edge['geometry'].coords[i+1][1])**2)
-        path[str(i+1) + '-' + str(i+2)] = {'edgeID': target_edge['osmid'], 'dist': dist, \
-                                                'UTM_coordinates': [target_edge['geometry'].coords[i], target_edge['geometry'].coords[i+1]]}
-        
+        dist = math.sqrt((target_edge['geometry'].coords[i][0] - target_edge['geometry'].coords[i + 1][0]) ** 2 + \
+                         (target_edge['geometry'].coords[i][1] - target_edge['geometry'].coords[i + 1][1]) ** 2)
+        path[str(i + 1) + '-' + str(i + 2)] = {'edgeID': target_edge['osmid'], 'dist': dist, \
+                                               'UTM_coordinates': [target_edge['geometry'].coords[i],
+                                                                   target_edge['geometry'].coords[i + 1]]}
+
     return path
 
 
@@ -114,21 +111,22 @@ def geolocalise_me(agent):
                 y2 = agent.path[key]['UTM_coordinates'][1][1]
                 y1 = agent.path[key]['UTM_coordinates'][0][1]
 
-
-                l    = agent.road - (rel_dist - agent.path[key]['dist'])
+                l = agent.road - (rel_dist - agent.path[key]['dist'])
                 L = agent.path[key]['dist']
 
-                x = x1 + (x2-x1)*l/L
-                y = y1 + (y2-y1)*l/L
+                x = x1 + (x2 - x1) * l / L
+                y = y1 + (y2 - y1) * l / L
 
                 estimated_UTM = (x, y)
 
                 return estimated_UTM
 
-    elif agent.road==agent.distance:
+    elif agent.road == agent.distance:
         logging.info("I am on the destination node")
     else:
-        logging.info("traveled road is > than agent.distance. \ntraveled_road: " +str(agent.road) + "\nagent.distance: " +str(agent.distance))
+        logging.info(
+            "traveled road is > than agent.distance. \ntraveled_road: " + str(agent.road) + "\nagent.distance: " + str(
+                agent.distance))
 
     logging.info("| returning from geolocalise_me()")
 
@@ -176,7 +174,7 @@ def exchange_information(loop):
         if len(node_state_dict[k]) > 1:
             delete.append(k)
             for agent_id in node_state_dict[k]:
-                listener = agents_dict[str(agent_id)] 
+                listener = agents_dict[str(agent_id)]
                 for ag_id in node_state_dict[k]:
                     # If the teller has a different id (is not the listener), and if they both have
                     candidate = agents_dict[str(ag_id)]
@@ -213,15 +211,6 @@ def exchange_information(loop):
                             listener.met_agents.append(teller.n)
                             listener.met_in_node.append(int(k))
                             listener.met_in_loop.append(loop)
-                            # print("teller("+str(teller.n)+"):" )
-                            # for ie in teller.ies:
-                            #     # print(ie)
-                            #     print(ie[0], ",", ie[1:])
-                            # print("listener("+str(listener.n)+"):")
-                            # for ie in listener.ies:
-                            #     # print(ie)
-                            #     print(ie[0], ",", ie[1:])
-                            # Loop through all Information Elements of the teller
                             for IE_teller in teller.ies:
                                 same_root = False
                                 already_told = False
@@ -239,15 +228,14 @@ def exchange_information(loop):
                                                 already_told = True
                                                 break
                                         for tup in listener.ies[i][1:]:
-                                           if (tup[0] == teller.n and tup[1] == listener.n):
-                                               already_told = True
-                                               break
+                                            if tup[0] == teller.n and tup[1] == listener.n:
+                                                already_told = True
+                                                break
                                 if not already_told:
                                     if same_root:
                                         # same_root_IE_listener.append((teller.n, listener.n, int(k), loop))
                                         if len(IE_teller[1:]) > 0:
-                                            target_extend = []
-                                            target_extend.append((teller.n, listener.n, int(k), loop))
+                                            target_extend = [(teller.n, listener.n, int(k), loop)]
                                             for elem in IE_teller[1:]:
                                                 if elem not in listener.ies[index]:
                                                     target_extend.append(elem)
@@ -264,22 +252,6 @@ def exchange_information(loop):
                                         listener.ies.append(copy.deepcopy(IE_teller))
                                         listener.ies[-1].append((teller.n, listener.n, int(k), loop))
 
-                # for c in range(len(listener.ies)):
-                #     for m in range(len(listener.ies[c][1:])):
-                #         for n in range(m+1, len(listener.ies[c][1:])):
-                #             if listener.ies[c][1:][m] == listener.ies[c][1:][n]:
-                #                 print("###################################################")
-                #                 print("there's a repetition!")
-                #                 print(listener.ies[c][0], ", ", listener.ies[c][1:])
-                #                 input()
-                #     for g in range(c+1, len(listener.ies)):
-                #         if listener.ies[c][0] == listener.ies[g][0]:
-                #             print("###################################################")
-                #             print("there's a root repetition!")
-                #             print(listener.ies[c][0], ", ", listener.ies[c][1:])
-                #             print(listener.ies[g][0], ", ", listener.ies[g][1:])
-                #             input()
-
     # Avoid that they can meet again once they exchange their info and they are still in the same node
     for k in delete:
         del node_state_dict[k]
@@ -292,14 +264,14 @@ def update_position(a, loop):
     logging.info("| update_position()")
     if not a.moving:
         # Arrived to destination node
-        previous_node                       = a.curr_node
-        a.curr_node                         = a.dest_node
-        destination_node, distance, path    = compute_destination(a.dest_node)
-        a.dest_node                         = destination_node
-        a.distance                          = distance
-        a.path                              = path
-        a.moving                            = True
-        a.road                              = 0
+        previous_node = a.curr_node
+        a.curr_node = a.dest_node
+        destination_node, distance, path = compute_destination(a.dest_node)
+        a.dest_node = destination_node
+        a.distance = distance
+        a.path = path
+        a.moving = True
+        a.road = 0
 
         node_situation = []
         node_object = []
@@ -338,15 +310,15 @@ def update_position(a, loop):
             a.seen_events.append(seen_ev)
             # print("a.seen_events: ", a.seen_events)
             # input("hit enter")
-        # Add what the person thinks to have seen to its list of information elements
-        # root = NewDirectObservation(a.n, a.curr_node, loop, seen_ev, a.error)
+            # Add what the person thinks to have seen to its list of information elements
+            # root = NewDirectObservation(a.n, a.curr_node, loop, seen_ev, a.error)
             a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
     else:
         # If the person is moving, check if it has reached the destination
         if a.distance > 0:
             # If it has not reached the destination, move of the defined distance
             a.distance = a.distance - loop_distance
-            a.road += loop_distance 
+            a.road += loop_distance
             geolocalise_me(a)
 
         else:
@@ -356,9 +328,7 @@ def update_position(a, loop):
     logging.info("| returning from update_position()")
 
 
-
 def send_info(agent, loop):
-
     global t_all
     global events
 
@@ -369,12 +339,12 @@ def send_info(agent, loop):
     # input("check 1")
 
     # if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
-    if ((1 in agent.global_conn and 1 in conn_new) or (2 in agent.global_conn and 2 in conn_new)\
+    if ((1 in agent.global_conn and 1 in conn_new) or (2 in agent.global_conn and 2 in conn_new) \
         or (3 in agent.global_conn and 3 in conn_new)) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
-        
+
         knowledge = []
         tab2 = 0
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
+        with open('experiments.csv', 'a') as csv_file:
             csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
 
             for i in range(agent.num_info_sent, len(agent.ies)):
@@ -382,8 +352,8 @@ def send_info(agent, loop):
                 # copia_ie = IEtoDict(copia_ie)
                 copia_ie = NewIEtoDict(copia_ie)
                 info = {
-                    'event':    copia_ie[0]['what'],
-                    'latency':  loop - copia_ie[0]['when']
+                    'event': copia_ie[0]['what'],
+                    'latency': loop - copia_ie[0]['when']
                 }
                 csv_writer1.writerow(info)
                 knowledge.append(copia_ie)
@@ -410,10 +380,9 @@ def send_info(agent, loop):
 
         # consider only informations that have not yet been sent to the db
         prior_threshold = agent.num_info_sent
-        agent.num_info_sent +=  (len(agent.ies) - prior_threshold)
+        agent.num_info_sent += (len(agent.ies) - prior_threshold)
 
-
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'a') as csv_file:
+        with open('db_size.csv', 'a') as csv_file:
             csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
 
             info = {
@@ -421,14 +390,8 @@ def send_info(agent, loop):
                 'sizeTab2': tab2
             }
             csv_writer2.writerow(info)
-        # input("check 3")
-        # agent.ies.clear()
     else:
-        # input("check 4")
         logging.info("| It has not been possible to send information to the database!")
-
-
-
 
 
 # This function generates a GIF starting from the images
@@ -445,10 +408,9 @@ def create_gif():
                    duration=500, Loop=0)
 
 
-
-
 def main_execution():
-    i = 1
+    global percentage
+    ag_global = math.floor(percentage * n_agents)
     # Initialize people's positions in random nodes
     for i in range(n_agents):
         curr_node = random.choice(list(n[0] for n in G.nodes.data()))
@@ -463,7 +425,7 @@ def main_execution():
         # Instantiate the Person class passing the arguments
         agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
         agent.visited_nodes.append(curr_node)
-        
+
         # counter = 0
         for elem in G.nodes(data=True):
             if elem[0] == curr_node:
@@ -474,11 +436,11 @@ def main_execution():
                     node_state_dict[str(curr_node)] = [i]
                 else:
                     node_state_dict[str(curr_node)].append(i)
-            
+
                 if elem[1]['situation'] != 'None':
                     situation = elem[1]['situation']
                     obj = elem[1]['object']
-            
+
                     # Add the event that the person thinks to have seen to the list
                     # print(counter)
                     # print(elem)
@@ -488,15 +450,14 @@ def main_execution():
                     # seen_event = (seen_situation, seen_object)
                     seen_event = (situation, obj)
 
-
                     agent.seen_events.append(seen_event)
-                    agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
+                    agent.ies.append(
+                        [NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
             # print("counter: ", counter)
             # counter += 1
 
-
         # Initialize the connections owned by the person
-        if i % 2 == 0:
+        if i < ag_global:
             agent.global_conn = [1, 2, 3]
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
@@ -524,24 +485,23 @@ def main_execution():
     #         # print(ie)
     #         print(ie[0], ",", ie[1:])
 
-
     # Loop through the predefined # of steps and update the agent's positions
     for i in range(1, steps):
         print("\nIteration " + str(i))
         for key in agents_dict.keys():
             # Update the position of the agent
             update_position(agents_dict[key], i)
-        logging.info("bigcounter: " +str(i))
+        logging.info("bigcounter: " + str(i))
 
         exchange_information(i)
         #  Print the updated state of the agents along with their IEs
         for key in agents_dict.keys():
             # print(agents_dict[key])
             # for ie in agents_dict[key].ies:
-                # print(ie[0], ",", ie[1:])
+            # print(ie[0], ",", ie[1:])
             send_info(agents_dict[key], i)
             # res = events_db_status()
-        logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
+        logging.info("#############################SENT INFO STEP" + str(i) + " #########################")
 
         # Define the path of the image in which the updated graph will be saved
         # img_path = "images/img" + str(i) + ".png"
@@ -554,12 +514,12 @@ def main_execution():
     # Generate the GIF from the saved sequence of images
     # create_gif()
 
-if __name__=="__main__":
-    
+
+if __name__ == "__main__":
+
     global t_all
     global events
     t_all = 0
-
 
     for u in range(50):
         random.seed(datetime.now())
@@ -570,14 +530,14 @@ if __name__=="__main__":
             # input("checking nodes")
             if node[1]['situation'] != 'None':
                 events.append({
-                    'situation':    node[1]['situation'],
-                    'object':       node[1]['object']
+                    'situation': node[1]['situation'],
+                    'object': node[1]['object']
                 })
 
         pprint.pprint(events)
         print("number of events in the environment: ", len(events))
         print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
-        print(f"percentage of events per node:          {(100*len(events)/len(list(G.nodes(data=True)))):0.2f}%" )
+        print(f"percentage of events per node:          {(100 * len(events) / len(list(G.nodes(data=True)))):0.2f}%")
 
         response = requests.put(BASE + "/IE/events", json.dumps(events))
         pprint.pprint(response.json())
@@ -592,7 +552,7 @@ if __name__=="__main__":
         for counter in range(len(events)):
             if 'db_time' in events[counter]:
                 obs_ev += 1
-        perc_seen_ev = 100*obs_ev/len(events)
+        perc_seen_ev = 100 * obs_ev / len(events)
         print(f"observed {obs_ev} over {len(events)} events")
         print(f"percentage of events seen: {perc_seen_ev:0.2f}%")
         print("total time to get all events on the db: ", t_all)
@@ -601,17 +561,17 @@ if __name__=="__main__":
         # with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
         #     delim_writer = csv.writer(csv_file)
         #     delim_writer.writerow("#")
-        
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'a') as csv_file:
+
+        with open('db_size.csv', 'a') as csv_file:
             delim_writer = csv.writer(csv_file)
             delim_writer.writerow("#")
 
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'a') as csv_file:
+        with open('performances.csv', 'a') as csv_file:
             csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
 
             info = {
-                'time':                 toc-tic,
-                'perc_of_seen_events':  perc_seen_ev
+                'time': toc - tic,
+                'perc_of_seen_events': perc_seen_ev
             }
             csv_writer3.writerow(info)
 
@@ -622,7 +582,6 @@ if __name__=="__main__":
         # response = requests.put(BASE + "/IE/events/1", json.dumps(events))
         # pprint.pprint(response.json())
 
-
         # input("check 3 explore_graph.py")
-        response = requests.delete(BASE + "IE/1" )
+        response = requests.delete(BASE + "IE/1")
         pprint.pprint(response.json())

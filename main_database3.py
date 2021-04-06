@@ -47,7 +47,7 @@ class infoHistoryTab(db.Model):
     when            = db.Column(db.Integer, nullable=False)
     sent_at_loop    = db.Column(db.Integer, nullable=False)
 
-# db.create_all()
+#db.create_all()
 
 
 ##### SCHEMAS #####
