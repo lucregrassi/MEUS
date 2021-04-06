@@ -35,20 +35,20 @@ fieldnames2 = ["sizeTab1", "sizeTab2"]
 fieldnames3 = ["time", "perc_of_seen_events"]
 
 
-with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'w') as csv_file:
+with open('experiments.csv', 'w') as csv_file:
             csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
             csv_writer1.writeheader()
 
-with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'w') as csv_file:
+with open('db_size.csv', 'w') as csv_file:
             csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
             csv_writer2.writeheader()
 
-with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'w') as csv_file:
+with open('performances.csv', 'w') as csv_file:
             csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
             csv_writer3.writeheader()
 
 # Initialize number of agents exploring the graph
-n_agents = 20
+n_agents = 50
 # Number of iterations
 steps = 250
 # Distance traveled (in meters) by each person in one loop cycle
@@ -374,7 +374,7 @@ def send_info(agent, loop):
         
         knowledge = []
         tab2 = 0
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
+        with open('experiments.csv', 'a') as csv_file:
             csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
 
             for i in range(agent.num_info_sent, len(agent.ies)):
@@ -413,7 +413,7 @@ def send_info(agent, loop):
         agent.num_info_sent +=  (len(agent.ies) - prior_threshold)
 
 
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'a') as csv_file:
+        with open('db_size.csv', 'a') as csv_file:
             csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
 
             info = {
@@ -496,7 +496,7 @@ def main_execution():
 
 
         # Initialize the connections owned by the person
-        if i % 10 == 0:
+        if i % 2 == 0:
             agent.global_conn = [1,2,3]
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
@@ -602,11 +602,11 @@ if __name__=="__main__":
         #     delim_writer = csv.writer(csv_file)
         #     delim_writer.writerow("#")
         
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'a') as csv_file:
+        with open('db_size.csv', 'a') as csv_file:
             delim_writer = csv.writer(csv_file)
             delim_writer.writerow("#")
 
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'a') as csv_file:
+        with open('performances.csv', 'a') as csv_file:
             csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
 
             info = {
