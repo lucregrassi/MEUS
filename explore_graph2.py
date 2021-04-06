@@ -180,10 +180,10 @@ def exchange_information(loop):
                         perform_exchange = False
                         # Look for common local connections
                         if any(j in candidate.local_conn for j in listener.local_conn):
-                            print("\nCommon local connection found for agents ", candidate.n, "and", listener.n)
+                            # print("\nCommon local connection found for agents ", candidate.n, "and", listener.n)
                             perform_exchange = True
                         else:
-                            print("\nNo common local connections found bewteen", candidate.n, "and", listener.n)
+                            print("\nNo common local connections found between", candidate.n, "and", listener.n)
                             print("Looking for global connections...")
                             # Check global connections if no common local connection is found
                             common_global = [value for value in candidate.global_conn if value in listener.global_conn]
