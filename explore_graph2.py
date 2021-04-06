@@ -48,7 +48,7 @@ with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'w
             csv_writer3.writeheader()
 
 # Initialize number of agents exploring the graph
-n_agents = 20
+n_agents = 50
 # Number of iterations
 steps = 250
 # Distance traveled (in meters) by each person in one loop cycle
@@ -496,11 +496,11 @@ def main_execution():
 
 
         # Initialize the connections owned by the person
-        if i % 10 == 0:
-            agent.global_conn = [1,2,3]
+        if i % 2 == 0:
+            agent.global_conn = [1, 2, 3]
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
-        agent.local_conn = [1,2,3]
+        agent.local_conn = [1, 2, 3]
         # agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         agents_dict[str(i)] = agent
         print("i: ", i)
