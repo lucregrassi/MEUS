@@ -5,7 +5,7 @@ from read_ontology import random_event
 # https://osmnx.readthedocs.io/en/stable/osmnx.html
 
 # Specify the name that is used to search for the data
-place = 'Frabosa Soprana, Cuneo, Piemonte'
+place = 'Assisi, Perugia, Umbria'
 
 utn = ox.settings.useful_tags_node
 oxna = ox.settings.osm_xml_node_attrs
