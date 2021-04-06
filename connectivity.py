@@ -28,13 +28,14 @@ def setup_connection(graph, connection, hubs, radius):
     for node in graph.nodes(data=True):
         # If the node is an hub
         if node[0] in nodes:
-            # Add the connection passed as parameter to the connections of that node
-            node[1]['connection'] = str(node[1]['connection']) + str(connection)
-            # If the node does not have any connections yet, remove the placeholder '0', and add the connection
-            if '0' in node[1]['connection']:
-                node[1]['connection'] = node[1]['connection'][1:]
-
             print(node)
+            # check that the hub does not already have that connection
+            if str(connection) not in node[1]['connection']:
+                # Add the connection passed as parameter to the connections of that node
+                node[1]['connection'] = str(node[1]['connection']) + str(connection)
+                # If the node does not have any connections yet, remove the placeholder '0', and add the connection
+                if '0' in node[1]['connection']:
+                    node[1]['connection'] = node[1]['connection'][1:]
 
             # On the basis of the radius, compute the area of the map covered by that connection
             kmInLongitudeDegree = 111.320 * math.cos(node[1]['lat'] / 180.0 * math.pi)
@@ -56,8 +57,6 @@ def setup_connection(graph, connection, hubs, radius):
                 # Remove final comma if present
                 if n[1]['connection'][-1] == ',':
                     n[1]['connection'] = n[1]['connection'][:-1]
-
-
     return graph
 
 

@@ -18,6 +18,7 @@ utw = list(set(utw + oxwa + oxwt))
 
 # Set configurations used when importing the graph
 ox.config(all_oneway=True, useful_tags_node=utn, useful_tags_way=utw)
+
 # Fetch OSM street network from the location
 G = ox.graph_from_place(place, network_type='all')
 
@@ -36,7 +37,6 @@ for node in G.nodes(data=True):
     # Type of connection available in the node
     node[1]['connection'] = '0'
     # print(node)
-
 
 # Save the graph in a graphml file
 # Note: the file is named "temp" because the connections are still not initialized.

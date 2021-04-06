@@ -2,10 +2,13 @@ import osmnx as ox
 import copy
 from Agent import Agent
 import random
+from datetime import datetime
 import matplotlib.pyplot as plt
 from PIL import Image
 from read_ontology import get_cls_at_dist
 from InformationElement import InformationElement, DirectObservation
+
+random.seed(datetime.now())
 
 # Initialize number of agents exploring the graph
 n_agents = 200

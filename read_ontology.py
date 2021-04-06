@@ -60,7 +60,6 @@ def recursive_up(cls, dictionary, i):
         recursive_up(parent_cls, dictionary, i)
 
 
-
 def recursive_down(start_cls, dictionary, i):
     if i in dictionary:
         for cls in dictionary[i]:
