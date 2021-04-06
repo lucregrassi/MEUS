@@ -9,14 +9,14 @@ from Agent import Agent
 import matplotlib.pyplot as plt
 from InformationElement import NewInformationElement, NewDirectObservation
 
-from utils import preProcessing, IEtoDict, NewIEtoDict
+from utils import NewIEtoDict
 import requests
 import json
 import pprint
 import time
 from datetime import datetime
 
-# random.seed(datetime.now())
+random.seed(datetime.now())
 
 BASE = "http://127.0.0.1:5000/"
 
@@ -24,7 +24,6 @@ plt.style.use('fivethirtyeight')
 logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
 
 global t_all
-global percentage
 
 fieldnames1 = ["event", "latency"]
 fieldnames2 = ["sizeTab1", "sizeTab2"]
@@ -43,10 +42,9 @@ with open('performances.csv', 'w') as csv_file:
     csv_writer3.writeheader()
 
 # Initialize number of agents exploring the graph
-n_agents = 1
-percentage = 0.7
+n_agents = 100
 # Number of iterations
-steps = 250
+steps = 2500
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -84,7 +82,7 @@ def compute_intermediate_dist(target_edge):
         # distance between each and every subnode
         dist = math.sqrt((target_edge['geometry'].coords[i][0] - target_edge['geometry'].coords[i + 1][0]) ** 2 + \
                          (target_edge['geometry'].coords[i][1] - target_edge['geometry'].coords[i + 1][1]) ** 2)
-        path[str(i + 1) + '-' + str(i + 2)] = {'edgeID': target_edge['osmid'], 'dist': dist, \
+        path[str(i + 1) + '-' + str(i + 2)] = {'edgeID': target_edge['osmid'], 'dist': dist,
                                                'UTM_coordinates': [target_edge['geometry'].coords[i],
                                                                    target_edge['geometry'].coords[i + 1]]}
 
@@ -336,11 +334,8 @@ def send_info(agent, loop):
     conn = conn.split(",")
     conn_new = [int(i) for i in conn]
 
-    # input("check 1")
-
     # if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
-    if ((1 in agent.global_conn and 1 in conn_new) or (2 in agent.global_conn and 2 in conn_new) \
-        or (3 in agent.global_conn and 3 in conn_new)) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
+    if any(j in agent.global_conn for j in conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
 
         knowledge = []
         tab2 = 0
@@ -378,7 +373,7 @@ def send_info(agent, loop):
             toc_all_db = time.perf_counter()
             t_all = toc_all_db - tic
 
-        # consider only informations that have not yet been sent to the db
+        # consider only information that have not yet been sent to the db
         prior_threshold = agent.num_info_sent
         agent.num_info_sent += (len(agent.ies) - prior_threshold)
 
@@ -409,13 +404,12 @@ def create_gif():
 
 
 def main_execution():
-    global percentage
+    percentage = 0.1
     ag_global = math.floor(percentage * n_agents)
+    print(ag_global)
     # Initialize people's positions in random nodes
     for i in range(n_agents):
         curr_node = random.choice(list(n[0] for n in G.nodes.data()))
-        situation = {}
-        obj = []
         # Update the counter of the number of people in that node and get the situation and the object
         # for node in G.nodes(data=True):
         #     print(node)
@@ -426,7 +420,6 @@ def main_execution():
         agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
         agent.visited_nodes.append(curr_node)
 
-        # counter = 0
         for elem in G.nodes(data=True):
             if elem[0] == curr_node:
                 # Increment the number of people in that node
@@ -521,67 +514,66 @@ if __name__ == "__main__":
     global events
     t_all = 0
 
-    for u in range(50):
-        random.seed(datetime.now())
-        events = []
-        # collecting events in the environment
-        for node in G.nodes(data=True):
-            #     print(node)
-            # input("checking nodes")
-            if node[1]['situation'] != 'None':
-                events.append({
-                    'situation': node[1]['situation'],
-                    'object': node[1]['object']
-                })
+    # for u in range(50):
+    events = []
+    # collecting events in the environment
+    for node in G.nodes(data=True):
+        #     print(node)
+        # input("checking nodes")
+        if node[1]['situation'] != 'None':
+            events.append({
+                'situation': node[1]['situation'],
+                'object': node[1]['object']
+            })
 
-        pprint.pprint(events)
-        print("number of events in the environment: ", len(events))
-        print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
-        print(f"percentage of events per node:          {(100 * len(events) / len(list(G.nodes(data=True)))):0.2f}%")
+    pprint.pprint(events)
+    print("number of events in the environment: ", len(events))
+    print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
+    print(f"percentage of events per node:          {(100 * len(events) / len(list(G.nodes(data=True)))):0.2f}%")
 
-        response = requests.put(BASE + "/IE/events", json.dumps(events))
-        pprint.pprint(response.json())
-        # input("checking events list")
+    response = requests.put(BASE + "/IE/events", json.dumps(events))
+    pprint.pprint(response.json())
+    # input("checking events list")
 
-        tic = time.perf_counter()
-        main_execution()
-        toc = time.perf_counter()
+    tic = time.perf_counter()
+    main_execution()
+    toc = time.perf_counter()
 
-        pprint.pprint(events)
-        obs_ev = 0
-        for counter in range(len(events)):
-            if 'db_time' in events[counter]:
-                obs_ev += 1
-        perc_seen_ev = 100 * obs_ev / len(events)
-        print(f"observed {obs_ev} over {len(events)} events")
-        print(f"percentage of events seen: {perc_seen_ev:0.2f}%")
-        print("total time to get all events on the db: ", t_all)
-        print(f"Experiment finished in {toc - tic:0.4f} seconds")
+    pprint.pprint(events)
+    obs_ev = 0
+    for counter in range(len(events)):
+        if 'db_time' in events[counter]:
+            obs_ev += 1
+    perc_seen_ev = 100 * obs_ev / len(events)
+    print(f"observed {obs_ev} over {len(events)} events")
+    print(f"percentage of events seen: {perc_seen_ev:0.2f}%")
+    print("total time to get all events on the db: ", t_all)
+    print(f"Experiment finished in {toc - tic:0.4f} seconds")
 
-        # with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
-        #     delim_writer = csv.writer(csv_file)
-        #     delim_writer.writerow("#")
+    # with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
+    #     delim_writer = csv.writer(csv_file)
+    #     delim_writer.writerow("#")
 
-        with open('db_size.csv', 'a') as csv_file:
-            delim_writer = csv.writer(csv_file)
-            delim_writer.writerow("#")
+    with open('db_size.csv', 'a') as csv_file:
+        delim_writer = csv.writer(csv_file)
+        delim_writer.writerow("#")
 
-        with open('performances.csv', 'a') as csv_file:
-            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+    with open('performances.csv', 'a') as csv_file:
+        csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
 
-            info = {
-                'time': toc - tic,
-                'perc_of_seen_events': perc_seen_ev
-            }
-            csv_writer3.writerow(info)
+        info = {
+            'time': toc - tic,
+            'perc_of_seen_events': perc_seen_ev
+        }
+        csv_writer3.writerow(info)
 
-        # input("check 2 explore_graph.py")
-        # response = requests.get(BASE + "IE/1" )
-        # pprint.pprint(response.json())
+    # input("check 2 explore_graph.py")
+    # response = requests.get(BASE + "IE/1" )
+    # pprint.pprint(response.json())
 
-        # response = requests.put(BASE + "/IE/events/1", json.dumps(events))
-        # pprint.pprint(response.json())
+    # response = requests.put(BASE + "/IE/events/1", json.dumps(events))
+    # pprint.pprint(response.json())
 
-        # input("check 3 explore_graph.py")
-        response = requests.delete(BASE + "IE/1")
-        pprint.pprint(response.json())
+    # input("check 3 explore_graph.py")
+    response = requests.delete(BASE + "IE/1")
+    pprint.pprint(response.json())
