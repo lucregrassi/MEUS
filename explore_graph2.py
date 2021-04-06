@@ -49,6 +49,8 @@ with open('performances.csv', 'w') as csv_file:
 
 # Initialize number of agents exploring the graph
 n_agents = 50
+global perc
+perc = 0.7
 # Number of iterations
 steps = 250
 # Distance traveled (in meters) by each person in one loop cycle
@@ -449,6 +451,13 @@ def create_gif():
 
 def main_execution():
     i = 1
+    global perc
+    ag_global = math.floor(perc*n_agents)
+    # indexes = [i for i in range(n_agents)]
+    # ag_indexes = list(random.choices([i for i in range(n_agents)], k=ag_global))
+    # print(ag_indexes)
+    # print(len(ag_indexes))
+    # input()
     # Initialize people's positions in random nodes
     for i in range(n_agents):
         curr_node = random.choice(list(n[0] for n in G.nodes.data()))
@@ -496,7 +505,7 @@ def main_execution():
 
 
         # Initialize the connections owned by the person
-        if i % 2 == 0:
+        if i < ag_global:
             agent.global_conn = [1,2,3]
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates

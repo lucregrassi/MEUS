@@ -50,6 +50,7 @@ def color():
             node_color.append('#AAA')
         elif node[1]['n_agents'] == 2:
             node_color.append('#7F7F7F')
+
         elif node[1]['n_agents'] == 3:
             node_color.append('#333')
         else:
