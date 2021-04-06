@@ -70,7 +70,7 @@ def setup_connection(graph, connection, hubs, radius):
 # Define the number of hubs (sources) and the radius for each type of connection
 
 # Setup 4g connections
-hubs_4g = 3
+hubs_4g = 9
 radius_4g = 1
 G = setup_connection(G, 1, hubs_4g, radius_4g)
 
