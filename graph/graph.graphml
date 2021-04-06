@@ -95,7 +95,7 @@
       <data key="d10">0</data>
       <data key="d11">BlockedByDebris</data>
       <data key="d12">Students</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="253711737">
       <data key="d5">4904913.2955428865</data>
@@ -261,7 +261,7 @@
       <data key="d10">0</data>
       <data key="d11">BlockedBuilding</data>
       <data key="d12">GasStation</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="6151897469">
       <data key="d5">4904766.478597823</data>
@@ -283,7 +283,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="253712153">
       <data key="d5">4902944.435973403</data>
@@ -371,7 +371,7 @@
       <data key="d10">0</data>
       <data key="d11">NoMedicinePeople</data>
       <data key="d12">Crowded</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7651916857">
       <data key="d5">4899775.687719247</data>
@@ -382,7 +382,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6151732816">
       <data key="d5">4899461.795479885</data>
@@ -393,7 +393,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="563969226">
       <data key="d5">4902896.701601347</data>
@@ -404,7 +404,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1569566315">
       <data key="d5">4903575.075175743</data>
@@ -426,7 +426,7 @@
       <data key="d10">0</data>
       <data key="d11">OnFireBuilding</data>
       <data key="d12">OldPerson</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="706611827">
       <data key="d5">4899156.822891986</data>
@@ -437,7 +437,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6875150216">
       <data key="d5">4899073.9369856445</data>
@@ -448,7 +448,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6643118320">
       <data key="d5">4899251.112995518</data>
@@ -459,7 +459,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6644021139">
       <data key="d5">4898946.844108476</data>
@@ -470,7 +470,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706611974">
       <data key="d5">4898475.303015132</data>
@@ -481,7 +481,7 @@
       <data key="d10">0</data>
       <data key="d11">BlockedByDebris</data>
       <data key="d12">YoungPerson</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706611996">
       <data key="d5">4898505.654914526</data>
@@ -492,7 +492,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6875120226">
       <data key="d5">4898837.684510747</data>
@@ -503,7 +503,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706612014">
       <data key="d5">4898491.049452241</data>
@@ -514,7 +514,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706612040">
       <data key="d5">4898636.773215868</data>
@@ -525,7 +525,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706612029">
       <data key="d5">4898600.859848646</data>
@@ -536,7 +536,7 @@
       <data key="d10">0</data>
       <data key="d11">CollapsedBuilding</data>
       <data key="d12">ButcheryShop</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2461810910">
       <data key="d5">4898707.809675347</data>
@@ -547,7 +547,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706626761">
       <data key="d5">4898826.845926767</data>
@@ -558,7 +558,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2115758446">
       <data key="d5">4898945.43551768</data>
@@ -569,7 +569,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2297914741">
       <data key="d5">4898748.467063566</data>
@@ -580,7 +580,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706627914">
       <data key="d5">4899185.073307064</data>
@@ -657,7 +657,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="706628246">
       <data key="d5">4899199.407606404</data>
@@ -668,7 +668,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="3021081648">
       <data key="d5">4899191.247909525</data>
@@ -679,7 +679,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="942265894">
       <data key="d5">4908381.873776697</data>
@@ -723,7 +723,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="943228911">
       <data key="d5">4905659.938567187</data>
@@ -734,7 +734,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1571644287">
       <data key="d5">4905232.046547572</data>
@@ -756,7 +756,7 @@
       <data key="d10">0</data>
       <data key="d11">FloodedBuilding</data>
       <data key="d12">Family</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="943228995">
       <data key="d5">4907987.7364187725</data>
@@ -822,7 +822,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="1011761855">
       <data key="d5">4899136.4827377675</data>
@@ -833,7 +833,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7643517468">
       <data key="d5">4898801.810490257</data>
@@ -844,7 +844,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="1011761866">
       <data key="d5">4902167.636763634</data>
@@ -888,7 +888,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488223">
       <data key="d5">4904032.33446114</data>
@@ -899,7 +899,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667009909">
       <data key="d5">4904075.049495574</data>
@@ -910,7 +910,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="2228944475">
       <data key="d5">4904745.175578016</data>
@@ -965,7 +965,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1014744166">
       <data key="d5">4904852.347860823</data>
@@ -1339,7 +1339,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1365309930">
       <data key="d5">4903587.2156444555</data>
@@ -1405,7 +1405,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1454625074">
       <data key="d5">4901056.434926176</data>
@@ -1449,7 +1449,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7589216407">
       <data key="d5">4903992.199369951</data>
@@ -1471,7 +1471,7 @@
       <data key="d10">0</data>
       <data key="d11">DeadPeople</data>
       <data key="d12">Students</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="1562968532">
       <data key="d5">4904230.44988881</data>
@@ -1955,7 +1955,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7652809075">
       <data key="d5">4904550.590029912</data>
@@ -1988,7 +1988,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="6710222993">
       <data key="d5">4905104.893357533</data>
@@ -2021,7 +2021,7 @@
       <data key="d10">0</data>
       <data key="d11">PanickedPeople</data>
       <data key="d12">MiddleAgePerson</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1572855777">
       <data key="d5">4903553.785492617</data>
@@ -2032,7 +2032,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7651718596">
       <data key="d5">4903466.10436206</data>
@@ -2043,7 +2043,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1572855738">
       <data key="d5">4903462.610299715</data>
@@ -2076,7 +2076,7 @@
       <data key="d10">0</data>
       <data key="d11">NoWaterPeople</data>
       <data key="d12">ButcheryShop</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="6651285057">
       <data key="d5">4903779.870353665</data>
@@ -2098,7 +2098,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1584159097">
       <data key="d5">4903442.840074253</data>
@@ -2109,7 +2109,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1572855934">
       <data key="d5">4904172.57816516</data>
@@ -2120,7 +2120,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667000863">
       <data key="d5">4904199.406926525</data>
@@ -2131,7 +2131,7 @@
       <data key="d10">0</data>
       <data key="d11">DeadPeople</data>
       <data key="d12">Hospital</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1686323601">
       <data key="d5">4904191.251613345</data>
@@ -2142,7 +2142,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1572855956">
       <data key="d5">4904319.361461395</data>
@@ -2153,7 +2153,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1574267592">
       <data key="d5">4904921.476403295</data>
@@ -2274,7 +2274,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7646460591">
       <data key="d5">4902866.330654953</data>
@@ -2285,7 +2285,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7646450569">
       <data key="d5">4902912.73465082</data>
@@ -2296,7 +2296,7 @@
       <data key="d10">0</data>
       <data key="d11">NoWaterPeople</data>
       <data key="d12">YoungPerson</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1584159086">
       <data key="d5">4903369.394089543</data>
@@ -2307,7 +2307,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488239">
       <data key="d5">4903360.2492812</data>
@@ -2318,7 +2318,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="8556972821">
       <data key="d5">4903455.582992115</data>
@@ -2329,7 +2329,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488236">
       <data key="d5">4903413.188311054</data>
@@ -2340,7 +2340,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1597673217">
       <data key="d5">4903892.505831468</data>
@@ -2395,7 +2395,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7666959404">
       <data key="d5">4902995.539409501</data>
@@ -2439,7 +2439,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1686323681">
       <data key="d5">4904473.948464798</data>
@@ -2450,7 +2450,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="6299877928">
       <data key="d5">4905073.849330554</data>
@@ -2472,7 +2472,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="1686323854">
       <data key="d5">4904989.532115158</data>
@@ -2527,7 +2527,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2113902236">
       <data key="d5">4899350.486742813</data>
@@ -2538,7 +2538,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2115758171">
       <data key="d5">4906213.77251387</data>
@@ -2582,7 +2582,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2115758450">
       <data key="d5">4898992.378670791</data>
@@ -2593,7 +2593,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6718236063">
       <data key="d5">4899088.648198694</data>
@@ -2604,7 +2604,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2115758453">
       <data key="d5">4899009.1678881785</data>
@@ -2615,7 +2615,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667499765">
       <data key="d5">4898997.135313834</data>
@@ -2626,7 +2626,7 @@
       <data key="d10">0</data>
       <data key="d11">NoWaterPeople</data>
       <data key="d12">Crossroad</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6726087413">
       <data key="d5">4898695.454408665</data>
@@ -2637,7 +2637,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667499764">
       <data key="d5">4898732.368519194</data>
@@ -2648,7 +2648,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6723160437">
       <data key="d5">4898756.701898293</data>
@@ -2659,7 +2659,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="2461821441">
       <data key="d5">4902249.527691493</data>
@@ -2890,7 +2890,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667499759">
       <data key="d5">4899197.539792073</data>
@@ -2901,7 +2901,7 @@
       <data key="d10">0</data>
       <data key="d11">FloodedBuilding</data>
       <data key="d12">PoliceStation</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="3021081718">
       <data key="d5">4899814.49088596</data>
@@ -2912,7 +2912,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6627200124">
       <data key="d5">4899831.583109221</data>
@@ -2923,7 +2923,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="3337528608">
       <data key="d5">4906279.204115789</data>
@@ -3022,7 +3022,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7661109346">
       <data key="d5">4904128.435231701</data>
@@ -3154,7 +3154,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6718236058">
       <data key="d5">4899149.179614587</data>
@@ -3165,7 +3165,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="5986298957">
       <data key="d5">4899504.598239172</data>
@@ -3176,7 +3176,7 @@
       <data key="d10">0</data>
       <data key="d11">TrafficJam</data>
       <data key="d12">Students</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="5986415076">
       <data key="d5">4898440.790550031</data>
@@ -3451,7 +3451,7 @@
       <data key="d10">0</data>
       <data key="d11">PanickedPeople</data>
       <data key="d12">Students</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="3841991022">
       <data key="d5">4898764.454682683</data>
@@ -3462,7 +3462,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6514084646">
       <data key="d5">4898679.8848021375</data>
@@ -3473,7 +3473,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6514084675">
       <data key="d5">4898832.628641727</data>
@@ -3495,7 +3495,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6517902517">
       <data key="d5">4898666.6983415475</data>
@@ -3517,7 +3517,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6627170806">
       <data key="d5">4900032.453348362</data>
@@ -3528,7 +3528,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6627200114">
       <data key="d5">4900001.453501827</data>
@@ -3539,7 +3539,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6641139691">
       <data key="d5">4903901.10024675</data>
@@ -3638,7 +3638,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6756606212">
       <data key="d5">4904395.592063426</data>
@@ -3693,7 +3693,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="6875120231">
       <data key="d5">4898802.699505313</data>
@@ -3704,7 +3704,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6898245236">
       <data key="d5">4906702.147285376</data>
@@ -3913,7 +3913,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7595305982">
       <data key="d5">4903920.696804141</data>
@@ -3935,7 +3935,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7800760270">
       <data key="d5">4903770.540569218</data>
@@ -3946,7 +3946,7 @@
       <data key="d10">0</data>
       <data key="d11">PanickedPeople</data>
       <data key="d12">OldPerson</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667499757">
       <data key="d5">4899803.168132446</data>
@@ -3957,7 +3957,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7638486767">
       <data key="d5">4903439.105158363</data>
@@ -3968,7 +3968,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6752676922">
       <data key="d5">4898928.336722956</data>
@@ -3979,7 +3979,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7646460497">
       <data key="d5">4903022.848445601</data>
@@ -3990,7 +3990,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7646460514">
       <data key="d5">4903321.337836241</data>
@@ -4001,7 +4001,7 @@
       <data key="d10">0</data>
       <data key="d11">TrafficJam</data>
       <data key="d12">MiddleAgePerson</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7646460533">
       <data key="d5">4903213.186251504</data>
@@ -4012,7 +4012,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7646460710">
       <data key="d5">4904055.561086912</data>
@@ -4023,7 +4023,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7645987556">
       <data key="d5">4904053.193942146</data>
@@ -4034,7 +4034,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7660983494">
       <data key="d5">4904067.923921546</data>
@@ -4045,7 +4045,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7646460715">
       <data key="d5">4904022.527913267</data>
@@ -4056,7 +4056,7 @@
       <data key="d10">0</data>
       <data key="d11">BlockedBuilding</data>
       <data key="d12">ButcheryShop</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7646460716">
       <data key="d5">4904018.814792083</data>
@@ -4067,7 +4067,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7800716745">
       <data key="d5">4904279.725427154</data>
@@ -4089,7 +4089,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7651740854">
       <data key="d5">4903340.149501169</data>
@@ -4100,7 +4100,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488244">
       <data key="d5">4903325.058609036</data>
@@ -4111,7 +4111,7 @@
       <data key="d10">0</data>
       <data key="d11">BlockedByDebris</data>
       <data key="d12">MiddleAgePerson</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488243">
       <data key="d5">4903353.529706904</data>
@@ -4122,7 +4122,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7651740858">
       <data key="d5">4903305.901266284</data>
@@ -4133,7 +4133,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="6738304785">
       <data key="d5">4903225.404963172</data>
@@ -4144,7 +4144,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488246">
       <data key="d5">4903326.917653884</data>
@@ -4155,7 +4155,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488218">
       <data key="d5">4903388.074824179</data>
@@ -4188,7 +4188,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6723160459">
       <data key="d5">4900955.744956669</data>
@@ -4210,7 +4210,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7666869597">
       <data key="d5">4901626.419917679</data>
@@ -4276,7 +4276,7 @@
       <data key="d10">0</data>
       <data key="d11">DeadPeople</data>
       <data key="d12">CityHall</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667482774">
       <data key="d5">4899374.0856937645</data>
@@ -4287,7 +4287,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667482776">
       <data key="d5">4899489.162581263</data>
@@ -4298,7 +4298,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7673982867">
       <data key="d5">4899408.899706512</data>
@@ -4309,7 +4309,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667482777">
       <data key="d5">4899485.65085186</data>
@@ -4320,7 +4320,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667482780">
       <data key="d5">4899520.246374938</data>
@@ -4331,7 +4331,7 @@
       <data key="d10">0</data>
       <data key="d11">MildlyInjuredPeople</data>
       <data key="d12">MiddleAgePerson</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7667488219">
       <data key="d5">4903382.266617418</data>
@@ -4353,7 +4353,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488237">
       <data key="d5">4903421.517879634</data>
@@ -4364,7 +4364,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488241">
       <data key="d5">4903352.296867857</data>
@@ -4375,7 +4375,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488240">
       <data key="d5">4903391.487888191</data>
@@ -4386,7 +4386,7 @@
       <data key="d10">0</data>
       <data key="d11">NoMedicinePeople</data>
       <data key="d12">House</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488242">
       <data key="d5">4903372.389725084</data>
@@ -4397,7 +4397,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7667488245">
       <data key="d5">4903338.441428462</data>
@@ -4408,7 +4408,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7670748868">
       <data key="d5">4904463.1615819065</data>
@@ -4474,7 +4474,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="6738861204">
       <data key="d5">4899415.34527066</data>
@@ -4485,7 +4485,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7673982868">
       <data key="d5">4899376.822501132</data>
@@ -4496,7 +4496,7 @@
       <data key="d10">0</data>
       <data key="d11">NoMedicinePeople</data>
       <data key="d12">MiddleAgePerson</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="6669778651">
       <data key="d5">4899385.020843396</data>
@@ -4507,7 +4507,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">0</data>
+      <data key="d13">1</data>
     </node>
     <node id="7773650870">
       <data key="d5">4901894.719327964</data>
@@ -4551,7 +4551,7 @@
       <data key="d10">0</data>
       <data key="d11">BlockedByDebris</data>
       <data key="d12">Crowded</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7800592002">
       <data key="d5">4904678.547326368</data>
@@ -4562,7 +4562,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7800760190">
       <data key="d5">4904032.653362423</data>
@@ -4573,7 +4573,7 @@
       <data key="d10">0</data>
       <data key="d11">None</data>
       <data key="d12">None</data>
-      <data key="d13">1</data>
+      <data key="d13">0</data>
     </node>
     <node id="7800760326">
       <data key="d5">4903820.244328871</data>
