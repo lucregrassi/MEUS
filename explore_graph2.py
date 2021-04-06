@@ -17,7 +17,10 @@ import json
 import pprint
 import time
 import decimal
+from datetime import datetime
 
+
+# random.seed(datetime.now())
 
 BASE = "http://127.0.0.1:5000/"
 
@@ -45,7 +48,7 @@ with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/performances.csv', 'w
             csv_writer3.writeheader()
 
 # Initialize number of agents exploring the graph
-n_agents = 50
+n_agents = 20
 # Number of iterations
 steps = 250
 # Distance traveled (in meters) by each person in one loop cycle
@@ -405,6 +408,7 @@ def send_info(agent, loop):
             toc_all_db = time.perf_counter()
             t_all = toc_all_db - tic
 
+        # consider only informations that have not yet been sent to the db
         prior_threshold = agent.num_info_sent
         agent.num_info_sent +=  (len(agent.ies) - prior_threshold)
 
@@ -492,9 +496,12 @@ def main_execution():
 
 
         # Initialize the connections owned by the person
-        agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
+        if i % 10 == 0:
+            agent.global_conn = [1,2,3]
+        # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
-        agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
+        agent.local_conn = [1,2,3]
+        # agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         agents_dict[str(i)] = agent
         print("i: ", i)
         i += 1
@@ -555,7 +562,7 @@ if __name__=="__main__":
 
 
     for u in range(50):
-
+        random.seed(datetime.now())
         events = []
         # collecting events in the environment
         for node in G.nodes(data=True):
@@ -591,9 +598,9 @@ if __name__=="__main__":
         print("total time to get all events on the db: ", t_all)
         print(f"Experiment finished in {toc - tic:0.4f} seconds")
 
-        with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
-            delim_writer = csv.writer(csv_file)
-            delim_writer.writerow("#")
+        # with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
+        #     delim_writer = csv.writer(csv_file)
+        #     delim_writer.writerow("#")
         
         with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/db_size.csv', 'a') as csv_file:
             delim_writer = csv.writer(csv_file)
