@@ -103,16 +103,12 @@ events = []
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
 
-    # if marker==0:
     json_data = json.loads(request.data)
     events.extend(json_data)
 
     pprint(events)
 
     return{"message": "registered events in the environments", "events": events}
-    # else:
-    #     events.clear()
-    #     return{"message": "I have cleared the events' list", "events": events}
 
     
 
