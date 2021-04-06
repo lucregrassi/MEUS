@@ -1,6 +1,7 @@
 import osmnx as ox
 from read_ontology import random_event
 
+
 # OSMnx documentation
 # https://osmnx.readthedocs.io/en/stable/osmnx.html
 
@@ -28,14 +29,20 @@ G = ox.project_graph(G)
 # G_simple = ox.simplify_graph(G, strict=True, remove_rings=True)
 
 # Initialize content of nodes
+counter = 0
 for node in G.nodes(data=True):
     # Number of people in that node
     node[1]['n_agents'] = '0'
-    node[1]['situation'] = random_event()[0]
-    node[1]['object'] = random_event()[1]
+    if counter % 10 == 0:
+        node[1]['situation'] = random_event()[0]
+        node[1]['object'] = random_event()[1]
+    else:
+        node[1]['situation'] = None
+        node[1]['object'] = None
     # Type of connection available in the node
     node[1]['connection'] = '0'
-    # print(node)
+    print(node)
+    counter += 1
 
 
 # Save the graph in a graphml file
