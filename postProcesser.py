@@ -3,7 +3,6 @@ import statistics
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 plt.style.use('fivethirtyeight')
 
 fieldnames = ["sizeTab1_mean", "sizeTab2_mean",
@@ -57,9 +56,9 @@ with open('results/30%-3-1over10.csv', 'w') as csv_file:
             info = {
                     'sizeTab1_mean': sums1,
                     'sizeTab2_mean': sums2,
-                    'duration': statistics.mean(time),
-                    'perc_of_seen_events': statistics.mean(perc_events),
-                    'latency': statistics.mean(latency)
+                    'duration': round(statistics.mean(time), 2),
+                    'perc_of_seen_events': round(statistics.mean(perc_events), 2),
+                    'latency': round(statistics.mean(latency), 2)
             }
 
             csv_writer.writerow(info)
