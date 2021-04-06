@@ -49,7 +49,7 @@ print(f"mean for the percentage of seen events in this batch is                 
 print(f"mean for the latency of the events to be loaded on the db in this batch is      {statistics.mean(latency):0.2f} loops")
 
 
-with open('results/30%-3-1over10.csv', 'w') as csv_file:
+with open('results/50%-9-1over10.csv', 'w') as csv_file:
             csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             csv_writer.writeheader()
 
