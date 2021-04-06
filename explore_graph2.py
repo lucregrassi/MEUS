@@ -404,7 +404,7 @@ def create_gif():
 
 
 def main_execution():
-    percentage = 0.3
+    percentage = 0.5
     ag_global = math.floor(percentage * n_agents)
     print(ag_global)
     # Initialize people's positions in random nodes
