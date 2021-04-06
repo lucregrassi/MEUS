@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 
 plt.style.use('fivethirtyeight')
 
-fieldnames = ["sizeTab1_mean", "sizeTab1_stdev", "sizeTab2_mean", "sizeTab2_stdev",
-              "duration_mean", "duration_stdev", "perc_of_seen_events_mean", "perc_of_seen_events_stdev",
-              "latency_mean", "latency_stdev"]
+fieldnames = ["sizeTab1_mean", "sizeTab2_mean",
+              "duration", "perc_of_seen_events",
+              "latency"]
 
 db_size         = pd.read_csv('db_size.csv')
 performances    = pd.read_csv('performances.csv')
@@ -20,8 +20,8 @@ time            = performances['time']
 perc_events     = performances['perc_of_seen_events'] 
 latency         = experiments['latency']
 
-print(sizeTab1_tmp)
 
+print(statistics.mean(time))
 sizeTab1 = []
 sizeTab2 = []
 counter = 0
@@ -33,8 +33,8 @@ for i in range(len(sizeTab1_tmp)):
 sizeTab1.pop()
 sizeTab2.pop()
 
-print(sizeTab1)
-print(sizeTab2)
+# print(sizeTab1)
+# print(sizeTab2)
 
 sums1 = 0
 sums2 = 0
@@ -50,17 +50,16 @@ print(f"mean for the percentage of seen events in this batch is                 
 print(f"mean for the latency of the events to be loaded on the db in this batch is      {statistics.mean(latency):0.2f} loops")
 
 
-with open('results/10%-3-1over5.csv', 'w') as csv_file:
+with open('results/30%-3-1over10.csv', 'w') as csv_file:
             csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             csv_writer.writeheader()
 
             info = {
-                    'sizeTab1_mean':                    sums1,
-                    'sizeTab2_mean':                    sums2,
-                    'duration_mean':                    time,
-                    'perc_of_seen_events_mean':         perc_events,
-                    'latency_mean':                     statistics.mean(latency),
-                    'latency_stdev':                    statistics.stdev(latency)
+                    'sizeTab1_mean': sums1,
+                    'sizeTab2_mean': sums2,
+                    'duration': statistics.mean(time),
+                    'perc_of_seen_events': statistics.mean(perc_events),
+                    'latency': statistics.mean(latency)
             }
 
             csv_writer.writerow(info)

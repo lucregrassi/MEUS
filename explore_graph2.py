@@ -42,7 +42,7 @@ with open('performances.csv', 'w') as csv_file:
     csv_writer3.writeheader()
 
 # Initialize number of agents exploring the graph
-n_agents = 100
+n_agents = 50
 # Number of iterations
 steps = 2500
 # Distance traveled (in meters) by each person in one loop cycle
@@ -404,7 +404,7 @@ def create_gif():
 
 
 def main_execution():
-    percentage = 0.1
+    percentage = 0.3
     ag_global = math.floor(percentage * n_agents)
     print(ag_global)
     # Initialize people's positions in random nodes
