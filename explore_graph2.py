@@ -567,13 +567,5 @@ if __name__ == "__main__":
         }
         csv_writer3.writerow(info)
 
-    # input("check 2 explore_graph.py")
-    # response = requests.get(BASE + "IE/1" )
-    # pprint.pprint(response.json())
-
-    # response = requests.put(BASE + "/IE/events/1", json.dumps(events))
-    # pprint.pprint(response.json())
-
-    # input("check 3 explore_graph.py")
     response = requests.delete(BASE + "IE/1")
     pprint.pprint(response.json())
