@@ -1,16 +1,32 @@
-import osmnx as ox
 import copy
-from Agent import Agent
+import math
 import random
-import matplotlib.pyplot as plt
+import logging
+import osmnx as ox
 from PIL import Image
+from Agent import Agent
+from angles import normalize
+import matplotlib.pyplot as plt
 from read_ontology import get_cls_at_dist
 from InformationElement import InformationElement, DirectObservation
+
+import matplotlib.pyplot as plt
+from shapely.geometry import LineString
+from utils import preProcessing, IEtoDict
+import requests
+import json
+import pprint
+
+
+BASE = "http://127.0.0.1:5000/"
+
+plt.style.use('fivethirtyeight')
+logging.basicConfig(level=logging.DEBUG, filename='explore_graph.log', filemode='w')
 
 # Initialize number of agents exploring the graph
 n_agents = 200
 # Number of iterations
-steps = 10
+steps = 50
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -21,6 +37,9 @@ node_state_dict = {}
 
 # Load the graph from the graphml file previously saved
 G = ox.load_graphml('graph/graph.graphml')
+
+
+counter = 0
 
 
 # This function returns an array containing the colors of each node, based on the number of people
@@ -37,6 +56,58 @@ def color():
         else:
             node_color.append('w')
     return node_color
+
+
+def compute_intermediate_dist(target_edge):
+    dist = []
+    path = {}
+    for i in range(len(target_edge['geometry'].coords)-1):
+        # distance between each and every subnode
+        dist = math.sqrt(   (target_edge['geometry'].coords[i][0] - target_edge['geometry'].coords[i+1][0])**2 + \
+                            (target_edge['geometry'].coords[i][1] - target_edge['geometry'].coords[i+1][1])**2)
+        path[str(i+1) + '-' + str(i+2)] = {'edgeID': target_edge['osmid'], 'dist': dist, \
+                                                'UTM_coordinates': [target_edge['geometry'].coords[i], target_edge['geometry'].coords[i+1]]}
+        
+    return path
+
+
+def geolocalise_me(agent):
+    logging.info("| geolocalise_me()")
+    rel_dist = 0
+
+    # if the agent has yet to reach the destination node
+    if agent.road < agent.distance:
+        for key in agent.path:
+            # if I am between the first couple of subnodes in the path
+            rel_dist += agent.path[key]['dist']
+            if (agent.road <= rel_dist):
+                # logging.info("Agent: " + str(agent.n) + ". counter: " + str(counter) + "\n \
+                #     my destination is at " + str(agent.distance) +"[m], I have traveled " + str(agent.road) + " [m]. I am between positions: " + \
+                #     str(agent.path[key]['UTM_coordinates']) + ".")
+
+                x2 = agent.path[key]['UTM_coordinates'][1][0]
+                x1 = agent.path[key]['UTM_coordinates'][0][0]
+
+                y2 = agent.path[key]['UTM_coordinates'][1][1]
+                y1 = agent.path[key]['UTM_coordinates'][0][1]
+
+
+                l    = agent.road - (rel_dist - agent.path[key]['dist'])
+                L = agent.path[key]['dist']
+
+                x = x1 + (x2-x1)*l/L
+                y = y1 + (y2-y1)*l/L
+
+                estimated_UTM = (x, y)
+
+                return estimated_UTM
+
+    elif agent.road==agent.distance:
+        logging.info("I am on the destination node")
+    else:
+        logging.info("traveled road is > than agent.distance. \ntraveled_road: " +str(agent.road) + "\nagent.distance: " +str(agent.distance))
+
+    logging.info("| returning from geolocalise_me()")
 
 
 # This function computes the destination node, based on the current node - the destination is randomly chosen among
@@ -65,24 +136,25 @@ def compute_destination(current_node):
             edges_of_interest = G[current_node][destination_node]
         else:
             edges_of_interest = G[destination_node][current_node]
+        counter = 1
         for edge in edges_of_interest.values():
             distance = edge.get('length')
-
-    # print("Distance: " + str(distance))
-    return destination_node, distance
+            ls = compute_intermediate_dist(edge)
+            if distance < 0:
+                logging.error("distance is negative!!!")
+    return destination_node, distance, ls
 
 
 # Function called after the initialization (loop 0) and after the update of the positions in each loop
 def exchange_information(loop):
     delete = []
+    # old_listeners_ies = []
     for k in node_state_dict.keys():
         # If there is more than one agent in a node, they should exchange their info
         if len(node_state_dict[k]) > 1:
             delete.append(k)
-            # print("\nINFORMATION EXCHANGE")
-            # print(k, node_state_dict[k])
             for agent_id in node_state_dict[k]:
-                listener = agents_dict[str(agent_id)]
+                listener = agents_dict[str(agent_id)] 
                 for ag_id in node_state_dict[k]:
                     # If the teller has a different id (is not the listener), and if they both have
                     candidate = agents_dict[str(ag_id)]
@@ -113,22 +185,29 @@ def exchange_information(loop):
                                     print("Common global connection not available in the node :(")
                             else:
                                 print("No common global connections!")
-                        # If there is at least a common local connections or a common global connection available
+                        # If there is at least a common local connection or a common global connection available
                         if perform_exchange:
                             teller = candidate
                             listener.met_agents.append(teller.n)
                             listener.met_in_node.append(int(k))
                             listener.met_in_loop.append(loop)
+                            print("teller("+str(teller.n)+"):" )
+                            for ie in teller.ies:
+                                print(ie)
+                            print("listener("+str(listener.n)+"):")
+                            for ie in listener.ies:
+                                print(ie)
                             # Loop through all Information Elements of the teller
+                            # old_listeners_ies = copy.deepcopy(listener.ies)
                             for in_el in teller.ies:
                                 already_told = False
                                 # Loop through all Information Elements of the listener
                                 for inf_el in listener.ies:
-                                    # If the IEs have the same root
-                                    if in_el.root == inf_el.root:
-                                        # If the listener is not already in the history of the IE of the teller
-                                        if listener.n in in_el.history:
-                                            already_told = True
+                                    # If the IEs have the same root and 
+                                    # If the teller is not already in the history of the IE of the listener
+                                    if in_el.root == inf_el.root and (listener.n in in_el.history or teller.n in inf_el.history):
+                                        already_told = True
+                                print("*** already_told final: " + str(already_told))
                                 if not already_told:
                                     # Deepcopy the history of the teller to avoid references!!
                                     hist = copy.deepcopy(in_el.history)
@@ -136,6 +215,39 @@ def exchange_information(loop):
                                     hist.append(listener.n)
                                     # Append the new IE to the listener
                                     listener.ies.append(InformationElement(teller.n, hist, int(k), loop, in_el, in_el.root))
+                                    print(" * I have added\n" +str(listener.ies[-1]) + "\nto the listener knowledge")
+                                # print("counter_teller: " +str(counter_teller))
+                                # counter_teller += 1
+                            # for i in range(len(teller.ies)):
+                            #     for j in range(i+1, len(teller.ies)):
+                            #         if teller.ies[i].root == teller.ies[j].root and \
+                            #             teller.ies[i].history == teller.ies[j].history:
+                            #             print("###################################################")
+                            #             print(teller.ies[i])
+                            #             print(teller.ies[j])
+                            #             input("Houston teller!!!!!")
+                for i in range(len(listener.ies)):
+                    for j in range(i+1, len(listener.ies)):
+                        if (listener.ies[i].root == listener.ies[j].root and \
+                            listener.ies[i].history == listener.ies[j].history) or \
+                                (listener.ies[i].history[-2:] == listener.ies[j].history[-2:] and \
+                                    listener.ies[i].root == listener.ies[j].root):
+                            print("###################################################")
+                            print(listener.ies[i])
+                            # print(listener.ies[i].root)
+                            print("i: " +str(i))
+                            print(listener.ies[j])
+                            # print(listener.ies[j].root)
+                            print("j: " +str(j))
+                            input("Houston!!!!!")
+                    for l in range(len(listener.ies[i].history)):
+                        for n in range(l+1, len(listener.ies[i].history)):
+                            if listener.ies[i].history[l] == listener.ies[i].history[n]:
+                                print("###################################################")
+                                print("listener.ies[i]("+str(listener.n)+"): ")
+                                for ie in listener.ies:
+                                    print(ie)
+                                input("Houston repetition!!!!!") 
     # Avoid that they can meet again once they exchange their info and they are still in the same node
     for k in delete:
         del node_state_dict[k]
@@ -145,14 +257,17 @@ def exchange_information(loop):
 def update_position(a, loop):
     # print("\nUpdating position of person " + str(p.n))
     # Update only if the person is not moving
+    logging.info("| update_position()")
     if not a.moving:
         # Arrived to destination node
-        previous_node = a.curr_node
-        a.curr_node = a.dest_node
-        destination_node, distance = compute_destination(a.dest_node)
-        a.dest_node = destination_node
-        a.distance = distance
-        a.moving = True
+        previous_node                       = a.curr_node
+        a.curr_node                         = a.dest_node
+        destination_node, distance, path    = compute_destination(a.dest_node)
+        a.dest_node                         = destination_node
+        a.distance                          = distance
+        a.path                              = path
+        a.moving                            = True
+        a.road                              = 0
 
         node_situation = []
         node_object = []
@@ -192,9 +307,48 @@ def update_position(a, loop):
         if a.distance > 0:
             # If it has not reached the destination, move of the defined distance
             a.distance = a.distance - loop_distance
+            a.road += loop_distance 
+            geolocalise_me(a)
+
         else:
             # If the distance is 0 or negative it means that the destination has been reached
             a.moving = False
+            # here maybe to recompute the destination for a second time
+    logging.info("| returning from update_position()")
+
+
+def send_info(agent):
+
+    conn = G.nodes.get(agent.curr_node)['connection']
+    conn = conn.split(",")
+    conn_new = [int(i) for i in conn]
+
+    # input("check 1")
+
+    if len(agent.global_conn) > 0 and any(conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
+        # input("check 2")
+    # if agent.n > 100 and len(agent.ies) and agent.num_info_sent < len(agent.ies):
+        knowledge = []
+        # if agent.num_info_sent >= len(agent.ies):
+        #     print("agent.num_info_sent: ", agent.num_info_sent)
+        #     print("len(agent.ies): ", len(agent.ies))
+        #     input("send_info()")
+        for i in range(agent.num_info_sent, len(agent.ies)):
+            copia_ie = copy.deepcopy(agent.ies[i])
+            copia_ie = IEtoDict(copia_ie)
+            knowledge.append(copia_ie)
+
+        print("knowledge: " +str(knowledge))
+        response = requests.put(BASE + "IE/1", json.dumps(knowledge))
+        print(response.json())
+        agent.num_info_sent += len(agent.ies)
+        # input("check 3")
+        # agent.ies.clear()
+    else:
+        # input("check 4")
+        logging.info("| It has not been possible to send information on the database!")
+
+
 
 
 # This function generates a GIF starting from the images
@@ -230,10 +384,14 @@ for i in range(n_agents):
 
             situation = elem[1]['situation']
             obj = elem[1]['object']
+            # print("situation: " + str(situation))
+            # print("obj: " + str(obj))
+            # print("elem[1]: " + str(elem[1]))
+            # input("hit enter")
 
-    dest_node, dist = compute_destination(curr_node)
+    dest_node, dist, path = compute_destination(curr_node)
     # Instantiate the Person class passing the arguments
-    agent = Agent(i, curr_node, dest_node, dist, random.randint(0, 2))
+    agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
     agent.visited_nodes.append(curr_node)
 
     # Add the event that the person thinks to have seen to the list
@@ -241,8 +399,14 @@ for i in range(n_agents):
     seen_object = get_cls_at_dist(obj, agent.error)
     seen_event = (seen_situation, seen_object)
 
+    # print("seen situation: " +str(seen_situation))
+    # print("seen object: " +str(seen_object))
+    # print("seen event: " +str(seen_event))
+    # input("hit enter")
+
     agent.seen_events.append(seen_event)
-    ie_root = InformationElement(i, curr_node, 0, DirectObservation(seen_event, agent.error))
+    # ask Lucre this problem
+    ie_root = InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error))
     agent.ies.append(InformationElement(i, [i], curr_node, 0, DirectObservation(seen_event, agent.error), ie_root))
     # Initialize the connections owned by the person
     agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
@@ -251,8 +415,7 @@ for i in range(n_agents):
     agents_dict[str(i)] = agent
     i += 1
 
-# print(agents_dict)
-# print(node_state_dict)
+logging.info("| DESTINATIONS COMPUTED")
 
 # Array of colors of the nodes based on the number of people contained
 nc = color()
@@ -269,20 +432,24 @@ for key in agents_dict.keys():
     for ie in agents_dict[key].ies:
         print(ie)
 
+
 # Loop through the predefined # of steps and update the agent's positions
 for i in range(1, steps):
     print("\nIteration " + str(i))
     for key in agents_dict.keys():
         # Update the position of the agent
         update_position(agents_dict[key], i)
+    logging.info("bigcounter: " +str(i))
 
     exchange_information(i)
-
-    # # Print the updated state of the agents along with their IEs
+    #  Print the updated state of the agents along with their IEs
     for key in agents_dict.keys():
         print(agents_dict[key])
+        # print("type(agents_dict[key].ies): " + str(type(agents_dict[key].ies)))
         for ie in agents_dict[key].ies:
             print(ie)
+        send_info(agents_dict[key])
+    logging.info("#############################SENT INFO STEP"+str(i)+" #########################")
 
     # Define the path of the image in which the updated graph will be saved
     img_path = "images/img" + str(i) + ".png"
@@ -291,6 +458,16 @@ for i in range(1, steps):
     # Save the graph with the updated positions in the image
     ox.plot_graph(G, node_color=nc, node_size=20, show=False, save=True, filepath=img_path)
     plt.close()
+
+input("check 2 explore_graph.py")
+response = requests.get(BASE + "IE/1" )
+pprint.pprint(response.json())
+
+
+input("check 3 explore_graph.py")
+response = requests.delete(BASE + "IE/1" )
+pprint.pprint(response.json()) 
+
 
 # Generate the GIF from the saved sequence of images
 create_gif()
