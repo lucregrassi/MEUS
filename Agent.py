@@ -8,6 +8,7 @@ class Agent:
         self.error      = error
         self.moving     = moving
         self.road       = road # distance (between 2 nodes) traveled so far by agent
+        self.reputation = 1
         self.num_info_sent = num_info_sent
         self.visited_nodes = []
         self.seen_events = []
