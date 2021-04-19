@@ -137,10 +137,12 @@ def NewpreProcessing(json_data):
 
     for i in range(len(json_data)-1):
         data_do.append({
-            'dir_obs':  json_data[i][0]['what'],
-            'when':     json_data[i][0]['when'],
-            'where':    json_data[i][0]['where'],
-            'who':      json_data[i][0]['id']
+            # 'dir_obs':  json_data[i][0]['what'],
+            'situation':    json_data[i][0]['what']['situation'],
+            'obj':          json_data[i][0]['what']['object'],    
+            'when':         json_data[i][0]['when'],
+            'where':        json_data[i][0]['where'],
+            'who':          json_data[i][0]['id']
         })
         data_ih.append([])
         if len(json_data[i][1:]) > 0:
@@ -152,7 +154,8 @@ def NewpreProcessing(json_data):
                     'sender':       json_data[-1]['db_sender'],
                     'where':        json_data[i][1:][j][2],
                     'when':         json_data[i][1:][j][3],
-                    'sent_at_loop': json_data[-1]['time']
+                    'sent_at_loop': json_data[-1]['time'],
+                    'sent_where':   json_data[-1]['sent_where']
                 })
         else:
            data_ih[i].append({
@@ -162,8 +165,9 @@ def NewpreProcessing(json_data):
                     'sender':       json_data[-1]['db_sender'],
                     'where':        json_data[i][0]['where'],
                     'when':         json_data[i][0]['when'],
-                    'sent_at_loop': json_data[-1]['time']
-                }) 
+                    'sent_at_loop': json_data[-1]['time'],
+                    'sent_where':   json_data[-1]['sent_where']
+                })
 
     return data_do, data_ih
 

@@ -5,6 +5,8 @@ import random
 onto = get_ontology("ontology/MEUS.owl")
 onto.load()
 
+random.seed(1)
+
 
 # This function takes a random leaf of a class
 def get_leaf(cls):
