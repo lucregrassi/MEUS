@@ -7,20 +7,16 @@ import osmnx as ox
 from PIL import Image
 from Agent import Agent
 import matplotlib.pyplot as plt
-from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
 
-from shapely.geometry import LineString
-from utils import preProcessing, IEtoDict, NewIEtoDict
+from utils import NewIEtoDict
 import requests
 import json
 from pprint import pprint
 import time
-import decimal
 from datetime import datetime
 
-
-# random.seed(datetime.now())
+random.seed(datetime.now())
 
 BASE = "http://127.0.0.1:5000/"
 
@@ -36,6 +32,9 @@ fieldnames1 = ["sizeTab1", "sizeTab2", "latency", "num_loops"]
 fieldnames2 = ["sizeTab1", "sizeTab2"]
 fieldnames3 = ["time", "perc_of_seen_events"]
 
+with open('experiments.csv', 'w') as csv_file:
+    csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
+    csv_writer1.writeheader()
 
 with open('experiments.csv', 'w') as csv_file:
             csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
@@ -88,13 +87,14 @@ def color():
 def compute_intermediate_dist(target_edge):
     dist = []
     path = {}
-    for i in range(len(target_edge['geometry'].coords)-1):
+    for i in range(len(target_edge['geometry'].coords) - 1):
         # distance between each and every subnode
-        dist = math.sqrt(   (target_edge['geometry'].coords[i][0] - target_edge['geometry'].coords[i+1][0])**2 + \
-                            (target_edge['geometry'].coords[i][1] - target_edge['geometry'].coords[i+1][1])**2)
-        path[str(i+1) + '-' + str(i+2)] = {'edgeID': target_edge['osmid'], 'dist': dist, \
-                                                'UTM_coordinates': [target_edge['geometry'].coords[i], target_edge['geometry'].coords[i+1]]}
-        
+        dist = math.sqrt((target_edge['geometry'].coords[i][0] - target_edge['geometry'].coords[i + 1][0]) ** 2 + \
+                         (target_edge['geometry'].coords[i][1] - target_edge['geometry'].coords[i + 1][1]) ** 2)
+        path[str(i + 1) + '-' + str(i + 2)] = {'edgeID': target_edge['osmid'], 'dist': dist,
+                                               'UTM_coordinates': [target_edge['geometry'].coords[i],
+                                                                   target_edge['geometry'].coords[i + 1]]}
+
     return path
 
 
@@ -118,12 +118,11 @@ def geolocalise_me(agent):
                 y2 = agent.path[key]['UTM_coordinates'][1][1]
                 y1 = agent.path[key]['UTM_coordinates'][0][1]
 
-
-                l    = agent.road - (rel_dist - agent.path[key]['dist'])
+                l = agent.road - (rel_dist - agent.path[key]['dist'])
                 L = agent.path[key]['dist']
 
-                x = x1 + (x2-x1)*l/L
-                y = y1 + (y2-y1)*l/L
+                x = x1 + (x2 - x1) * l / L
+                y = y1 + (y2 - y1) * l / L
 
                 estimated_UTM = (x, y)
 
@@ -182,7 +181,7 @@ def exchange_information(loop):
         if len(node_state_dict[k]) > 1:
             delete.append(k)
             for agent_id in node_state_dict[k]:
-                listener = agents_dict[str(agent_id)] 
+                listener = agents_dict[str(agent_id)]
                 for ag_id in node_state_dict[k]:
                     # If the teller has a different id (is not the listener), and if they both have
                     candidate = agents_dict[str(ag_id)]
@@ -295,14 +294,14 @@ def update_position(a, loop):
     # logging.info("| update_position()")
     if not a.moving:
         # Arrived to destination node
-        previous_node                       = a.curr_node
-        a.curr_node                         = a.dest_node
-        destination_node, distance, path    = compute_destination(a.dest_node)
-        a.dest_node                         = destination_node
-        a.distance                          = distance
-        a.path                              = path
-        a.moving                            = True
-        a.road                              = 0
+        previous_node = a.curr_node
+        a.curr_node = a.dest_node
+        destination_node, distance, path = compute_destination(a.dest_node)
+        a.dest_node = destination_node
+        a.distance = distance
+        a.path = path
+        a.moving = True
+        a.road = 0
 
         node_situation = []
         node_object = []
@@ -341,8 +340,8 @@ def update_position(a, loop):
             a.seen_events.append(seen_ev)
             # print("a.seen_events: ", a.seen_events)
             # input("hit enter")
-        # Add what the person thinks to have seen to its list of information elements
-        # root = NewDirectObservation(a.n, a.curr_node, loop, seen_ev, a.error)
+            # Add what the person thinks to have seen to its list of information elements
+            # root = NewDirectObservation(a.n, a.curr_node, loop, seen_ev, a.error)
             a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
     else:
         # If the person is moving, check if it has reached the destination
@@ -350,6 +349,7 @@ def update_position(a, loop):
             # If it has not reached the destination, move of the defined distance
             a.distance  -= loop_distance
             a.road      += loop_distance 
+
             geolocalise_me(a)
 
         else:
@@ -358,9 +358,7 @@ def update_position(a, loop):
             # here maybe to recompute the destination for a second time
     # logging.info("| returning from update_position()")
 
-
 def send_info(agent, loop):
-
     global t_all
     global events
     global tab2
@@ -397,6 +395,7 @@ def send_info(agent, loop):
         knowledge.append({'db_sender': agent.n, "time": loop, 'sent_where': agent.curr_node})
         # for ie in agent.ies:
         #     print(ie[0], ",", ie[1:])
+
         # print("knowledge: " +str(knowledge))
         response = requests.put(BASE + "IE/1", json.dumps(knowledge))
         # print(response.json())
@@ -431,8 +430,10 @@ def send_info(agent, loop):
             input()
 
         # consider only informations that have not yet been sent to the db
+
+
         prior_threshold = agent.num_info_sent
-        agent.num_info_sent +=  (len(agent.ies) - prior_threshold)
+        agent.num_info_sent += (len(agent.ies) - prior_threshold)
 
 
         # print("agent(",agent.n,")")
@@ -459,9 +460,6 @@ def send_info(agent, loop):
             # print("agent 0 current node: ", agent.curr_node)
 
 
-
-
-
 # This function generates a GIF starting from the images
 def create_gif():
     frames = []
@@ -474,8 +472,6 @@ def create_gif():
                     append_images=frames[1:],
                     save_all=True,
                     duration=500, Loop=0)
-
-
 
 
 def main_execution():
@@ -499,8 +495,7 @@ def main_execution():
         # Instantiate the Person class passing the arguments
         agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
         agent.visited_nodes.append(curr_node)
-        
-        # counter = 0
+
         for elem in G.nodes(data=True):
             if elem[0] == curr_node:
                 # Increment the number of people in that node
@@ -510,11 +505,11 @@ def main_execution():
                     node_state_dict[str(curr_node)] = [i]
                 else:
                     node_state_dict[str(curr_node)].append(i)
-            
+
                 if elem[1]['situation'] != 'None':
                     situation = elem[1]['situation']
                     obj = elem[1]['object']
-            
+
                     # Add the event that the person thinks to have seen to the list
                     seen_situation = get_cls_at_dist(situation, agent.error)
                     seen_object = get_cls_at_dist(obj, agent.error)
@@ -524,14 +519,14 @@ def main_execution():
                     agent.seen_events.append(seen_event)
                     agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
 
-
         # Initialize the connections owned by the person
         if i < ag_global:
         # if i < 1:
             agent.global_conn = [1,2,3]
+
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
-        agent.local_conn = [1,2,3]
+        agent.local_conn = [1, 2, 3]
         # agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         agents_dict[str(i)] = agent
 
@@ -554,7 +549,6 @@ def main_execution():
     #     for ie in agents_dict[key].ies:
     #         # print(ie)
     #         print(ie[0], ",", ie[1:])
-
 
     # Loop through the predefined # of steps and update the agent's positions
     # for i in range(1, steps):
@@ -622,7 +616,6 @@ if __name__=="__main__":
     t_all = 0
     tab2 = 0
 
-
     # for u in range(50):
     # random.seed(datetime.now())
     random.seed(28)
@@ -668,6 +661,7 @@ if __name__=="__main__":
     #     delim_writer = csv.writer(csv_file)
     #     delim_writer.writerow("#")
     
+
 
     with open('performances.csv', 'a') as csv_file:
         csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)

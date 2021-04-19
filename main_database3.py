@@ -7,7 +7,6 @@ from collections import defaultdict
 from sqlalchemy.orm import joinedload
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
-from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with, inputs
 from marshmallow import Schema, fields as mafields, ValidationError, INCLUDE, EXCLUDE, pre_load
 
@@ -18,7 +17,7 @@ db = SQLAlchemy(app)
 # ma = Marshmallow(app)
 
 
-### MODEL ###
+# -- MODEL --
 
 class dirObsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)

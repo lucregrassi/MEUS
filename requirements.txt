@@ -1,0 +1,12 @@
+flask~=1.1.2
+sqlalchemy~=1.4.5
+flask_sqlalchemy
+flask_marshmallow
+flask_restful
+osmnx~=0.16.2
+requests~=2.25.0
+pillow~=8.0.1
+shapely~=1.7.1
+pandas~=1.1.4
+owlready2~=0.25
+marshmallow~=3.11.1

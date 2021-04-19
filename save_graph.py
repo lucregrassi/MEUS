@@ -1,12 +1,12 @@
 import osmnx as ox
 from read_ontology import random_event
 
-
 # OSMnx documentation
 # https://osmnx.readthedocs.io/en/stable/osmnx.html
 
 # Specify the name that is used to search for the data
 place = 'Amatrice, Rieti, Lazio'
+
 
 utn = ox.settings.useful_tags_node
 oxna = ox.settings.osm_xml_node_attrs

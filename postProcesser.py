@@ -1,10 +1,7 @@
 import csv
-import json
 import statistics
 import pandas as pd
-from pprint import pprint
 import matplotlib.pyplot as plt
-
 
 plt.style.use('fivethirtyeight')
 
@@ -14,6 +11,7 @@ fieldnames = ["sizeTab1_mean", "sizeTab2_mean",\
 
 
 # db_size         = pd.read_csv('db_size.csv')
+
 performances    = pd.read_csv('performances.csv')
 experiments     = pd.read_csv('experiments.csv')
 
