@@ -169,7 +169,7 @@ def NewpreProcessing(json_data):
                     'sent_where':   json_data[-1]['sent_where']
                 })
 
-    return data_do, data_ih
+    return data_do, data_ih, json_data[-1]['reputation']
 
 
 def get_by_path(root, items):
@@ -224,12 +224,12 @@ def NewIEtoDict(lis):
     lis[0]  = lis[0].asdict()
     lis[0]['what']  = lis[0]['what'].asdict() 
 
-    # lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]).split(".", 1)[1],
-    #                     'object':       str(lis[0]['what']['event'][1]).split(".", 1)[1]
-    #                     }
-    lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]),
-                        'object':      str(lis[0]['what']['event'][1])
+    lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]).split(".", 1)[1],
+                        'object':       str(lis[0]['what']['event'][1]).split(".", 1)[1]
                         }
+    # lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]),
+    #                     'object':      str(lis[0]['what']['event'][1])
+    #                     }
 
     # print(lis)
     # input("NewIEtooDict() check")

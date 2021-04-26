@@ -51,10 +51,20 @@ class infoHistoryTab(db.Model):
 
 
 class eventsTab(db.Model):
-    id          = db.Column(db.Integer, primary_key=True)
-    situation   = db.Column(db.String(50), nullable=False)
-    obj         = db.Column(db.String(50), nullable=False)
-    confidence  = db.Column(db.Float, nullable=False)
+    id              = db.Column(db.Integer, primary_key=True)
+    situation       = db.Column(db.String(50), nullable=False)
+    obj             = db.Column(db.String(50), nullable=False)
+    where           = db.Column(db.Integer, nullable=False)
+    observations    = db.relationship('observedEventsTab', backref='events_tab', lazy=True)
+
+
+class observedEventsTab(db.Model):
+    id              = db.Column(db.Integer, primary_key=True)
+    event_id        = db.Column(db.Integer, db.ForeignKey('events_tab.id'))
+    obs_situation   = db.Column(db.String(50), nullable=False)
+    obs_object      = db.Column(db.String(50), nullable=False)
+    confidence      = db.Column(db.Float, nullable=False)
+    # times           = db.Column(db.Integer, nullable=False)
 
 # db.create_all()
 
@@ -89,11 +99,11 @@ class infoHistorySchema(Schema):
     sent_at_loop    = mafields.Integer()
     sent_where      = mafields.Integer()
 
-class eventsSchema(Schema):
-    id          = mafields.Integer(dump_only=True)
-    situation   = mafields.Str()
-    obj         = mafields.Str()
-    confidence  = mafields.Float()
+# class eventsSchema(Schema):
+#     id          = mafields.Integer(dump_only=True)
+#     situation   = mafields.Str()
+#     obj         = mafields.Str()
+#     confidence  = mafields.Float()
 
 
 
@@ -117,15 +127,30 @@ ih_schemas  = infoHistorySchema(many=True)
 #     input("events_db_status()")
 #     return{"event found": do}ù
 
-events = []
+events  = []
+weights = []
+values  = []
+global weight_counter
+weight_counter = 0
 global tab1
 tab1 = 0
+
+# global obs_ev_rowsblock
+obs_ev_rowsblock = []
 
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
 
     json_data = json.loads(request.data)
     events.extend(json_data)
+
+    # filling up the first event tab in the db
+    for event in events:
+        ev = eventsTab( situation   = event['situation'],
+                        obj         = event['object'],
+                        where       = event['where'])
+        db.session.add(ev)
+    db.session.commit()
 
     pprint(events)
 
@@ -182,12 +207,16 @@ def get(DO_id):
 def put(DO_id):
 
     global tab1
+    global weight_counter
+    # events_types = []
 
     # print("#################################################")
     json_data = json.loads(request.data)
     # print(json_data)
     # input("put() first check")
-    data_do, data_ih = NewpreProcessing(json_data)
+    data_do, data_ih, reputation = NewpreProcessing(json_data)
+
+    weights.append(reputation)
 
     # print ("processed_data:")
     # for el in data_do:
@@ -228,7 +257,81 @@ def put(DO_id):
 
     print("9")
     result_do = []
+    # values.append([])
     for i in range(len(direct_obs)):
+        events_types = []
+
+        print(direct_obs[i])
+        query_ev    = eventsTab.query.filter_by(where=direct_obs[i]['where']).first()
+
+        # first time
+        if len(query_ev.observations)==0:
+
+            ev = observedEventsTab( obs_situation   = direct_obs[i]['situation'],
+                                    obs_object      = direct_obs[i]['obj'],
+                                    confidence      = 100.)
+            db.session.add(ev)
+            query_ev.observations.append(ev)
+            query_ev.observations[-1].event_id = query_ev.id
+        
+
+        elif len(query_ev.observations) > 0:
+            for k in range(len(query_ev.observations)):
+                if query_ev.observations[k] not in events_types:
+
+                    events_types.append({'observation': query_ev.observations[k], 'times': 1})
+
+                    for h in range(k, len(query_ev.observations)):
+                        if query_ev.observations[h] == events_types[-1]['observation']:
+
+                            events_types[-1]['times'] += 1
+
+            # if not repetition:
+            sits_db = [obs['observation'].obs_situation for obs in events_types]
+            objs_db = [obs['observation'].obs_object for obs in events_types]
+
+            zipped_obs_db   = list(zip(sits_db, objs_db))
+            ob              = (direct_obs[i]['situation'], direct_obs[i]['obj'])
+
+            # if this observation has been already reported, update the confidence for all the observations
+            if ob in zipped_obs_db:
+                
+                index = zipped_obs_db.index(ob)
+                events_types[index]['times'] += 1
+
+                total_cases = sum(obs['times'] for obs in events_types)
+
+                for m in range(len(query_ev.observations)):
+                    
+                    # events_types[i]['confidence'] = events_types[i]['times']*100 / total_cases
+                    query_ev.observations[m].confidence = round(events_types[m]['times']*100 / total_cases, 2)
+            
+            # if its the first time this observation has been reported
+            elif ob not in zipped_obs_db:
+
+                total_cases = sum(obs['times'] for obs in events_types) + 1
+
+                ev = observedEventsTab( obs_situation   = direct_obs[i]['situation'],
+                                        obs_object      = direct_obs[i]['obj'],
+                                        confidence      = round(1*100 / total_cases, 2))
+
+                events_types.append({'observation': ev, 'times': 1})
+
+                for n in range(len(query_ev.observations)):
+
+                    query_ev.observations[n].confidence = round(events_types[n]['times']*100 / total_cases, 2)
+
+                db.session.add(ev)
+                query_ev.observations.append(ev)
+                query_ev.observations[-1].event_id = query_ev.id
+            
+            if 100 - sum(query_ev.observations[counter].confidence for counter in range(len(query_ev.observations)) ) >= 0.1:
+                print("************************************")
+                for el in query_ev.observations:
+                    print("obs_sit: ", el.obs_situation, "obs_object: ", el.obs_object, "conf: ", el.confidence, "event_id: ", el.event_id)
+                input("ouch")
+        
+
         query_do = dirObsTab.query.filter_by(   situation   = direct_obs[i]['situation'],
                                                 obj         = direct_obs[i]['obj'],
                                                 when        = direct_obs[i]['when'],
@@ -254,7 +357,7 @@ def put(DO_id):
                         # del events[index]
                         events[index]['correct'] += 1
                     except:
-                        print("remove operatione failed.")
+                        print("remove operation failed.")
                         pprint(events)
                         print("elem:    ", elem)
                         print(bool(elem in events))
@@ -269,11 +372,6 @@ def put(DO_id):
             db.session.add(do)
             result_do.append(do_schema.dump(do))
             
-            # # adding the event into the db
-            # ev = eventsTab( situation    = do.situation,
-            #                 obj          = do.obj,
-            #                 confidence   = 1.0)
-            # db.session.add(ev)
 
             if not flag:
                 for j in range(len(info_history[i])):
@@ -370,7 +468,8 @@ def put(DO_id):
 @app.route("/IE/<int:DO_id>", methods=["DELETE"])
 def delete_(DO_id):
 
-    query = dirObsTab.query.options(joinedload(dirObsTab.info_histories))
+    query           = dirObsTab.query.options(joinedload(dirObsTab.info_histories))
+    query_events    = eventsTab.query.options(joinedload(eventsTab.observations))
 
     latency = []
     counter1 = 0
@@ -383,9 +482,16 @@ def delete_(DO_id):
             counter2 += 1
         db.session.delete(Obs)
         counter1 += 1
+    
+    # clearing up events Tabs
+    for event in query_events:
+        for observed_event in event.observations:
+            db.session.delete(observed_event)
+        db.session.delete(event)
     db.session.commit()
 
-    # pprint(events)
+    events.clear()
+    weights.clear()
 
 
 

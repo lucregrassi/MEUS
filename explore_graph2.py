@@ -15,8 +15,8 @@ import json
 from pprint import pprint
 import time
 from datetime import datetime
+from read_ontology import get_cls_at_dist
 
-random.seed(datetime.now())
 
 BASE = "http://127.0.0.1:5000/"
 
@@ -36,9 +36,6 @@ with open('experiments.csv', 'w') as csv_file:
     csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
     csv_writer1.writeheader()
 
-with open('experiments.csv', 'w') as csv_file:
-            csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
-            csv_writer1.writeheader()
 
 # with open('db_size.csv', 'w') as csv_file:
 #             csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
@@ -53,7 +50,7 @@ n_agents = 100
 global perc
 perc = 0.7
 # Number of iterations
-steps = 2
+steps = 1
 # Distance traveled (in meters) by each person in one loop cycle
 loop_distance = 20
 
@@ -381,6 +378,8 @@ def send_info(agent, loop):
         for i in range(agent.num_info_sent, len(agent.ies)):
             copia_ie = copy.deepcopy(agent.ies[i])
             copia_ie = NewIEtoDict(copia_ie)
+            # print(copia_ie[0], ",", copia_ie[1:])
+            # input()
             # info = {
             #     'event':    copia_ie[0]['what'],
             #     'latency':  loop - copia_ie[0]['when']
@@ -392,7 +391,7 @@ def send_info(agent, loop):
             # print(agent.ies[i][0], ",", agent.ies[i][1:])
                 
 
-        knowledge.append({'db_sender': agent.n, "time": loop, 'sent_where': agent.curr_node})
+        knowledge.append({'db_sender': agent.n, "time": loop, 'sent_where': agent.curr_node, 'reputation': agent.reputation})
         # for ie in agent.ies:
         #     print(ie[0], ",", ie[1:])
 
@@ -404,15 +403,12 @@ def send_info(agent, loop):
         if 'events' in res:
             for ev in res['events']:
                 if ev['mistaken']['times'] > 0 or ev['correct'] > 0:
-                    index = res['events'].index(ev)
-                    # pprint(ev)
-                    # pprint(events[index])
-                    # input()
-                    events[index] = ev
+                   
+                    index           = res['events'].index(ev)
+                    events[index]   = ev
 
-                    toc_db = time.perf_counter()
-                    t = toc_db - tic
-
+                    toc_db  = time.perf_counter()
+                    t       = toc_db - tic
                     events[index]['db_time'] = t
 
         elif loop >= len(events) and 'all_events_db' in res:
@@ -523,6 +519,8 @@ def main_execution():
         if i < ag_global:
         # if i < 1:
             agent.global_conn = [1,2,3]
+        else:
+            agent.reputation = 0.5
 
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
@@ -569,7 +567,7 @@ def main_execution():
     #         send_info(agents_dict[key], i)
 
     count = 0
-    while perc_seen_ev<50:
+    while perc_seen_ev<70:
         obs_ev = 0
         print("\nIteration " + str(count))
         for key in agents_dict.keys():
@@ -625,6 +623,7 @@ if __name__=="__main__":
         #     print(node)
         # input("checking nodes")
         if node[1]['situation'] != 'None':
+
             events.append({
                 'situation':    node[1]['situation'],
                 'object':       node[1]['object'],
@@ -632,14 +631,17 @@ if __name__=="__main__":
                 'mistaken':     {'times': 0, 'difference': []},
                 'correct':      0
             })
-
-    # pprint.pprint(events)
+    # print(len(events))
+    # pprint(events)
     # print("number of events in the environment: ", len(events))
     # print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
     # print(f"percentage of events per node:          {(100*len(events)/len(list(G.nodes(data=True)))):0.2f}%" )
 
     response = requests.put(BASE + "/IE/events", json.dumps(events))
-    # pprint.pprint(response.json())
+    # r = response.json()
+    # print(len(r['events']))
+    # input()
+    # # pprint(response.json())
     # input("checking events list")
 
     tic = time.perf_counter()
@@ -696,4 +698,3 @@ if __name__=="__main__":
             }
             csv_writer2.writerow(info)
     
-    pprint(events)
