@@ -114,29 +114,10 @@ ih_schemas  = infoHistorySchema(many=True)
 
 
 
-# @app.route("/IE/events-status/<string:qsit>/<string:qobj>/<int:qwhen>/<int:qwhere>/<int:qwho>")
-# def events_db_status(qsit, qobj, qwhen, qwhere, qwho):
-
-#     dire_ob = {'situation': qsit, 'object': qobj}
-#     try:
-#         do = dirObsTab.query.filter_by(dir_obs=dire_ob, when=qwhen, where=qwhere, who=qwho).first()
-#     except IntegrityError:
-#         return{"message": "Direct Observation not found in the database"}, 400
-    
-#     print("Found the do: ", do)
-#     input("events_db_status()")
-#     return{"event found": do}ù
-
 events  = []
-weights = []
-values  = []
-global weight_counter
-weight_counter = 0
-global tab1
-tab1 = 0
+weights_dict = {}
+events_dict = {}
 
-# global obs_ev_rowsblock
-obs_ev_rowsblock = []
 
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
@@ -150,7 +131,9 @@ def receiving_events_list():
                         obj         = event['object'],
                         where       = event['where'])
         db.session.add(ev)
-    db.session.commit()
+        db.session.commit()
+        weights_dict[str(ev.id)]    = []
+        events_dict[str(ev.id)] = {'obs': [], 'reps': []}
 
     pprint(events)
 
@@ -180,9 +163,6 @@ def get(DO_id):
                 print("Houston we have a problem\n" +str(do[i]) + " is equal " + str(do[j]))
                 print("at pos " +str(i))
 
-    # no_dupl = {}
-    # no_dupl['already_j'] = []
-    # no_dupl['already_k'] = []
 
     dupl = []
 
@@ -206,17 +186,11 @@ def get(DO_id):
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
 def put(DO_id):
 
-    global tab1
-    global weight_counter
-    # events_types = []
-
     # print("#################################################")
     json_data = json.loads(request.data)
     # print(json_data)
     # input("put() first check")
     data_do, data_ih, reputation = NewpreProcessing(json_data)
-
-    weights.append(reputation)
 
     # print ("processed_data:")
     # for el in data_do:
@@ -259,21 +233,37 @@ def put(DO_id):
     result_do = []
     # values.append([])
     for i in range(len(direct_obs)):
-        events_types = []
+        
+        events_types    = []
+        query_ev        = eventsTab.query.filter_by(where=direct_obs[i]['where']).first()
 
-        print(direct_obs[i])
-        query_ev    = eventsTab.query.filter_by(where=direct_obs[i]['where']).first()
+        # if str(query_ev.id) in events_dict.keys():
+        try:
+            if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict[str(query_ev.id)]['obs']:
 
+                events_dict[str(query_ev.id)]['obs'].append({   'situation':    direct_obs[i]['situation'],
+                                                                'object':       direct_obs[i]['obj']})
+                events_dict[str(query_ev.id)]['reps'].append([reputation])
+                # weights_dict[str(query_ev.id)].append(reputation)
+            else:
+                index = events_dict[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
+                events_dict[str(query_ev.id)]['reps'][index].append(reputation)
+        except:
+            print(query_ev.id)
+            pprint(weights_dict)
+            input("exception")
+
+        print("a")
         # first time
         if len(query_ev.observations)==0:
 
             ev = observedEventsTab( obs_situation   = direct_obs[i]['situation'],
                                     obs_object      = direct_obs[i]['obj'],
-                                    confidence      = 100.)
+                                    confidence      = 1.)
             db.session.add(ev)
             query_ev.observations.append(ev)
             query_ev.observations[-1].event_id = query_ev.id
-        
+            print("b")
 
         elif len(query_ev.observations) > 0:
             for k in range(len(query_ev.observations)):
@@ -286,13 +276,14 @@ def put(DO_id):
 
                             events_types[-1]['times'] += 1
 
-            # if not repetition:
-            sits_db = [obs['observation'].obs_situation for obs in events_types]
-            objs_db = [obs['observation'].obs_object for obs in events_types]
+            # sits_db = [obs['observation'].obs_situation for obs in events_types]
+            # objs_db = [obs['observation'].obs_object for obs in events_types]
 
-            zipped_obs_db   = list(zip(sits_db, objs_db))
+            zipped_obs_db   = list(zip( [obs['observation'].obs_situation for obs in events_types],\
+                                         [obs['observation'].obs_object for obs in events_types] ))
             ob              = (direct_obs[i]['situation'], direct_obs[i]['obj'])
 
+            print("c")
             # if this observation has been already reported, update the confidence for all the observations
             if ob in zipped_obs_db:
                 
@@ -301,10 +292,16 @@ def put(DO_id):
 
                 total_cases = sum(obs['times'] for obs in events_types)
 
+                # percs   = [events_types[m]['times']*100 / total_cases for m in range(len(query_ev.observations))]
+                # conf    = sum(perc*w for perc,w in zip( percs, weights_dict[str(query_ev.id)] )) \
+                #             / sum(w for w in weights_dict[str(query_ev.id)])
+
                 for m in range(len(query_ev.observations)):
                     
-                    # events_types[i]['confidence'] = events_types[i]['times']*100 / total_cases
-                    query_ev.observations[m].confidence = round(events_types[m]['times']*100 / total_cases, 2)
+                    # query_ev.observations[m].confidence = round(events_types[m]['times']*100 / total_cases, 2)
+                    query_ev.observations[m].confidence = round(sum(el for el in events_dict[str(query_ev.id)]['reps'][m])\
+                                                                    / sum(el[i] for el in events_dict[str(query_ev.id)]['reps'] for i in range(len(el))), 2)
+                print("d")
             
             # if its the first time this observation has been reported
             elif ob not in zipped_obs_db:
@@ -313,19 +310,26 @@ def put(DO_id):
 
                 ev = observedEventsTab( obs_situation   = direct_obs[i]['situation'],
                                         obs_object      = direct_obs[i]['obj'],
-                                        confidence      = round(1*100 / total_cases, 2))
-
-                events_types.append({'observation': ev, 'times': 1})
-
-                for n in range(len(query_ev.observations)):
-
-                    query_ev.observations[n].confidence = round(events_types[n]['times']*100 / total_cases, 2)
+                                        confidence      = round(1 / total_cases, 2))
 
                 db.session.add(ev)
                 query_ev.observations.append(ev)
                 query_ev.observations[-1].event_id = query_ev.id
+                events_types.append({'observation': ev, 'times': 1})
+
+                # percs   = [events_types[m]['times']*100 / total_cases for m in range(len(events_types))]
+                # conf    = sum(perc*w for perc,w in zip( percs, weights_dict[str(query_ev.id)] )) \
+                #             / sum(w for w in weights_dict[str(query_ev.id)])
+
+                for n in range(len(query_ev.observations)):
+
+                    # query_ev.observations[n].confidence = round(events_types[n]['times']*100 / total_cases, 2)
+                    query_ev.observations[n].confidence = round(sum(el for el in events_dict[str(query_ev.id)]['reps'][n])\
+                                                                    / sum(el[i] for el in events_dict[str(query_ev.id)]['reps'] for i in range(len(el)) ), 2)
+
+                print("e")
             
-            if 100 - sum(query_ev.observations[counter].confidence for counter in range(len(query_ev.observations)) ) >= 0.1:
+            if abs(1 - sum(query_ev.observations[counter].confidence for counter in range(len(query_ev.observations)) )) >= 0.1:
                 print("************************************")
                 for el in query_ev.observations:
                     print("obs_sit: ", el.obs_situation, "obs_object: ", el.obs_object, "conf: ", el.confidence, "event_id: ", el.event_id)
@@ -491,7 +495,8 @@ def delete_(DO_id):
     db.session.commit()
 
     events.clear()
-    weights.clear()
+    weights_dict.clear()
+    events_dict.clear()
 
 
 

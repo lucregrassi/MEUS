@@ -638,11 +638,8 @@ if __name__=="__main__":
     # print(f"percentage of events per node:          {(100*len(events)/len(list(G.nodes(data=True)))):0.2f}%" )
 
     response = requests.put(BASE + "/IE/events", json.dumps(events))
-    # r = response.json()
-    # print(len(r['events']))
-    # input()
-    # # pprint(response.json())
-    # input("checking events list")
+
+    # pprint(response.json())
 
     tic = time.perf_counter()
     num_loops = main_execution()
