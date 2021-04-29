@@ -2,6 +2,7 @@ import csv
 import copy
 import math
 import random
+# from random import random, randrange
 import logging
 import osmnx as ox
 from PIL import Image
@@ -520,7 +521,8 @@ def main_execution():
         # if i < 1:
             agent.global_conn = [1,2,3]
         else:
-            agent.reputation = 0.5
+            # agent.reputation = 0.5
+            agent.reputation = random.randrange(0,1)
 
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
