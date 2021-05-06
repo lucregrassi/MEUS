@@ -1,8 +1,10 @@
+import math
 import json
 import pprint
 import operator
 from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def plotter(agent, realTimePos):
@@ -236,5 +238,9 @@ def NewIEtoDict(lis):
     return lis
 
 
-    
 
+# Return the value of the Gaussian probability function with mean mu
+# and standard deviation sigma at the given x value.
+def pdf(x, mu=0.0, sigma=1.0):
+    x = float(x - mu) / sigma
+    return math.exp(-x*x/2.0) / math.sqrt(2.0*math.pi) / sigma

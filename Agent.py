@@ -1,5 +1,5 @@
 class Agent:
-    def __init__(self, n, curr_node=0, dest_node=0, distance=0, path={}, error=0, moving=False, road=0, num_info_sent=0):
+    def __init__(self, n, curr_node=0, dest_node=0, distance=0, path={}, error=0, moving=False, road=0, num_info_sent=0, num_info_seen=0):
         self.n = n
         self.curr_node  = curr_node
         self.dest_node  = dest_node
@@ -8,8 +8,9 @@ class Agent:
         self.error      = error
         self.moving     = moving
         self.road       = road # distance (between 2 nodes) traveled so far by agent
-        self.reputation = 1
+        self.reputation = 0.5
         self.num_info_sent = num_info_sent
+        self.num_info_seen = num_info_seen
         self.visited_nodes = []
         self.seen_events = []
         self.met_agents = []

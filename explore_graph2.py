@@ -5,18 +5,21 @@ import random
 # from random import random, randrange
 import logging
 import osmnx as ox
+import numpy as np
 from PIL import Image
 from Agent import Agent
 import matplotlib.pyplot as plt
 from InformationElement import NewInformationElement, NewDirectObservation
 
-from utils import NewIEtoDict
+from utils import NewIEtoDict, pdf
 import requests
 import json
 from pprint import pprint
 import time
 from datetime import datetime
 from read_ontology import get_cls_at_dist
+
+from scipy.stats import norm
 
 
 BASE = "http://127.0.0.1:5000/"
@@ -29,6 +32,9 @@ global t_all
 global perc_seen_ev
 perc_seen_ev = 0
 
+# global data_normal
+data_normal = 0
+
 fieldnames1 = ["sizeTab1", "sizeTab2", "latency", "num_loops"]
 fieldnames2 = ["sizeTab1", "sizeTab2"]
 fieldnames3 = ["time", "perc_of_seen_events"]
@@ -37,7 +43,6 @@ with open('experiments.csv', 'w') as csv_file:
     csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
     csv_writer1.writeheader()
 
-
 # with open('db_size.csv', 'w') as csv_file:
 #             csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
 #             csv_writer2.writeheader()
@@ -45,6 +50,11 @@ with open('experiments.csv', 'w') as csv_file:
 with open('performances.csv', 'w') as csv_file:
             csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
             csv_writer3.writeheader()
+
+fields = ["id", "reputation", "reliability", "conf_interval", "number_of_seen_events"]
+with open('reputations.csv', 'w') as csv_file:
+        csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
+        csv_writer4.writeheader()
 
 # Initialize number of agents exploring the graph
 n_agents = 100
@@ -401,6 +411,15 @@ def send_info(agent, loop):
         # print(response.json())
         res = response.json()
 
+        # pprint(res['reputation'])
+        # input()
+        for key in agents_dict.keys():
+            for rs in res['reputation']:
+                if key==str(rs['id']):
+                    
+                    agents_dict[key].reputation     = rs['rep']
+                    agents_dict[key].num_info_seen  = rs['times']
+
         if 'events' in res:
             for ev in res['events']:
                 if ev['mistaken']['times'] > 0 or ev['correct'] > 0:
@@ -474,9 +493,10 @@ def create_gif():
 def main_execution():
     global perc
     global perc_seen_ev
+    global data_normal
+
     ag_global = math.floor(perc*n_agents)
 
-    # initial_pos_check = []
 
     # Initialize people's positions in random nodes
     for i in range(n_agents):
@@ -490,7 +510,12 @@ def main_execution():
 
         dest_node, dist, path = compute_destination(curr_node)
         # Instantiate the Person class passing the arguments
-        agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
+        # agent = Agent(i, curr_node, dest_node, dist, path, random.randint(0, 2))
+
+        agent = Agent(i, curr_node, dest_node, dist, path, random.gauss(0, 1))
+        # agent = Agent(i, curr_node, dest_node, dist, path, random.choice(data_normal))
+
+        # agent.reputation = random.randrange(0, 1)
         agent.visited_nodes.append(curr_node)
 
         for elem in G.nodes(data=True):
@@ -518,11 +543,7 @@ def main_execution():
 
         # Initialize the connections owned by the person
         if i < ag_global:
-        # if i < 1:
-            agent.global_conn = [1,2,3]
-        else:
-            # agent.reputation = 0.5
-            agent.reputation = random.randrange(0,1)
+            agent.global_conn = [1, 2, 3]
 
         # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
         # Initialize array of local connections, choosing randomly, removing duplicates
@@ -569,7 +590,7 @@ def main_execution():
     #         send_info(agents_dict[key], i)
 
     count = 0
-    while perc_seen_ev<70:
+    while perc_seen_ev<80:
         obs_ev = 0
         print("\nIteration " + str(count))
         for key in agents_dict.keys():
@@ -612,6 +633,7 @@ if __name__=="__main__":
     global t_all
     global events
     global tab2
+    # global data_normal
     # global perc_seen_ev
     t_all = 0
     tab2 = 0
@@ -633,13 +655,16 @@ if __name__=="__main__":
                 'mistaken':     {'times': 0, 'difference': []},
                 'correct':      0
             })
+
+    inf = {'events': events, 'n_agents': n_agents}
+
     # print(len(events))
     # pprint(events)
     # print("number of events in the environment: ", len(events))
     # print("number of nodes in the environment:  ", len(list(G.nodes(data=True))))
     # print(f"percentage of events per node:          {(100*len(events)/len(list(G.nodes(data=True)))):0.2f}%" )
 
-    response = requests.put(BASE + "/IE/events", json.dumps(events))
+    response = requests.put(BASE + "/IE/events", json.dumps(inf))
 
     # pprint(response.json())
 
@@ -657,12 +682,7 @@ if __name__=="__main__":
     # print(f"percentage of events seen: {perc_seen_ev:0.2f}%")
     print("total time to get all events on the db: ", t_all)
     print(f"Experiment finished in {toc - tic:0.4f} seconds")
-
-    # with open('/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/experiments.csv', 'a') as csv_file:
-    #     delim_writer = csv.writer(csv_file)
-    #     delim_writer.writerow("#")
     
-
 
     with open('performances.csv', 'a') as csv_file:
         csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
@@ -677,8 +697,41 @@ if __name__=="__main__":
     # response = requests.get(BASE + "IE/1" )
     # pprint.pprint(response.json())
 
-    # response = requests.put(BASE + "/IE/events/1", json.dumps(events))
-    # pprint.pprint(response.json())
+    new_data_normal = []
+    for key in agents_dict.keys():
+        new_data_normal.append(agents_dict[key].error)
+
+    new_data_normal = sorted(new_data_normal)
+
+
+    with open('reputations.csv', 'a') as csv_file:
+        csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
+
+        for key in agents_dict.keys():
+
+            conf_interval = 0
+            if 0 <= abs(agents_dict[key].error) < 1:
+
+                conf_interval = 1
+
+            elif 1 <= abs(agents_dict[key].error) < 2:
+
+                conf_interval = 2
+
+            else:
+                conf_interval = 3
+
+
+            info = {
+                'id':                      agents_dict[key].n,
+                'reputation':              round( agents_dict[key].reputation, 2),
+                # 'original_rel':            round(agents_dict[key].error, 2),
+                # 'reliability':             round( abs( (2*(agents_dict[key].error - new_data_normal[0]) / (new_data_normal[-1] - new_data_normal[0])) -1), 2),
+                'reliability':             round( agents_dict[key].error, 2),
+                'conf_interval':           conf_interval,
+                'number_of_seen_events':   agents_dict[key].num_info_seen
+            }
+            csv_writer4.writerow(info)
 
 
     input("check 3 explore_graph.py")
@@ -696,4 +749,3 @@ if __name__=="__main__":
                 'num_loops':    num_loops
             }
             csv_writer2.writerow(info)
-    

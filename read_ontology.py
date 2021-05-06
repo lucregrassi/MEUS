@@ -48,17 +48,30 @@ def append_value(dict_obj, key, value):
         # As key is not in dict, add key-value pair
         dict_obj[key] = value
 
+    # print("************************************************")
+    # print(dict_obj)
+    # input()
+
 
 def recursive_up(cls, dictionary, i):
+
     parent_cls = cls.is_a[0]
+
+    # print("************************************************")
+    # print(parent_cls)
+    # print(dictionary)
+
     if i not in dictionary:
         dictionary[i] = [parent_cls]
     else:
         append_value(dictionary, i, parent_cls)
+
     if parent_cls == onto.Situation or parent_cls == onto.Object or parent_cls == onto.Thing:
+        # print(dictionary)
+        # print("yo")
         return
     else:
-        i = i+1
+        i +=1
         recursive_up(parent_cls, dictionary, i)
 
 
@@ -67,17 +80,25 @@ def recursive_down(start_cls, dictionary, i):
     if i in dictionary:
         for cls in dictionary[i]:
             for subclass in cls.subclasses():
+
                 t = list(dictionary.values())
                 flat_list = []
+
                 for sublist in t:
                     for item in sublist:
+
                         flat_list.append(item)
+
                 if subclass not in flat_list and subclass != start_cls:
                     if i+1 in dictionary:
+
                         append_value(dictionary, i+1, subclass)
+
                     else:
                         dictionary[i+1] = [subclass]
+                        
         recursive_down(start_cls, dictionary, i+1)
+
     else:
         return
 
@@ -85,6 +106,17 @@ def recursive_down(start_cls, dictionary, i):
 # Return a randomly chosen class among those at a certain distance from the starting one
 def get_cls_at_dist(start_cls_name, distance):
     start_cls = onto.Situation
+    
+    if abs(distance) <= 1:
+        distance = 0
+    elif 1 < abs(distance) <= 2:
+        distance = 1
+    else:
+        # print("dist:", distance)
+        # input()
+        distance = 2
+    # print("distance: ", distance)
+    # input()
     for cls in onto.classes():
         if cls.name == start_cls_name:
             start_cls = cls
@@ -94,6 +126,7 @@ def get_cls_at_dist(start_cls_name, distance):
     else:
         dictionary = {}
         recursive_up(start_cls, dictionary, 1)
+        # print("returned")
 
     recursive_down(start_cls, dictionary, 1)
     # print(dictionary)

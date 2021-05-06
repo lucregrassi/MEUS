@@ -115,7 +115,7 @@ ih_schemas  = infoHistorySchema(many=True)
 
 
 events  = []
-weights_dict = {}
+agents_dict = {}
 events_dict = {}
 
 
@@ -123,7 +123,7 @@ events_dict = {}
 def receiving_events_list():
 
     json_data = json.loads(request.data)
-    events.extend(json_data)
+    events.extend(json_data['events'])
 
     # filling up the first event tab in the db
     for event in events:
@@ -132,8 +132,10 @@ def receiving_events_list():
                         where       = event['where'])
         db.session.add(ev)
         db.session.commit()
-        weights_dict[str(ev.id)]    = []
-        events_dict[str(ev.id)] = {'obs': [], 'reps': []}
+        events_dict[str(ev.id)] = {'obs': [], 'reps': [], 'whos': [], 'scores': []}
+    
+    for agent in range(json_data['n_agents']):
+        agents_dict[str(agent)] = {'positive': 1, 'negative': 1, 'times': 0}
 
     pprint(events)
 
@@ -192,6 +194,7 @@ def put(DO_id):
     # input("put() first check")
     data_do, data_ih, reputation = NewpreProcessing(json_data)
 
+    # reputation = 1-reputation
     # print ("processed_data:")
     # for el in data_do:
     #     print(el)
@@ -232,6 +235,8 @@ def put(DO_id):
     print("9")
     result_do = []
     # values.append([])
+    # print("reputation(out): ", reputation)
+    reputations = []
     for i in range(len(direct_obs)):
         
         events_types    = []
@@ -239,19 +244,43 @@ def put(DO_id):
 
         # if str(query_ev.id) in events_dict.keys():
         try:
+            if direct_obs[i]['situation']==query_ev.situation and direct_obs[i]['obj']==query_ev.obj:
+
+                agents_dict[str(direct_obs[i]['who'])]['positive'] += 1
+                agents_dict[str(direct_obs[i]['who'])]['times'] += 1
+                # reputation = agents_dict[str(direct_obs[i]['who'])]['negative'] /\
+                # (agents_dict[str(direct_obs[i]['who'])]['positive'] + agents_dict[str(direct_obs[i]['who'])]['negative'])
+            else:
+                agents_dict[str(direct_obs[i]['who'])]['negative'] += 1
+                agents_dict[str(direct_obs[i]['who'])]['times'] += 1
+
+            # reputation update
+            reputation = agents_dict[str(direct_obs[i]['who'])]['positive'] /\
+            (agents_dict[str(direct_obs[i]['who'])]['positive'] + agents_dict[str(direct_obs[i]['who'])]['negative'])
+
+            reputations.append({
+            'id':       direct_obs[i]['who'],
+            'rep':      1-reputation,
+            'times':    agents_dict[str(direct_obs[i]['who'])]['times']
+        })
+            # # print("reputation: ", reputation)
+
             if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict[str(query_ev.id)]['obs']:
 
                 events_dict[str(query_ev.id)]['obs'].append({   'situation':    direct_obs[i]['situation'],
                                                                 'object':       direct_obs[i]['obj']})
                 events_dict[str(query_ev.id)]['reps'].append([reputation])
-                # weights_dict[str(query_ev.id)].append(reputation)
+                events_dict[str(query_ev.id)]['whos'].append(direct_obs[i]['who'])
+
             else:
                 index = events_dict[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
                 events_dict[str(query_ev.id)]['reps'][index].append(reputation)
-        except:
-            print(query_ev.id)
-            pprint(weights_dict)
-            input("exception")
+
+        except Exception as error:
+
+            pprint(events_dict)
+            pprint(agents_dict)
+            raise error
 
         print("a")
         # first time
@@ -293,14 +322,14 @@ def put(DO_id):
                 total_cases = sum(obs['times'] for obs in events_types)
 
                 # percs   = [events_types[m]['times']*100 / total_cases for m in range(len(query_ev.observations))]
-                # conf    = sum(perc*w for perc,w in zip( percs, weights_dict[str(query_ev.id)] )) \
-                #             / sum(w for w in weights_dict[str(query_ev.id)])
+                # conf    = sum(perc*w for perc,w in zip( percs, agents_dict[str(query_ev.id)] )) \
+                #             / sum(w for w in agents_dict[str(query_ev.id)])
 
                 for m in range(len(query_ev.observations)):
                     
                     # query_ev.observations[m].confidence = round(events_types[m]['times']*100 / total_cases, 2)
                     query_ev.observations[m].confidence = round(sum(el for el in events_dict[str(query_ev.id)]['reps'][m])\
-                                                                    / sum(el[i] for el in events_dict[str(query_ev.id)]['reps'] for i in range(len(el))), 2)
+                                                                    / sum(el[i] for el in events_dict[str(query_ev.id)]['reps'] for i in range(len(el))), 3)
                 print("d")
             
             # if its the first time this observation has been reported
@@ -310,7 +339,7 @@ def put(DO_id):
 
                 ev = observedEventsTab( obs_situation   = direct_obs[i]['situation'],
                                         obs_object      = direct_obs[i]['obj'],
-                                        confidence      = round(1 / total_cases, 2))
+                                        confidence      = round(1 / total_cases, 3))
 
                 db.session.add(ev)
                 query_ev.observations.append(ev)
@@ -318,14 +347,14 @@ def put(DO_id):
                 events_types.append({'observation': ev, 'times': 1})
 
                 # percs   = [events_types[m]['times']*100 / total_cases for m in range(len(events_types))]
-                # conf    = sum(perc*w for perc,w in zip( percs, weights_dict[str(query_ev.id)] )) \
-                #             / sum(w for w in weights_dict[str(query_ev.id)])
+                # conf    = sum(perc*w for perc,w in zip( percs, agents_dict[str(query_ev.id)] )) \
+                #             / sum(w for w in agents_dict[str(query_ev.id)])
 
                 for n in range(len(query_ev.observations)):
 
                     # query_ev.observations[n].confidence = round(events_types[n]['times']*100 / total_cases, 2)
                     query_ev.observations[n].confidence = round(sum(el for el in events_dict[str(query_ev.id)]['reps'][n])\
-                                                                    / sum(el[i] for el in events_dict[str(query_ev.id)]['reps'] for i in range(len(el)) ), 2)
+                                                                    / sum(el[i] for el in events_dict[str(query_ev.id)]['reps'] for i in range(len(el)) ), 3)
 
                 print("e")
             
@@ -391,7 +420,7 @@ def put(DO_id):
                     # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                     do.info_histories.append(ih)
                     # ih.dir_obs_tab = do.id
-                    do.info_histories[j].dir_obs_id = do.id
+                    do.info_histories[-1].dir_obs_id = do.id
                     result_ih.append(ih_schema.dump(ih))
                 result_do.append(result_ih)
             print("10")
@@ -399,7 +428,6 @@ def put(DO_id):
         else:
             # print("###################################################")
             repetition_flag = True
-            tab1 += 1
             # print("request:     ", direct_obs[i]['situation'],",", direct_obs[i]['obj'],",", direct_obs[i]['when'],\
             #                         ",", direct_obs[i]['where'], ",", direct_obs[i]['who'])
             # print("query_do:    ", do_schema.dump(query_do)['situation'],",", do_schema.dump(query_do)['obj'],\
@@ -421,6 +449,7 @@ def put(DO_id):
                                                                 when            = info_history[i][j]['when'],
                                                                 sent_at_loop    = info_history[i][j]['sent_at_loop'],
                                                                 sent_where      = info_history[i][j]['sent_where']).first()
+
                     if not query_ih:
                         ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],
                                                 a1              = info_history[i][j]['a1'],
@@ -439,7 +468,9 @@ def put(DO_id):
                         # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                         query_do.info_histories.append(ih)
                         # ih.dir_obs_tab = do.id
-                        query_do.info_histories[j].dir_obs_id = query_do.id
+                        # print("j:", j)
+                        # print("len(query_do.info_histories): ", len(query_do.info_histories)) 
+                        query_do.info_histories[-1].dir_obs_id = query_do.id
                         result_ih.append(ih_schema.dump(ih))
                 result_do.append(result_ih)
                 # query_ih = infoHistoryTab.query.filter_by(id=iden).all()
@@ -459,13 +490,13 @@ def put(DO_id):
 
     # keep track if event has been uploaded on the db for the first time
     if return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'reputation': reputations}
     # keep track if all the events have been uploaded on the db
     # elif all_events_db:
     #     return {"message": "Created a new DO and IH.",  "DO": result_do, "all_events_db": events}
     # if an element which was already in the db was being uploaded
     elif not return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations}
 
 
 
@@ -495,7 +526,7 @@ def delete_(DO_id):
     db.session.commit()
 
     events.clear()
-    weights_dict.clear()
+    agents_dict.clear()
     events_dict.clear()
 
 
