@@ -51,7 +51,7 @@ with open('performances.csv', 'w') as csv_file:
             csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
             csv_writer3.writeheader()
 
-fields = ["id", "reputation", "reliability", "conf_interval", "number_of_seen_events"]
+fields = ["id", "reputation", "reputation2", "reliability", "conf_interval", "number_of_seen_events"]
 with open('reputations.csv', 'w') as csv_file:
         csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
         csv_writer4.writeheader()
@@ -402,7 +402,7 @@ def send_info(agent, loop):
             # print(agent.ies[i][0], ",", agent.ies[i][1:])
                 
 
-        knowledge.append({'db_sender': agent.n, "time": loop, 'sent_where': agent.curr_node, 'reputation': agent.reputation})
+        knowledge.append({'db_sender': agent.n, "time": loop, 'sent_where': agent.curr_node, 'reputation': agent.reputation, 'reputation2': agent.reputation2})
         # for ie in agent.ies:
         #     print(ie[0], ",", ie[1:])
 
@@ -411,7 +411,7 @@ def send_info(agent, loop):
         # print(response.json())
         res = response.json()
 
-        # pprint(res['reputation'])
+        # pprint(res)
         # input()
         for key in agents_dict.keys():
             for rs in res['reputation']:
@@ -419,6 +419,12 @@ def send_info(agent, loop):
                     
                     agents_dict[key].reputation     = rs['rep']
                     agents_dict[key].num_info_seen  = rs['times']
+
+            for rs2 in res['reputation2']:
+                if key==str(rs2['id']):
+
+                    agents_dict[key].reputation2    = rs2['rep']
+                    agents_dict[key].num_info_seen2 = rs2['times']
 
         if 'events' in res:
             for ev in res['events']:
@@ -590,7 +596,7 @@ def main_execution():
     #         send_info(agents_dict[key], i)
 
     count = 0
-    while perc_seen_ev<80:
+    while perc_seen_ev<70:
         obs_ev = 0
         print("\nIteration " + str(count))
         for key in agents_dict.keys():
@@ -725,6 +731,7 @@ if __name__=="__main__":
             info = {
                 'id':                      agents_dict[key].n,
                 'reputation':              round( agents_dict[key].reputation, 2),
+                'reputation2':              round( agents_dict[key].reputation2, 2),
                 # 'original_rel':            round(agents_dict[key].error, 2),
                 # 'reliability':             round( abs( (2*(agents_dict[key].error - new_data_normal[0]) / (new_data_normal[-1] - new_data_normal[0])) -1), 2),
                 'reliability':             round( agents_dict[key].error, 2),

@@ -171,7 +171,7 @@ def NewpreProcessing(json_data):
                     'sent_where':   json_data[-1]['sent_where']
                 })
 
-    return data_do, data_ih, json_data[-1]['reputation']
+    return data_do, data_ih, json_data[-1]['reputation'], json_data[-1]['reputation2']
 
 
 def get_by_path(root, items):

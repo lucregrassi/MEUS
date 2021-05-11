@@ -104,7 +104,7 @@ print(f"mean for the percentage of seen events in this batch is                 
 print(f"mean for the latency of the events to be loaded on the db in this batch is      {statistics.mean(latency):0.2f} loops")
 
 
-with open('/Users/mario/Desktop/experiments/100/Amatrice/seed28_t20/70%.csv', 'w') as csv_file:
+with open('/Users/mario/Desktop/experiments/100/Amatrice/seed28_t70/70%2.csv', 'w') as csv_file:
             csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             csv_writer.writeheader()
 

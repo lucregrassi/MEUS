@@ -64,6 +64,7 @@ class observedEventsTab(db.Model):
     obs_situation   = db.Column(db.String(50), nullable=False)
     obs_object      = db.Column(db.String(50), nullable=False)
     confidence      = db.Column(db.Float, nullable=False)
+    # confidence2     = db.Column(db.Float, nullable=False)
     # times           = db.Column(db.Integer, nullable=False)
 
 # db.create_all()
@@ -118,6 +119,9 @@ events  = []
 agents_dict = {}
 events_dict = {}
 
+agents_dict2 = {}
+events_dict2 = {}
+
 
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
@@ -132,10 +136,12 @@ def receiving_events_list():
                         where       = event['where'])
         db.session.add(ev)
         db.session.commit()
-        events_dict[str(ev.id)] = {'obs': [], 'reps': [], 'whos': [], 'scores': []}
+        events_dict[str(ev.id)]     = {'obs': [], 'reps': [], 'whos': []}
+        events_dict2[str(ev.id)]    = {'obs': [], 'reps': [], 'whos': [], 'votes': []}
     
     for agent in range(json_data['n_agents']):
-        agents_dict[str(agent)] = {'positive': 1, 'negative': 1, 'times': 0}
+        agents_dict[str(agent)]     = {'positive': 1, 'negative': 1, 'times': 0}
+        agents_dict2[str(agent)]    = {'positive': 1, 'negative': 1, 'times': 0}
 
     pprint(events)
 
@@ -192,7 +198,7 @@ def put(DO_id):
     json_data = json.loads(request.data)
     # print(json_data)
     # input("put() first check")
-    data_do, data_ih, reputation = NewpreProcessing(json_data)
+    data_do, data_ih, reputation, reputation2 = NewpreProcessing(json_data)
 
     # reputation = 1-reputation
     # print ("processed_data:")
@@ -233,27 +239,30 @@ def put(DO_id):
         return err.messages, 422
 
     print("9")
-    result_do = []
-    # values.append([])
-    # print("reputation(out): ", reputation)
+    result_do   = []
     reputations = []
+    reputations2 = []
+
     for i in range(len(direct_obs)):
+
+        print(direct_obs[i])
         
         events_types    = []
         query_ev        = eventsTab.query.filter_by(where=direct_obs[i]['where']).first()
 
-        # if str(query_ev.id) in events_dict.keys():
         try:
+            # if the observation corresponds to the truth
+            print("agent(", str(direct_obs[i]['who']), ") before(1):", agents_dict[str(direct_obs[i]['who'])])
             if direct_obs[i]['situation']==query_ev.situation and direct_obs[i]['obj']==query_ev.obj:
 
-                agents_dict[str(direct_obs[i]['who'])]['positive'] += 1
-                agents_dict[str(direct_obs[i]['who'])]['times'] += 1
-                # reputation = agents_dict[str(direct_obs[i]['who'])]['negative'] /\
-                # (agents_dict[str(direct_obs[i]['who'])]['positive'] + agents_dict[str(direct_obs[i]['who'])]['negative'])
-            else:
-                agents_dict[str(direct_obs[i]['who'])]['negative'] += 1
-                agents_dict[str(direct_obs[i]['who'])]['times'] += 1
+                agents_dict[str(direct_obs[i]['who'])]['positive']  += 1
+                agents_dict[str(direct_obs[i]['who'])]['times']     += 1
 
+            else:
+                agents_dict[str(direct_obs[i]['who'])]['negative']  += 1
+                agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+
+            print("agent(", str(direct_obs[i]['who']), ") after(1):", agents_dict[str(direct_obs[i]['who'])])
             # reputation update
             reputation = agents_dict[str(direct_obs[i]['who'])]['positive'] /\
             (agents_dict[str(direct_obs[i]['who'])]['positive'] + agents_dict[str(direct_obs[i]['who'])]['negative'])
@@ -262,8 +271,7 @@ def put(DO_id):
             'id':       direct_obs[i]['who'],
             'rep':      1-reputation,
             'times':    agents_dict[str(direct_obs[i]['who'])]['times']
-        })
-            # # print("reputation: ", reputation)
+            })
 
             if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict[str(query_ev.id)]['obs']:
 
@@ -275,6 +283,63 @@ def put(DO_id):
             else:
                 index = events_dict[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
                 events_dict[str(query_ev.id)]['reps'][index].append(reputation)
+
+
+            # reputation based on a voting approach
+            print("agent(", str(direct_obs[i]['who']), ") before(2):", agents_dict2[str(direct_obs[i]['who'])])
+            if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict2[str(query_ev.id)]['obs']:
+
+                events_dict2[str(query_ev.id)]['obs'].append({      'situation':    direct_obs[i]['situation'],
+                                                                    'object':       direct_obs[i]['obj']})
+
+                events_dict2[str(query_ev.id)]['whos'].append([direct_obs[i]['who']])
+                events_dict2[str(query_ev.id)]['votes'].append(1)
+
+                # Here I have to compute the reputation
+                if events_dict2[str(query_ev.id)]['votes'][-1] == max(events_dict2[str(query_ev.id)]['votes']):
+
+                    agents_dict2[str(direct_obs[i]['who'])]['positive'] += 1
+                    agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+                else:
+
+                    agents_dict2[str(direct_obs[i]['who'])]['negative'] += 1
+                    agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+
+                reputation2 = agents_dict2[str(direct_obs[i]['who'])]['positive'] /\
+                                (agents_dict2[str(direct_obs[i]['who'])]['positive'] + agents_dict2[str(direct_obs[i]['who'])]['negative'])
+
+                events_dict2[str(query_ev.id)]['reps'].append([reputation2])
+
+            else:
+                index = events_dict2[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
+
+                events_dict2[str(query_ev.id)]['whos'][index].append(direct_obs[i]['who'])
+                events_dict2[str(query_ev.id)]['votes'][index] += 1
+
+                if events_dict2[str(query_ev.id)]['votes'][index] == max(events_dict2[str(query_ev.id)]['votes']):
+
+                    agents_dict2[str(direct_obs[i]['who'])]['positive'] += 1
+                    agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+                else:
+
+                    agents_dict2[str(direct_obs[i]['who'])]['negative'] += 1
+                    agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+
+                reputation2 = agents_dict2[str(direct_obs[i]['who'])]['positive'] /\
+                                (agents_dict2[str(direct_obs[i]['who'])]['positive'] + agents_dict2[str(direct_obs[i]['who'])]['negative'])
+
+                events_dict2[str(query_ev.id)]['reps'][index].append(reputation2)
+
+            print("agent(", str(direct_obs[i]['who']), ") after(2):", agents_dict2[str(direct_obs[i]['who'])])
+            reputations2.append({
+                        'id':       direct_obs[i]['who'],
+                        'rep':      1-reputation2,
+                        'times':    agents_dict2[str(direct_obs[i]['who'])]['times']
+                        })
 
         except Exception as error:
 
@@ -420,7 +485,8 @@ def put(DO_id):
                     # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                     do.info_histories.append(ih)
                     # ih.dir_obs_tab = do.id
-                    do.info_histories[-1].dir_obs_id = do.id
+                    # do.info_histories[-1].dir_obs_id = do.id
+                    do.info_histories[do.info_histories.index(ih)].dir_obs_id = do.id
                     result_ih.append(ih_schema.dump(ih))
                 result_do.append(result_ih)
             print("10")
@@ -468,9 +534,8 @@ def put(DO_id):
                         # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                         query_do.info_histories.append(ih)
                         # ih.dir_obs_tab = do.id
-                        # print("j:", j)
-                        # print("len(query_do.info_histories): ", len(query_do.info_histories)) 
-                        query_do.info_histories[-1].dir_obs_id = query_do.id
+                        # query_do.info_histories[-1].dir_obs_id = query_do.id
+                        query_do.info_histories[query_do.info_histories.index(ih)].dir_obs_id = query_do.id
                         result_ih.append(ih_schema.dump(ih))
                 result_do.append(result_ih)
                 # query_ih = infoHistoryTab.query.filter_by(id=iden).all()
@@ -490,13 +555,13 @@ def put(DO_id):
 
     # keep track if event has been uploaded on the db for the first time
     if return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'reputation': reputations}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'reputation': reputations, 'reputation2': reputations2}
     # keep track if all the events have been uploaded on the db
     # elif all_events_db:
     #     return {"message": "Created a new DO and IH.",  "DO": result_do, "all_events_db": events}
     # if an element which was already in the db was being uploaded
     elif not return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2}
 
 
 
