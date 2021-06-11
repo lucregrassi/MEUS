@@ -5,6 +5,9 @@ import operator
 from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
 import numpy as np
+from owlready2 import *
+from os import path
+
 
 
 def plotter(agent, realTimePos):
@@ -171,7 +174,7 @@ def NewpreProcessing(json_data):
                     'sent_where':   json_data[-1]['sent_where']
                 })
 
-    return data_do, data_ih, json_data[-1]['reputation'], json_data[-1]['reputation2']
+    return data_do, data_ih, json_data[-1]['reputations'], json_data[-1]['reputations2'], json_data[-1]['reliabilities']
 
 
 def get_by_path(root, items):
@@ -226,12 +229,15 @@ def NewIEtoDict(lis):
     lis[0]  = lis[0].asdict()
     lis[0]['what']  = lis[0]['what'].asdict() 
 
+    # if type(lis[0]['what']['event'][0])==owlready2.entity.ThingClass:
+
     lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]).split(".", 1)[1],
-                        'object':       str(lis[0]['what']['event'][1]).split(".", 1)[1]
+                        'object':      str(lis[0]['what']['event'][1]).split(".", 1)[1]
                         }
-    # lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]),
-    #                     'object':      str(lis[0]['what']['event'][1])
-    #                     }
+    # else:
+        # lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]),
+        #                     'object':      str(lis[0]['what']['event'][1])
+        #                     }
 
     # print(lis)
     # input("NewIEtooDict() check")
@@ -244,3 +250,88 @@ def NewIEtoDict(lis):
 def pdf(x, mu=0.0, sigma=1.0):
     x = float(x - mu) / sigma
     return math.exp(-x*x/2.0) / math.sqrt(2.0*math.pi) / sigma
+
+
+
+def plot_reputations(obss):
+
+    plt.style.use('seaborn-whitegrid')
+
+    agents = []
+    reps = []
+    reps1 = []
+    rels = []
+    whens = []
+    for i in range(len(obss['whos'])):
+        for j in range(len(obss['whos'][i])):
+            if obss['whos'][i][j] not in agents:
+
+                agents.append(obss['whos'][i][j])
+                reps.append([rep for rep in obss['reps'][i]])
+                rels.append([rel for rel in obss['rels'][i]])
+                reps1.append([rep1 for rep1 in obss['reps1'][i]])
+
+                whens.append([when for when in obss['whens'][i]])
+
+
+    print("whens:", whens)
+    print("reps:", reps)
+    print("reps1:", reps1)
+    input()
+
+    for k in range(len(agents)):
+
+        plt.figure(k)
+
+        plt.plot(whens[k], reps[k])
+        plt.plot(whens[k], reps1[k])
+        plt.plot(whens[k], rels[k])
+
+    
+    plt.legend(loc='upper left')
+    plt.ylabel('reps and rels')
+    plt.xlabel('whens')
+
+    plt.tight_layout()
+    plt.show()
+    
+
+def plot_agent_perf(agent, key, rep):
+
+    plt.style.use('seaborn-whitegrid')
+
+    outpath = "/Users/mario/Desktop/exp10June/"
+
+    plt.figure(key)
+
+    plt.plot([t[1] for t in agent.ordered_reps], [t[0] for t in agent.ordered_reps], marker='*', c='b', label='rep', linewidth=1.1)
+    plt.plot([t[1] for t in agent.ordered_reps2], [t[0] for t in agent.ordered_reps2], marker='*', c='tab:orange', label='rep2', linewidth=1.1)
+    plt.plot([t[1] for t in agent.ordered_rels], [t[0] for t in agent.ordered_rels], marker='*', c='k', label='rel', linewidth=.5)
+    # specifying horizontal line type
+    plt.axhline(y = rep, color = 'r', linestyle = '-', linewidth=.4)
+
+
+    plt.legend(loc='upper left')
+    plt.ylabel('reps and rels')
+    plt.xlabel('when')
+
+    plt.tight_layout()
+    plt.savefig(path.join(outpath,"agent_{0}.png".format(int(key))))
+    # plt.show()
+
+
+# Stops iterating through the list as soon as it finds the value
+def getIndexOfTuple(l, index, value):
+    for pos,t in enumerate(l):
+        if t[index] == value:
+            return pos
+
+    # Matches behavior of list.index
+    raise ValueError("list.index(x): x not in list")
+    
+
+
+
+
+
+

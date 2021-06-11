@@ -1,6 +1,7 @@
 import json
 import statistics
 from pprint import pprint
+from collections import Counter
 from flask import Flask, request
 from utils import NewpreProcessing
 from collections import defaultdict
@@ -60,12 +61,20 @@ class eventsTab(db.Model):
 
 class observedEventsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)
-    event_id        = db.Column(db.Integer, db.ForeignKey('events_tab.id'))
+    event_id        = db.Column(db.Integer, db.ForeignKey('events_tab.id'), nullable=False)
     obs_situation   = db.Column(db.String(50), nullable=False)
     obs_object      = db.Column(db.String(50), nullable=False)
     confidence      = db.Column(db.Float, nullable=False)
     # confidence2     = db.Column(db.Float, nullable=False)
     # times           = db.Column(db.Integer, nullable=False)
+
+class agentsVotesTab(db.Model):
+    id          = db.Column(db.Integer, primary_key=True)
+    agents_id   = db.Column(db.Integer, nullable=False)
+    when        = db.Column(db.Integer, nullable=False)
+    where       = db.Column(db.Integer, nullable=False)
+    t_f         = db.Column(db.Integer, nullable=False)
+    cons        = db.Column(db.String(50), nullable=False)
 
 # db.create_all()
 
@@ -120,6 +129,7 @@ agents_dict = {}
 events_dict = {}
 
 agents_dict2 = {}
+agents_perf  = {}
 events_dict2 = {}
 
 
@@ -136,12 +146,13 @@ def receiving_events_list():
                         where       = event['where'])
         db.session.add(ev)
         db.session.commit()
-        events_dict[str(ev.id)]     = {'obs': [], 'reps': [], 'whos': []}
-        events_dict2[str(ev.id)]    = {'obs': [], 'reps': [], 'whos': [], 'votes': []}
+        events_dict[str(ev.id)]     = {'obs': [], 'reps': [], 'whos': [], 'whens': []}
+        events_dict2[str(ev.id)]    = {'obs': [], 'reps': [], 'reps1': [], 'whos': [], 'votes': [], 'times': [], 'whens': [], 'rels': []}
     
     for agent in range(json_data['n_agents']):
         agents_dict[str(agent)]     = {'positive': 1, 'negative': 1, 'times': 0}
         agents_dict2[str(agent)]    = {'positive': 1, 'negative': 1, 'times': 0}
+        agents_perf[str(agent)]     = []
 
     pprint(events)
 
@@ -198,7 +209,9 @@ def put(DO_id):
     json_data = json.loads(request.data)
     # print(json_data)
     # input("put() first check")
-    data_do, data_ih, reputation, reputation2 = NewpreProcessing(json_data)
+    data_do, data_ih, reputation, reputation2, reliability = NewpreProcessing(json_data)
+
+    # data_do, data_ih = NewpreProcessing(json_data)
 
     # reputation = 1-reputation
     # print ("processed_data:")
@@ -243,59 +256,134 @@ def put(DO_id):
     reputations = []
     reputations2 = []
 
+    # print("sender:", sender)
+    # pprint(direct_obs)
+
     for i in range(len(direct_obs)):
 
-        print(direct_obs[i])
+        # print(direct_obs[i])
         
         events_types    = []
         query_ev        = eventsTab.query.filter_by(where=direct_obs[i]['where']).first()
 
         try:
             # if the observation corresponds to the truth
-            print("agent(", str(direct_obs[i]['who']), ") before(1):", agents_dict[str(direct_obs[i]['who'])])
+            flag1=False
             if direct_obs[i]['situation']==query_ev.situation and direct_obs[i]['obj']==query_ev.obj:
 
-                agents_dict[str(direct_obs[i]['who'])]['positive']  += 1
-                agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+                if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict[str(query_ev.id)]['obs']:
+
+                    agents_dict[str(direct_obs[i]['who'])]['positive']  += 1
+                    agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+
+                    events_dict[str(query_ev.id)]['obs'].append({   'situation':    direct_obs[i]['situation'],
+                                                                    'object':       direct_obs[i]['obj']})
+                    events_dict[str(query_ev.id)]['whos'].append([direct_obs[i]['who']])
+                    events_dict[str(query_ev.id)]['whens'].append([[direct_obs[i]['when']]])
+
+                    flag1=True
+
+                else:
+                    ind1 = events_dict[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
+                   
+                    # if the current observer has not been reported in the observers' list yet
+                    if direct_obs[i]['who'] not in events_dict[str(query_ev.id)]['whos'][ind1]:
+
+                        agents_dict[str(direct_obs[i]['who'])]['positive']  += 1
+                        agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+
+                        events_dict[str(query_ev.id)]['whos'][ind1].append(direct_obs[i]['who'])
+                        events_dict[str(query_ev.id)]['whens'][ind1].append([direct_obs[i]['when']])
+
+                    else:
+                        # checking the time the observation has occurred in order to avoid redunant infos
+                        if not any(direct_obs[i]['when'] in nest for nest in events_dict[str(query_ev.id)]['whens'][ind1]):
+
+                            agents_dict[str(direct_obs[i]['who'])]['positive']  += 1
+                            agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+
+                            ind2 = events_dict[str(query_ev.id)]['whos'][ind1].index(direct_obs[i]['who'])
+                            events_dict[str(query_ev.id)]['whens'][ind1][ind2].append(direct_obs[i]['when'])
+
+                reputation[i] = agents_dict[str(direct_obs[i]['who'])]['positive'] /\
+                            (agents_dict[str(direct_obs[i]['who'])]['positive'] + agents_dict[str(direct_obs[i]['who'])]['negative'])
+
+                if flag1:
+                    events_dict[str(query_ev.id)]['reps'].append([reputation[i]])
+                else:
+                   events_dict[str(query_ev.id)]['reps'][ind1].append(reputation[i]) 
 
             else:
-                agents_dict[str(direct_obs[i]['who'])]['negative']  += 1
-                agents_dict[str(direct_obs[i]['who'])]['times']     += 1
 
-            print("agent(", str(direct_obs[i]['who']), ") after(1):", agents_dict[str(direct_obs[i]['who'])])
-            # reputation update
-            reputation = agents_dict[str(direct_obs[i]['who'])]['positive'] /\
-            (agents_dict[str(direct_obs[i]['who'])]['positive'] + agents_dict[str(direct_obs[i]['who'])]['negative'])
+                if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict[str(query_ev.id)]['obs']:
+                    
+                    agents_dict[str(direct_obs[i]['who'])]['negative']  += 1
+                    agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+
+                    events_dict[str(query_ev.id)]['obs'].append({   'situation':    direct_obs[i]['situation'],
+                                                                    'object':       direct_obs[i]['obj']})
+                    events_dict[str(query_ev.id)]['whos'].append([direct_obs[i]['who']])
+                    events_dict[str(query_ev.id)]['whens'].append([[direct_obs[i]['when']]])
+
+                    flag1=True
+
+                else:
+                    ind1 = events_dict[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
+                   
+                    # if the current observer has not been reported in the observers' list yet
+                    if direct_obs[i]['who'] not in events_dict[str(query_ev.id)]['whos'][ind1]:
+
+                        agents_dict[str(direct_obs[i]['who'])]['negative']  += 1
+                        agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+
+                        events_dict[str(query_ev.id)]['whos'][ind1].append(direct_obs[i]['who'])
+                        events_dict[str(query_ev.id)]['whens'][ind1].append([direct_obs[i]['when']])
+
+                    else:
+                        # checking the time the observation has occurred in order to avoid redunant infos
+                        if not any(direct_obs[i]['when'] in nest for nest in events_dict[str(query_ev.id)]['whens'][ind1]):
+
+                            agents_dict[str(direct_obs[i]['who'])]['negative']  += 1
+                            agents_dict[str(direct_obs[i]['who'])]['times']     += 1
+
+                            ind2 = events_dict[str(query_ev.id)]['whos'][ind1].index(direct_obs[i]['who'])
+                            events_dict[str(query_ev.id)]['whens'][ind1][ind2].append(direct_obs[i]['when'])
+
+                reputation[i] = agents_dict[str(direct_obs[i]['who'])]['positive'] /\
+                            (agents_dict[str(direct_obs[i]['who'])]['positive'] + agents_dict[str(direct_obs[i]['who'])]['negative'])
+
+                if flag1:
+                    events_dict[str(query_ev.id)]['reps'].append([reputation[i]])
+                else:
+                   events_dict[str(query_ev.id)]['reps'][ind1].append(reputation[i])
+
 
             reputations.append({
             'id':       direct_obs[i]['who'],
-            'rep':      1-reputation,
-            'times':    agents_dict[str(direct_obs[i]['who'])]['times']
+            'rep':      1-reputation[i],
+            'times':    agents_dict[str(direct_obs[i]['who'])]['times'],
+            'when':     direct_obs[i]['when'],
+            'rel':      reliability[i]
             })
-
-            if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict[str(query_ev.id)]['obs']:
-
-                events_dict[str(query_ev.id)]['obs'].append({   'situation':    direct_obs[i]['situation'],
-                                                                'object':       direct_obs[i]['obj']})
-                events_dict[str(query_ev.id)]['reps'].append([reputation])
-                events_dict[str(query_ev.id)]['whos'].append(direct_obs[i]['who'])
-
-            else:
-                index = events_dict[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
-                events_dict[str(query_ev.id)]['reps'][index].append(reputation)
 
 
             # reputation based on a voting approach
-            print("agent(", str(direct_obs[i]['who']), ") before(2):", agents_dict2[str(direct_obs[i]['who'])])
+            tf = 1 if direct_obs[i]['situation']==query_ev.situation and direct_obs[i]['obj']==query_ev.obj else 0
+            cons = 'maj'
             if {'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']} not in events_dict2[str(query_ev.id)]['obs']:
 
                 events_dict2[str(query_ev.id)]['obs'].append({      'situation':    direct_obs[i]['situation'],
                                                                     'object':       direct_obs[i]['obj']})
 
                 events_dict2[str(query_ev.id)]['whos'].append([direct_obs[i]['who']])
+                events_dict2[str(query_ev.id)]['times'].append([1])
                 events_dict2[str(query_ev.id)]['votes'].append(1)
+                events_dict2[str(query_ev.id)]['whens'].append([[direct_obs[i]['when']]])
+                events_dict2[str(query_ev.id)]['rels'].append([[reliability[i]]])
+
 
                 # Here I have to compute the reputation
+                # cons = 'majority'
                 if events_dict2[str(query_ev.id)]['votes'][-1] == max(events_dict2[str(query_ev.id)]['votes']):
 
                     agents_dict2[str(direct_obs[i]['who'])]['positive'] += 1
@@ -306,46 +394,161 @@ def put(DO_id):
                     agents_dict2[str(direct_obs[i]['who'])]['negative'] += 1
                     agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
 
+                    cons = 'min'
 
-                reputation2 = agents_dict2[str(direct_obs[i]['who'])]['positive'] /\
+
+                reputation2[i] = agents_dict2[str(direct_obs[i]['who'])]['positive'] /\
                                 (agents_dict2[str(direct_obs[i]['who'])]['positive'] + agents_dict2[str(direct_obs[i]['who'])]['negative'])
 
-                events_dict2[str(query_ev.id)]['reps'].append([reputation2])
+                events_dict2[str(query_ev.id)]['reps'].append([reputation2[i]])
+                events_dict2[str(query_ev.id)]['reps1'].append([reputation[i]])
+
+                # if not any(query_ev.id==dictionary['ev'] for dictionary in agents_perf[str(direct_obs[i]['who'])]):
+                #         agents_perf[str(direct_obs[i]['who'])].append({
+                #             'when': direct_obs[i]['when'],
+                #             'cons': cons,
+                #             'ev':   query_ev.id
+                #         })
+
+                agVotes = agentsVotesTab(   agents_id   = direct_obs[i]['who'],
+                                        when        = direct_obs[i]['when'],
+                                        where       = direct_obs[i]['where'],
+                                        t_f         = tf,
+                                        cons        = cons)
+
+                db.session.add(agVotes)
+
 
             else:
                 index = events_dict2[str(query_ev.id)]['obs'].index({'situation': direct_obs[i]['situation'], 'object': direct_obs[i]['obj']})
 
-                events_dict2[str(query_ev.id)]['whos'][index].append(direct_obs[i]['who'])
-                events_dict2[str(query_ev.id)]['votes'][index] += 1
+                token = 1
 
-                if events_dict2[str(query_ev.id)]['votes'][index] == max(events_dict2[str(query_ev.id)]['votes']):
+                # if the direct observer has already reported this direct observation
+                if direct_obs[i]['who'] in events_dict2[str(query_ev.id)]['whos'][index] and\
+                     not any(direct_obs[i]['when'] in nest for nest in events_dict2[str(query_ev.id)]['whens'][index]):
 
-                    agents_dict2[str(direct_obs[i]['who'])]['positive'] += 1
-                    agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+                    token = 2
+                    index2 = events_dict2[str(query_ev.id)]['whos'][index].index(direct_obs[i]['who'])
+                    events_dict2[str(query_ev.id)]['times'][index][index2] += 1
+
+                    events_dict2[str(query_ev.id)]['whens'][index][index2].append(direct_obs[i]['when'])
+                    events_dict2[str(query_ev.id)]['rels'][index][index2].append(reliability[i])
+                    events_dict2[str(query_ev.id)]['votes'][index] += 1
+
+                    # cons = 'majority'
+                    if events_dict2[str(query_ev.id)]['votes'][index] == max(events_dict2[str(query_ev.id)]['votes']):
+                        agents_dict2[str(direct_obs[i]['who'])]['positive'] += 1
+                        agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+                    else:
+                        agents_dict2[str(direct_obs[i]['who'])]['negative'] += 1
+                        agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+                        cons = 'min'
+
+                    # if not any(query_ev.id==dictionary['ev'] for dictionary in agents_perf[str(direct_obs[i]['who'])]):
+                    #     agents_perf[str(direct_obs[i]['who'])].append({
+                    #         'when': direct_obs[i]['when'],
+                    #         'cons': cons,
+                    #         'ev':   query_ev.id
+                    #     })
+
+
+                    agVotes = agentsVotesTab(   agents_id   = direct_obs[i]['who'],
+                                        when        = direct_obs[i]['when'],
+                                        where       = direct_obs[i]['where'],
+                                        t_f         = tf,
+                                        cons        = cons)
+
+                    db.session.add(agVotes)
+
+                # if this agent has not reported this observation before
+                elif direct_obs[i]['who'] not in events_dict2[str(query_ev.id)]['whos'][index]:
+
+                    events_dict2[str(query_ev.id)]['whos'][index].append(direct_obs[i]['who'])
+                    events_dict2[str(query_ev.id)]['whens'][index].append([direct_obs[i]['when']])
+                    events_dict2[str(query_ev.id)]['votes'][index] += 1
+
+                    index2 = events_dict2[str(query_ev.id)]['whos'][index].index(direct_obs[i]['who'])
+                    events_dict2[str(query_ev.id)]['times'][index].append(1)
+
+                    events_dict2[str(query_ev.id)]['rels'][index].append([reliability[i]])
+
+
+                    # cons = 'majority'
+                    if events_dict2[str(query_ev.id)]['votes'][index] == max(events_dict2[str(query_ev.id)]['votes']):
+                        agents_dict2[str(direct_obs[i]['who'])]['positive'] += 1
+                        agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+                    else:
+                        agents_dict2[str(direct_obs[i]['who'])]['negative'] += 1
+                        agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+
+                        cons = 'min'
+
+                    
+                    # if not any(query_ev.id==dictionary['ev'] for dictionary in agents_perf[str(direct_obs[i]['who'])]):
+                    #     agents_perf[str(direct_obs[i]['who'])].append({
+                    #         'when': direct_obs[i]['when'],
+                    #         'cons': cons,
+                    #         'ev':   query_ev.id
+                    #     })
+
+                    agVotes = agentsVotesTab(   agents_id   = direct_obs[i]['who'],
+                                        when        = direct_obs[i]['when'],
+                                        where       = direct_obs[i]['where'],
+                                        t_f         = tf,
+                                        cons        = cons)
+
+                    db.session.add(agVotes)
+
 
                 else:
-
-                    agents_dict2[str(direct_obs[i]['who'])]['negative'] += 1
-                    agents_dict2[str(direct_obs[i]['who'])]['times']    += 1
+                    token=3
 
 
-                reputation2 = agents_dict2[str(direct_obs[i]['who'])]['positive'] /\
+                reputation2[i] = agents_dict2[str(direct_obs[i]['who'])]['positive'] /\
                                 (agents_dict2[str(direct_obs[i]['who'])]['positive'] + agents_dict2[str(direct_obs[i]['who'])]['negative'])
 
-                events_dict2[str(query_ev.id)]['reps'][index].append(reputation2)
+                if token==2:
+                    events_dict2[str(query_ev.id)]['reps'][index][index2] = reputation2[i]
+                    events_dict2[str(query_ev.id)]['reps1'][index][index2] = reputation[i]
+                    events_dict2[str(query_ev.id)]['votes'][index] += 1
+                elif token==1:
+                    events_dict2[str(query_ev.id)]['reps'][index].append(reputation2[i])
+                    events_dict2[str(query_ev.id)]['reps1'][index].append(reputation[i])
+                    events_dict2[str(query_ev.id)]['votes'][index] += 1
 
-            print("agent(", str(direct_obs[i]['who']), ") after(2):", agents_dict2[str(direct_obs[i]['who'])])
+                
+            # if token==1 or token==2:
+            #         agents_perf[str(direct_obs[i]['who'])].append({
+            #             'when': direct_obs[i]['when'],
+            #             'cons': cons,
+            #             'ev':   query_ev.id
+            #         })
+
+            # agVotes = agentsVotesTab(   agents_id   = direct_obs[i]['who'],
+            #                             when        = direct_obs[i]['when'],
+            #                             where       = direct_obs[i]['where'],
+            #                             t_f         = tf,
+            #                             cons        = cons)
+
+            # db.session.add(agVotes)
+
             reputations2.append({
                         'id':       direct_obs[i]['who'],
-                        'rep':      1-reputation2,
-                        'times':    agents_dict2[str(direct_obs[i]['who'])]['times']
+                        'rep':      1-reputation2[i],
+                        'times':    agents_dict2[str(direct_obs[i]['who'])]['times'],
+                        'when':     direct_obs[i]['when'],
+                        'rel':      reliability[i]
                         })
 
         except Exception as error:
 
-            pprint(events_dict)
-            pprint(agents_dict)
             raise error
+
+
 
         print("a")
         # first time
@@ -430,11 +633,15 @@ def put(DO_id):
                 input("ouch")
         
 
+        # First 2 tabs in the db
         query_do = dirObsTab.query.filter_by(   situation   = direct_obs[i]['situation'],
                                                 obj         = direct_obs[i]['obj'],
                                                 when        = direct_obs[i]['when'],
                                                 where       = direct_obs[i]['where'],
                                                 who         = direct_obs[i]['who']).first()
+
+
+
         # if the direct observation is not in the db
         if not query_do:
             return_flag = True
@@ -473,7 +680,7 @@ def put(DO_id):
 
             if not flag:
                 for j in range(len(info_history[i])):
-                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],   
+                    ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],
                                             a1              = info_history[i][j]['a1'],
                                             a2              = info_history[i][j]['a2'],
                                             sender          = info_history[i][j]['sender'],
@@ -491,7 +698,7 @@ def put(DO_id):
                 result_do.append(result_ih)
             print("10")
         # if the direct observation is already in the db
-        else:
+        else:#elif query_do:
             # print("###################################################")
             repetition_flag = True
             # print("request:     ", direct_obs[i]['situation'],",", direct_obs[i]['obj'],",", direct_obs[i]['when'],\
@@ -537,6 +744,7 @@ def put(DO_id):
                         # query_do.info_histories[-1].dir_obs_id = query_do.id
                         query_do.info_histories[query_do.info_histories.index(ih)].dir_obs_id = query_do.id
                         result_ih.append(ih_schema.dump(ih))
+
                 result_do.append(result_ih)
                 # query_ih = infoHistoryTab.query.filter_by(id=iden).all()
                 # pprint(ih_schemas.dump(query_ih))
@@ -556,10 +764,6 @@ def put(DO_id):
     # keep track if event has been uploaded on the db for the first time
     if return_flag:
         return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'reputation': reputations, 'reputation2': reputations2}
-    # keep track if all the events have been uploaded on the db
-    # elif all_events_db:
-    #     return {"message": "Created a new DO and IH.",  "DO": result_do, "all_events_db": events}
-    # if an element which was already in the db was being uploaded
     elif not return_flag:
         return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2}
 
@@ -570,6 +774,10 @@ def delete_(DO_id):
 
     query           = dirObsTab.query.options(joinedload(dirObsTab.info_histories))
     query_events    = eventsTab.query.options(joinedload(eventsTab.observations))
+    ag_votes        = agentsVotesTab.query.all()
+
+    for v in ag_votes:
+        db.session.delete(v)
 
     latency = []
     counter1 = 0
@@ -593,10 +801,11 @@ def delete_(DO_id):
     events.clear()
     agents_dict.clear()
     events_dict.clear()
+    events_dict.clear()
 
 
 
-    return {"message": "tabs are cleared", "size_tab1": counter1, "size_tab2": counter2, "latency": statistics.mean(latency)}
+    return {"message": "tabs are cleared", "size_tab1": counter1, "size_tab2": counter2, "latency": statistics.mean(latency), "events_dict2": events_dict2, "agents_perf": agents_perf}
 
 
 if __name__=="__main__":
