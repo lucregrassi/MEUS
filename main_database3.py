@@ -1,4 +1,6 @@
+import csv
 import json
+import logging
 import statistics
 from pprint import pprint
 from collections import Counter
@@ -18,11 +20,12 @@ db = SQLAlchemy(app)
 # ma = Marshmallow(app)
 
 
+# logging.basicConfig(level=logging.INFO, filename='70%.log', filemode='w')
+
 # -- MODEL --
 
 class dirObsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)
-    # dir_obs         = db.Column(db.JSON, nullable=False)
     situation       = db.Column(db.String(50), nullable=False)
     obj             = db.Column(db.String(50), nullable=False)
     when            = db.Column(db.Integer, nullable=False)
@@ -31,9 +34,8 @@ class dirObsTab(db.Model):
     who             = db.Column(db.Integer, nullable=False)
     info_histories  = db.relationship('infoHistoryTab', backref="dir_obs_tab", lazy=True)
 
-    # def __repr__(self):
-    #     return f"dirObsTab(id = {id}\n situation = {situation}\n \
-    #             object = {obj}\n when = {when}\n where = {where}\n who = {who}\n"
+    def __repr__(self):
+        return f"dirObsTab(id = {id}, situation = {situation}\n object = {obj}\n when = {when}\n where = {where}\n who = {who}\n"
 
 
 class infoHistoryTab(db.Model):
@@ -49,6 +51,12 @@ class infoHistoryTab(db.Model):
     when            = db.Column(db.Integer, nullable=False)
     sent_at_loop    = db.Column(db.Integer, nullable=False)
     sent_where      = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f"InfohistoryTab(id = {id}\n dir_obs_id = {dir_obs_id}\n \
+                    observer = {observer}\n a1 = {a1}\n a2 = {a2}\n sender = {sender}\n \
+                        where = {where}\n when = {when}\n sent_at_loop = {sent_at_loop}\n \
+                            sent_where = {sent_where}\n)"
 
 
 class eventsTab(db.Model):
@@ -75,6 +83,16 @@ class agentsVotesTab(db.Model):
     where       = db.Column(db.Integer, nullable=False)
     t_f         = db.Column(db.Integer, nullable=False)
     cons        = db.Column(db.String(50), nullable=False)
+
+class latencyTab(db.Model):
+    id              = db.Column(db.Integer, primary_key=True)
+    situation       = db.Column(db.String(50), nullable=False)
+    obj             = db.Column(db.String(50), nullable=False)
+    when            = db.Column(db.Integer, nullable=False)
+    where           = db.Column(db.Integer, nullable=False)
+    # Information element or direct observation
+    who             = db.Column(db.Integer, nullable=False)
+    lat             = db.Column(db.Integer, nullable=False)
 
 # db.create_all()
 
@@ -123,6 +141,11 @@ ih_schema   = infoHistorySchema()
 ih_schemas  = infoHistorySchema(many=True)
 
 
+# fields  = ['sender', 'sit', 'obj', 'when', 'where', 'who', 'sent_at_loop', 'lat']
+
+
+latency = []
+# latency2 = []
 
 events  = []
 agents_dict = {}
@@ -136,8 +159,18 @@ events_dict2 = {}
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
 
+    # with open('latency_tab_40%.csv', 'w') as f:
+    #     wr = csv.DictWriter(f, fieldnames=fields)
+    #     wr.writeheader()
+
+    latency.clear()
+    # latency2.clear()
+
     json_data = json.loads(request.data)
     events.extend(json_data['events'])
+
+    # print(len(events))
+    # input()
 
     # filling up the first event tab in the db
     for event in events:
@@ -255,6 +288,8 @@ def put(DO_id):
     result_do   = []
     reputations = []
     reputations2 = []
+    events2 = []
+    latency2 = []
 
     # print("sender:", sender)
     # pprint(direct_obs)
@@ -411,10 +446,10 @@ def put(DO_id):
                 #         })
 
                 agVotes = agentsVotesTab(   agents_id   = direct_obs[i]['who'],
-                                        when        = direct_obs[i]['when'],
-                                        where       = direct_obs[i]['where'],
-                                        t_f         = tf,
-                                        cons        = cons)
+                                            when        = direct_obs[i]['when'],
+                                            where       = direct_obs[i]['where'],
+                                            t_f         = tf,
+                                            cons        = cons)
 
                 db.session.add(agVotes)
 
@@ -456,10 +491,10 @@ def put(DO_id):
 
 
                     agVotes = agentsVotesTab(   agents_id   = direct_obs[i]['who'],
-                                        when        = direct_obs[i]['when'],
-                                        where       = direct_obs[i]['where'],
-                                        t_f         = tf,
-                                        cons        = cons)
+                                                when        = direct_obs[i]['when'],
+                                                where       = direct_obs[i]['where'],
+                                                t_f         = tf,
+                                                cons        = cons)
 
                     db.session.add(agVotes)
 
@@ -496,10 +531,10 @@ def put(DO_id):
                     #     })
 
                     agVotes = agentsVotesTab(   agents_id   = direct_obs[i]['who'],
-                                        when        = direct_obs[i]['when'],
-                                        where       = direct_obs[i]['where'],
-                                        t_f         = tf,
-                                        cons        = cons)
+                                                when        = direct_obs[i]['when'],
+                                                where       = direct_obs[i]['where'],
+                                                t_f         = tf,
+                                                cons        = cons)
 
                     db.session.add(agVotes)
 
@@ -646,38 +681,83 @@ def put(DO_id):
         if not query_do:
             return_flag = True
             result_ih = []
+
+            # if info_history[i][0]['sender'] < 70:
+            # latency.append(info_history[i][0]['sent_at_loop'] - direct_obs[i]['when'])
+            # else:
+            #     print(info_history[i])
+            #     input("somethings wrong")
+
+            # logging.info(do_schema.dump(direct_obs[i]))
+            # logging.info(latency[-1])
+
+            # lt  = latencyTab(   situation       = direct_obs[i]['situation'],
+            #                     obj             = direct_obs[i]['obj'],
+            #                     where           = direct_obs[i]["where"],
+            #                     when            = direct_obs[i]["when"],
+            #                     who             = direct_obs[i]["who"],
+            #                     lat             = latency[-1])
+            # db.session.add(lt)
+            
+            # if info_history[i][0]['sender'] < 70:
+            #     with open('latency_tab_80%.csv', 'a') as csv_file:
+            #         csv_w = csv.DictWriter(csv_file, fieldnames=fields)
+
+            #         info = {
+            #             'sender':       info_history[i][0]['sender'],
+            #             'situation':    direct_obs[i]['situation'],
+            #             'obj':          direct_obs[i]['obj'],
+            #             'where':        direct_obs[i]['where'],
+            #             'when':         direct_obs[i]['when'],
+            #             'who':          direct_obs[i]['who'],
+            #             'lat':          latency[-1]
+            #         }
+
+            #         csv_w.writerow(info)
+
             do  = dirObsTab(    situation       = direct_obs[i]['situation'],
                                 obj             = direct_obs[i]['obj'],
                                 where           = direct_obs[i]["where"],
                                 when            = direct_obs[i]["when"],
                                 who             = direct_obs[i]["who"])
 
+
             # ackowledging we are adding a new direct observation to the db
             elem = {'situation': do.situation, 'object': do.obj, 'where': do.where, 'who': do.who}
-            for el in events:
+            for n, el in enumerate(events):
                 # if the observation corresponds to the actual situation
                 if el['situation'] == elem['situation'] and el['object'] == elem['object'] and el['where']==elem['where']:
                     try:
-                        index = events.index(el)
+                        # index = events.index(el)
                         # del events[index]
-                        events[index]['correct'] += 1
-                    except:
-                        print("remove operation failed.")
-                        pprint(events)
-                        print("elem:    ", elem)
-                        print(bool(elem in events))
-                        input()
+                        if events[n]['correct']==0:
+
+                            latency.append(info_history[i][0]['sent_at_loop'] - direct_obs[i]['when'])
+                            latency2.append({
+                                'sender':       info_history[i][0]['sender'],
+                                'sit':          direct_obs[i]['situation'],
+                                'obj':          direct_obs[i]['obj'],
+                                'when':         direct_obs[i]['when'],
+                                'where':        direct_obs[i]['where'],
+                                'who':          direct_obs[i]['who'],
+                                'sent_at_loop': info_history[i][0]['sent_at_loop'],
+                                'lat':          latency[-1]
+                            })
+                            events[n]['first_time'] = 1
+
+                            
+                        events[n]['correct'] += 1
+                    except Exception as err:
+                        raise err
+
                 # if the element is a "distorted" observation instead
                 elif (el['situation'] != elem['situation'] or el['object'] != elem['object']) and el['where'] == elem['where']:
-                    index = events.index(el)
-                    events[index]['mistaken']['times'] += 1
-                    events[index]['mistaken']['difference'].append(elem)
-            # print(return_flag)
-            # input("return_flag")
-            db.session.add(do)
-            result_do.append(do_schema.dump(do))
-            
+                    # index = events.index(el)
+                    events[n]['mistaken']['times'] += 1
+                    events[n]['mistaken']['difference'].append(elem)
 
+        
+        
             if not flag:
                 for j in range(len(info_history[i])):
                     ih = infoHistoryTab(    observer        = info_history[i][j]['observer'],
@@ -688,6 +768,9 @@ def put(DO_id):
                                             when            = info_history[i][j]['when'],
                                             sent_at_loop    = info_history[i][j]['sent_at_loop'],
                                             sent_where      = info_history[i][j]['sent_where'])
+                    # print(do_schema.dump(do))
+                    # print(ih_schema.dump(ih))
+                    # input("checking first event")
                     db.session.add(ih)
                     # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                     do.info_histories.append(ih)
@@ -732,38 +815,24 @@ def put(DO_id):
                                                 when            = info_history[i][j]['when'],
                                                 sent_at_loop    = info_history[i][j]['sent_at_loop'],
                                                 sent_where      = info_history[i][j]['sent_where'])
-                        # print("ih: ", ih_schema.dump(ih(only('observer', 'a1', 'a2', 'where', 'when'))))
-                        # for jump in query_do.info_histories:
-                        #     print("jump_db: ", ih_schema.dump(jump))
-                        # if ih not in query_do.info_histories:
-                        # print("I have to add that jump!")
+
                         db.session.add(ih)
-                        # result_ih.append(ih_schema.dump(infoHistoryTab.query.get(ih.id)))
                         query_do.info_histories.append(ih)
-                        # ih.dir_obs_tab = do.id
-                        # query_do.info_histories[-1].dir_obs_id = query_do.id
+
                         query_do.info_histories[query_do.info_histories.index(ih)].dir_obs_id = query_do.id
                         result_ih.append(ih_schema.dump(ih))
 
                 result_do.append(result_ih)
-                # query_ih = infoHistoryTab.query.filter_by(id=iden).all()
-                # pprint(ih_schemas.dump(query_ih))
-                # input()
             print("11")
 
     print("12")
 
     db.session.commit()
-    # if repetition_flag:
-    #     query = dirObsTab.query.filter_by(id=iden).first()
-    #     pprint(ih_schemas.dump(query.info_histories))
-    #     input()
-    # input("after commit")
-    # result_do = do_schema.dump(dirObsTab.query.get(do.id))
+
 
     # keep track if event has been uploaded on the db for the first time
     if return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'reputation': reputations, 'reputation2': reputations2}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency2': latency2, 'reputation': reputations, 'reputation2': reputations2}
     elif not return_flag:
         return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2}
 
@@ -775,16 +844,77 @@ def delete_(DO_id):
     query           = dirObsTab.query.options(joinedload(dirObsTab.info_histories))
     query_events    = eventsTab.query.options(joinedload(eventsTab.observations))
     ag_votes        = agentsVotesTab.query.all()
+    lat_tab         = latencyTab.query.all()
 
     for v in ag_votes:
         db.session.delete(v)
+    
+    for l in lat_tab:
+        db.session.delete(l)
 
-    latency = []
+    check = []
+    # latency = []
+    # latency2 = []
     counter1 = 0
     counter2 = 0
+
+
+    # fieldnames = ["sit", "obj", "when", "where", "who", "lat", "sent_at_loop"]
+
+    # with open('80%.csv', 'w') as f:
+    #     csv_writer = csv.DictWriter(f, fieldnames=fieldnames)
+    #     csv_writer.writeheader()
+
     for Obs in query:
-        latency.append(Obs.info_histories[0].sent_at_loop - Obs.when)
-        # s += Obs.info_histories[0].sent_at_loop - Obs.when
+
+        # if 60 <= Obs.info_histories[0].sender <= 70:
+        #     check.append(Obs.info_histories[0].sent_at_loop - Obs.when)
+        # else:
+        #     latency2.append(Obs.info_histories[0].sent_at_loop - Obs.when)
+        # first time an observation has been sent to the db
+
+        # minimum = min(x.when for x in Obs.info_histories)
+        # ind     = [i for i, j in enumerate(Obs.info_histories) if j.when==minimum]
+
+        # latency.append(Obs.info_histories[ind[0]].sent_at_loop - Obs.when)
+
+        # minimum = min(x.sent_at_loop for x in Obs.info_histories)
+        # ind     = [i for i, j in enumerate(Obs.info_histories) if j.sent_at_loop==minimum]
+
+        # print("id:", Obs.info_histories[ind[0]].dir_obs_id)
+        # print(ind)
+        # print(len(Obs.info_histories))
+        # # print("id:", Obs.info_histories[ind[0]].dir_obs_id)
+        # if ind[0] >= len(Obs.info_histories):
+        #     # print("id:", Obs.info_histories[ind[0]].dir_obs_id)
+        #     input("ouch")
+
+        # if not( 70 <= Obs.info_histories[ind[0]].sender <= 80):
+
+        #     latency.append(minimum - Obs.when)
+        # print(do_schema.dump(Obs))
+        # pprint(ih_schemas.dump(Obs.info_histories))
+        # print(len(Obs.info_histories))
+        # print(ih_schema.dump(Obs.info_histories[0]))
+        # print(Obs.info_histories[ind[0]].sent_at_loop)
+        # print(Obs.when)
+        # print(latency[-1])
+        # print(ind)
+        # input("checki")
+        # with open('80%.csv', 'a') as f:
+        #     csv_writer = csv.DictWriter(f, fieldnames=fieldnames)
+
+        #     info = {
+        #         'sit':          Obs.situation,
+        #         'obj':          Obs.obj,
+        #         'when':         Obs.when,
+        #         'where':        Obs.where,
+        #         'who':          Obs.who,
+        #         'lat':          Obs.info_histories[0].sent_at_loop - Obs.when,
+        #         'sent_at_loop': Obs.info_histories[0].sent_at_loop
+        #     }
+        #     csv_writer.writerow(info)
+
         for jump in Obs.info_histories:
             db.session.delete(jump)
             counter2 += 1
@@ -803,9 +933,22 @@ def delete_(DO_id):
     events_dict.clear()
     events_dict.clear()
 
+    # latency2.sort(key=lambda a: a['sender'])
+
+    # with open('latency_tab_40%.csv', 'a') as f:
+    #     csv_writer = csv.DictWriter(f, fieldnames=fields)
+
+    #     for el in latency2:
+
+    #         info = el
+
+    #         csv_writer.writerow(info)
 
 
-    return {"message": "tabs are cleared", "size_tab1": counter1, "size_tab2": counter2, "latency": statistics.mean(latency), "events_dict2": events_dict2, "agents_perf": agents_perf}
+
+
+    return {"message": "tabs are cleared", "size_tab1": counter1, "size_tab2": counter2, "latency": statistics.mean(latency), "events_dict2": events_dict2, "agents_perf": agents_perf,
+            'lat_length': len(latency)}
 
 
 if __name__=="__main__":

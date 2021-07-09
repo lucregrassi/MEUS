@@ -229,15 +229,15 @@ def NewIEtoDict(lis):
     lis[0]  = lis[0].asdict()
     lis[0]['what']  = lis[0]['what'].asdict() 
 
-    # if type(lis[0]['what']['event'][0])==owlready2.entity.ThingClass:
+    if type(lis[0]['what']['event'][0])==owlready2.entity.ThingClass:
 
-    lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]).split(".", 1)[1],
-                        'object':      str(lis[0]['what']['event'][1]).split(".", 1)[1]
-                        }
-    # else:
-        # lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]),
-        #                     'object':      str(lis[0]['what']['event'][1])
-        #                     }
+        lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]).split(".", 1)[1],
+                            'object':      str(lis[0]['what']['event'][1]).split(".", 1)[1]
+                            }
+    else:
+        lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]),
+                            'object':      str(lis[0]['what']['event'][1])
+                            }
 
     # print(lis)
     # input("NewIEtooDict() check")

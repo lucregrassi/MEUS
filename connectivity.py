@@ -4,6 +4,7 @@ import logging
 import osmnx as ox
 from datetime import datetime
 import networkx as nx
+from pprint import pprint
 
 
 random.seed(1)
@@ -33,14 +34,22 @@ def color(graph):
 # This function randomly picks as many nodes as the number of hubs specified as parameter, and
 def setup_connection(graph, connection, hubs, radius):
     # nodes = random.choices(list(graph.nodes), k=hubs)
-    # nodes = [4364317126]
+
+    # picking up nodes according to a centrality degree in the graph
     deg_centrality = nx.degree_centrality(G)
 
-    deg_centrality_list = [deg_centrality[key] for key in deg_centrality.keys()]
-    deg_centrality_list.sort()
+    # deg_centrality_list = [deg_centrality[key] for key in deg_centrality.keys()]
+    deg_centrality_list = list(deg_centrality.items())
+    pprint(deg_centrality_list)
+    deg_centrality_list.sort(key=lambda a: a[1])
 
-    nodes = [key for key in deg_centrality.keys() if deg_centrality_list[-1]==deg_centrality[key]]
-    nodes = [nodes[0]]
+    nodes = [deg_centrality_list[i+(i*5)][0] for i in range(hubs)]
+    # nodes = [key for key in deg_centrality.keys() if deg_centrality_list[-1]==deg_centrality[key]]
+
+    # nodes = [nodes[0]]
+
+    # print(nodes)
+    # input()
 
     for node in graph.nodes(data=True):
         # If the node is an hub
@@ -80,7 +89,7 @@ def setup_connection(graph, connection, hubs, radius):
 # Define the number of hubs (sources) and the radius for each type of connection
 # Setup 4g connections
 hubs_4g = 1
-radius_4g = 20
+radius_4g = 3
 G = setup_connection(G, 1, hubs_4g, radius_4g)
 
 # # Setup 5g connections
