@@ -2,6 +2,8 @@ import math
 import json
 import pprint
 import operator
+import random
+import statistics
 from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
 import numpy as np
@@ -296,19 +298,19 @@ def plot_reputations(obss):
     plt.show()
     
 
-def plot_agent_perf(agent, key, rep):
+def plot_agent_perf(agent, key, pth, e_rate):#, rep):
 
     plt.style.use('seaborn-whitegrid')
 
-    outpath = "/Users/mario/Desktop/exp10June/"
+    outpath = pth
 
     plt.figure(key)
 
     plt.plot([t[1] for t in agent.ordered_reps], [t[0] for t in agent.ordered_reps], marker='*', c='b', label='rep', linewidth=1.1)
     plt.plot([t[1] for t in agent.ordered_reps2], [t[0] for t in agent.ordered_reps2], marker='*', c='tab:orange', label='rep2', linewidth=1.1)
-    plt.plot([t[1] for t in agent.ordered_rels], [t[0] for t in agent.ordered_rels], marker='*', c='k', label='rel', linewidth=.5)
+    # plt.plot([t[1] for t in agent.ordered_rels], [t[0] for t in agent.ordered_rels], marker='*', c='k', label='rel', linewidth=.5)
     # specifying horizontal line type
-    plt.axhline(y = rep, color = 'r', linestyle = '-', linewidth=.4)
+    plt.axhline(y = 1-e_rate, color = 'r', linestyle = '-', linewidth=.4)
 
 
     plt.legend(loc='upper left')
@@ -316,7 +318,7 @@ def plot_agent_perf(agent, key, rep):
     plt.xlabel('when')
 
     plt.tight_layout()
-    plt.savefig(path.join(outpath,"agent_{0}.png".format(int(key))))
+    plt.savefig(path.join(outpath,"agent_{0}.svg".format(int(key))))
     # plt.show()
 
 
@@ -328,7 +330,81 @@ def getIndexOfTuple(l, index, value):
 
     # Matches behavior of list.index
     raise ValueError("list.index(x): x not in list")
+
+
+def ran_gen():
+
+    rNUm = random.randrange(100)
+
+    return (rNUm % 2)
+
+def pr_gen():
+
+    x = ran_gen()
+    y = ran_gen()
+
+    return(x & y)
+
+
+def latency_plot(latencies, pth):
+
+    # if len(latencies) < 4:
+    #     raise Exception
+
+    plt.style.use('seaborn-whitegrid')
+
+    outpath = pth
+
+    plt.figure()
+
+    plt.plot(latencies[0], label='1km radius')
+    plt.plot(latencies[1], label='3km radius')
+    plt.plot(latencies[2], label='5km radius')
+    # plt.plot(latencies[3], label='latency_90%')
+    # plt.axhline(y = statistics.mean(latencies), color = 'r', linestyle = '-', linewidth=.4)
+
+    plt.legend(loc='upper left')
+    plt.ylabel('lat [#loops]')
+    plt.xlabel('# of obs')
+
+    plt.tight_layout()
+    plt.savefig(path.join(outpath, "error_plot.svg"))
+
+
+def latency_meanStddev_plot(rep1_mean, rep1_stddev, rep2_mean, rep2_stddev, err_rate, pth):
+
+    outpath = pth
+
+    plt.style.use('seaborn-whitegrid')
+
+    plt.figure(101)
+
+    plt.plot(rep1_mean, label='rep1 mean', c='b')
+    plt.plot(rep2_mean, label='rep2 mean', c='tab:orange')
+
+    plt.axhline(y = 1-err_rate, color = 'r', linestyle = '-', linewidth=.4)
+
+    plt.legend(loc='upper left')
+    plt.ylabel('mean ratings')
+    plt.xlabel('# of observations')
+    plt.tight_layout()
+    plt.savefig(path.join(outpath, 'mean_rep_plot_{0}%.svg'.format(str(int((1-err_rate)*100)))))
     
+
+    plt.figure(102)
+
+    plt.plot(rep1_stddev, label='rep1 stddev', c='b')
+    plt.plot(rep2_stddev, label='rep2 stddev', c='tab:orange')
+
+    # plt.errorbar([i for i in range(len(rep1_mean))], rep1_mean, yerr=rep1_stddev, ecolor='b', capsize=5)
+    # plt.errorbar([i for i in range(len(rep2_mean))], rep2_mean, yerr=rep2_stddev, ecolor='tab:orange', capsize=5)
+
+    plt.legend(loc='upper left')
+    plt.ylabel('stddev ratings')
+    plt.xlabel('# of observations')
+    plt.tight_layout()
+    plt.savefig(path.join(outpath, 'stddev_rep_plot_{0}%.svg'.format(str(int((1-err_rate)*100)))))
+
 
 
 

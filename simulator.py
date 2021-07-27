@@ -10,7 +10,7 @@ import pandas as pd
 from Agent import Agent
 from owlready2 import *
 from read_ontology import get_cls_at_dist
-from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple
+from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple, ran_gen, pr_gen, latency_plot, latency_meanStddev_plot
 from InformationElement import NewInformationElement, NewDirectObservation
 
 import requests
@@ -22,7 +22,7 @@ import time
 # np.random.seed(3)
 
 class Simulator:
-    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance = 20, seed=3, threshold=70):
+    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance = 20, seed=3, threshold=70, err_rate=0.25):
         self.n_agents           = n_agents
         self.n_gateways         = n_gateways
         self.perc_seen_ev       = 0
@@ -42,10 +42,19 @@ class Simulator:
         self.onto               = get_ontology("ontology/MEUS.owl")
         self.obs_ev             = 0
         self.latency            = []
+        self.err_rate           = err_rate
+        self.mean_succ_rate     = []
+        self.mean_succ_rate2    = []
+        self.stddev_succ_rate   = []
+        self.stddev_succ_rate2  = []
+        self.first_time         = False
+        self.same_root          = False
+        self.already_told       = False
 
 
     def compute_destination(self, current_node, ag):
 
+        # tic = time.perf_counter()
         source_nodes = []
         target_nodes = []
         # Look for all the sources and the targets of the current node
@@ -55,39 +64,32 @@ class Simulator:
                 target_nodes.append(target)
             if target == current_node:
                 source_nodes.append(source)
-        # if ag==3:
-        #     print("Source nodes of " + str(current_node) + ": " + str(source_nodes))
-        #     print("Target nodes of " + str(current_node) + ": " + str(target_nodes))
-        adj_nodes = source_nodes + target_nodes
-        # if ag==3:
-        #     print("All adjacent nodes: " + str(adj_nodes))
-        distance = 0
-        destination_node = 0
+        
+        # toc = time.perf_counter()
+        # print("perf:", toc-tic)
+        # input()
+
+        adj_nodes           = source_nodes + target_nodes
+        distance            = 0
+        destination_node    = 0
+
         # If there are adjacent nodes (at least a source or a target), pick one randomly as the destination
         if adj_nodes:
-            inde2 = np.random.randint(0, len(adj_nodes))
-
+            inde2               = np.random.randint(0, len(adj_nodes))
             if inde2==len(adj_nodes):
                 inde2 -= 1
+            destination_node    = adj_nodes[inde2]
 
-            # destination_node = np.random.choice(adj_nodes, 1)[0]
-            # logging.info(destination_node)
-            destination_node = adj_nodes[inde2]
-
-            # logging.info("A " + str(destination_node))
-            # if ag==3:
-            #     print("Destination node: " + str(destination_node))
-            #     print("index2:", inde2)
             if destination_node in target_nodes:
                 edges_of_interest = self.G[current_node][destination_node]
             else:
                 edges_of_interest = self.G[destination_node][current_node]
+                
             for edge in edges_of_interest.values():
                 distance = edge.get('length')
                 # ls = compute_intermediate_dist(edge)
                 if distance < 0:
-                    # logging.error("distance is negative!!!")
-                    print("distance is negative!!!")
+                    input("distance is negative!!!")
 
         return destination_node, distance
 
@@ -126,9 +128,9 @@ class Simulator:
                                         same_root = False
                                         already_told = False
                                         # print("teller: ", IE_teller[0],", ",IE_teller[1:])
-                                        for i in range(len(listener.ies)):
+                                        for i, lis_ie in enumerate(listener.ies):
                                             # If the IEs have the same root (can happen only once)
-                                            if IE_teller[0] == listener.ies[i][0]:
+                                            if IE_teller[0] == lis_ie[0]:
                                                 same_root = True
                                                 index = i
                                                 # same_root_IE_listener = copy.deepcopy(IE_listener)
@@ -136,11 +138,11 @@ class Simulator:
                                                 for quadrupla in IE_teller[1:]:
                                                     # If the listener is not a teller in a tuple of the IE,
                                                     # or the teller has not previously told the information to the listener
-                                                    if quadrupla[0] == listener.n:
+                                                    if quadrupla[0]==listener.n:
                                                         already_told = True
                                                         break
-                                                for tup in listener.ies[i][1:]:
-                                                    if (tup[0] == teller.n and tup[1] == listener.n):
+                                                for tup in lis_ie[1:]:
+                                                    if (tup[0]==teller.n and tup[1]==listener.n):
                                                         already_told = True
                                                         break
 
@@ -150,10 +152,8 @@ class Simulator:
 
                                                     target_extend = []
                                                     target_extend.append((teller.n, listener.n, int(k), loop))
-                                                    
-                                                    for elem in IE_teller[1:]:
-                                                        if elem not in listener.ies[index]:
-                                                            target_extend.append(elem)
+                                                    target_extend.extend(elem for elem in IE_teller[1:] if elem not in listener.ies[index])
+
                                                     # communicating the information to the listener
                                                     listener.ies[index].extend(target_extend)
                                                 else:
@@ -181,9 +181,6 @@ class Simulator:
             a.moving = True
             a.road = 0
 
-            # if a.n==3:
-            #     print(a)
-            #     input()
 
             node_situation = []
             node_object = []
@@ -216,15 +213,24 @@ class Simulator:
             # The actual situation and object seen by the person depend on its trustworthiness
             if flag:
     
-                # a.error = np.random.normal(a.mu, a.sigma, 1)[0]
+                a.error = np.random.normal(a.mu, a.sigma, 1)[0]
 
                 # logging.info("B " + str(a.error))
                 # logging.info(loop)
 
 
-                seen_sit = get_cls_at_dist(node_situation, a.error, a.mu, a.sigma, a.n)
-                seen_obj = get_cls_at_dist(node_object, a.error, a.mu, a.sigma, a.n)
-                seen_ev = seen_sit, seen_obj
+                # seen_sit = get_cls_at_dist(node_situation, a.error, a.mu, a.sigma, a.n)
+                # seen_obj = get_cls_at_dist(node_object, a.error, a.mu, a.sigma, a.n)
+                # seen_ev = seen_sit, seen_obj
+                # if pr_gen()==1:
+                chance = random.random()
+                if chance<=self.err_rate:
+                    distance = 2 if chance<=0.05 else 1
+                    seen_sit    = get_cls_at_dist(node_situation, distance=distance)
+                    seen_obj    = get_cls_at_dist(node_object, distance=distance)
+                    seen_ev     = (seen_sit, seen_obj)
+                else:
+                    seen_ev     = (node_situation, node_object)
                 # seen_ev = node_situation, node_object
                 # logging.info(seen_ev)
                 a.seen_events.append(seen_ev)
@@ -313,8 +319,8 @@ class Simulator:
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
 
-            oldkey = None
 
+            # reputations
             for k in range(len(res['reputation'])):
                 
                 key = str(res['reputation'][k]['id'])
@@ -325,16 +331,30 @@ class Simulator:
                 self.agents_dict[key].reputation2    = res['reputation2'][k]['rep']
                 self.agents_dict[key].num_info_seen2 = res['reputation2'][k]['times']
 
+                if self.first_time:
+
+                    self.mean_succ_rate.append(statistics.mean(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
+                                                        if self.agents_dict[i].num_info_seen > 0))
+                    
+                    self.stddev_succ_rate.append(statistics.stdev(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
+                                                        if self.agents_dict[i].num_info_seen > 0))
+                    
+
+                    self.mean_succ_rate2.append(statistics.mean(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
+                                                        if self.agents_dict[i].num_info_seen > 0))
+
+                    self.stddev_succ_rate2.append(statistics.stdev(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
+                                                        if self.agents_dict[i].num_info_seen > 0))
+
                 # if oldkey!=key and res['reputation'][k]['when'] not in self.agents_dict2[key]['when']:
 
                 self.agents_dict2[key]['rep'].append(res['reputation'][k]['rep'])
-                self.agents_dict2[key]['rel'].append(res['reputation'][k]['rel'])
+                # self.agents_dict2[key]['rel'].append(res['reputation'][k]['rel'])
                 self.agents_dict2[key]['when'].append(res['reputation'][k]['when'])
                 self.agents_dict2[key]['rep2'].append(res['reputation2'][k]['rep'])
 
-                oldkey = key
-                    
-            
+                self.first_time=True
+            # percentage of events seen
             if 'events' in res:
                 ind = 0
                 for i, ev in enumerate(res['events']):
@@ -342,7 +362,6 @@ class Simulator:
                     # checking if its the first time the observation has been made
                     if ev['first_time']==1 and 'db_time' not in self.events[i]:
                     
-
                         self.events[i]  = ev
 
                         toc_db  = time.perf_counter()
@@ -353,22 +372,15 @@ class Simulator:
                         self.perc_seen_ev = 100*self.obs_ev/len(self.events)
 
                         # self.latency.append(res['latency2'][indice]['lat'])
-                        self.latency.append(res['latency2'][ind]['sent_at_loop'])
+                        self.latency.append(res['latency'][ind]['sent_at_loop'])
 
-                        # with open('latency_tab_100%.csv', 'a') as f:
-                        #     csv_writer = csv.DictWriter(f, fieldnames=fields2)
-
-                        #     info = res['latency2'][indice]
-                        #     csv_writer.writerow(info)
 
                         ind += 1
-
 
                         if self.perc_seen_ev>=self.threshold:
                             pprint(self.latency)
                             input()
                             return
-
 
 
             # elif loop >= len(self.events) and 'all_events_db' in res:
@@ -402,13 +414,7 @@ class Simulator:
             # curr_node = random.choice(list(n[0] for n in self.G.nodes.data()))
             # inde = np.random.randint(0, len(l)-1)
             curr_node = l[np.random.randint(0, len(l)-1)]
-            # logging.info("C " + str(curr_node))
-            # curr_node = list(n[0] for n in self.G.nodes.data())[i+3]
-            # curr_node = l[i]
-            # if i==3:
-            #     print("curr_node:", curr_node)
-            #     print("index1:", inde)
-            # input()
+
             situation = {}
             obj = []
 
@@ -424,8 +430,6 @@ class Simulator:
             # err = 0
 
             agent = Agent(i, curr_node, dest_node, dist, err) #if i!= 3 else Agent(i, curr_node, dest_node, dist, 0)
-
-            # logging.info("D " + str(err))
             
             agent.mu    = mu
             agent.sigma = sigma
@@ -447,10 +451,14 @@ class Simulator:
                         obj = elem[1]['object']
 
                         # Add the event that the person thinks to have seen to the list
-                        seen_situation = get_cls_at_dist(situation, agent.error, mu, sigma, agent.n)
-                        seen_object = get_cls_at_dist(obj, agent.error, mu, sigma, agent.n)
-                        seen_event = (seen_situation, seen_object)
-                        # seen_event = (situation, obj)
+                        chance = random.random()
+                        if chance<=self.err_rate:
+                            distance = 2 if chance<=0.05 else 1
+                            seen_situation  = get_cls_at_dist(situation, distance=distance)
+                            seen_object     = get_cls_at_dist(obj, distance=distance)
+                            seen_event      = (seen_situation, seen_object)
+                        else:
+                            seen_event = (situation, obj)
 
                         agent.seen_events.append(seen_event)
                         agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
@@ -537,9 +545,6 @@ class Simulator:
                     'correct':      0,
                     'first_time':   0
                 })
-            
-            # print(len(self.events))
-            # input()
 
         inf = {'events': self.events, 'n_agents': self.n_agents}
 
@@ -589,10 +594,11 @@ if __name__=="__main__":
 
 
     simulator = Simulator(  n_agents        = 100,
-                            n_gateways      = 1,
+                            n_gateways      = 0.5,
                             loop_distance   = 20,
                             seed            = 57,
-                            threshold       = 50)
+                            threshold       = 40,
+                            err_rate        = 0.35)
     simulator.run()
 
 
@@ -635,44 +641,62 @@ if __name__=="__main__":
     rep_file = pd.read_csv('reputations.csv')
     reps = rep_file['reputation']
 
-    if math.floor(simulator.n_gateways*simulator.n_agents)!=100:
-        mean_error_rate1 = statistics.mean(reps[:math.floor(simulator.n_gateways*simulator.n_agents)])
-        mean_error_rate2 = statistics.mean(reps[math.floor(simulator.n_gateways*simulator.n_agents):])
-    else:
-        mer = statistics.mean(reps)
+    # if math.floor(simulator.n_gateways*simulator.n_agents)!=100:
+    #     mean_error_rate1 = statistics.mean(reps[:math.floor(simulator.n_gateways*simulator.n_agents)])
+    #     mean_error_rate2 = statistics.mean(reps[math.floor(simulator.n_gateways*simulator.n_agents):])
+    # else:
+    #     mer = statistics.mean(reps)
+
+    path = '/Users/mario/Desktop/Fellowship_Unige/experiments/100/Amatrice/28-06/seed' + str(simulator.seed) #+ '/Amatrice_reps_' +str(int((1-simulator.err_rate)*100)) + '%'
+    # fieldn = ['lats']
+    # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'w') as f:
+    #     writer = csv.DictWriter(f, fieldnames=fieldn)
+    #     writer.writeheader()
+    
+    # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'a') as f:
+    #     writer = csv.DictWriter(f, fieldnames=fieldn)
+    #     for el in simulator.latency:
+    #         writer.writerow({'lats': el})
+
 
     for key in simulator.agents_dict.keys():
 
         simulator.agents_dict[key].ordered_reps  = list(zip(simulator.agents_dict2[key]['rep'], simulator.agents_dict2[key]['when']))
         simulator.agents_dict[key].ordered_reps2 = list(zip(simulator.agents_dict2[key]['rep2'], simulator.agents_dict2[key]['when']))
-        simulator.agents_dict[key].ordered_rels  = list(zip(simulator.agents_dict2[key]['rel'], simulator.agents_dict2[key]['when']))
+        # simulator.agents_dict[key].ordered_rels  = list(zip(simulator.agents_dict2[key]['rel'], simulator.agents_dict2[key]['when']))
 
         simulator.agents_dict[key].ordered_reps.sort(   key=lambda a: a[1])
         simulator.agents_dict[key].ordered_reps2.sort(  key=lambda a: a[1])
-        simulator.agents_dict[key].ordered_rels.sort(   key=lambda a: a[1])
+        # simulator.agents_dict[key].ordered_rels.sort(   key=lambda a: a[1])
 
-        # pprint(simulator.agents_dict[key].ordered_rels)
-        # print("---")
-        # pprint(simulator.agents_dict[key].error_list)
         
-        if len(simulator.agents_dict[key].ordered_reps)>1:
-            if math.floor(simulator.n_gateways*simulator.n_agents)!=100:
-                if int(key) >= math.floor(simulator.n_gateways*simulator.n_agents):
-                    plot_agent_perf(simulator.agents_dict[key], key, mean_error_rate2)
-                else:
-                    plot_agent_perf(simulator.agents_dict[key], key, mean_error_rate1)
-            else:
-                plot_agent_perf(simulator.agents_dict[key], key, mer)
+        # if len(simulator.agents_dict[key].ordered_reps)>1:
+        #     if math.floor(simulator.n_gateways*simulator.n_agents)!=100:
+        #         if int(key) >= math.floor(simulator.n_gateways*simulator.n_agents):
+        #             plot_agent_perf(simulator.agents_dict[key], key, mean_error_rate2)
+        #         else:
+        #             plot_agent_perf(simulator.agents_dict[key], key, mean_error_rate1)
+        #     else:
+        #         plot_agent_perf(simulator.agents_dict[key], key, mer)
+        # if len(simulator.agents_dict[key].ordered_reps)>1:
+        #     plot_agent_perf(simulator.agents_dict[key], key, path, simulator.err_rate)
 
-        # input("plot")
+    # pprint(simulator.mean_succ_rate)
+    # pprint(simulator.stddev_succ_rate)
+    # input()
+    latency_meanStddev_plot(    simulator.mean_succ_rate,
+                                simulator.stddev_succ_rate,
+                                simulator.mean_succ_rate2,
+                                simulator.stddev_succ_rate2,
+                                simulator.err_rate,
+                                path)
+
 
     input("check 3 explore_graph.py")
     response = requests.delete(simulator.BASE + "IE/1" )
     res = response.json()
     pprint(res)
-    # pprint(res['events_dict2'])
-    # print("---")
-    # pprint(res['agents_perf'])
+
 
 
     with open('experiments.csv', 'a') as csv_file:
