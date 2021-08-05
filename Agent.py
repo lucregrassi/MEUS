@@ -11,11 +11,13 @@ class Agent:
         self.road           = road # distance (between 2 nodes) traveled so far by agent
         self.reputation     = 0.5
         self.reputation2    = 0.5
+        self.reputations    = []
+        self.reputations2   = []
         self.mu             = mu
         self.sigma          = sigma
         self.num_info_sent  = num_info_sent
         self.num_info_seen  = num_info_seen
-        self.num_info_seen2  = num_info_seen2
+        self.num_info_seen2 = num_info_seen2
         self.visited_nodes  = []
         self.seen_events    = []
         self.met_agents     = []
