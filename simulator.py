@@ -43,18 +43,11 @@ class Simulator:
         self.onto               = get_ontology("ontology/MEUS.owl")
         self.obs_ev             = 0
         self.latency            = []
-        self.err_rate           = err_rate
-        self.mean_succ_rate     = []
-        self.mean_succ_rate2    = []
-        self.stddev_succ_rate   = []
-        self.stddev_succ_rate2  = []
-        self.first_time         = False
-        self.similarity_err     = 0
+
 
 
     def compute_destination(self, current_node, ag):
 
-        # tic = time.perf_counter()
         source_nodes = []
         target_nodes = []
         # Look for all the sources and the targets of the current node
@@ -64,10 +57,7 @@ class Simulator:
                 target_nodes.append(target)
             if target == current_node:
                 source_nodes.append(source)
-        
-        # toc = time.perf_counter()
-        # print("perf:", toc-tic)
-        # input()
+
 
         adj_nodes           = source_nodes + target_nodes
         distance            = 0
@@ -252,9 +242,6 @@ class Simulator:
             
             knowledge = []
 
-            reputs  = []
-            reputs2 = []
-            reliabs = []
 
             for i in range(agent.num_info_sent, len(agent.ies)):
                 copia_ie = copy.deepcopy(agent.ies[i])
@@ -264,79 +251,11 @@ class Simulator:
 
                 knowledge.append(copia_ie)
 
-                reputs.append(self.agents_dict[n].reputation)
-                reputs2.append(self.agents_dict[n].reputation2)
 
-
-                reliabs.append(
-                    self.agents_dict[n].error_list[ getIndexOfTuple(    self.agents_dict[n].error_list, 1, copia_ie[0]['when']) ][0]
-                    )
-
-            knowledge.append({  'db_sender':        agent.n,
-                                'time':             loop,
-                                'sent_where':       agent.curr_node,
-                                'reputations':      reputs,
-                                'reputations2':     reputs2,
-                                'reliabilities':    reliabs})
  
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
 
-
-            ''' Reputations '''
-        
-            for l, rep in enumerate(res['reputation']):
-
-                key = str(rep['id'])
-
-                self.agents_dict[key].reputation     = rep['rep']
-                self.agents_dict[key].num_info_seen  = rep['times']
-                self.agents_dict2[key]['rep'].append(rep['rep'])
-                self.agents_dict2[key]['when'].append(rep['when'])
-
-                if self.first_time:
-
-                    self.mean_succ_rate.append(statistics.mean(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
-                    
-                    self.stddev_succ_rate.append(statistics.stdev(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
-
-                self.first_time=True
-            self.first_time=False
-            
-            tmp = []
-            for k, rep2 in enumerate(res['reputation2']):
-                
-                key = str(rep2['id'])
-
-                if 'times' in res['reputation2'][k]:
-
-                    self.agents_dict[key].reputation2    = rep2['rep']
-                    self.agents_dict[key].num_info_seen2 = rep2['times']
-                    self.agents_dict2[key]['rep2'].append(rep2['rep'])
-                    self.agents_dict2[key]['when2'].append(rep2['when'])
-
-                    tmp.append(rep2['rep'])
-                else:
-                    if 'times' in res['reputation2'][k]:
-                        input("troubles")
-                    key = str(rep2['id'])
-                    self.agents_dict[key].reputation2   = rep2['rep']
-                    self.agents_dict2[key]['rep2'].append(rep2['rep'])
-                    self.agents_dict2[key]['when2'].append(loop)
-
-                if self.first_time:
-
-                    self.mean_succ_rate2.append(statistics.mean(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
-
-                    self.stddev_succ_rate2.append(statistics.stdev(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
-
-                self.first_time=True
-
-            # self.similarity_err = statistics.mean( abs(self.agents_dict[j].reputation - self.agents_dict[j].reputation2) for j in self.agents_dict.keys())
 
             # percentage of events seen
             if 'events' in res:
@@ -355,28 +274,14 @@ class Simulator:
                         self.obs_ev += 1
                         self.perc_seen_ev = 100*self.obs_ev/len(self.events)
 
-                        # self.latency.append(res['latency2'][indice]['lat'])
                         self.latency.append(res['latency'][ind]['sent_at_loop'])
 
                         ind += 1
 
                         if self.perc_seen_ev>=self.threshold:
-                            # pprint(self.latency)
-                            # input()
                             return
 
 
-            # elif loop >= len(self.events) and 'all_events_db' in res:
-            #     toc_all_db = time.perf_counter()
-            #     self.t_all = toc_all_db - self.tic
-
-            if agent.num_info_sent>0 and not (len(agent.ies)-agent.num_info_sent) == (len(knowledge)-1):
-                print("Houston we have a problem!")
-                print("agent.num_info_sent: ", agent.num_info_sent)
-                print("len(agent.ies): ", len(agent.ies))
-                print("len(knowledge): ", len(knowledge)-1)
-                pprint(knowledge)
-                input()
 
             # consider only informations that have not yet been sent to the db
             prior_threshold     = agent.num_info_sent
@@ -394,8 +299,7 @@ class Simulator:
         g_flag = False
         for i in range(self.n_agents):
 
-            # curr_node = random.choice(list(n[0] for n in self.G.nodes.data()))
-            # inde = np.random.randint(0, len(l)-1)
+
             curr_node = l[np.random.randint(0, len(l)-1)]
 
             situation = {}
@@ -452,19 +356,10 @@ class Simulator:
             if i < ag_global:
                 agent.global_conn = [1, 2, 3]
 
-            # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
             # Initialize array of local connections, choosing randomly, removing duplicates
             agent.local_conn = [1, 2, 3]
             # agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
             self.agents_dict[str(i)] = agent
-
-            # initial reputation and error of each agent
-            self.agents_dict2[str(i)] = {   'rep':      [agent.reputation],
-                                            'rep2':     [agent.reputation2],
-                                            'rel':      [agent.error],
-                                            'when':     [0],
-                                            'when2':    [0]
-                                        }
 
 
 
@@ -474,34 +369,20 @@ class Simulator:
         old_story = 0
         count = 0
         while self.perc_seen_ev<self.threshold:
-        # while self.obs_ev < 6:
-            # obs_ev = 0
             print("\nIteration " + str(count))
 
             for key in self.agents_dict.keys():
                 # Update the position of the agent
                 self.update_position(self.agents_dict[key], count)
-
-                # if key=='79' and len(self.agents_dict[key].visited_nodes) > old_story:
-                #     logging.info("loop:" + str(count))
-                #     logging.info(self.agents_dict[key])
-
-                #     old_story = len(self.agents_dict[key].visited_nodes)
             
             self.exchange_information(count)
 
             for key in self.agents_dict.keys():
                 self.send_info(self.agents_dict[key], count)
 
-            # for counter in range(len(self.events)):
-            #     if 'db_time' in self.events[counter]:
-            #         obs_ev += 1
 
-            # self.perc_seen_ev = 100*obs_ev/len(self.events)
             print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
             count += 1
-            # if count==200:
-            #     break
 
         return count
 
@@ -513,8 +394,6 @@ class Simulator:
 
         # collecting events in the environment
         for node in self.G.nodes(data=True):
-            #     print(node)
-            # input("checking nodes")
             if node[1]['situation'] != 'None':
 
                 self.events.append({
@@ -531,9 +410,7 @@ class Simulator:
         response = requests.put(self.BASE + "/IE/events", json.dumps(inf))
 
         fieldnames1 = ["sizeTab1", "sizeTab2", "latency", "num_loops"]
-        fieldnames2 = ["sizeTab1", "sizeTab2"]
-        fieldnames3 = ["time", "perc_of_seen_events"]
-        fields = ["id", "reputation", "reputation2", "std_dev", "number_of_seen_events"]
+        fieldnames2 = ["time", "perc_of_seen_events"]
         fields2  = ['sender', 'sit', 'obj', 'when', 'where', 'who', 'sent_at_loop', 'lat']
 
         fieldnames4 = ["id", "sit", "obj", "when", "where", "conn"]
@@ -544,12 +421,8 @@ class Simulator:
 
 
         with open('performances.csv', 'w') as csv_file:
-            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
             csv_writer3.writeheader()
-
-        with open('reputations.csv', 'w') as csv_file:
-            csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
-            csv_writer4.writeheader()
 
         
         ''' Running the simulaiton '''
@@ -564,7 +437,7 @@ class Simulator:
 
 
         with open('performances.csv', 'a') as csv_file:
-            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames2)
 
             info = {
                 'time':                 self.toc-self.tic,
@@ -572,83 +445,10 @@ class Simulator:
             }
             csv_writer3.writerow(info)
 
-    
-        with open('reputations.csv', 'a') as csv_file:
-            csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
 
-            for key in self.agents_dict.keys():
-
-                conf_interval = 0
-                if 0 <= abs(self.agents_dict[key].error) < 1:
-                    conf_interval = 1
-
-                elif 1 <= abs(self.agents_dict[key].error) < 2:
-                    conf_interval = 2
-
-                else:
-                    conf_interval = 3
-
-
-                info = {
-                    'id':                      self.agents_dict[key].n,
-                    'reputation':              round( self.agents_dict[key].reputation, 2),
-                    'reputation2':             round( self.agents_dict[key].reputation2, 2),
-                    'std_dev':                 self.agents_dict[key].sigma, 
-                    'number_of_seen_events':   self.agents_dict[key].num_info_seen
-                }
-                csv_writer4.writerow(info)
-
-
-
-        path = '/Users/mario/Desktop/Fellowship_Unige/experiments/100/Amatrice/28-06/seed' + str(simulator.seed) #+ '/Amatrice_reps_' +str(int((1-simulator.err_rate)*100)) + '%'
-        # fieldn = ['lats']
-        # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'w') as f:
-        #     writer = csv.DictWriter(f, fieldnames=fieldn)
-        #     writer.writeheader()
-        
-        # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'a') as f:
-        #     writer = csv.DictWriter(f, fieldnames=fieldn)
-        #     for el in simulator.latency:
-        #         writer.writerow({'lats': el})
-
-
-        for key in self.agents_dict.keys():
-
-
-            if len(self.agents_dict2[key]['rep2'])!=len(self.agents_dict2[key]['when2']):
-                pprint(self.agents_dict2[key]['rep2'])
-                pprint(self.agents_dict2[key]['when2'])
-                print(len(self.agents_dict2[key]['rep2']))
-                print(len(self.agents_dict2[key]['when2']))
-                input("rep2")
-
-            self.agents_dict[key].ordered_reps  = list(zip(self.agents_dict2[key]['rep'], self.agents_dict2[key]['when']))
-            self.agents_dict[key].ordered_reps2 = list(zip(self.agents_dict2[key]['rep2'], self.agents_dict2[key]['when2']))
-
-            self.agents_dict[key].ordered_reps.sort(   key=lambda a: a[1])
-            self.agents_dict[key].ordered_reps2.sort(  key=lambda a: a[1])
-
-            if len(self.agents_dict[key].ordered_reps)>1:
-                plot_agent_perf(self.agents_dict[key], key, path, self.err_rate)
-
-
-
-        latency_meanStddev_plot(    self.mean_succ_rate,
-                                    self.stddev_succ_rate,
-                                    self.mean_succ_rate2,
-                                    self.stddev_succ_rate2,
-                                    self.err_rate,
-                                    path)
-
-        self.similarity_err = statistics.mean( abs(self.agents_dict[j].reputation - self.agents_dict[j].reputation2) for j in self.agents_dict.keys())
-        print(self.similarity_err)
-
-        input("check 3 explore_graph.py")
         response = requests.delete(simulator.BASE + "IE/1" )
         res = response.json()
         pprint(res)
-
-
 
         with open('experiments.csv', 'a') as csv_file:
                 csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
