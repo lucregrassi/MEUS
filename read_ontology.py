@@ -105,39 +105,26 @@ def recursive_down(start_cls, dictionary, i):
 
 
 # Return a randomly chosen class among those at a certain distance from the starting one
-def get_cls_at_dist(start_cls_name, distance, mu, sigma, ag):
+def get_cls_at_dist(start_cls_name, distance):
     start_cls = onto.Situation
 
-    interval1 = math.floor((mu + 3*sigma) / 3)
-    interval2 = interval1*2
-
-    # print(interval1)
-    # print(interval2)
-    # input()
-
-    # print("mu, sigma: ", mu,",", sigma)
-    # print("mu + 3sigma: ", mu + 3*sigma)
-    # print("math.floor((mu + 3*sigma) / 3): ", math.floor((mu + 3*sigma) / 3))
-    # print("interval1:", interval1)
-    # print("interval2:", interval2)
-    # input()
     
-    if abs(distance) <= interval1:
+    if distance <= 0.1:
         distance = 0
-    elif interval1 < abs(distance) <= interval2:
+    elif 0.1 < distance <= 0.2:
         distance = 1
-    else:
-        # print("dist:", distance)
-        # input()
+    elif 0.2 < distance < 0.3:
         distance = 2
-    # if ag==3:
-    #     print("distance: ", distance)
-    #     input()
+    elif 0.3 < distance < 0.4:
+        distance = 3
+    else:
+        distance = 4
+    
     for cls in onto.classes():
         if cls.name == start_cls_name:
             start_cls = cls
             break
-    # print(start_cls)
+
     if distance == 0:
         return start_cls
     else:

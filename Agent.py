@@ -7,6 +7,7 @@ class Agent:
         self.path           = path
         self.error          = error
         self.error_list     = []
+        self.rating_list    = []
         self.moving         = moving
         self.road           = road # distance (between 2 nodes) traveled so far by agent
         self.reputation     = 0.5
@@ -26,9 +27,10 @@ class Agent:
         self.global_conn    = []
         self.local_conn     = []
         self.ies            = []
-        self.ordered_reps  = []
-        self.ordered_reps2 = []
-        self.ordered_rels  = []
+        self.ordered_reps   = []
+        self.ordered_reps2  = []
+        self.ordered_rels   = []
+        self.rating         = 0
 
     def __str__(self):
         return "\nAgent id: " + str(self.n) + " \n " \

@@ -215,20 +215,24 @@ class Simulator:
             # The actual situation and object seen by the person depend on its trustworthiness
             if flag:
     
-                a.error = np.random.normal(a.mu, a.sigma, 1)[0]
+                # a.error = np.random.normal(a.mu, a.sigma, 1)[0]
 
-                chance = random.random()
-                if chance<=self.err_rate:
-                    distance = 2 if chance<=0.05 else 1
-                    seen_sit    = get_cls_at_dist(node_situation, distance=distance)
-                    seen_obj    = get_cls_at_dist(node_object, distance=distance)
+                # agents can have an error rate in the interval [0.5, 1]
+                a.error = .5 + .5 * np.random.random()
+                a.rating = a.error*10 - 5 # one agent's rate between 0 and 5
+
+                # chance = random.random()
+                if a.error<=self.err_rate:
+                    seen_sit    = get_cls_at_dist(node_situation, distance=a.error)
+                    seen_obj    = get_cls_at_dist(node_object, distance=a.error)
                     seen_ev     = (seen_sit, seen_obj)
-                else:
-                    seen_ev     = (node_situation, node_object)
+                # else:
+                #     seen_ev     = (node_situation, node_object)
 
                 a.seen_events.append(seen_ev)
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
                 a.error_list.append((a.error, loop))
+                a.rating_list.append((a.rating, loop))
 
 
         else:
@@ -257,29 +261,35 @@ class Simulator:
             reputs  = []
             reputs2 = []
             reliabs = []
+            ratings = []
 
             for i in range(agent.num_info_sent, len(agent.ies)):
-                copia_ie = copy.deepcopy(agent.ies[i])
-                copia_ie = NewIEtoDict(copia_ie)
+                ie = copy.deepcopy(agent.ies[i])
+                ie = NewIEtoDict(ie)
 
-                n = str(copia_ie[0]['id'])
+                n = str(ie[0]['id'])
 
-                knowledge.append(copia_ie)
+                knowledge.append(ie)
 
                 reputs.append(self.agents_dict[n].reputation)
                 reputs2.append(self.agents_dict[n].reputation2)
 
 
                 reliabs.append(
-                    self.agents_dict[n].error_list[ getIndexOfTuple(    self.agents_dict[n].error_list, 1, copia_ie[0]['when']) ][0]
+                    self.agents_dict[n].error_list[ getIndexOfTuple(    self.agents_dict[n].error_list, 1, ie[0]['when']) ][0]
                     )
+
+                ratings.append(
+                    self.agents_dict[n].rating_list[ getIndexOfTuple(    self.agents_dict[n].rating_list, 1, ie[0]['when']) ][0]
+                )
 
             knowledge.append({  'db_sender':        agent.n,
                                 'time':             loop,
                                 'sent_where':       agent.curr_node,
                                 'reputations':      reputs,
                                 'reputations2':     reputs2,
-                                'reliabilities':    reliabs})
+                                'reliabilities':    reliabs,
+                                'ratings':          ratings})
  
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
@@ -363,8 +373,6 @@ class Simulator:
                         ind += 1
 
                         if self.perc_seen_ev>=self.threshold:
-                            # pprint(self.latency)
-                            # input()
                             return
 
 
@@ -411,8 +419,8 @@ class Simulator:
                 mu, sigma = 0, 2
                 g_flag = True
 
-            err = np.random.normal(mu, sigma, 1)[0]
-            # err = 0
+            # err = np.random.normal(mu, sigma, 1)[0]
+            err = np.random.random()
 
             agent = Agent(i, curr_node, dest_node, dist, err) #if i!= 3 else Agent(i, curr_node, dest_node, dist, 0)
             
@@ -435,19 +443,20 @@ class Simulator:
                         situation = elem[1]['situation']
                         obj = elem[1]['object']
 
-                        # Add the event that the person thinks to have seen to the list
-                        chance = random.random()
-                        if chance<=self.err_rate:
-                            distance = 2 if chance<=0.05 else 1
-                            seen_situation  = get_cls_at_dist(situation, distance=distance)
-                            seen_object     = get_cls_at_dist(obj, distance=distance)
-                            seen_event      = (seen_situation, seen_object)
-                        else:
-                            seen_event = (situation, obj)
+                        agent.error = .5 + .5 * np.random.random()
+                        agent.rating = agent.error*10 - 5 # one agent's rate between 0 and 5
 
-                        agent.seen_events.append(seen_event)
-                        agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_event, agent.error))])
+                        # chance = random.random()
+                        if agent.error<=self.err_rate:
+                            seen_sit    = get_cls_at_dist(situation, distance=agent.error)
+                            seen_obj    = get_cls_at_dist(obj, distance=agent.error)
+                            seen_ev     = (seen_sit, seen_obj)
+
+                        agent.seen_events.append(seen_ev)
+
+                        agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
                         agent.error_list.append((agent.error, 0))
+                        agent.rating_list.append((agent.rating, 0))
 
 
             # Initialize the connections owned by the person
@@ -482,31 +491,18 @@ class Simulator:
 
             for key in self.agents_dict.keys():
                 # Update the position of the agent
-                for ie in self.agents_dict[key].ies:
-                    print(ie[0], ", ", ie[1:] )
+                # for ie in self.agents_dict[key].ies:
+                #     print(ie[0], ", ", ie[1:] )
                     # input()
                 self.update_position(self.agents_dict[key], count)
-
-                # if key=='79' and len(self.agents_dict[key].visited_nodes) > old_story:
-                #     logging.info("loop:" + str(count))
-                #     logging.info(self.agents_dict[key])
-
-                #     old_story = len(self.agents_dict[key].visited_nodes)
             
             self.exchange_information(count)
 
             for key in self.agents_dict.keys():
                 self.send_info(self.agents_dict[key], count)
 
-            # for counter in range(len(self.events)):
-            #     if 'db_time' in self.events[counter]:
-            #         obs_ev += 1
-
-            # self.perc_seen_ev = 100*obs_ev/len(self.events)
             print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
             count += 1
-            # if count==200:
-            #     break
 
         return count
 
