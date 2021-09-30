@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8
 '''
 Python implementation of Krippendorff's alpha -- inter-rater reliability
 (c)2011-17 Thomas Grill (http://grrrr.org)

@@ -1,14 +1,14 @@
 import csv
 import json
 import logging
+import itertools
 import statistics
 import numpy as np
 import krippendorff
 from pprint import pprint
 from collections import Counter
-import krippendorff_alpha
 from flask import Flask, request
-from utils import NewpreProcessing
+from utils import NewpreProcessing, compute_KrippendorffAlpha, compute_CVR
 from collections import defaultdict
 from sqlalchemy.orm import joinedload
 from flask_sqlalchemy import SQLAlchemy
@@ -18,11 +18,12 @@ from marshmallow import Schema, fields as mafields, ValidationError, INCLUDE, EX
 
 app = Flask(__name__)
 api = Api(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databaseMEUS.db'
 db = SQLAlchemy(app)
 # ma = Marshmallow(app)
 
-
+ 
 
 # -- MODEL --
 
@@ -128,6 +129,46 @@ ih_schemas  = infoHistorySchema(many=True)
 
 
 
+# content validity ratio critical values per number of rater per panel
+CVR = {
+    5: 5,
+    6: 6,
+    7: 7,
+    8: 7,
+    9: 8,
+    10: 9,
+    11: 9,
+    12: 10,
+    13: 10,
+    14: 11,
+    15: 12,
+    16: 12,
+    17: 13,
+    18: 13,
+    19: 14,
+    20: 15,
+    21: 15,
+    22: 16,
+    23: 16,
+    24: 17,
+    25: 18,
+    26: 18,
+    27: 19,
+    28: 19,
+    29: 20,
+    30: 20,
+    31: 21,
+    32: 22,
+    33: 22,
+    34: 23,
+    35: 23,
+    36: 24,
+    37: 24,
+    38: 25,
+    39: 26,
+    40: 26
+}
+
 events  = []
 agents_dict = {}
 events_dict = {}
@@ -135,7 +176,10 @@ events_dict = {}
 agents_dict2 = {}
 agents_perf  = {}
 events_dict2 = {}
-rel_data_str = {}
+rel_data = {}
+
+CVR_performace      = {'correct': 0, 'times': 0}
+Kalpha_performance  = {'corect': 0, 'times': 0}
 
 
 @app.route("/IE/events", methods=["PUT"])
@@ -144,6 +188,9 @@ def receiving_events_list():
 
     json_data = json.loads(request.data)
     events.extend(json_data['events'])
+
+    CVR_performace['correct']   = 0
+    CVR_performace['times']     = 0
 
 
     # filling up the first event tab in the db
@@ -155,11 +202,11 @@ def receiving_events_list():
         db.session.commit()
         events_dict[str(ev.id)]     = {'obs': [], 'reps': [], 'whos': [], 'whens': []}
         events_dict2[str(ev.id)]    = {'obs': [], 'reps': [], 'reps1': [], 'whos': [], 'votes': [], 'times': [], 'whens': [], 'rels': []}
-        rel_data_str[str(ev.id)]    = []
+        rel_data[str(ev.id)]    = []
     
     for agent in range(json_data['n_agents']):
         agents_dict[str(agent)]     = {'positive': 0, 'negative': 0, 'times': 0}
-        agents_dict2[str(agent)]    = {'positive': 0, 'negative': 0, 'times': 0, 'numAgs': 0, 'denAgs': 0}
+        agents_dict2[str(agent)]    = {'positive': 0, 'negative': 0, 'times': 0, 'weight': 1}
         agents_perf[str(agent)]     = []
 
     pprint(events)
@@ -168,57 +215,16 @@ def receiving_events_list():
 
 
 
-# @app.route("/IE/<int:DO_id>")
-# def get(DO_id):
-#     try:
-#         # do = dirObsTab.query.filter_by(id=DO_id).first()
-#         do = dirObsTab.query.all()
-#     except IntegrityError:
-#         return {"message": "DO_id could not be found."}, 400
-
-#     DO_res = []
-#     infos = []
-#     for res in do:
-#         DO_res.append(do_schema.dump(res))
-#         for elem in res.info_histories:
-#             infos.append(ih_schema.dump(infoHistoryTab.query.get(elem.id)))
-
-#     # dumped_do = do_schemas.dump(do)
-#     for i in range(len(do)):
-#         for j in range(len(do)):
-#             if i!=j and do[i] == do[j]:
-#                 print("Houston we have a problem\n" +str(do[i]) + " is equal " + str(do[j]))
-#                 print("at pos " +str(i))
-
-
-#     dupl = []
-
-#     for i in range(len(do)):
-#         for j in range(len(do[i].info_histories)):
-#             for k in range(j+1, len(do[i].info_histories)):
-#                 if do[i].info_histories[j].dir_obs_id == do[i].info_histories[k].dir_obs_id and \
-#                     do[i].info_histories[j].observer == do[i].info_histories[k].observer and \
-#                         do[i].info_histories[j].a1 == do[i].info_histories[k].a1 and do[i].info_histories[j].a2 == do[i].info_histories[k].a2 and\
-#                             do[i].info_histories[j].sender == do[i].info_histories[k].sender:
-#                     dupl.append([ih_schema.dump(do[i].info_histories[j]), ih_schema.dump(do[i].info_histories[k])])
-#                     print("Houston we have a problem\n" +str(do[i].info_histories[j]) + " is equal " + str(do[i].info_histories[k]))
-#                     print("at pos " +str(i))
-
-#     return {"DO": DO_res, "infos": infos}
-
-
-
 
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
 def put(DO_id):
 
-    json_data                                               = json.loads(request.data)
+    json_data                   = json.loads(request.data)
     data_do,\
         data_ih,\
             reputation,\
                 reputation2,\
-                    reliability,\
-                        ratings                            = NewpreProcessing(json_data)
+                    reliability = NewpreProcessing(json_data)
 
     all_events_db = False
     flag = False
@@ -258,8 +264,8 @@ def put(DO_id):
 
     for i, dobs in enumerate(direct_obs):
 
-        retro_whos = []
-        retro_reps = []
+        ag_ids      = []
+        ag_weights  = []
         
         events_types    = []
         query_ev        = eventsTab.query.filter_by(where=dobs['where']).first()
@@ -379,240 +385,127 @@ def put(DO_id):
                 })
 
 
+
             ''' Reputation based on a voting approach '''
             tf = 1 if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj else 0
             cons = 'maj'
             token=0
-            if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs'] and\
-                not any( dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
+            if not any( dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
 
-                events_dict2[ev_id]['obs'].append({      'situation':   dobs['situation'],
-                                                            'object':   dobs['obj'],
-                                                            'oder':     len(events_dict2[ev_id]['obs'])})
+                if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
 
 
-                events_dict2[ev_id]['whos'].append([dobs['who']])
-                events_dict2[ev_id]['times'].append([1])
-                events_dict2[ev_id]['votes'].append(1)
-                events_dict2[ev_id]['whens'].append([[dobs['when']]])
-                events_dict2[ev_id]['rels'].append([[reliability[i]]])
+                    # if not any( dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
+
+                    events_dict2[ev_id]['obs'].append({      'situation':   dobs['situation'],
+                                                                'object':   dobs['obj']})
 
 
-                print("first")
-
-                # new unit new coder                    
-                if len(rel_data_str[ev_id]) !=0:
-
-                    rel_data_str[ev_id].append([str(ratings[i])])
-
-                    Nu = len(rel_data_str[ev_id][0])
-                    rel_data_str[ev_id][-1] = ['*' for i in range(Nu-1)] + rel_data_str[ev_id][-1]
-
-                    for coder in rel_data_str[ev_id]:
-                        coder.append('*')
-
-                else:   
-                    rel_data_str[ev_id].append([str(ratings[i])])
+                    events_dict2[ev_id]['whos'].append([dobs['who']])
+                    events_dict2[ev_id]['times'].append([1])
+                    events_dict2[ev_id]['votes'].append(1)
+                    events_dict2[ev_id]['whens'].append([[dobs['when']]])
+                    events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs'])-1, dobs['who'])])
 
 
-                
-                alpha = krippendorff_alpha(rel_data_str, nominal_metric, missing_items='*')
+                    print("first")
+                    pprint(events_dict2[ev_id]['obs'])
+                    pprint(rel_data[ev_id])
+                    print("---")
 
-                print(alpha)
-                input()
-
-
-
-
-
-
-                # agents_dict2[ag_id]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                # agents_dict2[ag_id]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-                                                    # if ags != events_dict2[ev_id]['whos'][-1])
+                    '''Krippendorff's alpha'''
+                    if len(events_dict2[ev_id]['obs'])>=2:
+                        print(compute_KrippendorffAlpha(events_dict2[ev_id]))
 
 
-                # Here I have to compute the reputation
+                    '''CVR method'''
+                    if compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==1:
+                        input("unouno")
 
-                # if events_dict2[ev_id]['votes'][-1] == max(events_dict2[ev_id]['votes']):
-
-
-                #     agents_dict2[ag_id]['positive'] += 1
-                #     agents_dict2[ag_id]['times']    += 1
-
-
-                #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
-                #             if a==len(events_dict2[ev_id]['votes'])-1:
-                #                 for x, val in enumerate(ags):
-                #                     ag = str(val)
-
-                #                     if ag!=ag_id:
-                #                         agents_dict2[ag]['positive'] += 1
-
-                #                         r = agents_dict2[ag]['positive'] /\
-                #                         (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
-
-                #                         agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                #                         agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-
-                #                         # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                #                         retro_reps.append(r)
-                #                         retro_whos.append(ag)
+                        CVR_performace['times'] += 1
+                        CVR_performace['correct'] += 1
+                        
+                        for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][-1]))))):
                             
-                #             else:
-                #                 for x, val in enumerate(ags):
-                #                     ag = str(val)
+                            agents_dict2[str(ag)]['weight'] += 1
+                            ag_ids.append(ag)
+                            ag_weights.append(agents_dict2[str(ag)]['weight'])
 
-                #                     if ag!=ag_id:
-                #                         agents_dict2[ag]['negative'] += 1
+                    elif compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==0:
+                        input("duedue")
+                        CVR_performace['times'] += 1
+                        print(events_dict2[ev_id]['whos'])
+                        print(list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][-1]))))))
+                        for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][-1]))))):
+                            if agents_dict2[str(ag)]['weight'] > 1:
 
-                #                         r = agents_dict2[ag]['positive'] /\
-                #                                 (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+                                agents_dict2[str(ag)]['weight'] -= 1
+                                ag_ids.append(ag)
+                                ag_weights.append(agents_dict2[str(ag)]['weight'])
+                    
+                    else:
+                        pass
 
-                #                         agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                #                         agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-
-                #                         # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                #                         retro_reps.append(r)
-                #                         retro_whos.append(ag)
-
-
-                # else:
-
-                #     agents_dict2[ag_id]['negative'] += 1
-                #     agents_dict2[ag_id]['times']    += 1
-                #     cons = 'min'
-
-                #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
-                #         mx = events_dict2[ev_id]['votes'].index(max(events_dict2[ev_id]['votes']))
-                #         if a==len(events_dict2[ev_id]['votes'])-1 or a!=mx:
-                #             for x, val in enumerate(ags):
-                #                 ag = str(val)
-
-                #                 if ag!=ag_id:
-                #                     agents_dict2[ag]['negative'] += 1
-
-                #                     r = agents_dict2[ag]['positive'] /\
-                #                                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
-
-
-                #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-
-                #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                #                     retro_reps.append(r)
-                #                     retro_whos.append(ag)
-
-                #         # I reinforce the majority case
-                #         else:
-                #             for x, val in enumerate(ags):
-                #                 ag = str(val)
-
-                #                 if ag!=ag_id:
-                #                     agents_dict2[ag]['positive'] += 1
-
-                #                     r = agents_dict2[ag]['positive'] /\
-                #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative'])
-
-                #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-
-
-                #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                #                     retro_reps.append(r)
-                #                     retro_whos.append(ag)
-
-                            
-
-                reputation2[i] = agents_dict2[ag_id]['positive'] /\
-                                (agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
-
-                events_dict2[ev_id]['reps'].append([reputation2[i]])
-                events_dict2[ev_id]['reps1'].append([reputation[i]])
-
-
-                agVotes = agentsVotesTab(   agents_id   = dobs['who'],
-                                            when        = dobs['when'],
-                                            where       = dobs['where'],
-                                            t_f         = tf,
-                                            cons        = cons)
-
-                db.session.add(agVotes)
-
-
-            else:
-                index = events_dict2[ev_id]['obs'].index({'situation': dobs['situation'], 'object': dobs['obj']})
-
-                token = 1
-                
-
-                ''' if the direct observer has already reported this direct observation '''
-                if dobs['who'] in events_dict2[ev_id]['whos'][index] and\
-                     not any(dobs['when'] in nest for nest in events_dict2[ev_id]['whens'][index]):
-
-                    token = 2
-                    index2 = events_dict2[ev_id]['whos'][index].index(dobs['who'])
-                    events_dict2[ev_id]['times'][index][index2] += 1
-
-                    events_dict2[ev_id]['whens'][index][index2].append(dobs['when'])
-                    events_dict2[ev_id]['rels'][index][index2].append(reliability[i])
-                    events_dict2[ev_id]['votes'][index] += 1
-
-
-                    print("second")
 
                     # agents_dict2[ag_id]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
                     # agents_dict2[ag_id]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+                                                        # if ags != events_dict2[ev_id]['whos'][-1])
 
 
-                    # if events_dict2[ev_id]['votes'][index] == max(events_dict2[ev_id]['votes']):
+                    # Here I have to compute the reputation
+
+                    # if events_dict2[ev_id]['votes'][-1] == max(events_dict2[ev_id]['votes']):
+
+
                     #     agents_dict2[ag_id]['positive'] += 1
                     #     agents_dict2[ag_id]['times']    += 1
 
+
                     #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
-                    #         if a==index:
-                    #             for x, val in enumerate(ags):
-                    #                 ag = str(val)
+                    #             if a==len(events_dict2[ev_id]['votes'])-1:
+                    #                 for x, val in enumerate(ags):
+                    #                     ag = str(val)
 
-                    #                 if ag!=ag_id:
-                    #                     agents_dict2[ag]['positive'] += 1
+                    #                     if ag!=ag_id:
+                    #                         agents_dict2[ag]['positive'] += 1
 
-                    #                     r = agents_dict2[ag]['positive'] /\
-                    #                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+                    #                         r = agents_dict2[ag]['positive'] /\
+                    #                         (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
 
-                    #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                    #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+                    #                         agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                    #                         agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
 
-                    #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                    #                     retro_reps.append(r)
-                    #                     retro_whos.append(ag)
-                            
-                    #         else:
-                    #             for x, val in enumerate(ags):
-                    #                 ag = str(val)
+                    #                         # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                    #                         retro_reps.append(r)
+                    #                         retro_whos.append(ag)
+                                
+                    #             else:
+                    #                 for x, val in enumerate(ags):
+                    #                     ag = str(val)
 
-                    #                 if ag!=ag_id:
-                    #                     agents_dict2[ag]['negative'] += 1
+                    #                     if ag!=ag_id:
+                    #                         agents_dict2[ag]['negative'] += 1
 
-                    #                     r = agents_dict2[ag]['positive'] /\
-                    #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+                    #                         r = agents_dict2[ag]['positive'] /\
+                    #                                 (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
 
-                    #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                    #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+                    #                         agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                    #                         agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
 
-                    #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                    #                     retro_reps.append(r)
-                    #                     retro_whos.append(ag)
+                    #                         # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                    #                         retro_reps.append(r)
+                    #                         retro_whos.append(ag)
 
 
                     # else:
+
                     #     agents_dict2[ag_id]['negative'] += 1
                     #     agents_dict2[ag_id]['times']    += 1
-
                     #     cons = 'min'
 
                     #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
                     #         mx = events_dict2[ev_id]['votes'].index(max(events_dict2[ev_id]['votes']))
-                    #         if a==index or a!=mx:
+                    #         if a==len(events_dict2[ev_id]['votes'])-1 or a!=mx:
                     #             for x, val in enumerate(ags):
                     #                 ag = str(val)
 
@@ -620,8 +513,9 @@ def put(DO_id):
                     #                     agents_dict2[ag]['negative'] += 1
 
                     #                     r = agents_dict2[ag]['positive'] /\
-                    #                                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative'])
-                                        
+                    #                                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+
+
                     #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
                     #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
 
@@ -629,89 +523,13 @@ def put(DO_id):
                     #                     retro_reps.append(r)
                     #                     retro_whos.append(ag)
 
+                    #         # I reinforce the majority case
                     #         else:
                     #             for x, val in enumerate(ags):
                     #                 ag = str(val)
 
                     #                 if ag!=ag_id:
                     #                     agents_dict2[ag]['positive'] += 1
-
-                    #                     r = agents_dict2[ag]['positive'] /\
-                    #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
-
-
-                    #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                    #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-
-                    #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                    #                     retro_reps.append(r)
-                    #                     retro_whos.append(ag)
-
-
-                    agVotes = agentsVotesTab(   agents_id   = dobs['who'],
-                                                when        = dobs['when'],
-                                                where       = dobs['where'],
-                                                t_f         = tf,
-                                                cons        = cons)
-
-                    db.session.add(agVotes)
-
-                # if this agent has not reported this observation before
-                elif dobs['who'] not in events_dict2[ev_id]['whos'][index]:
-
-                    events_dict2[ev_id]['whos'][index].append(dobs['who'])
-                    events_dict2[ev_id]['whens'][index].append([dobs['when']])
-                    events_dict2[ev_id]['votes'][index] += 1
-
-                    index2 = events_dict2[ev_id]['whos'][index].index(dobs['who'])
-                    events_dict2[ev_id]['times'][index].append(1)
-
-                    events_dict2[ev_id]['rels'][index].append([reliability[i]])
-
-
-                    print("third")
-
-                    # new unit same coder
-                    rel_data_str[ev_id][index].append(str(ratings[i]))
-
-                    for coder in rel_data_str[ev_id]:
-                        coder.append('*')
-
-                    # agents_dict2[ag_id]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                    # agents_dict2[ag_id]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-                    #                                     # if ags != events_dict2[ev_id]['whos'][-1])
-
-
-                    # if events_dict2[ev_id]['votes'][index]==max(events_dict2[ev_id]['votes']):
-                    #     agents_dict2[ag_id]['positive'] += 1
-                    #     agents_dict2[ag_id]['times']    += 1
-
-
-
-                    #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
-                    #         if a==index:
-                    #             for x, val in enumerate(ags):
-                    #                 ag = str(val)
-
-                    #                 if ag!=ag_id:
-                    #                     agents_dict2[ag]['positive'] += 1
-
-                    #                     r = agents_dict2[ag]['positive'] /\
-                    #                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
-
-                    #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                    #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-
-                    #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                    #                     retro_reps.append(r)
-                    #                     retro_whos.append(ag)
-                        
-                    #         else:
-                    #             for x, val in enumerate(ags):
-                    #                 ag = str(val)
-
-                    #                 if ag!=ag_id:
-                    #                     agents_dict2[ag]['negative'] += 1
 
                     #                     r = agents_dict2[ag]['positive'] /\
                     #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative'])
@@ -719,52 +537,18 @@ def put(DO_id):
                     #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
                     #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
 
-                    #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                    #                     retro_reps.append(r)
-                    #                     retro_whos.append(ag)
-
-                    # else:
-                    #     agents_dict2[ag_id]['negative'] += 1
-                    #     agents_dict2[ag_id]['times']    += 1
-                    #     cons = 'min'
-
-
-                    #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
-                    #         mx = events_dict2[ev_id]['votes'].index(max(events_dict2[ev_id]['votes']))
-                    #         if a==index or a!=mx:
-                    #             for x, val in enumerate(ags):
-                    #                 ag = str(val)
-
-                    #                 if ag!=ag_id:
-                    #                     agents_dict2[ag]['negative'] += 1
-
-                    #                     r = agents_dict2[ag]['positive'] /\
-                    #                                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative'])
-                                        
-                    #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                    #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
 
                     #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
                     #                     retro_reps.append(r)
                     #                     retro_whos.append(ag)
 
-                    #         else:
-                    #             for x, val in enumerate(ags):
-                    #                 ag = str(val)
+                                
 
-                    #                 if ag!=ag_id:
-                    #                     agents_dict2[ag]['positive'] += 1
+                    reputation2[i] = 1 # agents_dict2[ag_id]['positive'] /\
+                                    #(agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
 
-                    #                     r = agents_dict2[ag]['positive'] /\
-                    #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
-
-                    #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
-                    #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
-
-                    #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
-                    #                     retro_reps.append(r)
-                    #                     retro_whos.append(ag)
-
+                    events_dict2[ev_id]['reps'].append([reputation2[i]])
+                    events_dict2[ev_id]['reps1'].append([reputation[i]])
 
 
                     agVotes = agentsVotesTab(   agents_id   = dobs['who'],
@@ -774,25 +558,295 @@ def put(DO_id):
                                                 cons        = cons)
 
                     db.session.add(agVotes)
+
+
                 else:
-                    token=3
+                    index = events_dict2[ev_id]['obs'].index({'situation': dobs['situation'], 'object': dobs['obj']})
 
-                if not token==3:
-                    reputation2[i] = agents_dict2[ag_id]['positive'] /\
-                                    (agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
+                    token = 1
+                    
 
-                    # reputation2[i] = agents_dict2[ag_id]['numAgs'] / agents_dict2[ag_id]['denAgs']
+                    #if the direct observer has already reported this direct observation
+                    # if dobs['who'] in events_dict2[ev_id]['whos'][index] and\
+                    #     not any(dobs['when'] in nest for nest in events_dict2[ev_id]['whens'][index]):
 
-                if token==2:
-                    events_dict2[ev_id]['reps'][index][index2] = reputation2[i]
-                    events_dict2[ev_id]['reps1'][index][index2] = reputation[i]
-                    events_dict2[ev_id]['votes'][index] += 1
-                elif token==1:
-                    events_dict2[ev_id]['reps'][index].append(reputation2[i])
-                    events_dict2[ev_id]['reps1'][index].append(reputation[i])
-                    events_dict2[ev_id]['votes'][index] += 1
+                    #     token = 2
+                    #     index2 = events_dict2[ev_id]['whos'][index].index(dobs['who'])
+                    #     events_dict2[ev_id]['times'][index][index2] += 1
 
-            
+                    #     events_dict2[ev_id]['whens'][index][index2].append(dobs['when'])
+                    #     # events_dict2[ev_id]['rels'][index][index2].append(reliability[i])
+                    #     events_dict2[ev_id]['votes'][index] += 1
+
+
+                    #     print("second")
+
+                    #     # agents_dict2[ag_id]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                    #     # agents_dict2[ag_id]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+
+                    #     # if events_dict2[ev_id]['votes'][index] == max(events_dict2[ev_id]['votes']):
+                    #     #     agents_dict2[ag_id]['positive'] += 1
+                    #     #     agents_dict2[ag_id]['times']    += 1
+
+                    #     #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
+                    #     #         if a==index:
+                    #     #             for x, val in enumerate(ags):
+                    #     #                 ag = str(val)
+
+                    #     #                 if ag!=ag_id:
+                    #     #                     agents_dict2[ag]['positive'] += 1
+
+                    #     #                     r = agents_dict2[ag]['positive'] /\
+                    #     #                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+
+                    #     #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                    #     #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                    #     #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                    #     #                     retro_reps.append(r)
+                    #     #                     retro_whos.append(ag)
+                                
+                    #     #         else:
+                    #     #             for x, val in enumerate(ags):
+                    #     #                 ag = str(val)
+
+                    #     #                 if ag!=ag_id:
+                    #     #                     agents_dict2[ag]['negative'] += 1
+
+                    #     #                     r = agents_dict2[ag]['positive'] /\
+                    #     #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+
+                    #     #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                    #     #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                    #     #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                    #     #                     retro_reps.append(r)
+                    #     #                     retro_whos.append(ag)
+
+
+                    #     # else:
+                    #     #     agents_dict2[ag_id]['negative'] += 1
+                    #     #     agents_dict2[ag_id]['times']    += 1
+
+                    #     #     cons = 'min'
+
+                    #     #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
+                    #     #         mx = events_dict2[ev_id]['votes'].index(max(events_dict2[ev_id]['votes']))
+                    #     #         if a==index or a!=mx:
+                    #     #             for x, val in enumerate(ags):
+                    #     #                 ag = str(val)
+
+                    #     #                 if ag!=ag_id:
+                    #     #                     agents_dict2[ag]['negative'] += 1
+
+                    #     #                     r = agents_dict2[ag]['positive'] /\
+                    #     #                                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative'])
+                                            
+                    #     #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                    #     #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                    #     #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                    #     #                     retro_reps.append(r)
+                    #     #                     retro_whos.append(ag)
+
+                    #     #         else:
+                    #     #             for x, val in enumerate(ags):
+                    #     #                 ag = str(val)
+
+                    #     #                 if ag!=ag_id:
+                    #     #                     agents_dict2[ag]['positive'] += 1
+
+                    #     #                     r = agents_dict2[ag]['positive'] /\
+                    #     #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+
+
+                    #     #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                    #     #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                    #     #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                    #     #                     retro_reps.append(r)
+                    #     #                     retro_whos.append(ag)
+
+
+                    #     agVotes = agentsVotesTab(   agents_id   = dobs['who'],
+                    #                                 when        = dobs['when'],
+                    #                                 where       = dobs['where'],
+                    #                                 t_f         = tf,
+                    #                                 cons        = cons)
+
+                    #     db.session.add(agVotes)
+
+                    # if this agent has not reported this observation before
+                    if dobs['who'] not in events_dict2[ev_id]['whos'][index]:
+
+                        events_dict2[ev_id]['whos'][index].append(dobs['who'])
+                        events_dict2[ev_id]['whens'][index].append([dobs['when']])
+                        events_dict2[ev_id]['votes'][index] += 1
+
+                        index2 = events_dict2[ev_id]['whos'][index].index(dobs['who'])
+                        events_dict2[ev_id]['times'][index].append(1)
+
+                        events_dict2[ev_id]['rels'][index].append((index, dobs['who']))
+
+
+                        print("third")
+
+                        # coder update
+                        # aindex = events_dict2[ev_id]['whos'][index].index()
+                        pprint(events_dict2[ev_id]['obs'])
+                        pprint(rel_data[ev_id])
+                        print("---")
+
+                        '''Krippendorff's alpha'''
+                        if len(events_dict2[ev_id]['obs'])>=2:
+                            print(compute_KrippendorffAlpha(events_dict2[ev_id]))
+
+                        '''CVR method'''
+                        if compute_CVR(events_dict2[ev_id], index, query_ev, CVR)==1:
+                            input("uno")
+
+                            CVR_performace['times'] += 1
+                            CVR_performace['correct'] += 1
+                        
+                            for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][index]))))):
+                                
+                                agents_dict2[str(ag)]['weight'] += 1
+
+                                ag_ids.append(ag)
+                                ag_weights.append(agents_dict2[str(ag)]['weight'])
+                        elif compute_CVR(events_dict2[ev_id], index, query_ev, CVR)==0:
+                            input("due")
+                            CVR_performace['times'] += 1
+                            for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][index]))))):
+                                if agents_dict2[str(ag)]['weight'] > 1:
+
+                                    agents_dict2[str(ag)]['weight'] -= 1
+
+                                    ag_ids.append(ag)
+                                    ag_weights.append(agents_dict2[str(ag)]['weight'])
+                        else:
+                            pass
+
+                        # for coder in rel_data[ev_id]:
+                        #     coder.append(np.nan)
+
+                        # agents_dict2[ag_id]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                        # agents_dict2[ag_id]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+                        #                                     # if ags != events_dict2[ev_id]['whos'][-1])
+
+
+                        # if events_dict2[ev_id]['votes'][index]==max(events_dict2[ev_id]['votes']):
+                        #     agents_dict2[ag_id]['positive'] += 1
+                        #     agents_dict2[ag_id]['times']    += 1
+
+
+
+                        #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
+                        #         if a==index:
+                        #             for x, val in enumerate(ags):
+                        #                 ag = str(val)
+
+                        #                 if ag!=ag_id:
+                        #                     agents_dict2[ag]['positive'] += 1
+
+                        #                     r = agents_dict2[ag]['positive'] /\
+                        #                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+
+                        #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                        #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                        #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                        #                     retro_reps.append(r)
+                        #                     retro_whos.append(ag)
+                            
+                        #         else:
+                        #             for x, val in enumerate(ags):
+                        #                 ag = str(val)
+
+                        #                 if ag!=ag_id:
+                        #                     agents_dict2[ag]['negative'] += 1
+
+                        #                     r = agents_dict2[ag]['positive'] /\
+                        #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative'])
+
+                        #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                        #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                        #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                        #                     retro_reps.append(r)
+                        #                     retro_whos.append(ag)
+
+                        # else:
+                        #     agents_dict2[ag_id]['negative'] += 1
+                        #     agents_dict2[ag_id]['times']    += 1
+                        #     cons = 'min'
+
+
+                        #     for a, ags in enumerate(events_dict2[ev_id]['whos']):
+                        #         mx = events_dict2[ev_id]['votes'].index(max(events_dict2[ev_id]['votes']))
+                        #         if a==index or a!=mx:
+                        #             for x, val in enumerate(ags):
+                        #                 ag = str(val)
+
+                        #                 if ag!=ag_id:
+                        #                     agents_dict2[ag]['negative'] += 1
+
+                        #                     r = agents_dict2[ag]['positive'] /\
+                        #                                     (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative'])
+                                            
+                        #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                        #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                        #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                        #                     retro_reps.append(r)
+                        #                     retro_whos.append(ag)
+
+                        #         else:
+                        #             for x, val in enumerate(ags):
+                        #                 ag = str(val)
+
+                        #                 if ag!=ag_id:
+                        #                     agents_dict2[ag]['positive'] += 1
+
+                        #                     r = agents_dict2[ag]['positive'] /\
+                        #                             (agents_dict2[ag]['positive'] + agents_dict2[ag]['negative']) 
+
+                        #                     agents_dict2[ag]['numAgs']   += len(events_dict2[ev_id]['whos'][-1])
+                        #                     agents_dict2[ag]['denAgs']   += sum( len(ags) for i, ags in enumerate(events_dict2[ev_id]['whos']))
+
+                        #                     # retro_reps.append(agents_dict2[ag]['numAgs']/agents_dict2[ag]['denAgs'])
+                        #                     retro_reps.append(r)
+                        #                     retro_whos.append(ag)
+
+
+
+                        agVotes = agentsVotesTab(   agents_id   = dobs['who'],
+                                                    when        = dobs['when'],
+                                                    where       = dobs['where'],
+                                                    t_f         = tf,
+                                                    cons        = cons)
+
+                        db.session.add(agVotes)
+                    else:
+                        token=3
+
+                    if not token==3:
+                        reputation2[i] = 1#agents_dict2[ag_id]['positive'] /\
+                                        #(agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
+
+                        # reputation2[i] = agents_dict2[ag_id]['numAgs'] / agents_dict2[ag_id]['denAgs']
+
+                    if token==2:
+                        events_dict2[ev_id]['reps'][index][index2] = reputation2[i]
+                        events_dict2[ev_id]['reps1'][index][index2] = reputation[i]
+                        # events_dict2[ev_id]['votes'][index] += 1
+                    elif token==1:
+                        events_dict2[ev_id]['reps'][index].append(reputation2[i])
+                        events_dict2[ev_id]['reps1'][index].append(reputation[i])
+                        # events_dict2[ev_id]['votes'][index] += 1
+
+            new_weights = {}
             if not token==3:
                 reputations2.append({
                             'id':       dobs['who'],
@@ -802,12 +856,14 @@ def put(DO_id):
                             'rel':      reliability[i]
                             })
                 
-                # for y in range(len(retro_reps)):
+                # for y in range(len(ag_ids)):
 
                 #     reputations2.append({
-                #         'id':   retro_whos[y],
-                #         'rep':  retro_reps[y]
+                #         'id':   ag_ids[y],
+                #         'rep':  ag_weights[y]
                 #     })
+
+                new_weights = {str(i):j for i in ag_ids for j in ag_weights}
 
 
         except Exception as error:
@@ -1017,14 +1073,19 @@ def put(DO_id):
 
     # keep track if the event has been uploaded on the db for the first time
     if return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
     elif not return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
 
 
 
 @app.route("/IE/<int:DO_id>", methods=["DELETE"])
 def delete(DO_id):
+
+    print(CVR_performace['correct'])
+    print(CVR_performace['times'])
+    # print(round((CVR_performace['correct'] / CVR_performace['times'])*100, 3))
+    # input()
 
     query           = dirObsTab.query.options(joinedload(dirObsTab.info_histories))
     query_events    = eventsTab.query.options(joinedload(eventsTab.observations))

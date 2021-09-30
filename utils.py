@@ -4,6 +4,7 @@ import pprint
 import operator
 import random
 import statistics
+import krippendorff
 from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
 import numpy as np
@@ -176,8 +177,8 @@ def NewpreProcessing(json_data):
                     'sent_where':   json_data[-1]['sent_where']
                 })
 
-    return data_do, data_ih, json_data[-1]['reputations'], json_data[-1]['reputations2'], json_data[-1]['reliabilities'], \
-            json_data[-1]['ratings']
+    return data_do, data_ih, json_data[-1]['reputations'], json_data[-1]['reputations2'], json_data[-1]['reliabilities']#, \
+            # json_data[-1]['ratings']
 
 
 def get_by_path(root, items):
@@ -405,6 +406,43 @@ def latency_meanStddev_plot(rep1_mean, rep1_stddev, rep2_mean, rep2_stddev, err_
     plt.xlabel('# of observations')
     plt.tight_layout()
     plt.savefig(path.join(outpath, 'stddev_rep_plot_{0}%.svg'.format(str(int((1-err_rate)*100)))))
+
+
+
+def compute_KrippendorffAlpha(node_info):
+
+    rel_data = []
+    
+    coders = list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))
+    Nobs = len(node_info['obs'])
+    history = list(itertools.chain(*node_info['rels']))
+
+    rel_data = [[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]\
+            for coder in coders]
+
+
+    rel_data = np.asarray(rel_data)
+    rel_data = rel_data[[ np.any(rel_data[k]) for k in range(len(rel_data))]]
+
+
+    return krippendorff.alpha(reliability_data=rel_data, level_of_measurement='nominal')
+
+
+def compute_CVR(node_info, index, query_ev, CVR):
+
+    panel_size = len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos']))))))
+    candidate = max(node_info['votes'])
+    # pprint(node_info['votes'])
+    # print(candidate)
+
+    ev_id = str(query_ev.id)
+
+    if panel_size in CVR.keys() and candidate==CVR[panel_size]:
+        print("event in node", ev_id, " is: ", node_info['obs'][node_info['votes'].index(candidate)])
+        if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
+            return 1
+        return 0
+    return -1
 
 
 

@@ -6,7 +6,7 @@ import math
 # https://osmnx.readthedocs.io/en/stable/osmnx.html
 
 # Specify the name that is used to search for the data
-place = 'Frabosa Soprana, Cuneo, Piemonte'
+place = 'Amatrice, Rieti, Lazio'
 
 # address = 'Viale Saturnino Muzii, 02012 Amatrice RI'
 

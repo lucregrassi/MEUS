@@ -218,21 +218,21 @@ class Simulator:
                 # a.error = np.random.normal(a.mu, a.sigma, 1)[0]
 
                 # agents can have an error rate in the interval [0.5, 1]
-                a.error = .5 + .5 * np.random.random()
-                a.rating = a.error*10 - 5 # one agent's rate between 0 and 5
+                a.error = round(np.random.random(), 2)
+                # a.rating = round(a.error*10 - 5) # one agent's rate between 0 and 5
 
                 # chance = random.random()
                 if a.error<=self.err_rate:
-                    seen_sit    = get_cls_at_dist(node_situation, distance=a.error)
-                    seen_obj    = get_cls_at_dist(node_object, distance=a.error)
+                    seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
+                    seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
                     seen_ev     = (seen_sit, seen_obj)
-                # else:
-                #     seen_ev     = (node_situation, node_object)
+                else:
+                    seen_ev     = (node_situation, node_object)
 
                 a.seen_events.append(seen_ev)
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
                 a.error_list.append((a.error, loop))
-                a.rating_list.append((a.rating, loop))
+                # a.rating_list.append((a.rating, loop))
 
 
         else:
@@ -279,20 +279,23 @@ class Simulator:
                     self.agents_dict[n].error_list[ getIndexOfTuple(    self.agents_dict[n].error_list, 1, ie[0]['when']) ][0]
                     )
 
-                ratings.append(
-                    self.agents_dict[n].rating_list[ getIndexOfTuple(    self.agents_dict[n].rating_list, 1, ie[0]['when']) ][0]
-                )
+                # ratings.append(
+                #     self.agents_dict[n].rating_list[ getIndexOfTuple(    self.agents_dict[n].rating_list, 1, ie[0]['when']) ][0]
+                # )
 
             knowledge.append({  'db_sender':        agent.n,
                                 'time':             loop,
                                 'sent_where':       agent.curr_node,
                                 'reputations':      reputs,
                                 'reputations2':     reputs2,
-                                'reliabilities':    reliabs,
-                                'ratings':          ratings})
+                                'reliabilities':    reliabs})
  
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
+
+            '''weights update'''
+            for a in res['weights'].items():
+                self.agents_dict[str(a[0])].weight = a[1]
 
 
             ''' Reputations '''
@@ -443,20 +446,23 @@ class Simulator:
                         situation = elem[1]['situation']
                         obj = elem[1]['object']
 
-                        agent.error = .5 + .5 * np.random.random()
-                        agent.rating = agent.error*10 - 5 # one agent's rate between 0 and 5
+                        # agent.error = .5 + .5 * np.random.random()
+                        agent.error = round(np.random.random(), 2)
+                        # agent.rating = round(agent.error*10 - 5) # one agent's rate between 0 and 5
 
                         # chance = random.random()
                         if agent.error<=self.err_rate:
-                            seen_sit    = get_cls_at_dist(situation, distance=agent.error)
-                            seen_obj    = get_cls_at_dist(obj, distance=agent.error)
+                            seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
+                            seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
                             seen_ev     = (seen_sit, seen_obj)
+                        else:
+                            seen_ev = (situation, obj)
 
                         agent.seen_events.append(seen_ev)
 
                         agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
                         agent.error_list.append((agent.error, 0))
-                        agent.rating_list.append((agent.rating, 0))
+                        # agent.rating_list.append((agent.rating, 0))
 
 
             # Initialize the connections owned by the person
@@ -705,6 +711,6 @@ if __name__=="__main__":
                             n_gateways      = 0.5,
                             loop_distance   = 20,
                             seed            = 57,
-                            threshold       = 85,
-                            err_rate        = 0.15)
+                            threshold       = 30,
+                            err_rate        = 0.10)
     simulator.run()
