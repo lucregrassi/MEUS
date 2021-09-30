@@ -21,7 +21,7 @@ utn = list(set(utn + oxna + oxnt))
 utw = list(set(utw + oxwa + oxwt))
 
 # Set configurations used when importing the graph
-ox.config(all_oneway=True, useful_tags_node=utn, useful_tags_way=utw)
+ox.config(all_oneway=False, useful_tags_node=utn, useful_tags_way=utw)
 # Fetch OSM street network from the location
 G = ox.graph_from_place(place, network_type='all')
 

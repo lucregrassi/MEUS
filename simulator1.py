@@ -56,42 +56,8 @@ class Simulator:
 
     def compute_destination(self, current_node, ag):
 
-        # tic = time.perf_counter()
-        source_nodes = []
-        target_nodes = []
-        # Look for all the sources and the targets of the current node
-        for e in self.G.edges():
-            source, target = e
-            if source == current_node:
-                target_nodes.append(target)
-            if target == current_node:
-                source_nodes.append(source)
-        
-        # toc = time.perf_counter()
-        # print("perf:", toc-tic)
-        # input()
-
-        adj_nodes           = source_nodes + target_nodes
-        distance            = 0
-        destination_node    = 0
-
-        # If there are adjacent nodes (at least a source or a target), pick one randomly as the destination
-        if adj_nodes:
-            inde2               = np.random.randint(0, len(adj_nodes))
-            if inde2==len(adj_nodes):
-                inde2 -= 1
-            destination_node    = adj_nodes[inde2]
-
-            if destination_node in target_nodes:
-                edges_of_interest = self.G[current_node][destination_node]
-            else:
-                edges_of_interest = self.G[destination_node][current_node]
-                
-            for edge in edges_of_interest.values():
-                distance = edge.get('length')
-                # ls = compute_intermediate_dist(edge)
-                if distance < 0:
-                    input("distance is negative!!!")
+        destination_node    = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
+        distance            = self.G[current_node][destination_node][0]['length']
 
         return destination_node, distance
 

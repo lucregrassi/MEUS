@@ -129,7 +129,7 @@ ih_schemas  = infoHistorySchema(many=True)
 
 
 
-# content validity ratio critical values per number of rater per panel
+# content validity ratio critical values per size rater's panel
 CVR = {
     5: 5,
     6: 6,
