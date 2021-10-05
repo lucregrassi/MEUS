@@ -1,3 +1,4 @@
+import csv
 import math
 import json
 import pprint
@@ -10,6 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from owlready2 import *
 from os import path
+import copy 
 
 
 
@@ -437,12 +439,58 @@ def compute_CVR(node_info, index, query_ev, CVR):
 
     ev_id = str(query_ev.id)
 
-    if panel_size in CVR.keys() and candidate==CVR[panel_size]:
-        print("event in node", ev_id, " is: ", node_info['obs'][node_info['votes'].index(candidate)])
-        if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
-            return 1
-        return 0
-    return -1
+    value = -2
+    if panel_size in CVR.keys():
+        value = -1
+        if candidate==CVR[panel_size]:
+        # print("event in node", ev_id, " is: ", node_info['obs'][node_info['votes'].index(candidate)])
+            value = 0
+            if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
+                value = 1
+    return value
+
+def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields):
+    # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
+    # fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'CVR', 'Kalpha']
+
+    node_info = copy.deepcopy(node_info_)
+
+    for i, obs in enumerate(node_info['obs']):
+        obs['coders']   = len(node_info['whos'][i])
+    files = [file for file in os.listdir(outpath) if file.endswith('.csv')]
+
+    if ev_id+'.csv' in files:
+        with open(ev_id+'.csv', 'a') as f:
+            writer = csv.DictWriter(f, fieldnames=fields)
+
+            info = {
+                'Ncoders':      len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))),
+                'who':          ag,
+                'when':         when,
+                'what':         len(node_info['obs'])-1,
+                'observations': [obs for obs in node_info['obs']],
+                'CVR':          cvr,
+                'Kalpha':       kalpha     
+
+            }
+            writer.writerow(info)
+
+    else:
+        with open(ev_id+'.csv', 'w') as f:
+            writer = csv.DictWriter(f, fieldnames=fields)
+            writer.writeheader()
+
+            info = {
+                        'Ncoders':      len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))),
+                        'who':          ag,
+                        'when':         when,
+                        'what':         len(node_info['obs'])-1,
+                        'observations': [obs for obs in node_info['obs']],
+                        'CVR':          cvr,
+                        'Kalpha':       kalpha     
+
+                    }
+            writer.writerow(info)
 
 
 

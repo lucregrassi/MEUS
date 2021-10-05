@@ -73,63 +73,54 @@ class Simulator:
                     for ag_id in self.node_state_dict[k]:
                         # If the teller has a different id (is not the listener), and if they both have
                         candidate = self.agents_dict[str(ag_id)]
-                        if len(candidate.ies)>0:
-                            if candidate.n != listener.n:
-                                perform_exchange = False
-                                # Look for common local connections
-                                if any(j in candidate.local_conn for j in listener.local_conn):
-                                    # print("\nCommon local connection found for agents ", candidate.n, "and", listener.n)
-                                    perform_exchange = True
-                                    # print("node: ", int(k))
-                                # else:
-                                    # print("\nNo common local connections found bewteen", candidate.n, "and", listener.n)
-                                # If there is at least a common local connection or a common global connection available
-                                if perform_exchange:
-                                    both_global = False
-                                    teller = candidate
-                                    listener.met_agents.append(teller.n)
-                                    listener.met_in_node.append(int(k))
-                                    listener.met_in_loop.append(loop)
+                        if candidate.n != listener.n and len(candidate.ies)>0:
+                            # Look for common local connections
+                            perform_exchange = True if any(j in candidate.local_conn for j in listener.local_conn) else False
+                            # If there is at least a common local connection or a common global connection available
+                            if perform_exchange:
+                                teller = candidate
+                                listener.met_agents.append(teller.n)
+                                listener.met_in_node.append(int(k))
+                                listener.met_in_loop.append(loop)
 
-                                    # Loop through all Information Elements of the teller
-                                    for IE_teller in teller.ies:
-                                        same_root = False
-                                        already_told = False
-                                        # print("teller: ", IE_teller[0],", ",IE_teller[1:])
-                                        for i, lis_ie in enumerate(listener.ies):
-                                            # If the IEs have the same root (can happen only once)
-                                            if IE_teller[0] == lis_ie[0]:
-                                                same_root = True
-                                                index = i
-                                                # same_root_IE_listener = copy.deepcopy(IE_listener)
-                                                # For each quadrupla in the IE
-                                                for quadrupla in IE_teller[1:]:
-                                                    # If the listener is not a teller in a tuple of the IE,
-                                                    # or the teller has not previously told the information to the listener
-                                                    if quadrupla[0]==listener.n:
-                                                        already_told = True
-                                                        break
-                                                for tup in lis_ie[1:]:
-                                                    if (tup[0]==teller.n and tup[1]==listener.n):
-                                                        already_told = True
-                                                        break
+                                # Loop through all Information Elements of the teller
+                                for IE_teller in teller.ies:
+                                    same_root = False
+                                    already_told = False
+                                    # print("teller: ", IE_teller[0],", ",IE_teller[1:])
+                                    for i, lis_ie in enumerate(listener.ies):
+                                        # If the IEs have the same root (can happen only once)
+                                        if IE_teller[0] == lis_ie[0]:
+                                            same_root = True
+                                            index = i
+                                            # For each quadrupla in the IE
+                                            for quadrupla in IE_teller[1:]:
+                                                # If the listener is not a teller in a tuple of the IE,
+                                                # or the teller has not previously told the information to the listener
+                                                if quadrupla[0]==listener.n:
+                                                    already_told = True
+                                                    break
+                                            for tup in lis_ie[1:]:
+                                                if (tup[0]==teller.n and tup[1]==listener.n):
+                                                    already_told = True
+                                                    break
 
-                                        if not already_told:
-                                            if same_root:
-                                                if len(IE_teller[1:]) > 0:
+                                    if not already_told:
+                                        if same_root:
+                                            if len(IE_teller[1:]) > 0:
 
-                                                    target_extend = []
-                                                    target_extend.append((teller.n, listener.n, int(k), loop))
-                                                    target_extend.extend(elem for elem in IE_teller[1:] if elem not in listener.ies[index])
+                                                target_extend = []
+                                                target_extend.append((teller.n, listener.n, int(k), loop))
+                                                target_extend.extend(elem for elem in IE_teller[1:] if elem not in listener.ies[index])
 
-                                                    # communicating the information to the listener
-                                                    listener.ies[index].extend(target_extend)
-                                                else:
-                                                    listener.ies[index].append((teller.n, listener.n, int(k), loop))
+                                                # communicating the information to the listener
+                                                listener.ies[index].extend(target_extend)
                                             else:
-                                                # Append the new IE to the listener (making a deepcopy of the IE of the teller)
-                                                listener.ies.append(copy.deepcopy(IE_teller))
-                                                listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                                listener.ies[index].append((teller.n, listener.n, int(k), loop))
+                                        else:
+                                            # Append the new IE to the listener (making a deepcopy of the IE of the teller)
+                                            listener.ies.append(copy.deepcopy(IE_teller))
+                                            listener.ies[-1].append((teller.n, listener.n, int(k), loop))
 
         # Avoid that they can meet again once they exchange their info and they are still in the same node
         for k in delete:
@@ -188,18 +179,17 @@ class Simulator:
                 # a.rating = round(a.error*10 - 5) # one agent's rate between 0 and 5
 
                 # chance = random.random()
-                if a.error<=self.err_rate:
-                    seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
-                    seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
-                    seen_ev     = (seen_sit, seen_obj)
-                else:
-                    seen_ev     = (node_situation, node_object)
+                # if a.error<self.err_rate:
+                #     seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
+                #     seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
+                #     seen_ev     = (seen_sit, seen_obj)
+                # else:
+                seen_ev     = (node_situation, node_object)
 
                 a.seen_events.append(seen_ev)
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
                 a.error_list.append((a.error, loop))
                 # a.rating_list.append((a.rating, loop))
-
 
         else:
             # If the person is moving, check if it has reached the destination
@@ -417,12 +407,12 @@ class Simulator:
                         # agent.rating = round(agent.error*10 - 5) # one agent's rate between 0 and 5
 
                         # chance = random.random()
-                        if agent.error<=self.err_rate:
-                            seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
-                            seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
-                            seen_ev     = (seen_sit, seen_obj)
-                        else:
-                            seen_ev = (situation, obj)
+                        # if agent.error<self.err_rate:
+                        #     seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
+                        #     seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
+                        #     seen_ev     = (seen_sit, seen_obj)
+                        # else:
+                        seen_ev = (situation, obj)
 
                         agent.seen_events.append(seen_ev)
 
@@ -546,108 +536,108 @@ class Simulator:
             csv_writer3.writerow(info)
 
     
-        with open('reputations.csv', 'a') as csv_file:
-            csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
+        # with open('reputations.csv', 'a') as csv_file:
+        #     csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
 
-            for key in self.agents_dict.keys():
+        #     for key in self.agents_dict.keys():
 
-                conf_interval = 0
-                if 0 <= abs(self.agents_dict[key].error) < 1:
-                    conf_interval = 1
+        #         conf_interval = 0
+        #         if 0 <= abs(self.agents_dict[key].error) < 1:
+        #             conf_interval = 1
 
-                elif 1 <= abs(self.agents_dict[key].error) < 2:
-                    conf_interval = 2
+        #         elif 1 <= abs(self.agents_dict[key].error) < 2:
+        #             conf_interval = 2
 
-                else:
-                    conf_interval = 3
-
-
-                info = {
-                    'id':                      self.agents_dict[key].n,
-                    'reputation':              round( self.agents_dict[key].reputation, 2),
-                    'reputation2':             round( self.agents_dict[key].reputation2, 2),
-                    'std_dev':                 self.agents_dict[key].sigma, 
-                    'number_of_seen_events':   self.agents_dict[key].num_info_seen
-                }
-                csv_writer4.writerow(info)
+        #         else:
+        #             conf_interval = 3
 
 
+        #         info = {
+        #             'id':                      self.agents_dict[key].n,
+        #             'reputation':              round( self.agents_dict[key].reputation, 2),
+        #             'reputation2':             round( self.agents_dict[key].reputation2, 2),
+        #             'std_dev':                 self.agents_dict[key].sigma, 
+        #             'number_of_seen_events':   self.agents_dict[key].num_info_seen
+        #         }
+        #         csv_writer4.writerow(info)
 
-        pat = '/Users/mario/Desktop/Fellowship_Unige/experiments/100/Amatrice/28-06/seed' + str(simulator.seed) + "/method1" #+ '/Amatrice_reps_' +str(int((1-simulator.err_rate)*100)) + '%'
-        # fieldn = ['lats']
-        # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'w') as f:
-        #     writer = csv.DictWriter(f, fieldnames=fieldn)
-        #     writer.writeheader()
+
+
+        # pat = '/Users/mario/Desktop/Fellowship_Unige/experiments/100/Amatrice/28-06/seed' + str(simulator.seed) + "/method1" #+ '/Amatrice_reps_' +str(int((1-simulator.err_rate)*100)) + '%'
+        # # fieldn = ['lats']
+        # # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'w') as f:
+        # #     writer = csv.DictWriter(f, fieldnames=fieldn)
+        # #     writer.writeheader()
         
-        # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'a') as f:
-        #     writer = csv.DictWriter(f, fieldnames=fieldn)
-        #     for el in simulator.latency:
-        #         writer.writerow({'lats': el})
+        # # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'a') as f:
+        # #     writer = csv.DictWriter(f, fieldnames=fieldn)
+        # #     for el in simulator.latency:
+        # #         writer.writerow({'lats': el})
 
-        fielde = ['error_rate']
-        for key in self.agents_dict.keys():
-            if self.agents_dict[key].num_info_seen > 0:
-                with open(pat + '/err_rate/{0}.csv'.format(key), 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=fielde)
-                    writer.writeheader()
+        # fielde = ['error_rate']
+        # for key in self.agents_dict.keys():
+        #     if self.agents_dict[key].num_info_seen > 0:
+        #         with open(pat + '/err_rate/{0}.csv'.format(key), 'w') as f:
+        #             writer = csv.DictWriter(f, fieldnames=fielde)
+        #             writer.writeheader()
                 
-                with open(pat + '/err_rate/{0}.csv'.format(key), 'a') as f:
-                    writer = csv.DictWriter(f, fieldnames=fielde)
-                    for el in self.agents_dict[key].reputations:
-                        writer.writerow({ 'error_rate':    el})
+        #         with open(pat + '/err_rate/{0}.csv'.format(key), 'a') as f:
+        #             writer = csv.DictWriter(f, fieldnames=fielde)
+        #             for el in self.agents_dict[key].reputations:
+        #                 writer.writerow({ 'error_rate':    el})
 
 
-        fieldn = ['reps']
-        for key in self.agents_dict.keys():
-            if self.agents_dict[key].num_info_seen > 0:
-                with open(pat + '/rep/{0}.csv'.format(key), 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=fieldn)
-                    writer.writeheader()
+        # fieldn = ['reps']
+        # for key in self.agents_dict.keys():
+        #     if self.agents_dict[key].num_info_seen > 0:
+        #         with open(pat + '/rep/{0}.csv'.format(key), 'w') as f:
+        #             writer = csv.DictWriter(f, fieldnames=fieldn)
+        #             writer.writeheader()
                 
-                with open(pat + '/rep/{0}.csv'.format(key), 'a') as f:
-                    writer = csv.DictWriter(f, fieldnames=fieldn)
-                    for el in self.agents_dict[key].reputations2:
-                        writer.writerow({ 'reps':    el})
+        #         with open(pat + '/rep/{0}.csv'.format(key), 'a') as f:
+        #             writer = csv.DictWriter(f, fieldnames=fieldn)
+        #             for el in self.agents_dict[key].reputations2:
+        #                 writer.writerow({ 'reps':    el})
 
 
-        for key in self.agents_dict.keys():
+        # for key in self.agents_dict.keys():
 
 
-            if len(self.agents_dict2[key]['rep2'])!=len(self.agents_dict2[key]['when2']):
-                pprint(self.agents_dict2[key]['rep2'])
-                pprint(self.agents_dict2[key]['when2'])
-                print(len(self.agents_dict2[key]['rep2']))
-                print(len(self.agents_dict2[key]['when2']))
-                input("rep2")
+        #     if len(self.agents_dict2[key]['rep2'])!=len(self.agents_dict2[key]['when2']):
+        #         pprint(self.agents_dict2[key]['rep2'])
+        #         pprint(self.agents_dict2[key]['when2'])
+        #         print(len(self.agents_dict2[key]['rep2']))
+        #         print(len(self.agents_dict2[key]['when2']))
+        #         input("rep2")
 
-            self.agents_dict[key].ordered_reps  = list(zip(self.agents_dict2[key]['rep'], self.agents_dict2[key]['when']))
-            self.agents_dict[key].ordered_reps2 = list(zip(self.agents_dict2[key]['rep2'], self.agents_dict2[key]['when2']))
+        #     self.agents_dict[key].ordered_reps  = list(zip(self.agents_dict2[key]['rep'], self.agents_dict2[key]['when']))
+        #     self.agents_dict[key].ordered_reps2 = list(zip(self.agents_dict2[key]['rep2'], self.agents_dict2[key]['when2']))
 
-            self.agents_dict[key].ordered_reps.sort(   key=lambda a: a[1])
-            self.agents_dict[key].ordered_reps2.sort(  key=lambda a: a[1])
+        #     self.agents_dict[key].ordered_reps.sort(   key=lambda a: a[1])
+        #     self.agents_dict[key].ordered_reps2.sort(  key=lambda a: a[1])
 
-            if len(self.agents_dict[key].ordered_reps)>1:
-                plot_agent_perf(self.agents_dict[key], key, pat, self.err_rate)
-
-
-
-        latency_meanStddev_plot(    self.mean_succ_rate,
-                                    self.stddev_succ_rate,
-                                    self.mean_succ_rate2,
-                                    self.stddev_succ_rate2,
-                                    self.err_rate,
-                                    pat)
+        #     if len(self.agents_dict[key].ordered_reps)>1:
+        #         plot_agent_perf(self.agents_dict[key], key, pat, self.err_rate)
 
 
-        plt.style.use('seaborn-whitegrid')
-        plt.figure(500)
-        plt.plot(self.similarity_err, label='similarity err', c='b')
+
+        # latency_meanStddev_plot(    self.mean_succ_rate,
+        #                             self.stddev_succ_rate,
+        #                             self.mean_succ_rate2,
+        #                             self.stddev_succ_rate2,
+        #                             self.err_rate,
+        #                             pat)
+
+
+        # plt.style.use('seaborn-whitegrid')
+        # plt.figure(500)
+        # plt.plot(self.similarity_err, label='similarity err', c='b')
         
-        plt.legend(loc='upper left')
-        plt.ylabel('sim err')
-        plt.xlabel('# of observations')
-        plt.tight_layout()
-        plt.savefig(path.join(pat, 'similarity_err_plot.svg'))
+        # plt.legend(loc='upper left')
+        # plt.ylabel('sim err')
+        # plt.xlabel('# of observations')
+        # plt.tight_layout()
+        # plt.savefig(path.join(pat, 'similarity_err_plot.svg'))
 
         # print(self.similarity_err)
 
@@ -658,16 +648,16 @@ class Simulator:
 
 
 
-        with open('experiments.csv', 'a') as csv_file:
-                csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
+        # with open('experiments.csv', 'a') as csv_file:
+        #         csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
 
-                info = {
-                    'sizeTab1':     res['size_tab1'],
-                    'sizeTab2':     res['size_tab2'],
-                    'latency':      statistics.mean(self.latency),
-                    'num_loops':    self.num_loops
-                }
-                csv_writer2.writerow(info)
+        #         info = {
+        #             'sizeTab1':     res['size_tab1'],
+        #             'sizeTab2':     res['size_tab2'],
+        #             'latency':      statistics.mean(self.latency),
+        #             'num_loops':    self.num_loops
+        #         }
+        #         csv_writer2.writerow(info)
 
 
 if __name__=="__main__":
@@ -677,6 +667,6 @@ if __name__=="__main__":
                             n_gateways      = 0.5,
                             loop_distance   = 20,
                             seed            = 57,
-                            threshold       = 30,
-                            err_rate        = 0.10)
+                            threshold       = 70,
+                            err_rate        = 0.0)
     simulator.run()
