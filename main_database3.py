@@ -34,7 +34,6 @@ class dirObsTab(db.Model):
     obj             = db.Column(db.String(50), nullable=False)
     when            = db.Column(db.Integer, nullable=False)
     where           = db.Column(db.Integer, nullable=False)
-    # Information element or direct observation
     who             = db.Column(db.Integer, nullable=False)
     info_histories  = db.relationship('infoHistoryTab', backref="dir_obs_tab", lazy=True)
 
@@ -94,14 +93,6 @@ class latencyTab(db.Model):
     where           = db.Column(db.Integer, nullable=False)
     who             = db.Column(db.Integer, nullable=False)
     lat             = db.Column(db.Integer, nullable=False)
-
-# class ratingsTab(db.Model):
-#     id          = db.Column(db.Integer,  primary_key=True)
-#     event_id    = db.Column(db.Integer, db.ForeignKey('events_tab.id'), nullable=False)
-#     Ncoders     = db.Column(db.Integer, nullable=False)
-#     who         = db.Column(db.Integer, nullable=False)
-#     when        = db.Column
-
 
 
 
@@ -193,7 +184,7 @@ CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
 
 outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
-fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'CVR', 'Kalpha']
+fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'CVR', 'Kalpha']
 
 
 @app.route("/IE/events", methods=["PUT"])
@@ -233,12 +224,11 @@ def receiving_events_list():
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
 def put(DO_id):
 
-    json_data                   = json.loads(request.data)
-    data_do,\
-        data_ih,\
-            reputation,\
-                reputation2,\
-                    reliability = NewpreProcessing(json_data)
+    json_data           = json.loads(request.data)
+    data_do, data_ih    = NewpreProcessing(json_data)
+            # reputation,\
+            #     reputation2,\
+            #         reliability = NewpreProcessing(json_data)
 
     all_events_db = False
     flag = False
@@ -289,114 +279,114 @@ def put(DO_id):
 
         try:
             # if the observation corresponds to the truth
-            v = 0
-            w = 0
-            flag1=False
-            if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj:
+            # v = 0
+            # w = 0
+            # flag1=False
+            # if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj:
 
-                if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict[ev_id]['obs']:
+            #     if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict[ev_id]['obs']:
 
-                    agents_dict[ag_id]['positive']  += 1
-                    agents_dict[ag_id]['times']     += 1
+            #         agents_dict[ag_id]['positive']  += 1
+            #         agents_dict[ag_id]['times']     += 1
 
-                    events_dict[ev_id]['obs'].append({   'situation':    dobs['situation'],
-                                                            'object':       dobs['obj']})
-                    events_dict[ev_id]['whos'].append([dobs['who']])
-                    events_dict[ev_id]['whens'].append([[dobs['when']]])
+            #         events_dict[ev_id]['obs'].append({   'situation':    dobs['situation'],
+            #                                                 'object':       dobs['obj']})
+            #         events_dict[ev_id]['whos'].append([dobs['who']])
+            #         events_dict[ev_id]['whens'].append([[dobs['when']]])
 
-                    flag1=True
-                    v=1
+            #         flag1=True
+            #         v=1
 
-                else:
-                    ind1 = events_dict[ev_id]['obs'].index({'situation':dobs['situation'], 'object': dobs['obj']})
+            #     else:
+            #         ind1 = events_dict[ev_id]['obs'].index({'situation':dobs['situation'], 'object': dobs['obj']})
                    
-                    # if the current observer has not been reported in the observers' list yet
-                    if dobs['who'] not in events_dict[ev_id]['whos'][ind1]:
+            #         # if the current observer has not been reported in the observers' list yet
+            #         if dobs['who'] not in events_dict[ev_id]['whos'][ind1]:
 
-                        agents_dict[ag_id]['positive']  += 1
-                        agents_dict[ag_id]['times']     += 1
+            #             agents_dict[ag_id]['positive']  += 1
+            #             agents_dict[ag_id]['times']     += 1
 
-                        events_dict[ev_id]['whos'][ind1].append(dobs['who'])
-                        events_dict[ev_id]['whens'][ind1].append([dobs['when']])
-                        v=1
+            #             events_dict[ev_id]['whos'][ind1].append(dobs['who'])
+            #             events_dict[ev_id]['whens'][ind1].append([dobs['when']])
+            #             v=1
 
-                    else:
-                        # checking the time the observation has occurred in order to avoid redunant infos
-                        if not any(dobs['when'] in nest for nest in events_dict[ev_id]['whens'][ind1]):
+            #         else:
+            #             # checking the time the observation has occurred in order to avoid redunant infos
+            #             if not any(dobs['when'] in nest for nest in events_dict[ev_id]['whens'][ind1]):
 
-                            agents_dict[ag_id]['positive']  += 1
-                            agents_dict[ag_id]['times']     += 1
+            #                 agents_dict[ag_id]['positive']  += 1
+            #                 agents_dict[ag_id]['times']     += 1
 
-                            ind2 = events_dict[ev_id]['whos'][ind1].index(dobs['who'])
-                            events_dict[ev_id]['whens'][ind1][ind2].append(dobs['when'])
-                            v=1
+            #                 ind2 = events_dict[ev_id]['whos'][ind1].index(dobs['who'])
+            #                 events_dict[ev_id]['whens'][ind1][ind2].append(dobs['when'])
+            #                 v=1
 
-                if v!=0:
-                    reputation[i] = agents_dict[ag_id]['positive'] /\
-                            (agents_dict[ag_id]['positive'] + agents_dict[ag_id]['negative'])
+            #     if v!=0:
+            #         reputation[i] = agents_dict[ag_id]['positive'] /\
+            #                 (agents_dict[ag_id]['positive'] + agents_dict[ag_id]['negative'])
 
-                if flag1:
-                    events_dict[ev_id]['reps'].append([reputation[i]])
-                elif not flag1 and v!=0:
-                   events_dict[ev_id]['reps'][ind1].append(reputation[i]) 
+            #     if flag1:
+            #         events_dict[ev_id]['reps'].append([reputation[i]])
+            #     elif not flag1 and v!=0:
+            #        events_dict[ev_id]['reps'][ind1].append(reputation[i]) 
 
-            else:
+            # else:
 
-                if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict[ev_id]['obs']:
+            #     if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict[ev_id]['obs']:
                     
-                    agents_dict[ag_id]['negative']  += 1
-                    agents_dict[ag_id]['times']     += 1
+            #         agents_dict[ag_id]['negative']  += 1
+            #         agents_dict[ag_id]['times']     += 1
 
-                    events_dict[ev_id]['obs'].append({   'situation':    dobs['situation'],
-                                                            'object':       dobs['obj']})
-                    events_dict[ev_id]['whos'].append([dobs['who']])
-                    events_dict[ev_id]['whens'].append([[dobs['when']]])
+            #         events_dict[ev_id]['obs'].append({   'situation':    dobs['situation'],
+            #                                                 'object':       dobs['obj']})
+            #         events_dict[ev_id]['whos'].append([dobs['who']])
+            #         events_dict[ev_id]['whens'].append([[dobs['when']]])
 
-                    flag1=True
-                    w=1
+            #         flag1=True
+            #         w=1
 
-                else:
-                    ind1 = events_dict[ev_id]['obs'].index({'situation': dobs['situation'], 'object': dobs['obj']})
+            #     else:
+            #         ind1 = events_dict[ev_id]['obs'].index({'situation': dobs['situation'], 'object': dobs['obj']})
                    
-                    # if the current observer has not been reported in the observers' list yet
-                    if dobs['who'] not in events_dict[ev_id]['whos'][ind1]:
+            #         # if the current observer has not been reported in the observers' list yet
+            #         if dobs['who'] not in events_dict[ev_id]['whos'][ind1]:
 
-                        agents_dict[ag_id]['negative']  += 1
-                        agents_dict[ag_id]['times']     += 1
+            #             agents_dict[ag_id]['negative']  += 1
+            #             agents_dict[ag_id]['times']     += 1
 
-                        events_dict[ev_id]['whos'][ind1].append(dobs['who'])
-                        events_dict[ev_id]['whens'][ind1].append([dobs['when']])
-                        w=1
+            #             events_dict[ev_id]['whos'][ind1].append(dobs['who'])
+            #             events_dict[ev_id]['whens'][ind1].append([dobs['when']])
+            #             w=1
 
-                    else:
-                        # checking the time the observation has occurred in order to avoid redunant infos
-                        if not any(dobs['when'] in nest for nest in events_dict[ev_id]['whens'][ind1]):
+            #         else:
+            #             # checking the time the observation has occurred in order to avoid redunant infos
+            #             if not any(dobs['when'] in nest for nest in events_dict[ev_id]['whens'][ind1]):
 
-                            agents_dict[ag_id]['negative']  += 1
-                            agents_dict[ag_id]['times']     += 1
+            #                 agents_dict[ag_id]['negative']  += 1
+            #                 agents_dict[ag_id]['times']     += 1
 
-                            ind2 = events_dict[ev_id]['whos'][ind1].index(dobs['who'])
-                            events_dict[ev_id]['whens'][ind1][ind2].append(dobs['when'])
+            #                 ind2 = events_dict[ev_id]['whos'][ind1].index(dobs['who'])
+            #                 events_dict[ev_id]['whens'][ind1][ind2].append(dobs['when'])
 
-                            w=1
+            #                 w=1
 
-                if w!=0:
-                    reputation[i] = agents_dict[ag_id]['positive'] /\
-                            (agents_dict[ag_id]['positive'] + agents_dict[ag_id]['negative'])
+            #     if w!=0:
+            #         reputation[i] = agents_dict[ag_id]['positive'] /\
+            #                 (agents_dict[ag_id]['positive'] + agents_dict[ag_id]['negative'])
 
-                if flag1:
-                    events_dict[ev_id]['reps'].append([reputation[i]])
-                elif not flag1 and w!=0:
-                   events_dict[ev_id]['reps'][ind1].append(reputation[i])
+            #     if flag1:
+            #         events_dict[ev_id]['reps'].append([reputation[i]])
+            #     elif not flag1 and w!=0:
+            #        events_dict[ev_id]['reps'][ind1].append(reputation[i])
 
-            if v!=0 or w!=0:
-                reputations.append({
-                'id':       dobs['who'],
-                'rep':      reputation[i],    # success rate
-                'times':    agents_dict[ag_id]['times'],
-                'when':     dobs['when'],
-                'rel':      reliability[i]
-                })
+            # if v!=0 or w!=0:
+            #     reputations.append({
+            #     'id':       dobs['who'],
+            #     'rep':      reputation[i],    # success rate
+            #     'times':    agents_dict[ag_id]['times'],
+            #     'when':     dobs['when'],
+            #     'rel':      reliability[i]
+            #     })
 
 
 
@@ -428,16 +418,9 @@ def put(DO_id):
                     if len(events_dict2[ev_id]['obs'])>=2:
                         print(compute_KrippendorffAlpha(events_dict2[ev_id]))
 
-                    # if ev_id=='57':
-                    #     pprint(events_dict2[ev_id])
-                    #     print(dobs['when'])
-                    #     input()
 
                     '''CVR method'''
-                    flag2=False
-                    flag = True if len(list(np.unique(np.asarray(list(itertools.chain(*events_dict2[ev_id]['whos']))))))>=5 else False
                     if compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==1:
-                        flag2=True
                         logger( ev_id,
                                 dobs['who'],
                                 dobs['when'],
@@ -445,7 +428,8 @@ def put(DO_id):
                                 1,
                                 round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
                                 outpath,
-                                fields)
+                                fields,
+                                query_ev)
 
                         CVR_performace['times'] += 1
                         CVR_performace['correct'] += 1
@@ -466,7 +450,9 @@ def put(DO_id):
                                 0,
                                 round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
                                 outpath,
-                                fields)
+                                fields,
+                                query_ev)
+
                         CVR_performace['times'] += 1
                         print(events_dict2[ev_id]['whos'])
                         print(list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][-1]))))))
@@ -478,6 +464,13 @@ def put(DO_id):
                                 ag_weights.append(agents_dict2[str(ag)]['weight'])
                     
                     elif compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==-1:
+
+                        # pprint(events_dict2[ev_id])
+                        # print(len(events_dict2[ev_id]['obs'])-1)
+                        # print(query_ev.situation)
+                        # print(query_ev.obj)
+                        # input()
+
                         logger( ev_id,
                                 dobs['who'],
                                 dobs['when'],
@@ -485,16 +478,17 @@ def put(DO_id):
                                 -1,
                                 round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
                                 outpath,
-                                fields)
+                                fields,
+                                query_ev)
                     else:
                         pass
 
 
-                    reputation2[i] = 1 # agents_dict2[ag_id]['positive'] /\
+                    # reputation2[i] = 1 # agents_dict2[ag_id]['positive'] /\
                                     #(agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
 
-                    events_dict2[ev_id]['reps'].append([reputation2[i]])
-                    events_dict2[ev_id]['reps1'].append([reputation[i]])
+                    # events_dict2[ev_id]['reps'].append([reputation2[i]])
+                    # events_dict2[ev_id]['reps1'].append([reputation[i]])
 
 
                     agVotes = agentsVotesTab(   agents_id   = dobs['who'],
@@ -504,8 +498,6 @@ def put(DO_id):
                                                 cons        = cons)
 
                     db.session.add(agVotes)
-
-                    # assert(flag==flag2)
 
 
                 else:
@@ -537,20 +529,12 @@ def put(DO_id):
 
                         print("third")
 
-                        # if ev_id=='57':
-                        #     pprint(events_dict2[ev_id])
-                        #     print(dobs['when'])
-                        #     input()
-
                         '''Krippendorff's alpha'''
                         if len(events_dict2[ev_id]['obs'])>=2:
                             print(compute_KrippendorffAlpha(events_dict2[ev_id]))
 
                         '''CVR method'''
-                        flag2=False
-                        flag = True if len(list(np.unique(np.asarray(list(itertools.chain(*events_dict2[ev_id]['whos']))))))>=5 else False
                         if compute_CVR(events_dict2[ev_id], index, query_ev, CVR)==1:
-                            flag2=True
                             logger( ev_id,
                                     dobs['who'],
                                     dobs['when'],
@@ -558,7 +542,8 @@ def put(DO_id):
                                     1,
                                     round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
                                     outpath,
-                                    fields)
+                                    fields,
+                                    query_ev)
 
                             CVR_performace['times'] += 1
                             CVR_performace['correct'] += 1
@@ -578,7 +563,8 @@ def put(DO_id):
                                     0,
                                     round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
                                     outpath,
-                                    fields)
+                                    fields,
+                                    query_ev)
 
                             CVR_performace['times'] += 1
                             for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][index]))))):
@@ -591,14 +577,22 @@ def put(DO_id):
 
                         elif compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==-1:
 
+                            # pprint(events_dict2[ev_id])
+                            # print(len(events_dict2[ev_id]['obs'])-1)
+                            # print(query_ev.situation)
+                            # print(query_ev.obj)
+                            # input()
+
+
                             logger( ev_id,
-                                    dobs['who'],
+                                    dobs['who'], 
                                     dobs['when'],
                                     events_dict2[ev_id],
                                     -1,
                                     round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
                                     outpath,
-                                    fields)
+                                    fields,
+                                    query_ev)
                         
                         else:
                             pass
@@ -611,46 +605,34 @@ def put(DO_id):
                                                     cons        = cons)
 
                         db.session.add(agVotes)
-                        # assert(flag==flag2)
                     else:
                         token=3
 
-                    if not token==3:
-                        # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
-                        # fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'CVR', 'Kalpha']
-                        # for csv_file in os.listdir(outpath):
-                        #     if csv_file.endswith('.csv') and csv_file==ev_id+'.csv':
-                        #         with open(ev_id+'.csv', 'a') as f:
-                        #             writer = csv.DictWriter(f, fieldnames=fields)
+                    # if not token==3:
 
-                        #             info = {
-                        #                 'Ncoders' = 
-                        #             }
-
-
-                        reputation2[i] = 1#agents_dict2[ag_id]['positive'] /\
+                    #     reputation2[i] = 1#agents_dict2[ag_id]['positive'] /\
                                         #(agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
 
                         # reputation2[i] = agents_dict2[ag_id]['numAgs'] / agents_dict2[ag_id]['denAgs']
 
-                    if token==2:
-                        events_dict2[ev_id]['reps'][index][index2] = reputation2[i]
-                        events_dict2[ev_id]['reps1'][index][index2] = reputation[i]
-                        # events_dict2[ev_id]['votes'][index] += 1
-                    elif token==1:
-                        events_dict2[ev_id]['reps'][index].append(reputation2[i])
-                        events_dict2[ev_id]['reps1'][index].append(reputation[i])
+                    # if token==2:
+                    #     events_dict2[ev_id]['reps'][index][index2] = reputation2[i]
+                    #     events_dict2[ev_id]['reps1'][index][index2] = reputation[i]
+                    #     # events_dict2[ev_id]['votes'][index] += 1
+                    # elif token==1:
+                    #     events_dict2[ev_id]['reps'][index].append(reputation2[i])
+                    #     events_dict2[ev_id]['reps1'][index].append(reputation[i])
                         # events_dict2[ev_id]['votes'][index] += 1
 
             new_weights = {}
             if not token==3:
-                reputations2.append({
-                            'id':       dobs['who'],
-                            'rep':      reputation2[i],
-                            'times':    agents_dict2[ag_id]['times'],
-                            'when':     dobs['when'],
-                            'rel':      reliability[i]
-                            })
+                # reputations2.append({
+                #             'id':       dobs['who'],
+                #             'rep':      reputation2[i],
+                #             'times':    agents_dict2[ag_id]['times'],
+                #             'when':     dobs['when'],
+                #             'rel':      reliability[i]
+                #             })
                 
                 # for y in range(len(ag_ids)):
 
@@ -881,7 +863,6 @@ def delete(DO_id):
     print(CVR_performace['correct'])
     print(CVR_performace['times'])
     # print(round((CVR_performace['correct'] / CVR_performace['times'])*100, 3))
-    # input()
 
     query           = dirObsTab.query.options(joinedload(dirObsTab.info_histories))
     query_events    = eventsTab.query.options(joinedload(eventsTab.observations))
@@ -921,4 +902,4 @@ def delete(DO_id):
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True)#, threaded=True)

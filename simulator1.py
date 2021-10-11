@@ -145,46 +145,58 @@ class Simulator:
             node_object = []
             flag = False
             # Update the counters in the nodes and acquire the situation and the object in the new current node
-            for n in self.G.nodes.data():
-                if n[0] == previous_node:
-                    n[1]['n_agents'] = int(n[1]['n_agents']) - 1
-                    # If it has still not been removed from that node, delete it so that no exchange is possible
-                    if str(n[0]) in self.node_state_dict:
-                        if a.n in self.node_state_dict[str(n[0])]:
-                            self.node_state_dict[str(n[0])].remove(a.n)
+            self.G.nodes[previous_node]['n_agents']  = int(self.G.nodes[previous_node]['n_agents']) - 1
+            self.G.nodes[a.curr_node]['n_agents']    = int(self.G.nodes[a.curr_node]['n_agents'])   + 1
 
-                elif n[0] == a.curr_node:
-                    n[1]['n_agents'] = int(n[1]['n_agents']) + 1
-                    # if this node is not yet in the dictionary, create the key-value pair
-                    if not self.node_state_dict.get(str(n[0])):
-                        self.node_state_dict[str(n[0])] = [a.n]
-                    # if the node is already in the dictionary, append to the value the agent's id
-                    else:
-                        self.node_state_dict[str(n[0])].append(a.n)
+            if (str(previous_node)) in self.node_state_dict and a.n in self.node_state_dict[str(previous_node)]:
+                self.node_state_dict[str(previous_node)].remove(a.n)
 
-                    if n[1]['situation'] != 'None':
-                        flag = True
-                        node_situation  = n[1]['situation']
-                        node_object     = n[1]['object']
+            if not self.node_state_dict.get(str(a.curr_node)):
+                self.node_state_dict[str(a.curr_node)] = [a.n]
+            else:
+                self.node_state_dict[str(a.curr_node)].append(a.n)
+
+            if self.G.nodes[a.curr_node]['situation'] != 'None':
+                flag = True
+                node_situation  = self.G.nodes[a.curr_node]['situation']
+                node_object     = self.G.nodes[a.curr_node]['object']
+
+            # for n in self.G.nodes.data():
+            #     if n[0] == previous_node:
+            #         n[1]['n_agents'] = int(n[1]['n_agents']) - 1
+            #         # If it has still not been removed from that node, delete it so that no exchange is possible
+            #         if str(n[0]) in self.node_state_dict:
+            #             if a.n in self.node_state_dict[str(n[0])]:
+            #                 self.node_state_dict[str(n[0])].remove(a.n)
+
+            #     elif n[0] == a.curr_node:
+            #         n[1]['n_agents'] = int(n[1]['n_agents']) + 1
+            #         # if this node is not yet in the dictionary, create the key-value pair
+            #         if not self.node_state_dict.get(str(n[0])):
+            #             self.node_state_dict[str(n[0])] = [a.n]
+            #         # if the node is already in the dictionary, append to the value the agent's id
+            #         else:
+            #             self.node_state_dict[str(n[0])].append(a.n)
+
+            #         if n[1]['situation'] != 'None':
+            #             flag = True
+            #             node_situation  = n[1]['situation']
+            #             node_object     = n[1]['object']
 
             # Add the new current node to the list of visited nodes of the person
             a.visited_nodes.append(a.curr_node)
             # The actual situation and object seen by the person depend on its trustworthiness
             if flag:
     
-                # a.error = np.random.normal(a.mu, a.sigma, 1)[0]
-
                 # agents can have an error rate in the interval [0.5, 1]
                 a.error = round(np.random.random(), 2)
-                # a.rating = round(a.error*10 - 5) # one agent's rate between 0 and 5
 
-                # chance = random.random()
-                # if a.error<self.err_rate:
-                #     seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
-                #     seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
-                #     seen_ev     = (seen_sit, seen_obj)
-                # else:
-                seen_ev     = (node_situation, node_object)
+                if a.error<self.err_rate:
+                    seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
+                    seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
+                    seen_ev     = (seen_sit, seen_obj)
+                else:
+                    seen_ev     = (node_situation, node_object)
 
                 a.seen_events.append(seen_ev)
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
@@ -214,37 +226,41 @@ class Simulator:
             
             knowledge = []
 
-            reputs  = []
-            reputs2 = []
-            reliabs = []
-            ratings = []
+            # reputs  = []
+            # reputs2 = []
+            # reliabs = []
+            # ratings = []
 
-            for i in range(agent.num_info_sent, len(agent.ies)):
-                ie = copy.deepcopy(agent.ies[i])
-                ie = NewIEtoDict(ie)
+            # for i in range(agent.num_info_sent, len(agent.ies)):
+            #     ie = copy.deepcopy(agent.ies[i])
+            #     ie = NewIEtoDict(ie)
 
-                n = str(ie[0]['id'])
+            #     n = str(ie[0]['id'])
 
-                knowledge.append(ie)
+            #     knowledge.append(ie)
 
-                reputs.append(self.agents_dict[n].reputation)
-                reputs2.append(self.agents_dict[n].reputation2)
+            knowledge = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
+                # reputs.append(self.agents_dict[n].reputation)
+                # reputs2.append(self.agents_dict[n].reputation2)
 
 
-                reliabs.append(
-                    self.agents_dict[n].error_list[ getIndexOfTuple(    self.agents_dict[n].error_list, 1, ie[0]['when']) ][0]
-                    )
+                # reliabs.append(
+                #     self.agents_dict[n].error_list[ getIndexOfTuple(    self.agents_dict[n].error_list, 1, ie[0]['when']) ][0]
+                #     )
 
                 # ratings.append(
                 #     self.agents_dict[n].rating_list[ getIndexOfTuple(    self.agents_dict[n].rating_list, 1, ie[0]['when']) ][0]
                 # )
 
+            # knowledge.append({  'db_sender':        agent.n,
+            #                     'time':             loop,
+            #                     'sent_where':       agent.curr_node,
+            #                     'reputations':      reputs,
+            #                     'reputations2':     reputs2,
+            #                     'reliabilities':    reliabs})
             knowledge.append({  'db_sender':        agent.n,
                                 'time':             loop,
-                                'sent_where':       agent.curr_node,
-                                'reputations':      reputs,
-                                'reputations2':     reputs2,
-                                'reliabilities':    reliabs})
+                                'sent_where':       agent.curr_node})
  
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
@@ -254,60 +270,60 @@ class Simulator:
                 self.agents_dict[str(a[0])].weight = a[1]
 
 
-            ''' Reputations '''
+            # ''' Reputations '''
         
-            for l, rep in enumerate(res['reputation']):
+            # for l, rep in enumerate(res['reputation']):
 
-                key = str(rep['id'])
+            #     key = str(rep['id'])
 
-                self.agents_dict[key].reputation     = rep['rep']
-                self.agents_dict[key].reputations.append(self.agents_dict[key].reputation)
-                self.agents_dict[key].num_info_seen  = rep['times']
-                self.agents_dict2[key]['rep'].append(rep['rep'])
-                self.agents_dict2[key]['when'].append(rep['when'])
+            #     self.agents_dict[key].reputation     = rep['rep']
+            #     self.agents_dict[key].reputations.append(self.agents_dict[key].reputation)
+            #     self.agents_dict[key].num_info_seen  = rep['times']
+            #     self.agents_dict2[key]['rep'].append(rep['rep'])
+            #     self.agents_dict2[key]['when'].append(rep['when'])
 
-                if self.first_time:
+            #     if self.first_time:
 
-                    self.mean_succ_rate.append(statistics.mean(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
+            #         self.mean_succ_rate.append(statistics.mean(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
+            #                                                     if self.agents_dict[i].num_info_seen > 0))
                     
-                    self.stddev_succ_rate.append(statistics.stdev(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
+            #         self.stddev_succ_rate.append(statistics.stdev(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
+            #                                                     if self.agents_dict[i].num_info_seen > 0))
 
-                self.first_time=True
-            self.first_time=False
+            #     self.first_time=True
+            # self.first_time=False
             
-            for k, rep2 in enumerate(res['reputation2']):
+            # for k, rep2 in enumerate(res['reputation2']):
                 
-                key = str(rep2['id'])
+            #     key = str(rep2['id'])
 
-                if 'times' in res['reputation2'][k]:
+            #     if 'times' in res['reputation2'][k]:
 
-                    self.agents_dict[key].reputation2    = rep2['rep']
-                    self.agents_dict[key].reputations2.append(self.agents_dict[key].reputation2 )
-                    self.agents_dict[key].num_info_seen2 = rep2['times']
-                    self.agents_dict2[key]['rep2'].append(rep2['rep'])
-                    self.agents_dict2[key]['when2'].append(rep2['when'])
+            #         self.agents_dict[key].reputation2    = rep2['rep']
+            #         self.agents_dict[key].reputations2.append(self.agents_dict[key].reputation2 )
+            #         self.agents_dict[key].num_info_seen2 = rep2['times']
+            #         self.agents_dict2[key]['rep2'].append(rep2['rep'])
+            #         self.agents_dict2[key]['when2'].append(rep2['when'])
 
-                else:
-                    key = str(rep2['id'])
-                    self.agents_dict[key].reputation2   = rep2['rep']
-                    self.agents_dict[key].reputations2.append(self.agents_dict[key].reputation2 )
-                    self.agents_dict2[key]['rep2'].append(rep2['rep'])
-                    self.agents_dict2[key]['when2'].append(loop)
+            #     else:
+            #         key = str(rep2['id'])
+            #         self.agents_dict[key].reputation2   = rep2['rep']
+            #         self.agents_dict[key].reputations2.append(self.agents_dict[key].reputation2 )
+            #         self.agents_dict2[key]['rep2'].append(rep2['rep'])
+            #         self.agents_dict2[key]['when2'].append(loop)
 
-                if self.first_time:
+            #     if self.first_time:
 
-                    self.mean_succ_rate2.append(statistics.mean(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
+            #         self.mean_succ_rate2.append(statistics.mean(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
+            #                                                     if self.agents_dict[i].num_info_seen > 0))
 
-                    self.stddev_succ_rate2.append(statistics.stdev(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
-                                                                if self.agents_dict[i].num_info_seen > 0))
+            #         self.stddev_succ_rate2.append(statistics.stdev(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
+            #                                                     if self.agents_dict[i].num_info_seen > 0))
 
-                self.first_time=True
+            #     self.first_time=True
 
-            self.similarity_err.append(statistics.mean( abs(self.agents_dict[j].reputation - self.agents_dict[j].reputation2) for j in self.agents_dict.keys()\
-                                                                if self.agents_dict[j].num_info_seen > 0))
+            # self.similarity_err.append(statistics.mean( abs(self.agents_dict[j].reputation - self.agents_dict[j].reputation2) for j in self.agents_dict.keys()\
+            #                                                     if self.agents_dict[j].num_info_seen > 0))
 
             # percentage of events seen
             if 'events' in res:
@@ -339,13 +355,13 @@ class Simulator:
             #     toc_all_db = time.perf_counter()
             #     self.t_all = toc_all_db - self.tic
 
-            if agent.num_info_sent>0 and not (len(agent.ies)-agent.num_info_sent) == (len(knowledge)-1):
-                print("Houston we have a problem!")
-                print("agent.num_info_sent: ", agent.num_info_sent)
-                print("len(agent.ies): ", len(agent.ies))
-                print("len(knowledge): ", len(knowledge)-1)
-                pprint(knowledge)
-                input()
+            # if agent.num_info_sent>0 and not (len(agent.ies)-agent.num_info_sent) == (len(knowledge)-1):
+            #     print("Houston we have a problem!")
+            #     print("agent.num_info_sent: ", agent.num_info_sent)
+            #     print("len(agent.ies): ", len(agent.ies))
+            #     print("len(knowledge): ", len(knowledge)-1)
+            #     pprint(knowledge)
+            #     input()
 
             # consider only informations that have not yet been sent to the db
             prior_threshold     = agent.num_info_sent
@@ -402,17 +418,14 @@ class Simulator:
                         situation = elem[1]['situation']
                         obj = elem[1]['object']
 
-                        # agent.error = .5 + .5 * np.random.random()
                         agent.error = round(np.random.random(), 2)
-                        # agent.rating = round(agent.error*10 - 5) # one agent's rate between 0 and 5
 
-                        # chance = random.random()
-                        # if agent.error<self.err_rate:
-                        #     seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
-                        #     seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
-                        #     seen_ev     = (seen_sit, seen_obj)
-                        # else:
-                        seen_ev = (situation, obj)
+                        if agent.error<self.err_rate:
+                            seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
+                            seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
+                            seen_ev     = (seen_sit, seen_obj)
+                        else:
+                            seen_ev = (situation, obj)
 
                         agent.seen_events.append(seen_ev)
 
@@ -668,5 +681,5 @@ if __name__=="__main__":
                             loop_distance   = 20,
                             seed            = 57,
                             threshold       = 70,
-                            err_rate        = 0.0)
+                            err_rate        = 0.3)
     simulator.run()

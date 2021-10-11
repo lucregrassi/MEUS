@@ -179,7 +179,7 @@ def NewpreProcessing(json_data):
                     'sent_where':   json_data[-1]['sent_where']
                 })
 
-    return data_do, data_ih, json_data[-1]['reputations'], json_data[-1]['reputations2'], json_data[-1]['reliabilities']#, \
+    return data_do, data_ih#, json_data[-1]['reputations'], json_data[-1]['reputations2'], json_data[-1]['reliabilities']#, \
             # json_data[-1]['ratings']
 
 
@@ -442,21 +442,23 @@ def compute_CVR(node_info, index, query_ev, CVR):
     value = -2
     if panel_size in CVR.keys():
         value = -1
-        if candidate==CVR[panel_size]:
+        # if the threshold majority is reached
+        if candidate>=CVR[panel_size]:
         # print("event in node", ev_id, " is: ", node_info['obs'][node_info['votes'].index(candidate)])
             value = 0
+            # if the reported observation match the actual event
             if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
                 value = 1
     return value
 
-def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields):
+def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev):
     # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
     # fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'CVR', 'Kalpha']
 
     node_info = copy.deepcopy(node_info_)
 
     for i, obs in enumerate(node_info['obs']):
-        obs['coders']   = len(node_info['whos'][i])
+        obs['coders'] = len(node_info['whos'][i])
     files = [file for file in os.listdir(outpath) if file.endswith('.csv')]
 
     if ev_id+'.csv' in files:
@@ -469,6 +471,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields):
                 'when':         when,
                 'what':         len(node_info['obs'])-1,
                 'observations': [obs for obs in node_info['obs']],
+                # 'ground_truth': {'situation': query_ev.situation, 'object': query_ev.obj},
                 'CVR':          cvr,
                 'Kalpha':       kalpha     
 
@@ -486,6 +489,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields):
                         'when':         when,
                         'what':         len(node_info['obs'])-1,
                         'observations': [obs for obs in node_info['obs']],
+                        'ground_truth': {'situation': query_ev.situation, 'object': query_ev.obj},
                         'CVR':          cvr,
                         'Kalpha':       kalpha     
 
