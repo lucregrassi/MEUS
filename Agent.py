@@ -31,7 +31,7 @@ class Agent:
         self.ordered_reps2  = []
         self.ordered_rels   = []
         self.rating         = 0
-        self.weight         = 1
+        self.weight         = 2
 
     def __str__(self):
         return "\nAgent id: " + str(self.n) + " \n " \

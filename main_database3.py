@@ -178,7 +178,6 @@ events_dict = {}
 agents_dict2 = {}
 agents_perf  = {}
 events_dict2 = {}
-rel_data = {}
 
 CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
@@ -207,7 +206,6 @@ def receiving_events_list():
         db.session.commit()
         events_dict[str(ev.id)]     = {'obs': [], 'reps': [], 'whos': [], 'whens': []}
         events_dict2[str(ev.id)]    = {'obs': [], 'reps': [], 'reps1': [], 'whos': [], 'votes': [], 'times': [], 'whens': [], 'rels': []}
-        rel_data[str(ev.id)]    = []
     
     for agent in range(json_data['n_agents']):
         agents_dict[str(agent)]     = {'positive': 0, 'negative': 0, 'times': 0}
@@ -404,14 +402,17 @@ def put(DO_id):
 
                     events_dict2[ev_id]['whos'].append([dobs['who']])
                     events_dict2[ev_id]['times'].append([1])
-                    events_dict2[ev_id]['votes'].append(1)
+                    if dobs['who']>=50:
+                        events_dict2[ev_id]['votes'].append(1)
+                    else:
+                        events_dict2[ev_id]['votes'].append(6)
+
                     events_dict2[ev_id]['whens'].append([[dobs['when']]])
                     events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs'])-1, dobs['who'])])
 
 
                     print("first")
                     pprint(events_dict2[ev_id]['obs'])
-                    pprint(rel_data[ev_id])
                     print("---")
 
                     '''Krippendorff's alpha'''
@@ -420,7 +421,7 @@ def put(DO_id):
 
 
                     '''CVR method'''
-                    if compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==1:
+                    if compute_CVR(events_dict2[ev_id], query_ev, CVR)==1:
                         logger( ev_id,
                                 dobs['who'],
                                 dobs['when'],
@@ -440,7 +441,7 @@ def put(DO_id):
                             ag_ids.append(ag)
                             ag_weights.append(agents_dict2[str(ag)]['weight'])
 
-                    elif compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==0:
+                    elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==0:
                         # input("duedue")
                         flag2=True
                         logger( ev_id,
@@ -463,7 +464,7 @@ def put(DO_id):
                                 ag_ids.append(ag)
                                 ag_weights.append(agents_dict2[str(ag)]['weight'])
                     
-                    elif compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==-1:
+                    elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==-1:
 
                         # pprint(events_dict2[ev_id])
                         # print(len(events_dict2[ev_id]['obs'])-1)
@@ -519,7 +520,10 @@ def put(DO_id):
 
                         events_dict2[ev_id]['whos'][index].append(dobs['who'])
                         events_dict2[ev_id]['whens'][index].append([dobs['when']])
-                        events_dict2[ev_id]['votes'][index] += 1
+                        if dobs['who'] >= 50:
+                            events_dict2[ev_id]['votes'][index] += 1
+                        else:
+                            events_dict2[ev_id]['votes'][index] += 6
 
                         index2 = events_dict2[ev_id]['whos'][index].index(dobs['who'])
                         events_dict2[ev_id]['times'][index].append(1)
@@ -534,7 +538,7 @@ def put(DO_id):
                             print(compute_KrippendorffAlpha(events_dict2[ev_id]))
 
                         '''CVR method'''
-                        if compute_CVR(events_dict2[ev_id], index, query_ev, CVR)==1:
+                        if compute_CVR(events_dict2[ev_id], query_ev, CVR)==1:
                             logger( ev_id,
                                     dobs['who'],
                                     dobs['when'],
@@ -554,7 +558,7 @@ def put(DO_id):
 
                                 ag_ids.append(ag)
                                 ag_weights.append(agents_dict2[str(ag)]['weight'])
-                        elif compute_CVR(events_dict2[ev_id], index, query_ev, CVR)==0:
+                        elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==0:
                             flag2=True
                             logger( ev_id,
                                     dobs['who'],
@@ -575,7 +579,7 @@ def put(DO_id):
                                     ag_ids.append(ag)
                                     ag_weights.append(agents_dict2[str(ag)]['weight'])
 
-                        elif compute_CVR(events_dict2[ev_id], len(events_dict2[ev_id]['obs'])-1, query_ev, CVR)==-1:
+                        elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==-1:
 
                             # pprint(events_dict2[ev_id])
                             # print(len(events_dict2[ev_id]['obs'])-1)
@@ -624,8 +628,8 @@ def put(DO_id):
                     #     events_dict2[ev_id]['reps1'][index].append(reputation[i])
                         # events_dict2[ev_id]['votes'][index] += 1
 
-            new_weights = {}
-            if not token==3:
+            # new_weights = {}
+            # if not token==3:
                 # reputations2.append({
                 #             'id':       dobs['who'],
                 #             'rep':      reputation2[i],
@@ -641,7 +645,7 @@ def put(DO_id):
                 #         'rep':  ag_weights[y]
                 #     })
 
-                new_weights = {str(i):j for i in ag_ids for j in ag_weights}
+                # new_weights = {str(i):j for i in ag_ids for j in ag_weights}
 
 
         except Exception as error:
@@ -851,9 +855,9 @@ def put(DO_id):
 
     # keep track if the event has been uploaded on the db for the first time
     if return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2}#, 'weights': new_weights}
     elif not return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2}#, 'weights': new_weights}
 
 
 

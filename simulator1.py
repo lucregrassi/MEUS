@@ -52,12 +52,39 @@ class Simulator:
         self.stddev_succ_rate2  = []
         self.first_time         = False
         self.similarity_err     = []
+        self.loop_duration      = []
+        self.mean_loop_duration = []
 
 
     def compute_destination(self, current_node, ag):
 
-        destination_node    = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
-        distance            = self.G[current_node][destination_node][0]['length']
+        # if len([n for n in self.G.neighbors(current_node)])==0:
+        #     print([n for n in self.G.neighbors(current_node)])
+        source_nodes = []
+        target_nodes = []
+        # Look for all the sources and the targets of the current node
+        for e in self.G.edges():
+            source, target = e
+            if source == current_node:
+                target_nodes.append(target)
+            if target == current_node:
+                source_nodes.append(source)
+
+
+        adj_nodes           = source_nodes + target_nodes
+            # print(adj_nodes)
+            # input()
+
+        # destination_node    = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
+        destination_node    = int(np.random.choice(adj_nodes))
+        if destination_node in target_nodes:
+                edges_of_interest = self.G[current_node][destination_node]
+        else:
+            edges_of_interest = self.G[destination_node][current_node]
+            
+        for edge in edges_of_interest.values():
+            distance = edge.get('length')
+        # distance            = self.G[current_node][destination_node][0]['length']
 
         return destination_node, distance
 
@@ -161,27 +188,6 @@ class Simulator:
                 node_situation  = self.G.nodes[a.curr_node]['situation']
                 node_object     = self.G.nodes[a.curr_node]['object']
 
-            # for n in self.G.nodes.data():
-            #     if n[0] == previous_node:
-            #         n[1]['n_agents'] = int(n[1]['n_agents']) - 1
-            #         # If it has still not been removed from that node, delete it so that no exchange is possible
-            #         if str(n[0]) in self.node_state_dict:
-            #             if a.n in self.node_state_dict[str(n[0])]:
-            #                 self.node_state_dict[str(n[0])].remove(a.n)
-
-            #     elif n[0] == a.curr_node:
-            #         n[1]['n_agents'] = int(n[1]['n_agents']) + 1
-            #         # if this node is not yet in the dictionary, create the key-value pair
-            #         if not self.node_state_dict.get(str(n[0])):
-            #             self.node_state_dict[str(n[0])] = [a.n]
-            #         # if the node is already in the dictionary, append to the value the agent's id
-            #         else:
-            #             self.node_state_dict[str(n[0])].append(a.n)
-
-            #         if n[1]['situation'] != 'None':
-            #             flag = True
-            #             node_situation  = n[1]['situation']
-            #             node_object     = n[1]['object']
 
             # Add the new current node to the list of visited nodes of the person
             a.visited_nodes.append(a.curr_node)
@@ -265,9 +271,9 @@ class Simulator:
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
 
-            '''weights update'''
-            for a in res['weights'].items():
-                self.agents_dict[str(a[0])].weight = a[1]
+            # '''weights update'''
+            # for a in res['weights'].items():
+            #     self.agents_dict[str(a[0])].weight = a[1]
 
 
             # ''' Reputations '''
@@ -343,6 +349,10 @@ class Simulator:
                         self.perc_seen_ev = 100*self.obs_ev/len(self.events)
 
                         # self.latency.append(res['latency2'][indice]['lat'])
+                        if ind > len(res['latency']):
+                            pprint(res['latency'])
+                            print(ind)
+                            input()
                         self.latency.append(res['latency'][ind]['sent_at_loop'])
 
                         ind += 1
@@ -389,10 +399,10 @@ class Simulator:
             dest_node, dist = self.compute_destination(curr_node, None)
 
             # Instantiate the Person class passing the arguments
-            if i > ag_global and not g_flag:
+            # if i > ag_global and not g_flag:
                 
-                mu, sigma = 0, 2
-                g_flag = True
+            #     mu, sigma = 0, 2
+            #     g_flag = True
 
             # err = np.random.normal(mu, sigma, 1)[0]
             err = np.random.random()
@@ -436,7 +446,8 @@ class Simulator:
 
             # Initialize the connections owned by the person
             if i < ag_global:
-                agent.global_conn = [1, 2, 3]
+                agent.global_conn   = [1, 2, 3]
+                agent.weight        = 6
 
             # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
             # Initialize array of local connections, choosing randomly, removing duplicates
@@ -460,6 +471,8 @@ class Simulator:
         old_story = 0
         count = 0
         while self.perc_seen_ev<self.threshold:
+        # while count < 1000:
+            start_time = time.time()
         # while self.obs_ev < 6:
             # obs_ev = 0
             print("\nIteration " + str(count))
@@ -478,6 +491,11 @@ class Simulator:
 
             print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
             count += 1
+
+            self.loop_duration.append(time.time()-start_time)
+
+            if count>1:
+                self.mean_loop_duration.append(statistics.mean(self.loop_duration))
 
         return count
 
@@ -641,16 +659,18 @@ class Simulator:
         #                             self.err_rate,
         #                             pat)
 
+        pat = '/Users/mario/Desktop/Fellowship_Unige/MEUS/'
 
-        # plt.style.use('seaborn-whitegrid')
+
+        plt.style.use('seaborn-whitegrid')
         # plt.figure(500)
-        # plt.plot(self.similarity_err, label='similarity err', c='b')
+        plt.plot(self.mean_loop_duration, label='loop duration', c='b')
         
-        # plt.legend(loc='upper left')
-        # plt.ylabel('sim err')
-        # plt.xlabel('# of observations')
-        # plt.tight_layout()
-        # plt.savefig(path.join(pat, 'similarity_err_plot.svg'))
+        plt.legend(loc='upper left')
+        plt.ylabel('duration')
+        plt.xlabel('# of loops')
+        plt.tight_layout()
+        plt.savefig(path.join(pat, 'loop_duration.svg'))
 
         # print(self.similarity_err)
 
@@ -680,6 +700,6 @@ if __name__=="__main__":
                             n_gateways      = 0.5,
                             loop_distance   = 20,
                             seed            = 57,
-                            threshold       = 70,
+                            threshold       = 50,
                             err_rate        = 0.3)
     simulator.run()

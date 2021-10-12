@@ -418,24 +418,33 @@ def compute_KrippendorffAlpha(node_info):
     coders = list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))
     Nobs = len(node_info['obs'])
     history = list(itertools.chain(*node_info['rels']))
-
     rel_data = [[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]\
-            for coder in coders]
+            if coder>=50 else list(itertools.chain([[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]]*6)) for coder in coders]
 
-
+    # print(rel_data)
+    rel_data = [el if len(batch)==6 else batch for batch in rel_data for el in batch]
+    # print(rel_data)
     rel_data = np.asarray(rel_data)
+    # print(rel_data)
+    # print(type(rel_data[0]))
+    # print(type(rel_data[0][0]))
     rel_data = rel_data[[ np.any(rel_data[k]) for k in range(len(rel_data))]]
+    # print("---")
+    # print(rel_data)
+    # input()
 
 
     return krippendorff.alpha(reliability_data=rel_data, level_of_measurement='nominal')
 
 
-def compute_CVR(node_info, index, query_ev, CVR):
+def compute_CVR(node_info, query_ev, CVR):
 
-    panel_size = len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos']))))))
+    # panel_size = len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos']))))))
+    panel_size = np.sum([1 if coder>50 else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))])
     candidate = max(node_info['votes'])
-    # pprint(node_info['votes'])
+    # print(node_info['votes'])
     # print(candidate)
+    # input()
 
     ev_id = str(query_ev.id)
 
@@ -447,6 +456,8 @@ def compute_CVR(node_info, index, query_ev, CVR):
         # print("event in node", ev_id, " is: ", node_info['obs'][node_info['votes'].index(candidate)])
             value = 0
             # if the reported observation match the actual event
+            index = node_info['votes'].index(candidate)
+            
             if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
                 value = 1
     return value
@@ -457,16 +468,20 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev):
 
     node_info = copy.deepcopy(node_info_)
 
+
     for i, obs in enumerate(node_info['obs']):
-        obs['coders'] = len(node_info['whos'][i])
+        obs['coders'] = np.sum([1 if coder>50 else 6 for coder in node_info['whos'][i]])
     files = [file for file in os.listdir(outpath) if file.endswith('.csv')]
+
+    if np.isnan(kalpha) and len(node_info['obs'])==1:
+        kalpha=1
 
     if ev_id+'.csv' in files:
         with open(ev_id+'.csv', 'a') as f:
             writer = csv.DictWriter(f, fieldnames=fields)
 
             info = {
-                'Ncoders':      len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))),
+                'Ncoders':      np.sum([1 if coder>50 else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
                 'who':          ag,
                 'when':         when,
                 'what':         len(node_info['obs'])-1,
@@ -484,7 +499,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev):
             writer.writeheader()
 
             info = {
-                        'Ncoders':      len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))),
+                        'Ncoders':      np.sum([1 if coder>50 else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
                         'who':          ag,
                         'when':         when,
                         'what':         len(node_info['obs'])-1,
