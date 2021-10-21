@@ -94,6 +94,9 @@ class latencyTab(db.Model):
     who             = db.Column(db.Integer, nullable=False)
     lat             = db.Column(db.Integer, nullable=False)
 
+# class evVoti
+
+
 
 
 ##### SCHEMAS #####
@@ -178,6 +181,7 @@ events_dict = {}
 agents_dict2 = {}
 agents_perf  = {}
 events_dict2 = {}
+gateways     = 0   
 
 CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
@@ -192,6 +196,7 @@ def receiving_events_list():
 
     json_data = json.loads(request.data)
     events.extend(json_data['events'])
+    gateways = json_data['n_gateways']
 
     CVR_performace['correct']   = 0
     CVR_performace['times']     = 0
@@ -262,6 +267,8 @@ def put(DO_id):
     reputations2 = []
     events2 = []
     latency = []
+
+    ids = []
 
 
     for i, dobs in enumerate(direct_obs):
@@ -402,8 +409,8 @@ def put(DO_id):
 
                     events_dict2[ev_id]['whos'].append([dobs['who']])
                     events_dict2[ev_id]['times'].append([1])
-                    if dobs['who']>=50:
-                        events_dict2[ev_id]['votes'].append(1)
+                    if dobs['who']>=gateways:
+                        events_dict2[ev_id]['votes'].append(2)
                     else:
                         events_dict2[ev_id]['votes'].append(6)
 
@@ -415,22 +422,23 @@ def put(DO_id):
                     pprint(events_dict2[ev_id]['obs'])
                     print("---")
 
-                    '''Krippendorff's alpha'''
-                    if len(events_dict2[ev_id]['obs'])>=2:
-                        print(compute_KrippendorffAlpha(events_dict2[ev_id]))
+                    # '''Krippendorff's alpha'''
+                    # if len(events_dict2[ev_id]['obs'])>=2:
+                    #     print(compute_KrippendorffAlpha(events_dict2[ev_id], gateways))
 
 
                     '''CVR method'''
-                    if compute_CVR(events_dict2[ev_id], query_ev, CVR)==1:
+                    if compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==1:
                         logger( ev_id,
                                 dobs['who'],
                                 dobs['when'],
                                 events_dict2[ev_id],
                                 1,
-                                round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
+                                round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
                                 outpath,
                                 fields,
-                                query_ev)
+                                query_ev,
+                                gateways)
 
                         CVR_performace['times'] += 1
                         CVR_performace['correct'] += 1
@@ -441,7 +449,7 @@ def put(DO_id):
                             ag_ids.append(ag)
                             ag_weights.append(agents_dict2[str(ag)]['weight'])
 
-                    elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==0:
+                    elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==0:
                         # input("duedue")
                         flag2=True
                         logger( ev_id,
@@ -449,10 +457,11 @@ def put(DO_id):
                                 dobs['when'],
                                 events_dict2[ev_id],
                                 0,
-                                round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
+                                round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
                                 outpath,
                                 fields,
-                                query_ev)
+                                query_ev,
+                                gateways)
 
                         CVR_performace['times'] += 1
                         print(events_dict2[ev_id]['whos'])
@@ -464,7 +473,7 @@ def put(DO_id):
                                 ag_ids.append(ag)
                                 ag_weights.append(agents_dict2[str(ag)]['weight'])
                     
-                    elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==-1:
+                    elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==-1:
 
                         # pprint(events_dict2[ev_id])
                         # print(len(events_dict2[ev_id]['obs'])-1)
@@ -477,10 +486,11 @@ def put(DO_id):
                                 dobs['when'],
                                 events_dict2[ev_id],
                                 -1,
-                                round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
+                                round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
                                 outpath,
                                 fields,
-                                query_ev)
+                                query_ev,
+                                gateways)
                     else:
                         pass
 
@@ -520,8 +530,8 @@ def put(DO_id):
 
                         events_dict2[ev_id]['whos'][index].append(dobs['who'])
                         events_dict2[ev_id]['whens'][index].append([dobs['when']])
-                        if dobs['who'] >= 50:
-                            events_dict2[ev_id]['votes'][index] += 1
+                        if dobs['who'] >= gateways:
+                            events_dict2[ev_id]['votes'][index] += 2
                         else:
                             events_dict2[ev_id]['votes'][index] += 6
 
@@ -533,21 +543,22 @@ def put(DO_id):
 
                         print("third")
 
-                        '''Krippendorff's alpha'''
-                        if len(events_dict2[ev_id]['obs'])>=2:
-                            print(compute_KrippendorffAlpha(events_dict2[ev_id]))
+                        # '''Krippendorff's alpha'''
+                        # if len(events_dict2[ev_id]['obs'])>=2:
+                        #     print(compute_KrippendorffAlpha(events_dict2[ev_id]))
 
                         '''CVR method'''
-                        if compute_CVR(events_dict2[ev_id], query_ev, CVR)==1:
+                        if compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==1:
                             logger( ev_id,
                                     dobs['who'],
                                     dobs['when'],
                                     events_dict2[ev_id],
                                     1,
-                                    round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
+                                    round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
                                     outpath,
                                     fields,
-                                    query_ev)
+                                    query_ev,
+                                    gateways)
 
                             CVR_performace['times'] += 1
                             CVR_performace['correct'] += 1
@@ -558,17 +569,18 @@ def put(DO_id):
 
                                 ag_ids.append(ag)
                                 ag_weights.append(agents_dict2[str(ag)]['weight'])
-                        elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==0:
+                        elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==0:
                             flag2=True
                             logger( ev_id,
                                     dobs['who'],
                                     dobs['when'],
                                     events_dict2[ev_id],
                                     0,
-                                    round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
+                                    round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
                                     outpath,
                                     fields,
-                                    query_ev)
+                                    query_ev,
+                                    gateways)
 
                             CVR_performace['times'] += 1
                             for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][index]))))):
@@ -579,7 +591,7 @@ def put(DO_id):
                                     ag_ids.append(ag)
                                     ag_weights.append(agents_dict2[str(ag)]['weight'])
 
-                        elif compute_CVR(events_dict2[ev_id], query_ev, CVR)==-1:
+                        elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==-1:
 
                             # pprint(events_dict2[ev_id])
                             # print(len(events_dict2[ev_id]['obs'])-1)
@@ -593,10 +605,11 @@ def put(DO_id):
                                     dobs['when'],
                                     events_dict2[ev_id],
                                     -1,
-                                    round(compute_KrippendorffAlpha(events_dict2[ev_id]), 3),
+                                    round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
                                     outpath,
                                     fields,
-                                    query_ev)
+                                    query_ev,
+                                    gateways)
                         
                         else:
                             pass
@@ -745,53 +758,62 @@ def put(DO_id):
             return_flag = True
             result_ih = []
 
-            do  = dirObsTab(    situation       = dobs['situation'],
-                                obj             = dobs['obj'],
-                                where           = dobs["where"],
-                                when            = dobs["when"],
-                                who             = dobs["who"])
-
+            do = dirObsTab( situation       = dobs['situation'],
+                            obj             = dobs['obj'],
+                            where           = dobs["where"],
+                            when            = dobs["when"],
+                            who             = dobs["who"])
+ 
 
             # ackowledging we are adding a new direct observation to the db
             elem = {'situation': do.situation, 'object': do.obj, 'where': do.where, 'who': do.who}
-            for n, el in enumerate(events):
+
                 # if the observation corresponds to the actual situation
-                if el['situation'] == elem['situation'] and el['object'] == elem['object'] and el['where']==elem['where']:
-                    try:
-                        if events[n]['correct']==0 and events[n]['mistaken']['times']==0:
-                            latency.append({
-                                'sender':       info_history[i][0]['sender'],
-                                'sit':          dobs['situation'],
-                                'obj':          dobs['obj'],
-                                'when':         dobs['when'],
-                                'where':        dobs['where'],
-                                'who':          dobs['who'],
-                                'sent_at_loop': info_history[i][0]['sent_at_loop']
-                            })
-                            events[n]['first_time'] = 1
-
-                            
-                        events[n]['correct'] += 1
-                    except Exception as err:
-                        raise err
-
-                # if the element is a "distorted" observation instead
-                elif (el['situation'] != elem['situation'] or el['object'] != elem['object']) and el['where'] == elem['where']:
-
-                    if events[n]['correct']==0 and events[n]['mistaken']['times']==0:
+            if (query_ev.situation == elem['situation'] and query_ev.obj == elem['object']) and query_ev.where==elem['where']:
+                try:
+                    if events[query_ev.id-1]['correct']==0 and events[query_ev.id-1]['mistaken']['times']==0:
                         latency.append({
-                                'sender':       info_history[i][0]['sender'],
-                                'sit':          dobs['situation'],
-                                'obj':          dobs['obj'],
-                                'when':         dobs['when'],
-                                'where':        dobs['where'],
-                                'who':          dobs['who'],
-                                'sent_at_loop': info_history[i][0]['sent_at_loop']
-                            })
-                        events[n]['first_time'] = 1
+                            'sender':       info_history[i][0]['sender'],
+                            'sit':          dobs['situation'],
+                            'obj':          dobs['obj'],
+                            'when':         dobs['when'],
+                            'where':        dobs['where'],
+                            'who':          dobs['who'],
+                            'sent_at_loop': info_history[i][0]['sent_at_loop']
+                        })
+                        events[query_ev.id-1]['first_time'] = 1
 
-                    events[n]['mistaken']['times'] += 1
-                    events[n]['mistaken']['difference'].append(elem)
+                    events[query_ev.id-1]['correct'] += 1
+
+                except Exception as err:
+                    raise err
+
+            # if the element is a "distorted" observation instead
+            elif (query_ev.situation != elem['situation'] or query_ev.obj != elem['object']) and query_ev.where == elem['where']:
+
+                if events[query_ev.id-1]['correct']==0 and events[query_ev.id-1]['mistaken']['times']==0:
+                    latency.append({
+                            'sender':       info_history[i][0]['sender'],
+                            'sit':          dobs['situation'],
+                            'obj':          dobs['obj'],
+                            'when':         dobs['when'],
+                            'where':        dobs['where'],
+                            'who':          dobs['who'],
+                            'sent_at_loop': info_history[i][0]['sent_at_loop']
+                        })
+                    events[query_ev.id-1]['first_time'] = 1
+
+                events[query_ev.id-1]['mistaken']['times'] += 1
+                events[query_ev.id-1]['mistaken']['difference'].append(elem)
+
+            else:
+                pprint(do_schema.dump(query_ev))
+                pprint(do_schema.dump(do))
+                print(bool(query_ev.situation==do.situation))
+                print(bool(query_ev.obj==do.obj))
+                print(bool(query_ev.where==do.where))
+                lememcheck = 5
+                input()
 
         
             if not flag:
@@ -810,6 +832,7 @@ def put(DO_id):
                     result_ih.append(ih_schema.dump(ih))
                 result_do.append(result_ih)
             print("10")
+
         # if the direct observation is already in the db
         else:
             repetition_flag = True

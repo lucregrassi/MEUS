@@ -6,7 +6,7 @@ import math
 # https://osmnx.readthedocs.io/en/stable/osmnx.html
 
 # Specify the name that is used to search for the data
-place = 'Canale, Cuneo, Piemonte'
+place = 'Amatrice, Rieti, Lazio'
 
 # address = 'Viale Saturnino Muzii, 02012 Amatrice RI'
 
@@ -41,7 +41,7 @@ l = []
 for i, node in enumerate(G.nodes(data=True)):
     # Number of people in that node
     node[1]['n_agents'] = '0'
-    if i % 5==0:
+    if i % 20==0:
     # if i % n_events == 0:
         node[1]['situation'] = random_event()[0]
         node[1]['object'] = random_event()[1]

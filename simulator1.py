@@ -197,12 +197,16 @@ class Simulator:
                 # agents can have an error rate in the interval [0.5, 1]
                 a.error = round(np.random.random(), 2)
 
-                if a.error<self.err_rate:
-                    seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
-                    seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
-                    seen_ev     = (seen_sit, seen_obj)
+                if a.n>math.floor(self.n_gateways*self.n_agents ):
+                    if a.error<self.err_rate:
+                        seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
+                        seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
+                        seen_ev     = (seen_sit, seen_obj)
+                    else:
+                        seen_ev     = (node_situation, node_object)
                 else:
                     seen_ev     = (node_situation, node_object)
+
 
                 a.seen_events.append(seen_ev)
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
@@ -332,12 +336,42 @@ class Simulator:
             #                                                     if self.agents_dict[j].num_info_seen > 0))
 
             # percentage of events seen
+            flaggy = False
+            flaggy2 = False
             if 'events' in res:
-                ind = 0
-                for i, ev in enumerate(res['events']):
+                # if {'correct': 9, 'first_time': 1, 'mistaken': {'difference': [{'object': 'PublicBuilding', 'situation': 'StarvingPeople', 'where': 6140707166, 'who': 49}], 'times': 1}, 'object': 'Hospital', 'situation': 'NoFoodPeople', 'where': 6140707166} in res['events']:
+                #     flaggy2 = True
+                #     pprint(self.events[7])
+                #     print("---")
+                #     pprint(res['events'][7])
+                #     input("here received")
+                # print("A")
 
+                # if len(res['latency'])==0:
+                #     # input("client side: empty latency.")
+                #     flaggy=True
+                #     print("B")
+                ind = 0
+                print("C")
+                for i, ev in enumerate(res['events']):
+                    print("D")
+
+                    # if i==7 and flaggy2:
+                    #     print("E")
+                    #     pprint(self.events[i])
+                    #     print("---")
+                    #     pprint(ev)
+                    #     input("major check1.")
                     # checking if its the first time the observation has been made
                     if ev['first_time']==1 and 'db_time' not in self.events[i]:
+
+                        # if flaggy2 and ev=={'correct': 9, 'first_time': 1, 'mistaken': {'difference': [{'object': 'PublicBuilding', 'situation': 'StarvingPeople', 'where': 6140707166, 'who': 49}], 'times': 1}, 'object': 'Hospital', 'situation': 'NoFoodPeople', 'where': 6140707166}:
+                        #     pprint(self.events[i])
+                        #     print("---")
+                        #     print(i)
+                        #     print("---")
+                        #     pprint(ev)
+                        #     input("major check.")
                     
                         self.events[i]  = ev
 
@@ -349,10 +383,14 @@ class Simulator:
                         self.perc_seen_ev = 100*self.obs_ev/len(self.events)
 
                         # self.latency.append(res['latency2'][indice]['lat'])
-                        if ind > len(res['latency']):
+                        if ind >= len(res['latency']):
+                            # pprint(res)
                             pprint(res['latency'])
                             print(ind)
+                            print(self.events[i])
                             input()
+                        if flaggy:
+                            input("flaggy")
                         self.latency.append(res['latency'][ind]['sent_at_loop'])
 
                         ind += 1
@@ -430,10 +468,13 @@ class Simulator:
 
                         agent.error = round(np.random.random(), 2)
 
-                        if agent.error<self.err_rate:
-                            seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
-                            seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
-                            seen_ev     = (seen_sit, seen_obj)
+                        if i>ag_global:
+                            if agent.error<self.err_rate:
+                                seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
+                                seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
+                                seen_ev     = (seen_sit, seen_obj)
+                            else:
+                                seen_ev = (situation, obj)
                         else:
                             seen_ev = (situation, obj)
 
@@ -470,8 +511,8 @@ class Simulator:
 
         old_story = 0
         count = 0
-        while self.perc_seen_ev<self.threshold:
-        # while count < 1000:
+        # while self.perc_seen_ev<self.threshold:
+        while count < 10000:
             start_time = time.time()
         # while self.obs_ev < 6:
             # obs_ev = 0
@@ -494,8 +535,7 @@ class Simulator:
 
             self.loop_duration.append(time.time()-start_time)
 
-            if count>1:
-                self.mean_loop_duration.append(statistics.mean(self.loop_duration))
+            self.mean_loop_duration.append(statistics.mean(self.loop_duration))
 
         return count
 
@@ -520,7 +560,7 @@ class Simulator:
                     'first_time':   0
                 })
 
-        inf = {'events': self.events, 'n_agents': self.n_agents}
+        inf = {'events': self.events, 'n_agents': self.n_agents, 'n_gateways': math.floor(self.n_gateways*self.n_agents)}
 
         response = requests.put(self.BASE + "/IE/events", json.dumps(inf))
 
@@ -696,10 +736,10 @@ class Simulator:
 if __name__=="__main__":
 
 
-    simulator = Simulator(  n_agents        = 100,
+    simulator = Simulator(  n_agents        = 200,
                             n_gateways      = 0.5,
                             loop_distance   = 20,
                             seed            = 57,
-                            threshold       = 50,
+                            threshold       = 100,
                             err_rate        = 0.3)
     simulator.run()

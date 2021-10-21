@@ -411,18 +411,19 @@ def latency_meanStddev_plot(rep1_mean, rep1_stddev, rep2_mean, rep2_stddev, err_
 
 
 
-def compute_KrippendorffAlpha(node_info):
+def compute_KrippendorffAlpha(node_info, n_gateways):
 
     rel_data = []
     
     coders = list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))
     Nobs = len(node_info['obs'])
     history = list(itertools.chain(*node_info['rels']))
-    rel_data = [[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]\
-            if coder>=50 else list(itertools.chain([[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]]*6)) for coder in coders]
+    rel_data = [list(itertools.chain([[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]]*2))\
+            if coder>=n_gateways else list(itertools.chain([[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]]*6)) for coder in coders]
 
     # print(rel_data)
-    rel_data = [el if len(batch)==6 else batch for batch in rel_data for el in batch]
+    # rel_data = [el if len(batch)==6 else batch for batch in rel_data for el in batch]
+    rel_data = [el for batch in rel_data for el in batch]
     # print(rel_data)
     rel_data = np.asarray(rel_data)
     # print(rel_data)
@@ -437,10 +438,10 @@ def compute_KrippendorffAlpha(node_info):
     return krippendorff.alpha(reliability_data=rel_data, level_of_measurement='nominal')
 
 
-def compute_CVR(node_info, query_ev, CVR):
+def compute_CVR(node_info, query_ev, CVR, n_gateways):
 
     # panel_size = len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos']))))))
-    panel_size = np.sum([1 if coder>50 else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))])
+    panel_size = np.sum([2 if coder>n_gateways else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))])
     candidate = max(node_info['votes'])
     # print(node_info['votes'])
     # print(candidate)
@@ -462,7 +463,7 @@ def compute_CVR(node_info, query_ev, CVR):
                 value = 1
     return value
 
-def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev):
+def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, n_gateways):
     # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
     # fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'CVR', 'Kalpha']
 
@@ -470,7 +471,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev):
 
 
     for i, obs in enumerate(node_info['obs']):
-        obs['coders'] = np.sum([1 if coder>50 else 6 for coder in node_info['whos'][i]])
+        obs['coders'] = np.sum([2 if coder>n_gateways else 6 for coder in node_info['whos'][i]])
     files = [file for file in os.listdir(outpath) if file.endswith('.csv')]
 
     if np.isnan(kalpha) and len(node_info['obs'])==1:
@@ -481,7 +482,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev):
             writer = csv.DictWriter(f, fieldnames=fields)
 
             info = {
-                'Ncoders':      np.sum([1 if coder>50 else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
+                'Ncoders':      np.sum([2 if coder>n_gateways else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
                 'who':          ag,
                 'when':         when,
                 'what':         len(node_info['obs'])-1,
@@ -499,7 +500,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev):
             writer.writeheader()
 
             info = {
-                        'Ncoders':      np.sum([1 if coder>50 else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
+                        'Ncoders':      np.sum([2 if coder>n_gateways else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
                         'who':          ag,
                         'when':         when,
                         'what':         len(node_info['obs'])-1,
