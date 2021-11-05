@@ -1,7 +1,7 @@
 import csv
 import math
 import json
-import pprint
+from pprint import pprint
 import operator
 import random
 import statistics
@@ -179,7 +179,7 @@ def NewpreProcessing(json_data):
                     'sent_where':   json_data[-1]['sent_where']
                 })
 
-    return data_do, data_ih#, json_data[-1]['reputations'], json_data[-1]['reputations2'], json_data[-1]['reliabilities']#, \
+    return data_do, data_ih, json_data[-1]['distances']#, json_data[-1]['reputations'], json_data[-1]['reputations2'], json_data[-1]['reliabilities']#, \
             # json_data[-1]['ratings']
 
 
@@ -451,11 +451,11 @@ def compute_CVR(node_info, query_ev, CVR, n_gateways):
 
     value = -2
     if panel_size in CVR.keys():
-        value = -1
+        value = 0
         # if the threshold majority is reached
         if candidate>=CVR[panel_size]:
         # print("event in node", ev_id, " is: ", node_info['obs'][node_info['votes'].index(candidate)])
-            value = 0
+            value = 1
             # if the reported observation match the actual event
             index = node_info['votes'].index(candidate)
             
@@ -463,7 +463,7 @@ def compute_CVR(node_info, query_ev, CVR, n_gateways):
                 value = 1
     return value
 
-def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, n_gateways):
+def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, n_gateways, distance):
     # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
     # fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'CVR', 'Kalpha']
 
@@ -478,6 +478,15 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
         kalpha=1
 
     if ev_id+'.csv' in files:
+
+        # f = False
+        # if ev_id=='108':
+        # # if np.sum([2 if co >n_gateways else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*prior)))))])==4:
+        #     # f = True
+        #     pprint(node_info['whos'])
+        #     pprint(node_info['obs'])
+        #     input("yooooo")
+
         with open(ev_id+'.csv', 'a') as f:
             writer = csv.DictWriter(f, fieldnames=fields)
 
@@ -488,11 +497,13 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
                 'what':         len(node_info['obs'])-1,
                 'observations': [obs for obs in node_info['obs']],
                 # 'ground_truth': {'situation': query_ev.situation, 'object': query_ev.obj},
+                'distance':     distance,
                 'CVR':          cvr,
                 'Kalpha':       kalpha     
 
             }
             writer.writerow(info)
+
 
     else:
         with open(ev_id+'.csv', 'w') as f:
@@ -506,15 +517,9 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
                         'what':         len(node_info['obs'])-1,
                         'observations': [obs for obs in node_info['obs']],
                         'ground_truth': {'situation': query_ev.situation, 'object': query_ev.obj},
+                        'distance':     distance,
                         'CVR':          cvr,
                         'Kalpha':       kalpha     
 
                     }
             writer.writerow(info)
-
-
-
-
-
-
-

@@ -32,6 +32,7 @@ class Agent:
         self.ordered_rels   = []
         self.rating         = 0
         self.weight         = 2
+        self.err_distances  = []
 
     def __str__(self):
         return "\nAgent id: " + str(self.n) + " \n " \

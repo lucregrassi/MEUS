@@ -54,6 +54,7 @@ class Simulator:
         self.similarity_err     = []
         self.loop_duration      = []
         self.mean_loop_duration = []
+        self.interval           = 0
 
 
     def compute_destination(self, current_node, ag):
@@ -194,13 +195,22 @@ class Simulator:
             # The actual situation and object seen by the person depend on its trustworthiness
             if flag:
     
-                # agents can have an error rate in the interval [0.5, 1]
-                a.error = round(np.random.random(), 2)
+                # agents can have an error rate in the self.interval [0.5, 1]
+                a.error     = round(np.random.random(), 2)
+                distance    = 0
 
                 if a.n>math.floor(self.n_gateways*self.n_agents ):
                     if a.error<self.err_rate:
-                        seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=a.error)
-                        seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=a.error)
+                        if 0. <= a.error <= self.interval:
+                            distance = 1
+                        elif self.interval <= a.error < self.interval*2:
+                            distance = 2
+                        elif self.interval*2 <= a.error < self.interval*3:
+                            distance = 3
+                        # else:
+                        #     distance = 3
+                        seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=distance)
+                        seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=distance)
                         seen_ev     = (seen_sit, seen_obj)
                     else:
                         seen_ev     = (node_situation, node_object)
@@ -212,6 +222,7 @@ class Simulator:
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
                 a.error_list.append((a.error, loop))
                 # a.rating_list.append((a.rating, loop))
+                a.err_distances.append((distance, loop))
 
         else:
             # If the person is moving, check if it has reached the destination
@@ -249,7 +260,9 @@ class Simulator:
 
             #     knowledge.append(ie)
 
-            knowledge = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
+            knowledge   = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
+            ns          = [NewIEtoDict(copy.deepcopy(agent.ies[i]))[0] for i in range(agent.num_info_sent, len(agent.ies))]
+            distances   = [self.agents_dict[str(n['id'])].err_distances[ getIndexOfTuple(    self.agents_dict[str(n['id'])].err_distances, 1, n['when']) ][0] for n in ns]
                 # reputs.append(self.agents_dict[n].reputation)
                 # reputs2.append(self.agents_dict[n].reputation2)
 
@@ -261,6 +274,7 @@ class Simulator:
                 # ratings.append(
                 #     self.agents_dict[n].rating_list[ getIndexOfTuple(    self.agents_dict[n].rating_list, 1, ie[0]['when']) ][0]
                 # )
+            
 
             # knowledge.append({  'db_sender':        agent.n,
             #                     'time':             loop,
@@ -269,6 +283,7 @@ class Simulator:
             #                     'reputations2':     reputs2,
             #                     'reliabilities':    reliabs})
             knowledge.append({  'db_sender':        agent.n,
+                                'distances':        distances,
                                 'time':             loop,
                                 'sent_where':       agent.curr_node})
  
@@ -336,42 +351,11 @@ class Simulator:
             #                                                     if self.agents_dict[j].num_info_seen > 0))
 
             # percentage of events seen
-            flaggy = False
-            flaggy2 = False
             if 'events' in res:
-                # if {'correct': 9, 'first_time': 1, 'mistaken': {'difference': [{'object': 'PublicBuilding', 'situation': 'StarvingPeople', 'where': 6140707166, 'who': 49}], 'times': 1}, 'object': 'Hospital', 'situation': 'NoFoodPeople', 'where': 6140707166} in res['events']:
-                #     flaggy2 = True
-                #     pprint(self.events[7])
-                #     print("---")
-                #     pprint(res['events'][7])
-                #     input("here received")
-                # print("A")
-
-                # if len(res['latency'])==0:
-                #     # input("client side: empty latency.")
-                #     flaggy=True
-                #     print("B")
                 ind = 0
-                print("C")
                 for i, ev in enumerate(res['events']):
-                    print("D")
-
-                    # if i==7 and flaggy2:
-                    #     print("E")
-                    #     pprint(self.events[i])
-                    #     print("---")
-                    #     pprint(ev)
-                    #     input("major check1.")
                     # checking if its the first time the observation has been made
                     if ev['first_time']==1 and 'db_time' not in self.events[i]:
-
-                        # if flaggy2 and ev=={'correct': 9, 'first_time': 1, 'mistaken': {'difference': [{'object': 'PublicBuilding', 'situation': 'StarvingPeople', 'where': 6140707166, 'who': 49}], 'times': 1}, 'object': 'Hospital', 'situation': 'NoFoodPeople', 'where': 6140707166}:
-                        #     pprint(self.events[i])
-                        #     print("---")
-                        #     print(i)
-                        #     print("---")
-                        #     pprint(ev)
-                        #     input("major check.")
                     
                         self.events[i]  = ev
 
@@ -383,14 +367,6 @@ class Simulator:
                         self.perc_seen_ev = 100*self.obs_ev/len(self.events)
 
                         # self.latency.append(res['latency2'][indice]['lat'])
-                        if ind >= len(res['latency']):
-                            # pprint(res)
-                            pprint(res['latency'])
-                            print(ind)
-                            print(self.events[i])
-                            input()
-                        if flaggy:
-                            input("flaggy")
                         self.latency.append(res['latency'][ind]['sent_at_loop'])
 
                         ind += 1
@@ -466,13 +442,29 @@ class Simulator:
                         situation = elem[1]['situation']
                         obj = elem[1]['object']
 
+                        print(situation)
+                        print(obj)
+                        input()
+
                         agent.error = round(np.random.random(), 2)
+                        distance    = 0
+
 
                         if i>ag_global:
                             if agent.error<self.err_rate:
-                                seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=agent.error)
-                                seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=agent.error)
+                                if 0. <= agent.error <= self.interval:
+                                    distance = 1
+                                elif self.interval <= agent.error < self.interval*2:
+                                    distance = 2
+                                elif self.interval*2 <= agent.error < self.interval*3:
+                                    distance = 3
+
+
+                                seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=distance)
+                                seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=distance)
                                 seen_ev     = (seen_sit, seen_obj)
+                                print(seen_ev)
+                                input()
                             else:
                                 seen_ev = (situation, obj)
                         else:
@@ -482,6 +474,7 @@ class Simulator:
 
                         agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
                         agent.error_list.append((agent.error, 0))
+                        agent.err_distances.append((distance, 0))
                         # agent.rating_list.append((agent.rating, 0))
 
 
@@ -503,7 +496,6 @@ class Simulator:
                                             'when':     [0],
                                             'when2':    [0]
                                         }
-
 
 
         # Exchange info between agents in the initial position
@@ -545,6 +537,8 @@ class Simulator:
         self.onto.load()
         np.random.seed(self.seed)
 
+        self.interval = self.err_rate / 3
+
         # collecting events in the environment
         for node in self.G.nodes(data=True):
             #     print(node)
@@ -564,26 +558,26 @@ class Simulator:
 
         response = requests.put(self.BASE + "/IE/events", json.dumps(inf))
 
-        fieldnames1 = ["sizeTab1", "sizeTab2", "latency", "num_loops"]
-        fieldnames2 = ["sizeTab1", "sizeTab2"]
-        fieldnames3 = ["time", "perc_of_seen_events"]
-        fields = ["id", "reputation", "reputation2", "std_dev", "number_of_seen_events"]
-        fields2  = ['sender', 'sit', 'obj', 'when', 'where', 'who', 'sent_at_loop', 'lat']
+        # fieldnames1 = ["sizeTab1", "sizeTab2", "latency", "num_loops"]
+        # fieldnames2 = ["sizeTab1", "sizeTab2"]
+        # fieldnames3 = ["time", "perc_of_seen_events"]
+        # fields = ["id", "reputation", "reputation2", "std_dev", "number_of_seen_events"]
+        # fields2  = ['sender', 'sit', 'obj', 'when', 'where', 'who', 'sent_at_loop', 'lat']
 
-        fieldnames4 = ["id", "sit", "obj", "when", "where", "conn"]
+        # fieldnames4 = ["id", "sit", "obj", "when", "where", "conn"]
 
-        with open('experiments.csv', 'w') as csv_file:
-            csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
-            csv_writer1.writeheader()
+        # with open('experiments.csv', 'w') as csv_file:
+        #     csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
+        #     csv_writer1.writeheader()
 
 
-        with open('performances.csv', 'w') as csv_file:
-            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
-            csv_writer3.writeheader()
+        # with open('performances.csv', 'w') as csv_file:
+        #     csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+        #     csv_writer3.writeheader()
 
-        with open('reputations.csv', 'w') as csv_file:
-            csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
-            csv_writer4.writeheader()
+        # with open('reputations.csv', 'w') as csv_file:
+        #     csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
+        #     csv_writer4.writeheader()
 
         
         ''' Running the simulation '''
@@ -597,14 +591,14 @@ class Simulator:
         print(f"Experiment finished in {self.toc - self.tic:0.4f} seconds")
 
 
-        with open('performances.csv', 'a') as csv_file:
-            csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
+        # with open('performances.csv', 'a') as csv_file:
+        #     csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
 
-            info = {
-                'time':                 self.toc-self.tic,
-                'perc_of_seen_events':  self.perc_seen_ev
-            }
-            csv_writer3.writerow(info)
+        #     info = {
+        #         'time':                 self.toc-self.tic,
+        #         'perc_of_seen_events':  self.perc_seen_ev
+        #     }
+        #     csv_writer3.writerow(info)
 
     
         # with open('reputations.csv', 'a') as csv_file:
@@ -736,10 +730,10 @@ class Simulator:
 if __name__=="__main__":
 
 
-    simulator = Simulator(  n_agents        = 200,
-                            n_gateways      = 0.5,
+    simulator = Simulator(  n_agents        = 100,
+                            n_gateways      = 0.05,
                             loop_distance   = 20,
                             seed            = 57,
                             threshold       = 100,
-                            err_rate        = 0.3)
+                            err_rate        = 1.0)
     simulator.run()

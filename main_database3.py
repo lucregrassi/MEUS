@@ -1,10 +1,12 @@
 import os
 import csv
 import json
+import copy
 import logging
 import itertools
 import statistics
 import numpy as np
+import pandas as pd
 import krippendorff
 from pprint import pprint
 from collections import Counter
@@ -186,8 +188,9 @@ gateways     = 0
 CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
 
+
 outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
-fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'CVR', 'Kalpha']
+fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'distance', 'CVR', 'Kalpha']
 
 
 @app.route("/IE/events", methods=["PUT"])
@@ -222,13 +225,23 @@ def receiving_events_list():
     return{"message": "registered events in the environments", "events": events}
 
 
+@app.route("/IE/<int:e_id>/<sit>/<obj>", methods=['GET'])
+def get(e_id,sit,obj):
+
+    event_query = eventsTab.query.filter_by(id=id).first()
+    
+    outcome = True if event_query.situation==sit and event_query.obj==obj else False
+
+    return {'coorect_event': outcome}
+
+
 
 
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
 def put(DO_id):
 
-    json_data           = json.loads(request.data)
-    data_do, data_ih    = NewpreProcessing(json_data)
+    json_data                   = json.loads(request.data)
+    data_do, data_ih, distances = NewpreProcessing(json_data)
             # reputation,\
             #     reputation2,\
             #         reliability = NewpreProcessing(json_data)
@@ -270,11 +283,13 @@ def put(DO_id):
 
     ids = []
 
+    ag_ids      = []
+    ag_weights  = []
 
     for i, dobs in enumerate(direct_obs):
 
-        ag_ids      = []
-        ag_weights  = []
+        # ag_ids      = []
+        # ag_weights  = []
         
         events_types    = []
         query_ev        = eventsTab.query.filter_by(where=dobs['where']).first()
@@ -393,7 +408,9 @@ def put(DO_id):
             #     'rel':      reliability[i]
             #     })
 
-
+            # if ev_id=='108':
+            #     pprint(events_dict2[ev_id])
+            #     print("---")
 
             ''' Reputation based on a voting approach '''
             tf = 1 if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj else 0
@@ -406,10 +423,9 @@ def put(DO_id):
                     events_dict2[ev_id]['obs'].append({      'situation':   dobs['situation'],
                                                                 'object':   dobs['obj']})
 
-
                     events_dict2[ev_id]['whos'].append([dobs['who']])
                     events_dict2[ev_id]['times'].append([1])
-                    if dobs['who']>=gateways:
+                    if dobs['who']>gateways:
                         events_dict2[ev_id]['votes'].append(2)
                     else:
                         events_dict2[ev_id]['votes'].append(6)
@@ -418,17 +434,22 @@ def put(DO_id):
                     events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs'])-1, dobs['who'])])
 
 
-                    print("first")
-                    pprint(events_dict2[ev_id]['obs'])
-                    print("---")
+                    # if dobs['who']>5:
+                    #     if any(ag<5 for ag in events_dict2[ev_id]['whos'][-1]):
+                    #         agents_dict2[ag_id]['weight'] += 1
 
-                    # '''Krippendorff's alpha'''
-                    # if len(events_dict2[ev_id]['obs'])>=2:
-                    #     print(compute_KrippendorffAlpha(events_dict2[ev_id], gateways))
+                    #         ag_ids.append(ag_id)
+                    #         ag_weights.append(agents_dict2[ag_id]['weight'])
+
+                    #     elif any(ag<5 for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
+                    #         agents_dict2[ag_id]['weight'] -= 1
+                        
+                    #         ag_ids.append(ag_id)
+                    #         ag_weights.append(agents_dict2[ag_id]['weight'])
 
 
                     '''CVR method'''
-                    if compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==1:
+                    if compute_CVR( events_dict2[ev_id], query_ev, CVR, gateways)==1:
                         logger( ev_id,
                                 dobs['who'],
                                 dobs['when'],
@@ -438,16 +459,21 @@ def put(DO_id):
                                 outpath,
                                 fields,
                                 query_ev,
-                                gateways)
+                                gateways,
+                                distances[i])
 
                         CVR_performace['times'] += 1
                         CVR_performace['correct'] += 1
                         
-                        for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][-1]))))):
+                        # if dobs['who']>5:
+                        #     if any(ag<5 for ag in events_dict2[ev_id]['whos'][-1]):
+                        #         agents_dict2[ag_id]['weight'] += 1
+
+                        #     elif any(ag<5 for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
+                        #         agents_dict2[ag_id]['weight'] -= 1
                             
-                            agents_dict2[str(ag)]['weight'] += 1
-                            ag_ids.append(ag)
-                            ag_weights.append(agents_dict2[str(ag)]['weight'])
+                        #     ag_ids.append(ag_id)
+                        #     ag_weights.append(agents_dict2[ag_id]['weight'])
 
                     elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==0:
                         # input("duedue")
@@ -461,7 +487,8 @@ def put(DO_id):
                                 outpath,
                                 fields,
                                 query_ev,
-                                gateways)
+                                gateways,
+                                distances[i])
 
                         CVR_performace['times'] += 1
                         print(events_dict2[ev_id]['whos'])
@@ -473,26 +500,18 @@ def put(DO_id):
                                 ag_ids.append(ag)
                                 ag_weights.append(agents_dict2[str(ag)]['weight'])
                     
-                    elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==-1:
-
-                        # pprint(events_dict2[ev_id])
-                        # print(len(events_dict2[ev_id]['obs'])-1)
-                        # print(query_ev.situation)
-                        # print(query_ev.obj)
-                        # input()
-
+                    else:
                         logger( ev_id,
                                 dobs['who'],
                                 dobs['when'],
                                 events_dict2[ev_id],
-                                -1,
+                                -2,
                                 round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
                                 outpath,
                                 fields,
                                 query_ev,
-                                gateways)
-                    else:
-                        pass
+                                gateways,
+                                distances[i])
 
 
                     # reputation2[i] = 1 # agents_dict2[ag_id]['positive'] /\
@@ -530,7 +549,7 @@ def put(DO_id):
 
                         events_dict2[ev_id]['whos'][index].append(dobs['who'])
                         events_dict2[ev_id]['whens'][index].append([dobs['when']])
-                        if dobs['who'] >= gateways:
+                        if dobs['who'] > gateways:
                             events_dict2[ev_id]['votes'][index] += 2
                         else:
                             events_dict2[ev_id]['votes'][index] += 6
@@ -540,12 +559,21 @@ def put(DO_id):
 
                         events_dict2[ev_id]['rels'][index].append((index, dobs['who']))
 
-
                         print("third")
 
-                        # '''Krippendorff's alpha'''
-                        # if len(events_dict2[ev_id]['obs'])>=2:
-                        #     print(compute_KrippendorffAlpha(events_dict2[ev_id]))
+                        # if dobs['who']>5:
+                        #     if any(ag<5 for ag in events_dict2[ev_id]['whos'][-1]):
+                        #         agents_dict2[ag_id]['weight'] += 1
+
+                        #         ag_ids.append(ag_id)
+                        #         ag_weights.append(agents_dict2[ag_id]['weight'])
+
+                        #     elif any(ag<5 for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
+                        #         agents_dict2[ag_id]['weight'] -= 1
+                            
+                        #         ag_ids.append(ag_id)
+                        #         ag_weights.append(agents_dict2[ag_id]['weight'])
+
 
                         '''CVR method'''
                         if compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==1:
@@ -558,7 +586,8 @@ def put(DO_id):
                                     outpath,
                                     fields,
                                     query_ev,
-                                    gateways)
+                                    gateways,
+                                    distances[i])
 
                             CVR_performace['times'] += 1
                             CVR_performace['correct'] += 1
@@ -580,7 +609,8 @@ def put(DO_id):
                                     outpath,
                                     fields,
                                     query_ev,
-                                    gateways)
+                                    gateways,
+                                    distances[i])
 
                             CVR_performace['times'] += 1
                             for ag in list(np.unique(np.asarray(list(itertools.chain(events_dict2[ev_id]['whos'][index]))))):
@@ -591,28 +621,39 @@ def put(DO_id):
                                     ag_ids.append(ag)
                                     ag_weights.append(agents_dict2[str(ag)]['weight'])
 
-                        elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==-1:
+                        # elif compute_CVR(events_dict2[ev_id], query_ev, CVR, gateways)==-1:
 
-                            # pprint(events_dict2[ev_id])
-                            # print(len(events_dict2[ev_id]['obs'])-1)
-                            # print(query_ev.situation)
-                            # print(query_ev.obj)
-                            # input()
+                        #     # pprint(events_dict2[ev_id])
+                        #     # print(len(events_dict2[ev_id]['obs'])-1)
+                        #     # print(query_ev.situation)
+                        #     # print(query_ev.obj)
+                        #     # input()
 
 
-                            logger( ev_id,
-                                    dobs['who'], 
-                                    dobs['when'],
-                                    events_dict2[ev_id],
-                                    -1,
-                                    round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
-                                    outpath,
-                                    fields,
-                                    query_ev,
-                                    gateways)
+                        #     logger( ev_id,
+                        #             dobs['who'], 
+                        #             dobs['when'],
+                        #             events_dict2[ev_id],
+                        #             -1,
+                        #             round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
+                        #             outpath,
+                        #             fields,
+                        #             query_ev,
+                        #             gateways,
+                        #             distances[i])
                         
                         else:
-                            pass
+                            logger( ev_id,
+                                dobs['who'],
+                                dobs['when'],
+                                events_dict2[ev_id],
+                                -2,
+                                round(compute_KrippendorffAlpha(events_dict2[ev_id], gateways), 3),
+                                outpath,
+                                fields,
+                                query_ev,
+                                gateways,
+                                distances[i])
 
 
                         agVotes = agentsVotesTab(   agents_id   = dobs['who'],

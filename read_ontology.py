@@ -99,7 +99,6 @@ def recursive_down(start_cls, dictionary, i):
                         dictionary[i+1] = [subclass]
                         
         recursive_down(start_cls, dictionary, i+1)
-
     else:
         return
 
@@ -108,13 +107,16 @@ def recursive_down(start_cls, dictionary, i):
 def get_cls_at_dist(start_cls_name, err_rate, distance):
     start_cls = onto.Situation
 
-    
-    if (err_rate-0.2) <= distance <= err_rate:
-        distance = 1
-    elif (err_rate-0.3) <= distance < (err_rate-0.2):
-        distance = 2
-    else:
-        distance = 3
+    # interval = err_rate/3
+
+    # if 0. <= distance <= interval:
+    #     distance = 0
+    # elif interval <= distance < interval*2:
+    #     distance = 1
+    # elif interval*2 <= distance < interval*3:
+    #     distance = 2
+    # else:
+    #     distance = 3
     
     for cls in onto.classes():
         if cls.name == start_cls_name:
@@ -138,3 +140,6 @@ def get_cls_at_dist(start_cls_name, err_rate, distance):
 
 # seen_situation = get_cls_at_dist(onto.CollapsedBuilding, 2)
 # print(seen_situation)
+
+# def compute_distance(estimate, real):
+
