@@ -442,10 +442,6 @@ class Simulator:
                         situation = elem[1]['situation']
                         obj = elem[1]['object']
 
-                        print(situation)
-                        print(obj)
-                        input()
-
                         agent.error = round(np.random.random(), 2)
                         distance    = 0
 
@@ -463,8 +459,7 @@ class Simulator:
                                 seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=distance)
                                 seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=distance)
                                 seen_ev     = (seen_sit, seen_obj)
-                                print(seen_ev)
-                                input()
+
                             else:
                                 seen_ev = (situation, obj)
                         else:
@@ -553,7 +548,7 @@ class Simulator:
                     'correct':      0,
                     'first_time':   0
                 })
-
+        
         inf = {'events': self.events, 'n_agents': self.n_agents, 'n_gateways': math.floor(self.n_gateways*self.n_agents)}
 
         response = requests.put(self.BASE + "/IE/events", json.dumps(inf))
@@ -731,9 +726,9 @@ if __name__=="__main__":
 
 
     simulator = Simulator(  n_agents        = 100,
-                            n_gateways      = 0.05,
+                            n_gateways      = 0.2,
                             loop_distance   = 20,
                             seed            = 57,
                             threshold       = 100,
-                            err_rate        = 1.0)
+                            err_rate        = 0.9)
     simulator.run()

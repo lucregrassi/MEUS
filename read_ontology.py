@@ -1,6 +1,8 @@
 from owlready2 import *
 import random
 import math
+import copy
+import numpy as np
 
 # Import and load the ontology from the owl file
 onto = get_ontology("ontology/MEUS.owl")
@@ -106,17 +108,6 @@ def recursive_down(start_cls, dictionary, i):
 # Return a randomly chosen class among those at a certain distance from the starting one
 def get_cls_at_dist(start_cls_name, err_rate, distance):
     start_cls = onto.Situation
-
-    # interval = err_rate/3
-
-    # if 0. <= distance <= interval:
-    #     distance = 0
-    # elif interval <= distance < interval*2:
-    #     distance = 1
-    # elif interval*2 <= distance < interval*3:
-    #     distance = 2
-    # else:
-    #     distance = 3
     
     for cls in onto.classes():
         if cls.name == start_cls_name:
@@ -141,5 +132,75 @@ def get_cls_at_dist(start_cls_name, err_rate, distance):
 # seen_situation = get_cls_at_dist(onto.CollapsedBuilding, 2)
 # print(seen_situation)
 
+
 # def compute_distance(estimate, real):
+    
+#     up_jumps    = 0
+#     down_jumps  = 0
+#     arr = []
+#     flag = False
+
+#     _estimate = copy.deepcopy(estimate)
+#     _destimate = copy.deepcopy(estimate)
+
+#     if _estimate==real:
+#         return np.abs(up_jumps-down_jumps)
+
+#     # while real not in arr:
+
+#     #     # I have to climb down the ontology tree
+#     #     if _destimate==onto.Situation  or _destimate==onto.Object:
+#     #         flag=True
+#     #         if _destimate :
+                
+#     #             down_jumps += 1
+#     #             _destimate==[subcls for subcls in list(_destimate.subclasses())].index(_destimate)
+            
+#     #         else:
+
+#     #     else:
+#     #         # If I have reached the top I have now to keep going down
+#     #         if flag:
+
+#     #         # I have to check if I have to climb till the top of the ontology tree or go down
+#     #         else:
+#             # Not at the same layer
+#     if _destimate not in _destimate.is_a[0].subclasses():
+        
+#         # check if it is in the layer just below
+#         if any(_destimate in nest for nest in \
+#             [list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
+#             for i in range(len(list(_destimate.is_a[0].subclasses()))) ]):
+
+#                 down_jumps += 1
+
+#                 return np.abs(up_jumps-down_jumps)
+
+#             # for i, nest in enumerate([list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
+#             #     for i in range(len(list(_destimate.is_a[0].subclasses()))) ]):
+
+#             #     if _destimate in nest:
+#             #         for j, val in enumerate(nest):
+#             #             _destimate=[list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
+#             #                     \for i in range(len(list(_destimate.is_a[0].subclasses()))) ][i][j]
+
+#         else:
+#             # if the level below contains any parent of the real class
+#             if real.is_a[0] in [list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
+#             for i in range(len(list(_destimate.is_a[0].subclasses())))]:
+
+#                 down_jumps += 2
+
+#                 return np.abs(up_jumps-down_jumps)
+
+#             else:
+#                 # I have to climb upward
+#                 up_jumps += 1   
+#                 _destimate = _destimate.is_a[0]
+
+#                 if 
+
+#     # return np.abs(up_jumps-down_jumps)
+
+
 
