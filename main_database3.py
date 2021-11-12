@@ -183,7 +183,7 @@ events_dict = {}
 agents_dict2 = {}
 agents_perf  = {}
 events_dict2 = {}
-gateways     = 20   
+gateways     = 10
 
 CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
@@ -202,7 +202,6 @@ def receiving_events_list():
     gateways = json_data['n_gateways']
 
     print('gateways:', gateways)
-    input("before")
 
     CVR_performace['correct']   = 0
     CVR_performace['times']     = 0

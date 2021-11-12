@@ -129,8 +129,29 @@ def get_cls_at_dist(start_cls_name, err_rate, distance):
     return random.choice(dictionary[distance])
 
 
-# seen_situation = get_cls_at_dist(onto.CollapsedBuilding, 2)
-# print(seen_situation)
+def ontology_to_Adjlis(ontology):
+    dictionary = {}
+
+    classes = list(ontology.classes())
+
+    start = classes[classes.index(ontology.Situation)]
+
+    classes.remove(start)
+
+    dictionary[str(start).split('.')[1]] = [()]
+    for cls in classes:
+        if len(list(cls.subclasses()))>0:
+            for subcls in list(cls.subclasses()):
+                dictionary[str(cls).split('.')[1]] = str(subcls).split('.')[1]
+
+
+# def go_down(cls, has_subCls):
+#     if len(cls.subclasses())==0:
+#         return
+#     else:
+#         has_subCls = [list(cls.subclasses())[i] for i in range(list(cls.subclasses())) \
+#                         if  len(list(list(cls.subclasses())[i]))>0]
+#         go_down(list(cls.subclasses()))
 
 
 # def compute_distance(estimate, real):
@@ -165,10 +186,10 @@ def get_cls_at_dist(start_cls_name, err_rate, distance):
 #     #         # I have to check if I have to climb till the top of the ontology tree or go down
 #     #         else:
 #             # Not at the same layer
-#     if _destimate not in _destimate.is_a[0].subclasses():
+#     if real not in _destimate.is_a[0].subclasses():
         
 #         # check if it is in the layer just below
-#         if any(_destimate in nest for nest in \
+#         if any(real in nest for nest in \
 #             [list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
 #             for i in range(len(list(_destimate.is_a[0].subclasses()))) ]):
 
@@ -198,7 +219,9 @@ def get_cls_at_dist(start_cls_name, err_rate, distance):
 #                 up_jumps += 1   
 #                 _destimate = _destimate.is_a[0]
 
-#                 if 
+#     else:
+#         up_jumps += 1
+#         return np.abs(up_jumps-down_jumps)
 
 #     # return np.abs(up_jumps-down_jumps)
 

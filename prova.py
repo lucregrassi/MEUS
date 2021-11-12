@@ -245,8 +245,9 @@ for i in [int(file.split('.')[0]) for file in files]:
         plt.xlabel('# of obs')
         plt.axis()
         plt.tight_layout()
-        plt.show()
-        input()
+        # plt.show()
+        plt.savefig(os.path.join('/Users/mario/Desktop/Fellowship_Unige/MEUS/', str(i)+'.svg'))
+        # input()
     count += 1
         # plt.savefig(os.path.join('/Users/mario/Desktop/Fellowship_Unige/MEUS/', str(i)+'.csv'))
 

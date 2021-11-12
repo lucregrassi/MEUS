@@ -726,7 +726,7 @@ if __name__=="__main__":
 
 
     simulator = Simulator(  n_agents        = 100,
-                            n_gateways      = 0.2,
+                            n_gateways      = 0.1,
                             loop_distance   = 20,
                             seed            = 57,
                             threshold       = 100,
