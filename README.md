@@ -4,9 +4,10 @@ Each node contains the information about how many people are in that node, and w
 
 ## How to create a virtual env and install dependencies
 
+```
 conda config --prepend channels conda-forge
 conda create -n ox --strict-channel-priority osmnx
-
+```
 
 ## Requirements
 Before running the scripts, the following libraries should be installed:
