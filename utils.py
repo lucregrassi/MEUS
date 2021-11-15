@@ -431,8 +431,8 @@ def compute_KrippendorffAlpha(node_info, n_gateways):
     # print(type(rel_data[0][0]))
     rel_data = rel_data[[ np.any(rel_data[k]) for k in range(len(rel_data))]]
     # print("---")
-    # print(rel_data)
-    # input()
+    if len(rel_data[0])==1:
+        return np.nan
 
 
     return krippendorff.alpha(reliability_data=rel_data, level_of_measurement='nominal')
