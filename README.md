@@ -8,25 +8,11 @@ Each node contains the information about how many people are in that node, and w
 conda config --prepend channels conda-forge
 conda create -n <name_of_your_env> --strict-channel-priority osmnx
 ```
-
-## Requirements
-Before running the scripts, the following libraries should be installed:
-- math
-- random
-- osmnx
-- matplotlib.pyplot
-- PIL
-- owlready2
-
-You can install them through pip by running the following commands in a terminal:
+To install dependencies:
 ```
-pip install python-math
-pip install random
-pip install omsnx
-pip install matplotlib
-pip install Pillow
-pip install Owlready2 
+pip install -r requirements.txt
 ```
+
 ## Import the graph
 Open the script save_graph.py, and set the parameter _place_ based on the location you want to run your simulation in.
 To save the graph of the specified location open the terminal in the project folder and run:
