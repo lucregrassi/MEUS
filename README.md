@@ -4,26 +4,26 @@ Each node contains the information about how many people are in that node, and w
 
 ## How to create a virtual env and install dependencies
 
-```
-conda config --prepend channels conda-forge
-conda create -n <your_env> --strict-channel-priority osmnx
+``` 
+$ conda config --prepend channels conda-forge
+$ conda create -n <your_env> --strict-channel-priority osmnx
 ```
 To install dependencies:
 ```
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ## Import the graph
 Open the script save_graph.py, and set the parameter _place_ based on the location you want to run your simulation in.
 To save the graph of the specified location open the terminal in the project folder and run:
 ```
-python save_graph.py
+$ python save_graph.py
 ```
 
 ## Initialize global connections
 To setup the global connections in the graph (4G, 5G and Wi-Fi), open the terminal and run:
 ```
-python connectivity.py
+$ python connectivity.py
 ```
 
 ## Launch local server and set up database
@@ -31,8 +31,8 @@ run the command ```python main_database3.py```
 copy the base address which will show up in the terminal upon launching the script.
 Open a python shell and type:
 ```
-from main_database3 import db
-db.reate_all()
+>> from main_database3 import db
+>> db.reate_all()
 ```
 This command has generated the database file where to store the data from the simulation.
 
@@ -41,7 +41,7 @@ Now that the graph is ready, you can start the simulation.
 To change the simulation parameters, open the script simulator1.py: you can set the number of people moving in the graph, the number of iterations, and the distance traveled by each person in each loop.
 Once all the parameters have been set, open the terminal and type:
 ```
-python simulator1.py
+$ python simulator1.py
 ```
 ## Database structure
 The database has 2 main tables:
