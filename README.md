@@ -71,4 +71,4 @@ class infoHistoryTab(db.Model):
     sent_where      = db.Column(db.Integer, nullable=False)                   # node in which the info has been sent to the db
 ```
 
-This structure allows to have the possibility, given the unique direct observation, to track how this information has traveled among agent's iEs prior to being sent in the db.
+Each field in each class corresponds to a column in the respective db tab. This structure allows to have the possibility, given the unique direct observation, to track how this information has traveled among agent's iEs prior to being sent in the db.
