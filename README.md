@@ -6,7 +6,7 @@ Each node contains the information about how many people are in that node, and w
 
 ```
 conda config --prepend channels conda-forge
-conda create -n <name_of_your_env> --strict-channel-priority osmnx
+conda create -n <your_env> --strict-channel-priority osmnx
 ```
 To install dependencies:
 ```
