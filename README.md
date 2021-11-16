@@ -17,20 +17,58 @@ pip install -r requirements.txt
 Open the script save_graph.py, and set the parameter _place_ based on the location you want to run your simulation in.
 To save the graph of the specified location open the terminal in the project folder and run:
 ```
-python3 save_graph.py
+python save_graph.py
 ```
 
 ## Initialize global connections
 To setup the global connections in the graph (4G, 5G and Wi-Fi), open the terminal and run:
 ```
-python3 connectivity.py
+python connectivity.py
 ```
+
+## Launch local server and set up database
+run the command ```python main_database3.py```
+copy the base address which will show up in the terminal upon launching the script.
+Open a python shell and type:
+```
+from main_database3 import db
+db.reate_all()
+```
+This command has generated the database file where to store the data from the simulation.
 
 ## Start the simulation
 Now that the graph is ready, you can start the simulation. 
-To change the simulation parameters, open the script explore_graph.py: you can set the number of people moving in the graph, the number of iterations, and the distance traveled by each person in each loop.
+To change the simulation parameters, open the script simulator1.py: you can set the number of people moving in the graph, the number of iterations, and the distance traveled by each person in each loop.
 Once all the parameters have been set, open the terminal and type:
 ```
-python3 explore_graph.py
+python simulator1.py
 ```
-For each loop, this script will print the state of each person in the graph and it will eventually generate a GIF containing the result of the simulation. 
+## Database structure
+The database has 2 main tables:
+1)"dir_obs_tab": 
+```
+class dirObsTab(db.Model):
+    id              = db.Column(db.Integer, primary_key=True)                             # Integer uniquely identifying the entry in the db
+    situation       = db.Column(db.String(50), nullable=False)                            # situation "field" of an event
+    obj             = db.Column(db.String(50), nullable=False)                            # object "field" of an event
+    when            = db.Column(db.Integer, nullable=False)                               # loop at which the event=(situation, object) has ben observed
+    where           = db.Column(db.Integer, nullable=False)                               # node wherein the observation has occurred
+    who             = db.Column(db.Integer, nullable=False)                               # agent who has made the observation
+    info_histories  = db.relationship('infoHistoryTab', backref="dir_obs_tab", lazy=True) # relation with the history_tab
+```
+2)"info_history_tab":
+```
+class infoHistoryTab(db.Model):
+    id              = db.Column(db.Integer, primary_key=True)                 # Integer uniquely identifying the entry in the db
+    dir_obs_id      = db.Column(db.Integer, db.ForeignKey("dir_obs_tab.id"))  # integer saying to which observation this jump is belonging to
+    observer        = db.Column(db.Integer, nullable=False)                   # who has made the observation (= to the who field of the dir_obs_tab)
+    a1              = db.Column(db.Integer, nullable=False)                   # agent communicating the info
+    a2              = db.Column(db.Integer, nullable=False)                   # agent the receiving the info
+    sender          = db.Column(db.Integer, nullable=False)                   # agent who has sent the info to the db (It has to be a gateway agent)
+    where           = db.Column(db.Integer, nullable=False)                   # node wherein the communication has taken place
+    when            = db.Column(db.Integer, nullable=False)                   # loop at which the communication has taken place
+    sent_at_loop    = db.Column(db.Integer, nullable=False)                   # loop at which the info has been sent to the db
+    sent_where      = db.Column(db.Integer, nullable=False)                   # node in which the info has been sent to the db
+```
+
+This structure allows to have the possibility, given the unique direct observation, to track how this information has traveled among agent's iEs prior to being sent in the db.
