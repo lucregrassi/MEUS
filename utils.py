@@ -12,6 +12,7 @@ import numpy as np
 from owlready2 import *
 from os import path
 import copy 
+import itertools
 
 
 
