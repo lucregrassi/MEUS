@@ -12,124 +12,16 @@ from matplotlib import pyplot as plt
 import numpy as np
 import math
 import itertools
-from main_database3 import eventsTab
+from sketch import lis, Compute_dist
 
-# onto = get_ontology("ontology/MEUS.owl")
-# onto.load()
-
-# if type(onto.Situation)==owlready2.entity.ThingClass:
-#     print("sticaz")
-# else:
-#     print(type(onto.Situation))
 
 # BASE = "http://127.0.0.1:5000/"
 
 # response = requests.delete(BASE + "IE/1" )
 # # res = response.json()
 
-
-# def gaussian(x, mu, sig):
-#     return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.))) / (math.sqrt(2*math.pi*np.power(sig, 2)))
-
-# x_values = np.linspace(-12, 12, 120)
-# # for mu, sig in [(-1, 1), (0, 2), (2, 3)]:
-# py.plot(x_values, gaussian(x_values, 0, 4))
-# py.plot(x_values, gaussian(x_values, 0, 1))
-
-# py.show()
-
-
-
-# rep_file = pd.read_csv('reputations.csv')
-
-# reps = rep_file['reputation']
-
-# mean_error_rate1 = statistics.mean(reps[:30])
-# mean_error_rate2 = statistics.mean(reps[30:])
-
-# print("mean_error_rate1:", mean_error_rate1)
-# print("mean_error_rate2:", mean_error_rate2)
-
-
-
-# random.seed(3)
-# threshold = 100
-# no  = []
-# yes = []
-# reps = {str(i):{'positive': 0, 'negative': 0, 'rating': 0.5} for i in range(threshold) }
-
-# event = {'yes': 0, 'no': 0}
-
-# rep_mean = []
-
-# for i in range(threshold):
-
-#     value = random.random()
-#     # key = str(random.randrange(100))
-#     key = str(i)
-#     if value<=0.3:
-#         no.append(0)
-#         reps[key]['negative'] +=1
-#         event['no'] += 1
-#         # reps[key]['rating'] = event['no'] / (event['yes'] + event['no'])
-#         # print(reps[key]['rating'])
-#         # rep_mean.append(statistics.mean(reps[k]['rating'] for k in reps.keys() if reps[k]['rating']!=0.5))
-#     else:
-#         yes.append(1)
-#         reps[key]['positive'] += 1
-#         event['yes'] += 1
-#         # reps[key]['rating'] = event['yes'] / (event['yes'] + event['no'])
-#         # print(reps[key]['rating'])
-#         # rep_mean.append(statistics.mean(reps[k]['rating'] for k in reps.keys() if reps[k]['rating']!=0.5))
-    
-#     print("i:", i)
-
-
-# for j in range(threshold):
-
-#     key = str(j)
-
-#     # if reps[key]['positive'] > 0:
-#     reps[key]['rating'] = event['yes'] / (event['yes'] + event['no']) 
-#     # else:
-#     #     reps[key]['rating'] = event['no'] / (event['yes'] + event['no'])
-
-#     print(reps[key]['rating'])
-#     # input()
-
-
-# print(len(no))
-# print(len(yes))
-
-# print("No percentage:", len(no)/threshold*100)
-# print("Yes percentage:", len(yes)/threshold*100)
-
-# # print(reps['9999'])
-# # print(reps['9998'])
-
-# print(np.mean([reps[k]['rating'] for k in reps.keys() if reps[k]['negative']>0]))
-# print(np.mean([reps[k]['rating'] for k in reps.keys() if reps[k]['positive']>0]))
-
-
-# print("Error:", np.abs( (1-0.5)-rep_mean[-1]))
-
-# plt.style.use('seaborn-whitegrid')
-
-# plt.figure()
-
-# plt.plot(rep_mean, label='rep')
-# plt.axhline(y = 1-0.5, color = 'r', linestyle = '-', linewidth=.4)
-# # plt.axhline(y = rep_mean[-1], color = 'k', linestyle = '-', linewidth=.4)
-
-# plt.legend(loc='upper left')
-# plt.ylabel('mean ratings')
-# plt.xlabel('# of observations')
-# plt.axis()
-# plt.tight_layout()
-# plt.show()
-
 # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
-outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/exps/Amatrice/100agents/10000loopsthDist/20%gateways/100%err_rate/'
+outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/exps/Amatrice/100agents/10000loopsthDist/10%gateways/90%err_rate/'
 
 fields = [ 'distance', 'CVR', 'Kalpha']
 
@@ -171,25 +63,45 @@ count = 0
 for i in [int(file.split('.')[0]) for file in files]:
     print(i)
 
-    print(count)
+    # print(count)
     if len(dist[count])>1:
         plt.figure(i)
 
-        # pprint([[{'situation':obs[j]['situation'], 'object': obs[j]['object'] } for j in range(len(obs))] for obs in obss[count]])
-        # input()
-        pprint([[{'situation':obs[j]['situation'], 'object': obs[j]['object'] } for j in range(len(obs))] for obs in obss[count]])
-        pprint(gts[count])
-        gt = None
-        if any(gts[count] in nest for nest in [[{'situation':obs[j]['situation'], 'object': obs[j]['object'] } for j in range(len(obs))] for obs in obss[count]]):
-            for nest in [[{'situation':obs[j]['situation'], 'object': obs[j]['object'] } for j in range(len(obs))] for obs in obss[count]]:
-                if gts[count] in nest:
-                    gt = nest.index(gts[count])
-                    break
-        # gt = [[{'situation':obs[j]['situation'], 'object': obs[j]['object'] } for j in range(len(obs))] for obs in obss[count]].index(gts[count]) if gts[count] in [[{'situation':obs[j]['situation'], 'object': obs[j]['object'] } for j in range(len(obs))] for obs in obss[count]] else None
-        print(gt)
-        plotted_to_be = [dist[count][n] if gt!=None and gt!=[obs['coders'] for obs in obss[count][n]].index(list(np.max(obs['coders'] for obs in obss[count][n]))[0]) and \
-                len(obss[count][n])-1==[obs['coders'] for obs in obss[count][n]].index(list(np.max(obs['coders'] for obs in obss[count][n]))[0]) else 2 \
-                    if gt==None else 0 for n in range(len(dist[count]))]
+        # if i==30:
+        #     gt_in_obss = gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][0]]
+        #     gt_index = [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][0]].index(gts[count]) if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][0]] else None
+        #     max_val_index = [obs['coders'] for obs in obss[count][0]].index(np.max([obs['coders'] for obs in obss[count][0]]))
+        #     print('gt_in_obss:', gt_in_obss)
+        #     print('gt_index:', gt_index)
+        #     print('max_val_index:', max_val_index)
+        #     print(gt_in_obss and max_val_index!=gt_index)
+
+        #     if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][0]]: #and\
+        #         # [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][0]].index(gts[count])!=[obs['coders'] for obs in obss[count][0]].index(np.max([obs['coders'] for obs in obss[count][0]])):
+        #         print("whats the issue!")
+        #         print(Compute_dist(  obss[count][0][[obs['coders'] for obs in obss[count][0]].index(list(np.max(obs['coders'] for obs in obss[count][0]))[0])]['situation'],
+        #                                 gts[count]['situation'],
+        #                                 lis))
+        #         print(Compute_dist(  obss[count][0][[obs['coders'] for obs in obss[count][0]].index(np.max([obs['coders'] for obs in obss[count][0]]))]['situation'],
+        #                                 gts[count]['situation'],
+        #                                 lis))
+        #     input()
+
+        plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
+                                        gts[count]['situation'],
+                                        lis)
+                                        if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+                                        or gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+                                        and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                        else\
+                                        0 if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]] and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                        else None\
+                                        for n in range(len(dist[count]))]
+
+        if None in plotted_to_be:
+            print(plotted_to_be)
+            input()
+
         plt.plot(plotted_to_be, label="dist")
         plt.plot(Kalpha[count], label='Kalpha', marker='*')
 
@@ -209,30 +121,12 @@ for i in [int(file.split('.')[0]) for file in files]:
                     gt1      = dict(eval(pd.read_csv(outpath + str(i) +'.csv')['ground_truth'][0]))
                     index   = [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss1 ].index(gt1)
 
-                    # pprint(obss)
-                    # print(index)
-                    # print([obs['coders'] for obs in obss])
-                    # print(np.max([obs['coders'] for obs in obss]))
-                    # print([obs['coders'] for obs in obss].index(np.max([obs['coders'] for obs in obss])))
-                    # print(obss[index])
-                    # print(type(obss[index]))
-                    # print(obss[[obs['coders'] for obs in obss].index(np.max([obs['coders'] for obs in obss]))])
-                    # print(type(obss[[obs['coders'] for obs in obss].index(np.max([obs['coders'] for obs in obss]))]))
-                    # print([obs['coders'] for obs in obss].index(np.max([obs['coders'] for obs in obss]))==obss[index])
 
                     # if the ground truth coincides with the majorly voted event
                     if index==[obs['coders'] for obs in obss1].index(np.max([obs['coders'] for obs in obss1])):
                         plt.scatter(k,0, s=20, color='green', marker='o')
 
                     elif index!=[obs['coders'] for obs in obss1].index(np.max(obs['coders'] for obs in obss1)):
-
-                        # ind = [obs['coders'] for obs in obss1].index(np.max(obs['coders'] for obs in obss1))
-                        # lista = list(eval(pd.read_csv(outpath + str(i) +'.csv')['observations']))
-
-                        # for l in range(len(lista)):
-                        #     if len(lista[l])-1==ind:
-                        #         d = dist[count][l]
-                        #         break
 
                         plt.scatter(k,plotted_to_be[k], s=20, color='magenta', marker='o')
 
@@ -246,11 +140,9 @@ for i in [int(file.split('.')[0]) for file in files]:
         plt.axis()
         plt.tight_layout()
         # plt.show()
-        plt.savefig(os.path.join('/Users/mario/Desktop/Fellowship_Unige/MEUS/', str(i)+'.svg'))
+        plt.savefig(os.path.join(outpath+'plots/', str(i)+'.svg'))
         # input()
     count += 1
-        # plt.savefig(os.path.join('/Users/mario/Desktop/Fellowship_Unige/MEUS/', str(i)+'.csv'))
-
 
 # print(len(cvr))
 # print(len(dist))

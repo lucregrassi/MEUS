@@ -108,94 +108,94 @@ lis = {'Situation': [('EmergencyBuilding', 1),  ('BlockedBuilding', 2), ('Collap
                     ('FloodedBuilding', 2),     ('OnFireBuilding', 2),  ('EmergencyOutdoor', 1),\
                     ('BlockedByDebris', 2),     ('TrafficJam', 2),      ('EmergencyPeople', 1),\
                     ('DeadPeople', 2),          ('InjuredPeople', 2),   ('MildlyInjuredPeople', 3),\
-                    ('SeverlyInjuredPeople', 3),('PanickedPeople', 2),  ('StarvingPeople', 2),\
+                    ('SeverelyInjuredPeople', 3),('PanickedPeople', 2),  ('StarvingPeople', 2),\
                     ('NoFoodPeople', 3),        ('NoMedicinePeople', 3),('NoWaterPeople', 3)],
 
 'EmergencyBuilding': [('Situation', 1),         ('BlockedBuilding', 1), ('CollapsedBuilding', 1),\
                     ('FloodedBuilding', 1),     ('OnFireBuilding', 1),  ('EmergencyOutdoor', 1),\
                     ('BlockedByDebris', 1),     ('TrafficJam', 1),      ('EmergencyPeople', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 2),\
-                    ('SeverlyInjuredPeople', 2),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 2),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 2),        ('NoMedicinePeople', 2),('NoWaterPeople', 2)],
 
 'EmergencyOutdoor': [('Situation', 1),         ('BlockedBuilding', 1), ('CollapsedBuilding', 1),\
                     ('FloodedBuilding', 1),     ('OnFireBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('BlockedByDebris', 1),     ('TrafficJam', 1),      ('EmergencyPeople', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 2),\
-                    ('SeverlyInjuredPeople', 2),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 2),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 2),        ('NoMedicinePeople', 2),('NoWaterPeople', 2)],
 
 'EmergencyPeople':  [('Situation', 1),          ('BlockedBuilding', 1), ('CollapsedBuilding', 1),\
                     ('FloodedBuilding', 1),     ('OnFireBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('BlockedByDebris', 1),     ('TrafficJam', 1),      ('EmergencyOutdoor', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 2),\
-                    ('SeverlyInjuredPeople', 2),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 2),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 2),        ('NoMedicinePeople', 2),('NoWaterPeople', 2)],
 
 'BlockedBuilding':  [('Situation', 2),          ('EmergencyPeople', 1), ('CollapsedBuilding', 1),\
                     ('FloodedBuilding', 1),     ('OnFireBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('BlockedByDebris', 1),     ('TrafficJam', 1),      ('EmergencyOutdoor', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
 
 'CollapsedBuilding':  [('Situation', 2),          ('EmergencyPeople', 1), ('BlockedBuilding', 1),\
                     ('FloodedBuilding', 1),     ('OnFireBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('BlockedByDebris', 1),     ('TrafficJam', 1),      ('EmergencyOutdoor', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
 
 'FloodedBuilding':  [('Situation', 2),          ('EmergencyPeople', 1), ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),     ('OnFireBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('BlockedByDebris', 1),     ('TrafficJam', 1),      ('EmergencyOutdoor', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
 
 'OnFireBuilding':  [('Situation', 2),          ('EmergencyPeople', 1),  ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),  ('FloodedBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('BlockedByDebris', 1),     ('TrafficJam', 1),      ('EmergencyOutdoor', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
     
 'BlockedByDebris':  [('Situation', 2),          ('EmergencyPeople', 1),  ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),  ('FloodedBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('OnFireBuilding', 1),     ('TrafficJam', 1),      ('EmergencyOutdoor', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
 
 'TrafficJam':       [('Situation', 2),          ('EmergencyPeople', 1),  ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),  ('FloodedBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('OnFireBuilding', 1),     ('BlockedByDebris', 1),      ('EmergencyOutdoor', 1),\
                     ('DeadPeople', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
 
 'DeadPeople':       [('Situation', 2),          ('EmergencyPeople', 1),  ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),  ('FloodedBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('OnFireBuilding', 1),     ('BlockedByDebris', 1),      ('EmergencyOutdoor', 1),\
                     ('TrafficJam', 1),          ('InjuredPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
 
 'InjuredPeople':       [('Situation', 2),          ('EmergencyPeople', 1),  ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),  ('FloodedBuilding', 1),  ('EmergencyBuilding', 1),\
                     ('OnFireBuilding', 1),     ('BlockedByDebris', 1),      ('EmergencyOutdoor', 1),\
                     ('TrafficJam', 1),          ('DeadPeople', 1),   ('MildlyInjuredPeople', 1),\
-                    ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
+                    ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),  ('StarvingPeople', 1),\
                     ('NoFoodPeople', 1),        ('NoMedicinePeople', 1),('NoWaterPeople', 1)],
 
 'MildlyInjuredPeople':      [('Situation', 3),          ('EmergencyPeople', 2),  ('BlockedBuilding', 1),\
                             ('CollapsedBuilding', 1),   ('FloodedBuilding', 1),  ('EmergencyBuilding', 2),\
                             ('OnFireBuilding', 1),      ('BlockedByDebris', 1),  ('EmergencyOutdoor', 2),\
                             ('TrafficJam', 1),          ('DeadPeople', 1),       ('InjuredPeople', 1),\
-                            ('SeverlyInjuredPeople', 1),('PanickedPeople', 1),   ('StarvingPeople', 1),\
+                            ('SeverelyInjuredPeople', 1),('PanickedPeople', 1),   ('StarvingPeople', 1),\
                             ('NoFoodPeople', 1),        ('NoMedicinePeople', 1), ('NoWaterPeople', 1)],
 
-'SeverlyInjuredPeople':      [('Situation', 3),          ('EmergencyPeople', 2),  ('BlockedBuilding', 1),\
+'SeverelyInjuredPeople':      [('Situation', 3),          ('EmergencyPeople', 2),  ('BlockedBuilding', 1),\
                             ('CollapsedBuilding', 1),   ('FloodedBuilding', 1),  ('EmergencyBuilding', 2),\
                             ('OnFireBuilding', 1),      ('BlockedByDebris', 1),  ('EmergencyOutdoor', 2),\
                             ('TrafficJam', 1),          ('DeadPeople', 1),       ('InjuredPeople', 1),\
@@ -207,14 +207,14 @@ lis = {'Situation': [('EmergencyBuilding', 1),  ('BlockedBuilding', 2), ('Collap
                             ('CollapsedBuilding', 1),   ('FloodedBuilding', 1),  ('EmergencyBuilding', 1),\
                             ('OnFireBuilding', 1),      ('BlockedByDebris', 1),  ('EmergencyOutdoor', 1),\
                             ('TrafficJam', 1),          ('DeadPeople', 1),       ('InjuredPeople', 1),\
-                            ('MildlyInjuredPeople', 1),('SeverlyInjuredPeople', 1),   ('StarvingPeople', 1),\
+                            ('MildlyInjuredPeople', 1),('SeverelyInjuredPeople', 1),   ('StarvingPeople', 1),\
                             ('NoFoodPeople', 1),        ('NoMedicinePeople', 1), ('NoWaterPeople', 1)],
 
 'StarvingPeople':      [('Situation', 2),          ('EmergencyPeople', 1),  ('BlockedBuilding', 1),\
                             ('CollapsedBuilding', 1),   ('FloodedBuilding', 1),  ('EmergencyBuilding', 1),\
                             ('OnFireBuilding', 1),      ('BlockedByDebris', 1),  ('EmergencyOutdoor', 1),\
                             ('TrafficJam', 1),          ('DeadPeople', 1),       ('InjuredPeople', 1),\
-                            ('MildlyInjuredPeople', 1),('SeverlyInjuredPeople', 1),   ('PanickedPeople', 1),\
+                            ('MildlyInjuredPeople', 1),('SeverelyInjuredPeople', 1),   ('PanickedPeople', 1),\
                             ('NoFoodPeople', 1),        ('NoMedicinePeople', 1), ('NoWaterPeople', 1)],
 
 'NoFoodPeople':      [('Situation', 3),          ('EmergencyPeople', 2),  ('BlockedBuilding', 1),\
@@ -222,39 +222,38 @@ lis = {'Situation': [('EmergencyBuilding', 1),  ('BlockedBuilding', 2), ('Collap
                             ('OnFireBuilding', 1),      ('BlockedByDebris', 1),  ('EmergencyOutdoor', 2),\
                             ('TrafficJam', 1),          ('DeadPeople', 1),       ('InjuredPeople', 1),\
                             ('MildlyInjuredPeople', 1),('PanickedPeople', 1),   ('StarvingPeople', 1),\
-                            ('SeverlyInjuredPeople', 1),        ('NoMedicinePeople', 1), ('NoWaterPeople', 1)],
+                            ('SeverelyInjuredPeople', 1),        ('NoMedicinePeople', 1), ('NoWaterPeople', 1)],
 
 'NoMedicinePeople':      [('Situation', 3),          ('EmergencyPeople', 2),  ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),    ('FloodedBuilding', 1),  ('EmergencyBuilding', 2),\
                     ('OnFireBuilding', 1),       ('BlockedByDebris', 1),  ('EmergencyOutdoor', 2),\
                     ('TrafficJam', 1),           ('DeadPeople', 1),       ('InjuredPeople', 1),\
                     ('MildlyInjuredPeople', 1),  ('PanickedPeople', 1),   ('StarvingPeople', 1),\
-                    ('SeverlyInjuredPeople', 1), ('NoFoodPeople', 1), ('NoWaterPeople', 1)],
+                    ('SeverelyInjuredPeople', 1), ('NoFoodPeople', 1), ('NoWaterPeople', 1)],
 
 'NoWaterPeople':      [('Situation', 3),          ('EmergencyPeople', 2),  ('BlockedBuilding', 1),\
                     ('CollapsedBuilding', 1),    ('FloodedBuilding', 1),  ('EmergencyBuilding', 2),\
                     ('OnFireBuilding', 1),       ('BlockedByDebris', 1),  ('EmergencyOutdoor', 2),\
                     ('TrafficJam', 1),           ('DeadPeople', 1),       ('InjuredPeople', 1),\
                     ('MildlyInjuredPeople', 1),  ('PanickedPeople', 1),   ('StarvingPeople', 1),\
-                    ('SeverlyInjuredPeople', 1), ('NoFoodPeople', 1), ('NoMedicinePeople', 1)],
+                    ('SeverelyInjuredPeople', 1), ('NoFoodPeople', 1), ('NoMedicinePeople', 1)],
     }
 
-def Compute_dist(cls1,cls2, lis):
+def Compute_dist(cls1, cls2, lis):
 
     for t,val in enumerate(lis[cls1]):
-        print(val)
         if val[0]==cls2:
             return lis[cls1][t][1]
 
-print(Compute_dist('NoFoodPeople', 'Situation', lis))
-input()
-# H = {
-#             'A': 1,
-#             'B': 1,
-#             'C': 1,
-#             'D': 1
-#         }
-H = {key:1 for key in lis.keys()}
-graph1 = Graph(lis, H)
-graph1.a_star_algorithm('NoFoodPeople', 'Situation')
+# print(Compute_dist('NoFoodPeople', 'Situation', lis))
+# input()
+# # H = {
+# #             'A': 1,
+# #             'B': 1,
+# #             'C': 1,
+# #             'D': 1
+# #         }
+# H = {key:1 for key in lis.keys()}
+# graph1 = Graph(lis, H)
+# graph1.a_star_algorithm('NoFoodPeople', 'Situation')
 
