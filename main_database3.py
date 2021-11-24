@@ -244,23 +244,14 @@ def put(DO_id):
 
     json_data                   = json.loads(request.data)
     data_do, data_ih, distances = NewpreProcessing(json_data)
-            # reputation,\
-            #     reputation2,\
-            #         reliability = NewpreProcessing(json_data)
 
 
-    # print('gateways:', gateways)
-    # input()
+
     all_events_db = False
     flag = False
     return_flag = False
     repetition_flag = False
     if not data_do:
-        print("2")
-        print("_________________________________________________")
-        print(data_do)
-        print("No input data provided")
-        input("checking")
         return {"message": "No input data provided"}, 400
     # Validate and deserialize input
     elif not data_ih:
@@ -832,12 +823,6 @@ def put(DO_id):
                 events[query_ev.id-1]['mistaken']['difference'].append(elem)
 
             else:
-                pprint(do_schema.dump(query_ev))
-                pprint(do_schema.dump(do))
-                print(bool(query_ev.situation==do.situation))
-                print(bool(query_ev.obj==do.obj))
-                print(bool(query_ev.where==do.where))
-                lememcheck = 5
                 input()
 
         
@@ -895,11 +880,9 @@ def put(DO_id):
 
                 result_do.append(result_ih)
             print("11")
-
     print("12")
 
     db.session.commit()
-
 
     # keep track if the event has been uploaded on the db for the first time
     if return_flag:
@@ -930,13 +913,22 @@ def delete(DO_id):
     counter1 = 0
     counter2 = 0
 
-
     for Obs in query:
         for jump in Obs.info_histories:
             db.session.delete(jump)
             counter2 += 1
         db.session.delete(Obs)
         counter1 += 1
+
+    # counter1 = dirObsTab.query.count()
+    # counter2 = infoHistoryTab.query.count()
+
+    # dirObsTab.query.delete()
+    # infoHistoryTab.query.delete()
+    # eventsTab.query.delete()
+    # observedEventsTab.query.delete()
+    # agentsVotesTab.query.delete()
+    # latencyTab.query.delete()
     
     # clearing up events Tabs
     for event in query_events:

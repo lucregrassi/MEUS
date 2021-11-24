@@ -1,5 +1,6 @@
 class Agent:
     def __init__(self, n, curr_node=0, dest_node=0, distance=0, error=0, path={}, moving=False, road=0, num_info_sent=0, num_info_seen=0, num_info_seen2=0, mu=0, sigma=1):
+        super().__init__()
         self.n = n
         self.curr_node      = curr_node
         self.dest_node      = dest_node

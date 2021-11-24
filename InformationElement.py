@@ -2,6 +2,7 @@ import json
 
 class InformationElement:
     def __init__(self, n, history=None, where=0, when=0, what=None, root=None):
+        super().__init__()
         self.n = n
         self.history = history
         self.where = where
@@ -26,10 +27,11 @@ class InformationElement:
 
 class NewInformationElement:
     def __init__(self, n, where=0, when=0, what=None):
-            self.n = n
-            self.where = where
-            self.when = when
-            self.what = what
+        super().__init__()
+        self.n = n
+        self.where = where
+        self.when = when
+        self.what = what
 
     def __str__(self):
         return "IE: " + str(self.n) + ", " + str(self.where) + ", " + str(self.when) + ", " \
@@ -50,6 +52,7 @@ class NewInformationElement:
 
 class DirectObservation:
     def __init__(self, event=None, error=0):
+        super().__init__()
         self.event = event
         self.error = error
 
@@ -67,6 +70,7 @@ class DirectObservation:
 
 class NewDirectObservation:
     def __init__(self, event=None, error=0):
+        super().__init__()
         # self.who = who
         # self.where = where
         # self.when = when

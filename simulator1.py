@@ -720,16 +720,3 @@ class Simulator:
         #             'num_loops':    self.num_loops
         #         }
         #         csv_writer2.writerow(info)
-
-def main():
-    
-    simulator = Simulator(  n_agents        = 100,
-                            n_gateways      = 0.1,
-                            loop_distance   = 20,
-                            seed            = 57,
-                            threshold       = 100,
-                            err_rate        = 0.9)
-    simulator.run()
-
-if __name__=="__main__":
-    main()
