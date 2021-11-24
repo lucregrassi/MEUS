@@ -41,7 +41,7 @@ Now that the graph is ready, you can start the simulation.
 To change the simulation parameters, open the script simulator1.py: you can set the number of people moving in the graph, the number of iterations, and the distance traveled by each person in each loop.
 Once all the parameters have been set, open the terminal and type:
 ```
-$ python simulator1.py
+$ python main.py
 ```
 ## Database structure
 The database has 2 main tables:
