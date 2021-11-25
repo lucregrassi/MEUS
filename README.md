@@ -6,7 +6,8 @@ Each node contains the information about how many people are in that node, and w
 
 ``` 
 $ conda config --prepend channels conda-forge
-$ conda create -n <your_env> --strict-channel-priority osmnx
+$ conda create -n <env> --strict-channel-priority osmnx
+$ conda activate <env>
 ```
 To install dependencies:
 ```
@@ -64,3 +65,9 @@ open a python shell and run the following command
 >> import requests
 >> requests.delete(<base_address> + 'IE/1')
 ```
+
+## Authors
+| Name | E-mail |
+|------|--------|
+| Lucrezia Grassi| lucrezia.grassi@edu.unige.it |
+| Mario Ciranni | mario.ciranni@gmail.com |
