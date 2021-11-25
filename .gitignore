@@ -1,22 +1,22 @@
 .git
 __pycache__
-.cache/
+./src/.cache/
 venv/
 .vscode/
 .idea
 .DS_Store
-images/
-simulation.gif
+images
+./src/simulation.gif
 *.db
 *.csv
 *.log
 *.json
-linestring.py
 *.svg
-figures.py
-figures2.py
-simulator1.py
+./src/figures.py
+./src/figures2.py
+graph
+# simulator1.py
 #prova.py
-plotter.py
-main_database3.py
-graph/*
+./src/plotter.py
+# main_database3.py
+./src/graph/*
