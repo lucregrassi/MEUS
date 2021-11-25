@@ -8,11 +8,9 @@ from pprint import pprint
 
 
 random.seed(1)
-logging.basicConfig(level=logging.DEBUG, filename='conn.log', filemode='w')
-
 
 # Load the "temporary" graph saved
-G = ox.load_graphml('graph/graph_temp.graphml')
+# G = ox.load_graphml('graph/graph_temp.graphml')
 
 
 # This function returns a list containing the colors of the nodes on the basis of the available connections
@@ -36,11 +34,9 @@ def setup_connection(graph, connection, hubs, radius):
     # nodes = random.choices(list(graph.nodes), k=hubs)
 
     # picking up nodes according to a centrality degree in the graph
-    deg_centrality = nx.degree_centrality(G)
+    deg_centrality = nx.degree_centrality(graph)
 
-    # deg_centrality_list = [deg_centrality[key] for key in deg_centrality.keys()]
     deg_centrality_list = list(deg_centrality.items())
-    pprint(deg_centrality_list)
     deg_centrality_list.sort(key=lambda a: a[1])
 
     nodes = [deg_centrality_list[i+(i*5)][0] for i in range(hubs)]
@@ -86,38 +82,52 @@ def setup_connection(graph, connection, hubs, radius):
     return graph
 
 
-# Define the number of hubs (sources) and the radius for each type of connection
-# Setup 4g connections
-hubs_4g = 1
-radius_4g = 3
-G = setup_connection(G, 1, hubs_4g, radius_4g)
+# # Define the number of hubs (sources) and the radius for each type of connection
+# # Setup 4g connections
+# hubs_4g = 1
+# radius_4g = 3
+# G = setup_connection(G, 1, hubs_4g, radius_4g)
 
-# # Setup 5g connections
-# hubs_5g = 1
-# radius_5g = 1
-# G = setup_connection(G, 2, hubs_5g, radius_5g)
+# # # Setup 5g connections
+# # hubs_5g = 1
+# # radius_5g = 1
+# # G = setup_connection(G, 2, hubs_5g, radius_5g)
 
-# # Setup Wi-Fi connections
-# hubs_wifi = 1
-# radius_wifi = 1
-# G = setup_connection(G, 3, hubs_wifi, radius_wifi)
+# # # Setup Wi-Fi connections
+# # hubs_wifi = 1
+# # radius_wifi = 1
+# # G = setup_connection(G, 3, hubs_wifi, radius_wifi)
 
-# Save the graph with the connections initialized
-ox.save_graphml(G, filepath='graph/graph.graphml')
+# # Save the graph with the connections initialized
+# ox.save_graphml(G, filepath='graph/graph.graphml')
 
-# Plot and save the image showing the areas covered by the connections
-# Note: red=4g, green=5g, blue=Wi-Fi
-nc = color(G)
-ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="images/conn.png")
+# # Plot and save the image showing the areas covered by the connections
+# # Note: red=4g, green=5g, blue=Wi-Fi
+# nc = color(G)
+# ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="images/conn.png")
 
 
-conn_nodes = []
-for node in G.nodes(data=True):
-    # print(node[1])
-    if str(0) not in node[1]['connection']:
-        logging.info("##############################")
-        logging.info(node[0])
-        conn_nodes.append(node[0])
-        # print(node[1]['connection'])
+# conn_nodes = []
+# for node in G.nodes(data=True):
+#     # print(node[1])
+#     if str(0) not in node[1]['connection']:
+#         logging.info("##############################")
+#         logging.info(node[0])
+#         conn_nodes.append(node[0])
+#         # print(node[1]['connection'])
 
-print(conn_nodes)
+# print(conn_nodes)
+
+def build_graph(hubs_4g, radius_4g):
+
+    G = ox.load_graphml('graph/graph_temp.graphml')
+    G = setup_connection(G, 1, hubs_4g, radius_4g)
+
+    # Save the graph with the connections initialized
+    ox.save_graphml(G, filepath='graph/graph.graphml')
+
+    # Plot and save the image showing the areas covered by the connections
+    # Note: red=4g, green=5g, blue=Wi-Fi
+    nc = color(G)
+    ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="images/conn.png")
+    input("Close plot and press enter to start simulation")

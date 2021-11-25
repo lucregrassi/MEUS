@@ -1,13 +1,37 @@
+import argparse
+import osmnx as ox
+from utils import parse_args
+from pprint import pprint
 from simulator1 import Simulator
+from save_graph import save_graph
+from connectivity import build_graph, color
+
 
 def main():
+
+    # place   = 'Amatrice, Rieti, Lazio'
+
+    args = parse_args()
+
+    print(f"The simulation will take place in {args.place}.")
+    print(f"With the following parameters:\n\
+        Number of agents:           {args.n_agents}\n\
+        Number of gateways agents:  {args.n_gateways}\n\
+        Loop distance:              {args.loop_distance}\n\
+        Seed:                       {args.seed}\n\
+        Threshold:                  {args.threshold}\n\
+        Error rate:                 {args.err_rate}")
     
-    simulator = Simulator(  n_agents        = 100,
-                            n_gateways      = 0.5,
-                            loop_distance   = 20,
-                            seed            = 57,
-                            threshold       = 100,
-                            err_rate        = 0.9)
+    save_graph(args.place)
+
+    build_graph(args.hubs_4g, args.radius_4g)
+    
+    simulator = Simulator(  n_agents        = args.n_agents,
+                            n_gateways      = args.n_gateways,
+                            loop_distance   = args.loop_distance,
+                            seed            = args.seed,
+                            threshold       = args.threshold,
+                            err_rate        = args.err_rate)
     simulator.run()
 
 if __name__=="__main__":

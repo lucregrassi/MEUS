@@ -1,18 +1,22 @@
 import csv
 import math
+import copy 
 import json
-from pprint import pprint
-import operator
+
 import random
+import argparse
+import operator
+import itertools
 import statistics
+import numpy as np
 import krippendorff
+from os import path
+
+from owlready2 import *
+from pprint import pprint
 from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
-import numpy as np
-from owlready2 import *
-from os import path
-import copy 
-import itertools
+
 
 
 
@@ -524,3 +528,41 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
 
                     }
             writer.writerow(info)
+
+
+
+def parse_args():
+
+    parser = argparse.ArgumentParser(   description     = ''' Application for running MEUS simulation ''',
+                                        usage           = argparse.SUPPRESS,
+                                        formatter_class = argparse.RawTextHelpFormatter)
+
+    parser.add_argument('-place', default = 'Amatrice, Rieti, Lazio', type=str,
+                            help='Place where to run the simulation in the format (Town, Province, Region). Example: "Amatrice, Rieti, Lazio".')
+
+    parser.add_argument('-hubs_4g', default=1, type=int,
+                            help='number of hub for the 4g internet connection.')
+    
+    parser.add_argument('-radius_4g', default=3, type=int,
+                            help='magnitude of the radius of each internet hub.')
+
+    parser.add_argument('-n_agents', default=100, type=int,
+                            help='number of agents present in the environment.')
+
+    parser.add_argument('-n_gateways', default=100, type=int,
+                            help='number of gateways agents present in the environment.')
+
+    parser.add_argument('-loop_distance', default=20, type=int,
+                            help='distance in meters an agent travels each loop.')
+
+    parser.add_argument('-seed', default=57, type=int,
+                            help='random seed to obtain a specific experiment outcome.')
+
+    parser.add_argument('-threshold', default=100, type=int,
+                            help='percentage of events stored in the database to end the experiment.')
+
+    parser.add_argument('-err_rate', default=0.2, type=float,
+                            help='error rate according to which one agent makes a mistake in the observation of an event.')
+
+    args = parser.parse_args()
+    return args
