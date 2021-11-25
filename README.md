@@ -1,4 +1,4 @@
-# MEUS
+# MEUS: Management of Emergencies through Ubiquitous Sensing
 This project in Python 3 allows to simulate the behaviour of people moving between the nodes of a graph imported from OpenStreetMap.
 Each node contains the information about how many people are in that node, and which kind of connection is available.
 
