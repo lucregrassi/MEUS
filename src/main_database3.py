@@ -4,25 +4,22 @@ import json
 import copy
 import logging
 import itertools
-import statistics
 import numpy as np
-import pandas as pd
 import krippendorff
 from pprint import pprint
-from collections import Counter
 from flask import Flask, request
-from utils import NewpreProcessing, compute_KrippendorffAlpha, compute_CVR, logger
-from collections import defaultdict
+from flask_restful import Api, fields
 from sqlalchemy.orm import joinedload
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
-from flask_restful import Api, reqparse, abort, fields, marshal_with, inputs
-from marshmallow import Schema, fields as mafields, ValidationError, INCLUDE, EXCLUDE, pre_load
+from marshmallow import Schema, fields as mafields, ValidationError
+from utils import NewpreProcessing, compute_KrippendorffAlpha, compute_CVR, logger
+
 
 app = Flask(__name__)
 api = Api(app)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databaseMEUS.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']    = False
+app.config['SQLALCHEMY_DATABASE_URI']           = 'sqlite:///databaseMEUS.db'
 db = SQLAlchemy(app)
 # ma = Marshmallow(app)
 
@@ -96,14 +93,8 @@ class latencyTab(db.Model):
     who             = db.Column(db.Integer, nullable=False)
     lat             = db.Column(db.Integer, nullable=False)
 
-# class evVoti
-
-
-
 
 ##### SCHEMAS #####
-
-
 class dirObsSchema(Schema):
     # class Meta:
     #     unknown=INCLUDE
@@ -403,10 +394,6 @@ def put(DO_id):
             #     'when':     dobs['when'],
             #     'rel':      reliability[i]
             #     })
-
-            # if ev_id=='108':
-            #     pprint(events_dict2[ev_id])
-            #     print("---")
 
             ''' Reputation based on a voting approach '''
             tf = 1 if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj else 0

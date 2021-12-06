@@ -9,8 +9,6 @@ from connectivity import build_graph, color
 
 def main():
 
-    # place   = 'Amatrice, Rieti, Lazio'
-
     args = parse_args()
 
     print(f"The simulation will take place in {args.place}.")

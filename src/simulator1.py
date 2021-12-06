@@ -552,28 +552,6 @@ class Simulator:
         inf = {'events': self.events, 'n_agents': self.n_agents, 'n_gateways': math.floor(self.n_gateways*self.n_agents)}
 
         response = requests.put(self.BASE + "/IE/events", json.dumps(inf))
-
-        # fieldnames1 = ["sizeTab1", "sizeTab2", "latency", "num_loops"]
-        # fieldnames2 = ["sizeTab1", "sizeTab2"]
-        # fieldnames3 = ["time", "perc_of_seen_events"]
-        # fields = ["id", "reputation", "reputation2", "std_dev", "number_of_seen_events"]
-        # fields2  = ['sender', 'sit', 'obj', 'when', 'where', 'who', 'sent_at_loop', 'lat']
-
-        # fieldnames4 = ["id", "sit", "obj", "when", "where", "conn"]
-
-        # with open('experiments.csv', 'w') as csv_file:
-        #     csv_writer1 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
-        #     csv_writer1.writeheader()
-
-
-        # with open('performances.csv', 'w') as csv_file:
-        #     csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
-        #     csv_writer3.writeheader()
-
-        # with open('reputations.csv', 'w') as csv_file:
-        #     csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
-        #     csv_writer4.writeheader()
-
         
         ''' Running the simulation '''
         self.tic        = time.perf_counter()
@@ -585,108 +563,6 @@ class Simulator:
         print("total time to get all events on the db: ", self.t_all)
         print(f"Experiment finished in {self.toc - self.tic:0.4f} seconds")
 
-
-        # with open('performances.csv', 'a') as csv_file:
-        #     csv_writer3 = csv.DictWriter(csv_file, fieldnames=fieldnames3)
-
-        #     info = {
-        #         'time':                 self.toc-self.tic,
-        #         'perc_of_seen_events':  self.perc_seen_ev
-        #     }
-        #     csv_writer3.writerow(info)
-
-    
-        # with open('reputations.csv', 'a') as csv_file:
-        #     csv_writer4 = csv.DictWriter(csv_file, fieldnames=fields)
-
-        #     for key in self.agents_dict.keys():
-
-        #         conf_interval = 0
-        #         if 0 <= abs(self.agents_dict[key].error) < 1:
-        #             conf_interval = 1
-
-        #         elif 1 <= abs(self.agents_dict[key].error) < 2:
-        #             conf_interval = 2
-
-        #         else:
-        #             conf_interval = 3
-
-
-        #         info = {
-        #             'id':                      self.agents_dict[key].n,
-        #             'reputation':              round( self.agents_dict[key].reputation, 2),
-        #             'reputation2':             round( self.agents_dict[key].reputation2, 2),
-        #             'std_dev':                 self.agents_dict[key].sigma, 
-        #             'number_of_seen_events':   self.agents_dict[key].num_info_seen
-        #         }
-        #         csv_writer4.writerow(info)
-
-
-
-        # pat = '/Users/mario/Desktop/Fellowship_Unige/experiments/100/Amatrice/28-06/seed' + str(simulator.seed) + "/method1" #+ '/Amatrice_reps_' +str(int((1-simulator.err_rate)*100)) + '%'
-        # # fieldn = ['lats']
-        # # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'w') as f:
-        # #     writer = csv.DictWriter(f, fieldnames=fieldn)
-        # #     writer.writeheader()
-        
-        # # with open(path + '/error_plot_{0}%.csv'.format(str(simulator.n_gateways*100)), 'a') as f:
-        # #     writer = csv.DictWriter(f, fieldnames=fieldn)
-        # #     for el in simulator.latency:
-        # #         writer.writerow({'lats': el})
-
-        # fielde = ['error_rate']
-        # for key in self.agents_dict.keys():
-        #     if self.agents_dict[key].num_info_seen > 0:
-        #         with open(pat + '/err_rate/{0}.csv'.format(key), 'w') as f:
-        #             writer = csv.DictWriter(f, fieldnames=fielde)
-        #             writer.writeheader()
-                
-        #         with open(pat + '/err_rate/{0}.csv'.format(key), 'a') as f:
-        #             writer = csv.DictWriter(f, fieldnames=fielde)
-        #             for el in self.agents_dict[key].reputations:
-        #                 writer.writerow({ 'error_rate':    el})
-
-
-        # fieldn = ['reps']
-        # for key in self.agents_dict.keys():
-        #     if self.agents_dict[key].num_info_seen > 0:
-        #         with open(pat + '/rep/{0}.csv'.format(key), 'w') as f:
-        #             writer = csv.DictWriter(f, fieldnames=fieldn)
-        #             writer.writeheader()
-                
-        #         with open(pat + '/rep/{0}.csv'.format(key), 'a') as f:
-        #             writer = csv.DictWriter(f, fieldnames=fieldn)
-        #             for el in self.agents_dict[key].reputations2:
-        #                 writer.writerow({ 'reps':    el})
-
-
-        # for key in self.agents_dict.keys():
-
-
-        #     if len(self.agents_dict2[key]['rep2'])!=len(self.agents_dict2[key]['when2']):
-        #         pprint(self.agents_dict2[key]['rep2'])
-        #         pprint(self.agents_dict2[key]['when2'])
-        #         print(len(self.agents_dict2[key]['rep2']))
-        #         print(len(self.agents_dict2[key]['when2']))
-        #         input("rep2")
-
-        #     self.agents_dict[key].ordered_reps  = list(zip(self.agents_dict2[key]['rep'], self.agents_dict2[key]['when']))
-        #     self.agents_dict[key].ordered_reps2 = list(zip(self.agents_dict2[key]['rep2'], self.agents_dict2[key]['when2']))
-
-        #     self.agents_dict[key].ordered_reps.sort(   key=lambda a: a[1])
-        #     self.agents_dict[key].ordered_reps2.sort(  key=lambda a: a[1])
-
-        #     if len(self.agents_dict[key].ordered_reps)>1:
-        #         plot_agent_perf(self.agents_dict[key], key, pat, self.err_rate)
-
-
-
-        # latency_meanStddev_plot(    self.mean_succ_rate,
-        #                             self.stddev_succ_rate,
-        #                             self.mean_succ_rate2,
-        #                             self.stddev_succ_rate2,
-        #                             self.err_rate,
-        #                             pat)
 
         pat = '/Users/mario/Desktop/Fellowship_Unige/MEUS/'
 
@@ -701,22 +577,7 @@ class Simulator:
         plt.tight_layout()
         plt.savefig(path.join(pat, 'loop_duration.svg'))
 
-        # print(self.similarity_err)
-
         input("check 3 explore_graph.py")
-        response = requests.delete(simulator.BASE + "IE/1" )
+        response = requests.delete(self.BASE + "IE/1" )
         res = response.json()
         pprint(res)
-
-
-
-        # with open('experiments.csv', 'a') as csv_file:
-        #         csv_writer2 = csv.DictWriter(csv_file, fieldnames=fieldnames1)
-
-        #         info = {
-        #             'sizeTab1':     res['size_tab1'],
-        #             'sizeTab2':     res['size_tab2'],
-        #             'latency':      statistics.mean(self.latency),
-        #             'num_loops':    self.num_loops
-        #         }
-        #         csv_writer2.writerow(info)

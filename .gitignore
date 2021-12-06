@@ -14,9 +14,9 @@ images
 *.svg
 ./src/figures.py
 ./src/figures2.py
-graph
 # simulator1.py
 #prova.py
-./src/plotter.py
+src/plotter.py
 # main_database3.py
-./src/graph/*
+src/graph/*
+graph
