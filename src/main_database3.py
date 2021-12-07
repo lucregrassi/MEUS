@@ -13,7 +13,7 @@ from sqlalchemy.orm import joinedload
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from marshmallow import Schema, fields as mafields, ValidationError
-from utils import NewpreProcessing, compute_KrippendorffAlpha, compute_CVR, logger
+from utils import NewpreProcessing, compute_KrippendorffAlpha, compute_CVR, logger, cvr as CVR
 
 
 app = Flask(__name__)
@@ -95,8 +95,6 @@ class latencyTab(db.Model):
 
 ##### SCHEMAS #####
 class dirObsSchema(Schema):
-    # class Meta:
-    #     unknown=INCLUDE
     id                  = mafields.Integer(dump_only=True)
     dir_obs             = mafields.Dict(keys=mafields.Str(), values=mafields.Str())
     situation           = mafields.Str()
@@ -124,47 +122,6 @@ do_schemas  = dirObsSchema(many=True)
 ih_schema   = infoHistorySchema()
 ih_schemas  = infoHistorySchema(many=True)
 
-
-
-# content validity ratio critical values per size rater's panel
-CVR = {
-    5: 5,
-    6: 6,
-    7: 7,
-    8: 7,
-    9: 8,
-    10: 9,
-    11: 9,
-    12: 10,
-    13: 10,
-    14: 11,
-    15: 12,
-    16: 12,
-    17: 13,
-    18: 13,
-    19: 14,
-    20: 15,
-    21: 15,
-    22: 16,
-    23: 16,
-    24: 17,
-    25: 18,
-    26: 18,
-    27: 19,
-    28: 19,
-    29: 20,
-    30: 20,
-    31: 21,
-    32: 22,
-    33: 22,
-    34: 23,
-    35: 23,
-    36: 24,
-    37: 24,
-    38: 25,
-    39: 26,
-    40: 26
-}
 
 events  = []
 agents_dict = {}
@@ -233,8 +190,6 @@ def put(DO_id):
 
     json_data                   = json.loads(request.data)
     data_do, data_ih, distances = NewpreProcessing(json_data)
-
-
 
     all_events_db = False
     flag = False

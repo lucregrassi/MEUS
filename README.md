@@ -32,7 +32,7 @@ $ python main.py
 ```
 ## Database structure
 The database has 2 main tables:
-1)"dir_obs_tab": 
+1) Direct observaiton tab: 
 ```
 class dirObsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)                             # Integer uniquely identifying the entry in the db
@@ -43,7 +43,7 @@ class dirObsTab(db.Model):
     who             = db.Column(db.Integer, nullable=False)                               # agent who has made the observation
     info_histories  = db.relationship('infoHistoryTab', backref="dir_obs_tab", lazy=True) # relation with the history_tab
 ```
-2)"info_history_tab":
+2) Info history tab:
 ```
 class infoHistoryTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)                 # Integer uniquely identifying the entry in the db
