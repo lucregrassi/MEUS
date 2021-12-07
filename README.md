@@ -32,7 +32,7 @@ $ python main.py
 ```
 ## Database structure
 The database has 2 main tables:
-1) Direct observaiton tab: 
+1) Direct observation tab: 
 ```
 class dirObsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)                             # Integer uniquely identifying the entry in the db
