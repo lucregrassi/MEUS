@@ -20,9 +20,12 @@ def main():
         Threshold:                  {args.threshold}\n\
         Error rate:                 {args.err_rate}")
     
-    save_graph(args.place)
+    pprint(args)
+    if args.setup_map==True:
+        save_graph(args.place)
 
-    build_graph(args.hubs_4g, args.radius_4g)
+        build_graph(args.hubs_4g, args.radius_4g)
+
     
     simulator = Simulator(  n_agents        = args.n_agents,
                             n_gateways      = args.n_gateways,

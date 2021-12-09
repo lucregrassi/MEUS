@@ -549,8 +549,8 @@ def parse_args():
     parser.add_argument('-n_agents', default=100, type=int,
                             help='number of agents present in the environment.')
 
-    parser.add_argument('-n_gateways', default=100, type=int,
-                            help='number of gateways agents present in the environment.')
+    parser.add_argument('-n_gateways', default=0.2, type=float,
+                            help='percentage of gateways agents present in the environment. Ex. if I want 30 percent of gateways agents: -n_gateways 0.3')
 
     parser.add_argument('-loop_distance', default=20, type=int,
                             help='distance in meters an agent travels each loop.')
@@ -564,7 +564,11 @@ def parse_args():
     parser.add_argument('-err_rate', default=0.2, type=float,
                             help='error rate according to which one agent makes a mistake in the observation of an event.')
 
+    parser.add_argument('-setup_map', default=False, type=bool,
+                            help='If set to True initialize the map when the simulation is launched.')
+
     args = parser.parse_args()
+    
     return args
 
 

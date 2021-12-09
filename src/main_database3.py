@@ -130,7 +130,7 @@ events_dict = {}
 agents_dict2 = {}
 agents_perf  = {}
 events_dict2 = {}
-gateways     = 10
+gateways = 10
 
 CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
@@ -143,9 +143,9 @@ fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'dis
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
 
-
     json_data = json.loads(request.data)
     events.extend(json_data['events'])
+    global gateways
     gateways = json_data['n_gateways']
 
     print('gateways:', gateways)
@@ -184,12 +184,12 @@ def get(e_id,sit,obj):
     return {'coorect_event': outcome}
 
 
-
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
 def put(DO_id):
 
     json_data                   = json.loads(request.data)
     data_do, data_ih, distances = NewpreProcessing(json_data)
+
 
     all_events_db = False
     flag = False
@@ -227,9 +227,6 @@ def put(DO_id):
     ag_weights  = []
 
     for i, dobs in enumerate(direct_obs):
-
-        # ag_ids      = []
-        # ag_weights  = []
         
         events_types    = []
         query_ev        = eventsTab.query.filter_by(where=dobs['where']).first()
@@ -353,6 +350,7 @@ def put(DO_id):
             tf = 1 if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj else 0
             cons = 'maj'
             token=0
+            # if not any(dobs['who'] in )
             if not any( dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
 
                 if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
@@ -371,6 +369,7 @@ def put(DO_id):
                     events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs'])-1, dobs['who'])])
 
 
+                    # only the not-gateways' agents get their reliability updated
                     # if dobs['who']>gateways:
                     #     if any(ag<gateways for ag in events_dict2[ev_id]['whos'][-1]):
                     #         agents_dict2[ag_id]['weight'] += 1
