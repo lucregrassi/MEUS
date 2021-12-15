@@ -23,7 +23,7 @@ app.config['SQLALCHEMY_DATABASE_URI']           = 'sqlite:///databaseMEUS.db'
 db = SQLAlchemy(app)
 # ma = Marshmallow(app)
 
- 
+
 
 # -- MODEL --
 class dirObsTab(db.Model):
@@ -184,6 +184,7 @@ def get(e_id,sit,obj):
     return {'coorect_event': outcome}
 
 
+
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
 def put(DO_id):
 
@@ -191,30 +192,26 @@ def put(DO_id):
     data_do, data_ih, distances = NewpreProcessing(json_data)
 
 
-    all_events_db = False
-    flag = False
-    return_flag = False
+    all_events_db   = False
+    flag            = False
+    return_flag     = False
     repetition_flag = False
+
     if not data_do:
         return {"message": "No input data provided"}, 400
+
     # Validate and deserialize input
     elif not data_ih:
-        print("3")
         flag = True
-    print("4")
     info_history = []
     try:
-        print("5")
-        direct_obs = do_schemas.load(data_do)#, unknown=INCLUDE)
+        direct_obs = do_schemas.load(data_do)
         for nest in data_ih:
             info_history.append(ih_schemas.load(nest))
-        print("6")
 
     except ValidationError as err:
-        print("7")
         return err.messages, 422
 
-    print("9")
     result_do   = []
     reputations = []
     reputations2 = []
@@ -235,122 +232,10 @@ def put(DO_id):
         ag_id = str(dobs['who'])
 
         try:
-            # if the observation corresponds to the truth
-            # v = 0
-            # w = 0
-            # flag1=False
-            # if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj:
-
-            #     if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict[ev_id]['obs']:
-
-            #         agents_dict[ag_id]['positive']  += 1
-            #         agents_dict[ag_id]['times']     += 1
-
-            #         events_dict[ev_id]['obs'].append({   'situation':    dobs['situation'],
-            #                                                 'object':       dobs['obj']})
-            #         events_dict[ev_id]['whos'].append([dobs['who']])
-            #         events_dict[ev_id]['whens'].append([[dobs['when']]])
-
-            #         flag1=True
-            #         v=1
-
-            #     else:
-            #         ind1 = events_dict[ev_id]['obs'].index({'situation':dobs['situation'], 'object': dobs['obj']})
-                   
-            #         # if the current observer has not been reported in the observers' list yet
-            #         if dobs['who'] not in events_dict[ev_id]['whos'][ind1]:
-
-            #             agents_dict[ag_id]['positive']  += 1
-            #             agents_dict[ag_id]['times']     += 1
-
-            #             events_dict[ev_id]['whos'][ind1].append(dobs['who'])
-            #             events_dict[ev_id]['whens'][ind1].append([dobs['when']])
-            #             v=1
-
-            #         else:
-            #             # checking the time the observation has occurred in order to avoid redunant infos
-            #             if not any(dobs['when'] in nest for nest in events_dict[ev_id]['whens'][ind1]):
-
-            #                 agents_dict[ag_id]['positive']  += 1
-            #                 agents_dict[ag_id]['times']     += 1
-
-            #                 ind2 = events_dict[ev_id]['whos'][ind1].index(dobs['who'])
-            #                 events_dict[ev_id]['whens'][ind1][ind2].append(dobs['when'])
-            #                 v=1
-
-            #     if v!=0:
-            #         reputation[i] = agents_dict[ag_id]['positive'] /\
-            #                 (agents_dict[ag_id]['positive'] + agents_dict[ag_id]['negative'])
-
-            #     if flag1:
-            #         events_dict[ev_id]['reps'].append([reputation[i]])
-            #     elif not flag1 and v!=0:
-            #        events_dict[ev_id]['reps'][ind1].append(reputation[i]) 
-
-            # else:
-
-            #     if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict[ev_id]['obs']:
-                    
-            #         agents_dict[ag_id]['negative']  += 1
-            #         agents_dict[ag_id]['times']     += 1
-
-            #         events_dict[ev_id]['obs'].append({   'situation':    dobs['situation'],
-            #                                                 'object':       dobs['obj']})
-            #         events_dict[ev_id]['whos'].append([dobs['who']])
-            #         events_dict[ev_id]['whens'].append([[dobs['when']]])
-
-            #         flag1=True
-            #         w=1
-
-            #     else:
-            #         ind1 = events_dict[ev_id]['obs'].index({'situation': dobs['situation'], 'object': dobs['obj']})
-                   
-            #         # if the current observer has not been reported in the observers' list yet
-            #         if dobs['who'] not in events_dict[ev_id]['whos'][ind1]:
-
-            #             agents_dict[ag_id]['negative']  += 1
-            #             agents_dict[ag_id]['times']     += 1
-
-            #             events_dict[ev_id]['whos'][ind1].append(dobs['who'])
-            #             events_dict[ev_id]['whens'][ind1].append([dobs['when']])
-            #             w=1
-
-            #         else:
-            #             # checking the time the observation has occurred in order to avoid redunant infos
-            #             if not any(dobs['when'] in nest for nest in events_dict[ev_id]['whens'][ind1]):
-
-            #                 agents_dict[ag_id]['negative']  += 1
-            #                 agents_dict[ag_id]['times']     += 1
-
-            #                 ind2 = events_dict[ev_id]['whos'][ind1].index(dobs['who'])
-            #                 events_dict[ev_id]['whens'][ind1][ind2].append(dobs['when'])
-
-            #                 w=1
-
-            #     if w!=0:
-            #         reputation[i] = agents_dict[ag_id]['positive'] /\
-            #                 (agents_dict[ag_id]['positive'] + agents_dict[ag_id]['negative'])
-
-            #     if flag1:
-            #         events_dict[ev_id]['reps'].append([reputation[i]])
-            #     elif not flag1 and w!=0:
-            #        events_dict[ev_id]['reps'][ind1].append(reputation[i])
-
-            # if v!=0 or w!=0:
-            #     reputations.append({
-            #     'id':       dobs['who'],
-            #     'rep':      reputation[i],    # success rate
-            #     'times':    agents_dict[ag_id]['times'],
-            #     'when':     dobs['when'],
-            #     'rel':      reliability[i]
-            #     })
-
 
             ''' Reputation based on a voting approach '''
-            tf = 1 if dobs['situation']==query_ev.situation and dobs['obj']==query_ev.obj else 0
-            cons = 'maj'
             token=0
-            # if not any(dobs['who'] in )
+            
             if not any( dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
 
                 if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
@@ -369,19 +254,19 @@ def put(DO_id):
                     events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs'])-1, dobs['who'])])
 
 
-                    # only the not-gateways' agents get their reliability updated
-                    # if dobs['who']>gateways:
-                    #     if any(ag<gateways for ag in events_dict2[ev_id]['whos'][-1]):
-                    #         agents_dict2[ag_id]['weight'] += 1
+                    for ag in events_dict2[ev_id]['whos'][-1]:
+                        if ag<gateways:
+                            agents_dict2[str(ag)]['weight'] += 1
 
-                    #         ag_ids.append(ag_id)
-                    #         ag_weights.append(agents_dict2[ag_id]['weight'])
+                            ag_ids.append(ag)
+                            ag_weights.append(agents_dict2[ag_id]['weight'])
 
-                    #     elif any(ag<gateways for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
-                    #         agents_dict2[ag_id]['weight'] -= 1
+                    for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))):
+                        if ag<gateways:
+                            agents_dict2[str(ag)]['weight'] -= 1
                         
-                    #         ag_ids.append(ag_id)
-                    #         ag_weights.append(agents_dict2[ag_id]['weight'])
+                            ag_ids.append(ag)
+                            ag_weights.append(agents_dict2[ag]['weight'])
 
 
                     '''CVR method'''
@@ -399,35 +284,10 @@ def put(DO_id):
                             distances[i])
 
 
-                    # reputation2[i] = 1 # agents_dict2[ag_id]['positive'] /\
-                                    #(agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
-
-                    # events_dict2[ev_id]['reps'].append([reputation2[i]])
-                    # events_dict2[ev_id]['reps1'].append([reputation[i]])
-
-
-                    agVotes = agentsVotesTab(   agents_id   = dobs['who'],
-                                                when        = dobs['when'],
-                                                where       = dobs['where'],
-                                                t_f         = tf,
-                                                cons        = cons)
-
-                    db.session.add(agVotes)
-
-
                 else:
                     index = events_dict2[ev_id]['obs'].index({'situation': dobs['situation'], 'object': dobs['obj']})
 
                     token = 1
-
-
-                    #     agVotes = agentsVotesTab(   agents_id   = dobs['who'],
-                    #                                 when        = dobs['when'],
-                    #                                 where       = dobs['where'],
-                    #                                 t_f         = tf,
-                    #                                 cons        = cons)
-
-                    #     db.session.add(agVotes)
 
                     # if this agent has not reported this observation before
                     if dobs['who'] not in events_dict2[ev_id]['whos'][index]:
@@ -444,20 +304,19 @@ def put(DO_id):
 
                         events_dict2[ev_id]['rels'][index].append((index, dobs['who']))
 
-                        print("third")
 
-                        # if dobs['who']>5:
-                        #     if any(ag<5 for ag in events_dict2[ev_id]['whos'][-1]):
-                        #         agents_dict2[ag_id]['weight'] += 1
+                        if dobs['who']>gateways:
+                            if any(ag<gateways for ag in events_dict2[ev_id]['whos'][-1]):
+                                agents_dict2[ag_id]['weight'] += 1
 
-                        #         ag_ids.append(ag_id)
-                        #         ag_weights.append(agents_dict2[ag_id]['weight'])
+                                ag_ids.append(ag_id)
+                                ag_weights.append(agents_dict2[ag_id]['weight'])
 
-                        #     elif any(ag<5 for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
-                        #         agents_dict2[ag_id]['weight'] -= 1
+                            elif any(ag<gateways for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
+                                agents_dict2[ag_id]['weight'] -= 1
                             
-                        #         ag_ids.append(ag_id)
-                        #         ag_weights.append(agents_dict2[ag_id]['weight'])
+                                ag_ids.append(ag_id)
+                                ag_weights.append(agents_dict2[ag_id]['weight'])
 
 
                         '''CVR method'''
@@ -474,136 +333,15 @@ def put(DO_id):
                                 query_ev,
                                 gateways,
                                 distances[i])
-
-
-                        agVotes = agentsVotesTab(   agents_id   = dobs['who'],
-                                                    when        = dobs['when'],
-                                                    where       = dobs['where'],
-                                                    t_f         = tf,
-                                                    cons        = cons)
-
-                        db.session.add(agVotes)
                     else:
                         token=3
 
-                    # if not token==3:
-
-                    #     reputation2[i] = 1#agents_dict2[ag_id]['positive'] /\
-                                        #(agents_dict2[ag_id]['positive'] + agents_dict2[ag_id]['negative'])
-
-                        # reputation2[i] = agents_dict2[ag_id]['numAgs'] / agents_dict2[ag_id]['denAgs']
-
-                    # if token==2:
-                    #     events_dict2[ev_id]['reps'][index][index2] = reputation2[i]
-                    #     events_dict2[ev_id]['reps1'][index][index2] = reputation[i]
-                    #     # events_dict2[ev_id]['votes'][index] += 1
-                    # elif token==1:
-                    #     events_dict2[ev_id]['reps'][index].append(reputation2[i])
-                    #     events_dict2[ev_id]['reps1'][index].append(reputation[i])
-                        # events_dict2[ev_id]['votes'][index] += 1
-
-            # new_weights = {}
-            # if not token==3:
-                # reputations2.append({
-                #             'id':       dobs['who'],
-                #             'rep':      reputation2[i],
-                #             'times':    agents_dict2[ag_id]['times'],
-                #             'when':     dobs['when'],
-                #             'rel':      reliability[i]
-                #             })
-                
-                # for y in range(len(ag_ids)):
-
-                #     reputations2.append({
-                #         'id':   ag_ids[y],
-                #         'rep':  ag_weights[y]
-                #     })
-
-                # new_weights = {str(i):j for i in ag_ids for j in ag_weights}
+            new_weights = {str(i):j for i in ag_ids for j in ag_weights} if not token==3 else {}
 
 
         except Exception as error:
             raise error
-
-
-        # print("a")
-        # # first time
-        # if len(query_ev.observations)==0:
-
-        #     ev = observedEventsTab( obs_situation   = dobs['situation'],
-        #                             obs_object      = dobs['obj'],
-        #                             confidence      = 1.)
-        #     db.session.add(ev)
-        #     query_ev.observations.append(ev)
-        #     # query_ev.observations[-1].event_id = query_ev.id
-        #     query_ev.observations[query_ev.observations.index(ev)].event_id = query_ev.id
-        #     print("b")
-
-        # elif len(query_ev.observations) > 0:
-        #     for k, val in enumerate(query_ev.observations):
-        #         if val not in events_types:
-        #             events_types.append({'observation': val, 'times': 1})
-
-        #             for h in range(k, len(query_ev.observations)):
-        #                 if query_ev.observations[h] == events_types[-1]['observation']:
-
-        #                     events_types[-1]['times'] += 1
-
-
-        #     zipped_obs_db   = list(zip( [obs['observation'].obs_situation for obs in events_types],\
-        #                                  [obs['observation'].obs_object for obs in events_types] ))
-        #     ob              = (dobs['situation'], dobs['obj'])
-
-        #     print("c")
-        #     # if this observation has been already reported, update the confidence for all the observations
-        #     if ob in zipped_obs_db:
-                
-        #         index = zipped_obs_db.index(ob)
-        #         events_types[index]['times'] += 1
-
-        #         total_cases = sum(obs['times'] for obs in events_types)
-
-        #         for m, ob in enumerate(query_ev.observations):
-        #             if sum(el[i] for el in events_dict[ev_id]['reps'] for i in range(len(el)))==0:
-        #                 ob.confidence = round( 1/len(query_ev.observations), 3)
-        #             else:
-        #                 ob.confidence = round(sum(el for el in events_dict[ev_id]['reps'][m])\
-        #                                                                 / sum(el[i] for el in events_dict[ev_id]['reps'] for i in range(len(el))), 3)
-        #             print("d")
-            
-        #     # if its the first time this observation has been reported
-        #     elif ob not in zipped_obs_db:
-
-        #         total_cases = sum(obs['times'] for obs in events_types) + 1
-
-        #         ev = observedEventsTab( obs_situation   = dobs['situation'],
-        #                                 obs_object      = dobs['obj'],
-        #                                 confidence      = round(1 / total_cases, 3))
-
-        #         db.session.add(ev)
-        #         query_ev.observations.append(ev)
-        #         # query_ev.observations[-1].event_id = query_ev.id
-        #         query_ev.observations[query_ev.observations.index(ev)].event_id = query_ev.id 
-        #         events_types.append({'observation': ev, 'times': 1})
-
-
-        #         for n, ob in enumerate(query_ev.observations):
-        #             if sum(el[i] for el in events_dict[ev_id]['reps'] for i in range(len(el)))==0:
-        #                 ob.confidence = round( 1/len(query_ev.observations), 3)
-        #             else:
-        #                 ob.confidence = round(sum(el for el in events_dict[ev_id]['reps'][n])\
-        #                                     / sum(el[i] for el in events_dict[ev_id]['reps'] for i in range(len(el)) ), 3)
-
-        #         print("e")
-            
-        #     if abs(1 - sum(query_ev.observations[counter].confidence for counter in range(len(query_ev.observations)) )) >= 0.1:
-        #         print("************************************")
-        #         for el in query_ev.observations:
-        #             print("obs_sit: ", el.obs_situation, "obs_object: ", el.obs_object, "conf: ", el.confidence, "event_id: ", el.event_id)
-        #         input("ouch")
         
-
-
 
         # First 2 tabs in the db
         query_do = dirObsTab.query.filter_by(   situation   = dobs['situation'],
@@ -611,7 +349,6 @@ def put(DO_id):
                                                 when        = dobs['when'],
                                                 where       = dobs['where'],
                                                 who         = dobs['who']).first()
-
 
 
         # if the direct observation is not in the db
@@ -686,7 +423,6 @@ def put(DO_id):
                     do.info_histories[do.info_histories.index(ih)].dir_obs_id = do.id
                     result_ih.append(ih_schema.dump(ih))
                 result_do.append(result_ih)
-            print("10")
 
         # if the direct observation is already in the db
         else:
@@ -724,16 +460,13 @@ def put(DO_id):
                         result_ih.append(ih_schema.dump(ih))
 
                 result_do.append(result_ih)
-            print("11")
-    print("12")
-
     db.session.commit()
 
     # keep track if the event has been uploaded on the db for the first time
     if return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2}#, 'weights': new_weights}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
     elif not return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2}#, 'weights': new_weights}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
 
 
 

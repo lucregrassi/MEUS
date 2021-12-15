@@ -20,8 +20,7 @@ def main():
         Threshold:                  {args.threshold}\n\
         Error rate:                 {args.err_rate}")
     
-    pprint(args)
-    if args.setup_map==True:
+    if args.setup_map is True:
         save_graph(args.place)
 
         build_graph(args.hubs_4g, args.radius_4g)

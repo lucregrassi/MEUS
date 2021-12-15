@@ -290,9 +290,9 @@ class Simulator:
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
 
-            # '''weights update'''
-            # for a in res['weights'].items():
-            #     self.agents_dict[str(a[0])].weight = a[1]
+            '''weights update'''
+            for a, w in res['weights'].items():
+                self.agents_dict[str(a)].weight = w
 
 
             # ''' Reputations '''
