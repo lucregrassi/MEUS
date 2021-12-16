@@ -14,7 +14,7 @@ Create a virtual environment with a name of your choice:
 ``` 
 $ conda config --prepend channels conda-forge
 $ conda create -n <name-of-your-env> --strict-channel-priority osmnx
-$ conda activate <env>
+$ conda activate <name-of-your-env>
 ```
 To install dependencies:
 ```
