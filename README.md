@@ -4,6 +4,8 @@ Each node contains the information about how many people are in that node, and w
 
 ## How to create a virtual env containing OpenStreetMap and install dependencies
 
+Install MiniConda: https://docs.conda.io/en/latest/miniconda.html.
+
 ``` 
 $ conda config --prepend channels conda-forge
 $ conda create -n <env> --strict-channel-priority osmnx
@@ -11,6 +13,7 @@ $ conda activate <env>
 ```
 To install dependencies:
 ```
+$ cd <path-to-repo>
 $ pip install -r requirements.txt
 ```
 
