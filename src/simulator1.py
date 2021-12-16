@@ -20,7 +20,7 @@ from pprint import pprint
 import matplotlib.pyplot as plt
 from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
-from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple, ran_gen, pr_gen, latency_plot, latency_meanStddev_plot
+from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple, latency_plot, latency_meanStddev_plot
 
 
 

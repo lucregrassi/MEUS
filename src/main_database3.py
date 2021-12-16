@@ -35,8 +35,8 @@ class dirObsTab(db.Model):
     who             = db.Column(db.Integer, nullable=False)
     info_histories  = db.relationship('infoHistoryTab', backref="dir_obs_tab", lazy=True)
 
-    def __repr__(self):
-        return f"dirObsTab(id = {id}, situation = {situation}\n object = {obj}\n when = {when}\n where = {where}\n who = {who}\n"
+    # def __repr__(self):
+    #     return f"dirObsTab(id = {id}, situation = {situation}\n object = {obj}\n when = {when}\n where = {where}\n who = {who}\n"
 
 
 class infoHistoryTab(db.Model):
@@ -51,11 +51,11 @@ class infoHistoryTab(db.Model):
     sent_at_loop    = db.Column(db.Integer, nullable=False)
     sent_where      = db.Column(db.Integer, nullable=False)
 
-    def __repr__(self):
-        return f"InfohistoryTab(id = {id}\n dir_obs_id = {dir_obs_id}\n \
-                    observer = {observer}\n a1 = {a1}\n a2 = {a2}\n sender = {sender}\n \
-                        where = {where}\n when = {when}\n sent_at_loop = {sent_at_loop}\n \
-                            sent_where = {sent_where}\n)"
+    # def __repr__(self):
+    #     return f"InfohistoryTab(id = {id}\n dir_obs_id = {dir_obs_id}\n \
+    #                 observer = {observer}\n a1 = {a1}\n a2 = {a2}\n sender = {sender}\n \
+    #                     where = {where}\n when = {when}\n sent_at_loop = {sent_at_loop}\n \
+    #                         sent_where = {sent_where}\n)"
 
 
 class eventsTab(db.Model):
@@ -235,9 +235,10 @@ def put(DO_id):
 
             ''' Reputation based on a voting approach '''
             token=0
-            
-            if not any( dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
-
+            observations    = dirObsTab.query.filter_by(where=dobs['where']).all()
+            observers       = [observations[i].who for i in range(len(observations))]
+            # if not any( dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
+            if not any(dobs['who'] in observers):
                 if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
 
                     events_dict2[ev_id]['obs'].append({      'situation':   dobs['situation'],
@@ -254,19 +255,19 @@ def put(DO_id):
                     events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs'])-1, dobs['who'])])
 
 
-                    for ag in events_dict2[ev_id]['whos'][-1]:
-                        if ag<gateways:
-                            agents_dict2[str(ag)]['weight'] += 1
+                    # for ag in events_dict2[ev_id]['whos'][-1]:
+                    #     if ag<gateways:
+                    #         agents_dict2[str(ag)]['weight'] += 1
 
-                            ag_ids.append(ag)
-                            ag_weights.append(agents_dict2[ag_id]['weight'])
+                    #         ag_ids.append(ag)
+                    #         ag_weights.append(agents_dict2[ag_id]['weight'])
 
-                    for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))):
-                        if ag<gateways:
-                            agents_dict2[str(ag)]['weight'] -= 1
+                    # for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))):
+                    #     if ag<gateways:
+                    #         agents_dict2[str(ag)]['weight'] -= 1
                         
-                            ag_ids.append(ag)
-                            ag_weights.append(agents_dict2[ag]['weight'])
+                    #         ag_ids.append(ag)
+                    #         ag_weights.append(agents_dict2[ag]['weight'])
 
 
                     '''CVR method'''
@@ -305,18 +306,18 @@ def put(DO_id):
                         events_dict2[ev_id]['rels'][index].append((index, dobs['who']))
 
 
-                        if dobs['who']>gateways:
-                            if any(ag<gateways for ag in events_dict2[ev_id]['whos'][-1]):
-                                agents_dict2[ag_id]['weight'] += 1
+                        # if dobs['who']>gateways:
+                        #     if any(ag<gateways for ag in events_dict2[ev_id]['whos'][-1]):
+                        #         agents_dict2[ag_id]['weight'] += 1
 
-                                ag_ids.append(ag_id)
-                                ag_weights.append(agents_dict2[ag_id]['weight'])
+                        #         ag_ids.append(ag_id)
+                        #         ag_weights.append(agents_dict2[ag_id]['weight'])
 
-                            elif any(ag<gateways for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
-                                agents_dict2[ag_id]['weight'] -= 1
+                        #     elif any(ag<gateways for ag in list(itertools.chain(events_dict2[ev_id]['whos'][i] for i in range(len(events_dict2[ev_id]['whos'])-1))) ):
+                        #         agents_dict2[ag_id]['weight'] -= 1
                             
-                                ag_ids.append(ag_id)
-                                ag_weights.append(agents_dict2[ag_id]['weight'])
+                        #         ag_ids.append(ag_id)
+                        #         ag_weights.append(agents_dict2[ag_id]['weight'])
 
 
                         '''CVR method'''
