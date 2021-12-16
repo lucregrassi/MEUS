@@ -25,7 +25,7 @@ $ pip install -r requirements.txt
 ## Launch local server and set up database
 run the commands
 ```
-$ cd /src
+$ cd src/
 $ python main_database3.py
 ```
 copy the base address which will show up in the terminal upon launching the script.
