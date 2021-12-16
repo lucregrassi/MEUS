@@ -4,6 +4,10 @@ Each node contains the information about how many people are in that node, and w
 
 ## How to create a virtual env containing OpenStreetMap and install dependencies
 
+Download zip or git clone this repository to your machine:
+```
+$ git clone https://github.com/lucregrassi/MEUS.git
+```
 Install MiniConda: https://docs.conda.io/en/latest/miniconda.html.
 Create a virtual environment with a name of your choice:
 
