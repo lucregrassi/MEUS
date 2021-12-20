@@ -18,7 +18,7 @@ conda activate <name-of-your-env>
 ```
 To install dependencies:
 ```bash
-cd <path-to-repo>
+cd <path-to-this-repo>
 pip install -r requirements.txt
 ```
 
