@@ -45,6 +45,7 @@ python main.py
 <p align='center'>
     <img src='conn.png' width=50% height=50%>
 </p>
+
 ## Database structure
 The database has 2 main tables:
 1) Direct observation tab: 
