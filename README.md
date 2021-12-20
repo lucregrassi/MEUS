@@ -45,6 +45,7 @@ python main.py
 <p align='center'>
     <img src='conn.png' width=50% height=50%>
 </p>
+The image above is the graph representation of the italian town of Amatrice wherein agents explore the environment and if they happen to be in the same node and having compatible devices they are able to exchange relevant information previously gathered.
 
 ## Database structure
 The database has 2 main tables:
