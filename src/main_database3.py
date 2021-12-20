@@ -235,18 +235,20 @@ def put(DO_id):
 
             ''' Reputation based on a voting approach '''
             token=0
-            observations    = dirObsTab.query.filter_by(where=dobs['where']).all()
-            observers       = [observations[i].who for i in range(len(observations))]
-            evs             = [ {'situation': observations[i].situation,
-                                    'object': observations[i].obj} for i in range(len(observations))]
+            # observations = dirObsTab.query.filter_by(where=dobs['where']).all()
+            # observers    = [observations[i].who for i in range(len(observations))]
+            # evs          = set(json.dumps(  {'situation': observations[i].situation,
+            #                                     'object': observations[i].obj}) for i in range(len(observations)))
+            # evs          = [json.loads(d) for d in evs]
 
-            pprint(observers)
-            print(dobs['who'])
-            input()
+            # pprint(observers)
+            # print(dobs['who'])
+            # print("ev_id:", ev_id)
 
-            if len(observers)>0 and not np.any(dobs['who'] in observers):
-                print("in")
-                if {'situation': dobs['situation'], 'object': dobs['obj']} not in evs:
+            # avoiding any redundant information about a certain event:
+            # an agent cannot say twice his observation about one event.
+            if not np.any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
+                if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
 
                     events_dict2[ev_id]['obs'].append({      'situation':   dobs['situation'],
                                                                 'object':   dobs['obj']})
@@ -260,10 +262,6 @@ def put(DO_id):
 
                     events_dict2[ev_id]['whens'].append([[dobs['when']]])
                     events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs'])-1, dobs['who'])])
-
-
-                    pprint(events_dict2[ev_id]['votes'])
-                    input("checking votes")
 
 
                     # for ag in events_dict2[ev_id]['whos'][-1]:

@@ -5,32 +5,32 @@ Each node contains the information about how many people are in that node, and w
 ## How to create a virtual env containing OpenStreetMap and install dependencies
 
 Download zip or git clone this repository to your machine:
-```
-$ git clone https://github.com/lucregrassi/MEUS.git
+```bash
+git clone https://github.com/lucregrassi/MEUS.git
 ```
 Install MiniConda: https://docs.conda.io/en/latest/miniconda.html.
 Create a virtual environment with a name of your choice:
 
-``` 
-$ conda config --prepend channels conda-forge
-$ conda create -n <name-of-your-env> --strict-channel-priority osmnx
-$ conda activate <name-of-your-env>
+``` bash
+conda config --prepend channels conda-forge
+conda create -n <name-of-your-env> --strict-channel-priority osmnx
+conda activate <name-of-your-env>
 ```
 To install dependencies:
-```
-$ cd <path-to-repo>
-$ pip install -r requirements.txt
+```bash
+cd <path-to-repo>
+pip install -r requirements.txt
 ```
 
 ## Launch local server and set up database
 run the commands
-```
-$ cd src/
-$ python main_database3.py
+```bash
+cd src/
+python main_database3.py
 ```
 copy the base address which will show up in the terminal upon launching the script.
 Open a python shell and type:
-```
+```python3
 >> from main_database3 import db
 >> db.reate_all()
 ```
@@ -39,9 +39,12 @@ This command has generated the database file where to store the data from the si
 ## Start the simulation
 To change the simulation parameters type the -h flag to get help and change parameters ($python main.py -h): you can set the number of people moving in the graph, the number of iterations, and the distance traveled by each person in each loop.
 To run the simulation with default parameters, open the terminal and type:
+```bash
+python main.py
 ```
-$ python main.py
-```
+
+![graph](conn.png)
+
 ## Database structure
 The database has 2 main tables:
 1) Direct observation tab: 
@@ -72,7 +75,7 @@ class infoHistoryTab(db.Model):
 
 Each field in each class corresponds to a column in the respective db tab. This structure allows to have the possibility, given the unique direct observation, to track how this information has traveled among agent's iEs prior to being stores in the db.
 It has to be noticed that whenever the simulation is interrupted before its completion the database has to be cleared as well. To do so:
-open a python shell and run the following command
+open a python shell and run the following command:
 ```
 >> import requests
 >> requests.delete(<base_address> + 'IE/1')
