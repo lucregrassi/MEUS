@@ -50,7 +50,7 @@ The image above is the graph representation of the italian town of Amatrice wher
 ## Database structure
 The database has 2 main tables:
 1) Direct observation tab: 
-```
+```python3
 class dirObsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)                             # Integer uniquely identifying the entry in the db
     situation       = db.Column(db.String(50), nullable=False)                            # situation "field" of an event
@@ -61,7 +61,7 @@ class dirObsTab(db.Model):
     info_histories  = db.relationship('infoHistoryTab', backref="dir_obs_tab", lazy=True) # relation with the history_tab
 ```
 2) Info history tab:
-```
+```python3
 class infoHistoryTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)                 # Integer uniquely identifying the entry in the db
     dir_obs_id      = db.Column(db.Integer, db.ForeignKey("dir_obs_tab.id"))  # integer saying to which observation this jump is belonging to
