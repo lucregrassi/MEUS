@@ -43,7 +43,7 @@ To run the simulation with default parameters, open the terminal and type:
 python main.py
 ```
 
-![graph](conn.png)
+<img src='conn.png' width=50% height=50%>
 
 ## Database structure
 The database has 2 main tables:
