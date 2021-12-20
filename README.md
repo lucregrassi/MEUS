@@ -78,7 +78,7 @@ class infoHistoryTab(db.Model):
 Each field in each class corresponds to a column in the respective db tab. This structure allows to have the possibility, given the unique direct observation, to track how this information has traveled among agent's iEs prior to being stores in the db.
 It has to be noticed that whenever the simulation is interrupted before its completion the database has to be cleared as well. To do so:
 open a python shell and run the following command:
-```
+```python3
 >> import requests
 >> requests.delete(<base_address> + 'IE/1')
 ```
