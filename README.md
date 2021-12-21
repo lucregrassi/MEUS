@@ -8,7 +8,7 @@ Download zip or git clone this repository to your machine:
 ```bash
 git clone https://github.com/lucregrassi/MEUS.git
 ```
-Install MiniConda: https://docs.conda.io/en/latest/miniconda.html.
+If you do not have already Anaconda or MiniConda installed on your machine install MiniConda: https://docs.conda.io/en/latest/miniconda.html.
 Create a virtual environment with a name of your choice:
 
 ``` bash
