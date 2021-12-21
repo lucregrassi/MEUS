@@ -43,7 +43,7 @@ To run the simulation with default parameters, open the terminal and type:
 python main.py
 ```
 <p align='center'>
-    <img src='conn.png' width=50% height=50%>
+    <img src='assets/conn.png' width=50% height=50%>
 </p>
 The image above is the graph representation of the italian town of Amatrice wherein agents explore the environment and if they happen to be in the same node and having compatible devices they are able to exchange relevant information previously gathered. The red dots are nodes in which a global network connection is available (necessary to send data to the remote database).
 
