@@ -96,6 +96,8 @@ The files have a name which is the id of the a specific node. Each file is a csv
 - CVR:          Content Validity ratio metric (0 or 1); -2 means it cannot be applied
 - Kalpha:       Krippendorff's alpha metric, ranges between -1 (total disagreement) and 1 (complete agreement)
 
+Every row in the file represent a new observation being reported for that event in that node.
+
 ## Authors
 | Name | E-mail |
 |------|--------|
