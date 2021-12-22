@@ -32,7 +32,7 @@ copy the base address which will show up in the terminal upon launching the scri
 Open a python shell and type:
 ```python3
 >> from main_database3 import db
->> db.reate_all()
+>> db.create_all()
 ```
 This command has generated the database file where to store the data from the simulation.
 
@@ -82,6 +82,19 @@ open a python shell and run the following command:
 >> import requests
 >> requests.delete(<base_address> + 'IE/1')
 ```
+
+## Output Data
+In the main_database3.py file (the server) there is the possibility to set the out path where to set the results obtained from the simulation concerning the decisions of the agents.
+The files have a name which is the id of the a specific node. Each file is a csv file in which the fields are the following:
+- Ncoders:      number of voters for this event
+- who:          the specific agent's id
+- when:         time loop when the observation has happened
+- what:         index of the reported observation
+- observations: list of the observations made so far
+- ground truth: the actual event present in this node
+- distance:     semantic distance from the ground truth (0, 1 or 2)
+- CVR:          Content Validity ratio metric (0 or 1); -2 means it cannot be applied
+- Kalpha:       Krippendorff's alpha metric, ranges between -1 (total disagreement) and 1 (complete agreement)
 
 ## Authors
 | Name | E-mail |

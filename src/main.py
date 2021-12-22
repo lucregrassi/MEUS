@@ -11,6 +11,7 @@ def main():
 
     args = parse_args()
 
+    print("")
     print(f"The simulation will take place in {args.place}.")
     print(f"With the following parameters:\n\
         Number of agents:           {args.n_agents}\n\

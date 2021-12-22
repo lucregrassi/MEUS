@@ -106,8 +106,6 @@ def NewIEtoDict(lis):
                             'object':      str(lis[0]['what']['event'][1])
                             }
 
-    # print(lis)
-    # input("NewIEtooDict() check")
     return lis
     
 
@@ -257,6 +255,8 @@ def compute_CVR(node_info, query_ev, CVR, n_gateways):
             if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
                 value = 1
     return value
+
+    
 
 def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, n_gateways, distance):
     # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'

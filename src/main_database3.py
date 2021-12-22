@@ -247,7 +247,12 @@ def put(DO_id):
 
             # avoiding any redundant information about a certain event:
             # an agent cannot say twice his observation about one event.
-            if not np.any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
+            # print(list(np.any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos'])))
+            # print(bool(not np.any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos'])))
+            # print(not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']))
+            # print(bool(not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos'])))
+            # input()
+            if not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
                 if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
 
                     events_dict2[ev_id]['obs'].append({      'situation':   dobs['situation'],
@@ -280,6 +285,7 @@ def put(DO_id):
 
 
                     '''CVR method'''
+                    input("im in")
                     cvr_res = compute_CVR( events_dict2[ev_id], query_ev, CVR, gateways)
                     logger( ev_id,
                             dobs['who'],
