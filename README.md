@@ -37,11 +37,11 @@ Open a python shell and type:
 This command has generated the database file where to store the data from the simulation.
 
 ## Start the simulation
-To change the simulation parameters type the -h flag to get help and change parameters (
+To change the simulation parameters type the -h flag to get help and change parameters.
 ```bash
 $ python main.py -h
 ```
-): you can set the number of people moving in the graph, the number of iterations, and the distance traveled by each person in each loop.
+You can set the number of people moving in the graph, the number of iterations, and the distance traveled by each person in each loop.
 To run the simulation with default parameters, open the terminal and type:
 ```bash
 python main.py
