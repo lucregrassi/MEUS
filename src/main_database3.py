@@ -136,7 +136,6 @@ CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
 
 
-# outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/src/'
 outpath = os.path.abspath(os.getcwd())
 fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'distance', 'CVR', 'Kalpha']
 
@@ -149,8 +148,6 @@ def receiving_events_list():
     events.extend(json_data['events'])
     global gateways
     gateways = json_data['n_gateways']
-
-    print('gateways:', gateways)
 
     CVR_performace['correct']   = 0
     CVR_performace['times']     = 0

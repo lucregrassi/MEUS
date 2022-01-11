@@ -20,3 +20,4 @@ src/plotter.py
 # main_database3.py
 src/graph/*
 graph
+src/prova.py
