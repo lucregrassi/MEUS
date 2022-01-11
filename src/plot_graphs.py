@@ -1,16 +1,17 @@
 import os
-import pandas as pd
-import requests
-import json
 import csv
-import statistics
-import random
-from pprint import pprint
-from matplotlib import pyplot as plt
-import numpy as np
 import math
+import json
+import random
+import requests
 import itertools
+import statistics
+import numpy as np
+import pandas as pd
+from pprint import pprint
 from sketch import lis, Compute_dist
+from matplotlib import pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 
 def plot():
@@ -53,8 +54,8 @@ def plot():
                                             else None\
                                             for n in range(len(dist[count]))]
 
-            plt.plot(plotted_to_be, label="dist")
-            plt.plot(Kalpha[count], label='Kalpha', marker='*')
+            plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), plotted_to_be, label="dist")
+            plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), Kalpha[count], label='Kalpha', marker='*')
 
             if len(cvr[count])==0:
                 for j,el in enumerate(dist[count]):
