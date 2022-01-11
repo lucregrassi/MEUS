@@ -91,7 +91,6 @@ def set_by_path(root, items, value):
     get_by_path(root, items[:-1])[items[-1]] = value
 
 
-
 def NewIEtoDict(lis):
     lis[0]  = lis[0].asdict()
     lis[0]['what']  = lis[0]['what'].asdict() 
@@ -105,7 +104,6 @@ def NewIEtoDict(lis):
         lis[0]['what'] = { 'situation':    str(lis[0]['what']['event'][0]),
                             'object':      str(lis[0]['what']['event'][1])
                             }
-
     return lis
     
 
@@ -273,14 +271,6 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
         kalpha=1
 
     if ev_id+'.csv' in files:
-
-        # f = False
-        # if ev_id=='108':
-        # # if np.sum([2 if co >n_gateways else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*prior)))))])==4:
-        #     # f = True
-        #     pprint(node_info['whos'])
-        #     pprint(node_info['obs'])
-        #     input("yooooo")
 
         with open(ev_id+'.csv', 'a') as f:
             writer = csv.DictWriter(f, fieldnames=fields)

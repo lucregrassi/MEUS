@@ -136,12 +136,14 @@ CVR_performace      = {'correct': 0, 'times': 0}
 Kalpha_performance  = {'corect': 0, 'times': 0}
 
 
-outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
+# outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/src/'
+outpath = os.path.abspath(os.getcwd())
 fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'distance', 'CVR', 'Kalpha']
 
 
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
+
 
     json_data = json.loads(request.data)
     events.extend(json_data['events'])
@@ -241,18 +243,22 @@ def put(DO_id):
             #                                     'object': observations[i].obj}) for i in range(len(observations)))
             # evs          = [json.loads(d) for d in evs]
 
+            # unique_evs1 = set(zip(observers, evs))
+            # print("before:", unique_evs1)
+            # evs          = [json.loads(d) for d in evs]
+            # unique_evs = set(zip(set(observers), evs))
+            # print("after:", unique_evs)
+            # input()
+
             # pprint(observers)
             # print(dobs['who'])
             # print("ev_id:", ev_id)
 
             # avoiding any redundant information about a certain event:
             # an agent cannot say twice his observation about one event.
-            # print(list(np.any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos'])))
-            # print(bool(not np.any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos'])))
-            # print(not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']))
-            # print(bool(not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos'])))
-            # input()
+            # if not dirObsTab.query.filter_by(who=dobs['who']).first():
             if not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
+                # if not dirObsTab.query.filter_by(   situation   = dokbj']).first():
                 if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
 
                     events_dict2[ev_id]['obs'].append({      'situation':   dobs['situation'],
@@ -285,7 +291,6 @@ def put(DO_id):
 
 
                     '''CVR method'''
-                    input("im in")
                     cvr_res = compute_CVR( events_dict2[ev_id], query_ev, CVR, gateways)
                     logger( ev_id,
                             dobs['who'],
@@ -306,6 +311,7 @@ def put(DO_id):
                     token = 1
 
                     # if this agent has not reported this observation before
+                    # if dirObsTab.query.filter_by()
                     if dobs['who'] not in events_dict2[ev_id]['whos'][index]:
 
                         events_dict2[ev_id]['whos'][index].append(dobs['who'])

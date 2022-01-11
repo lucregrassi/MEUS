@@ -499,7 +499,7 @@ class Simulator:
         old_story = 0
         count = 0
         # while self.perc_seen_ev<self.threshold:
-        while count < 10000:
+        while count < 3000:
             start_time = time.time()
         # while self.obs_ev < 6:
             # obs_ev = 0
