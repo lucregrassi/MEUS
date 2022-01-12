@@ -19,7 +19,6 @@ import matplotlib.pyplot as plt
 
 
 
-
 def plotter(agent, realTimePos):
     xs = []
     ys = []
@@ -267,6 +266,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
         obs['coders'] = np.sum([2 if coder>n_gateways else 6 for coder in node_info['whos'][i]])
     files = [file for file in os.listdir(outpath) if file.endswith('.csv')]
 
+    # if I have only 1 coder the Kalpha value will be 1
     if np.isnan(kalpha) and len(node_info['obs'])==1:
         kalpha=1
 
@@ -346,6 +346,12 @@ def parse_args():
 
     parser.add_argument('-setup_map', default=False, type=bool,
                             help='If set to True initialize the map when the simulation is launched.')
+
+    parser.add_argument('-st', default=False, type=bool,
+                            help='if set to true make the simulator store results about the latency to csv files.\
+                                This has to be used whenever is the intention of the user to plot graphs about latency decrease according\
+                                    to parameters such as the radius amplitude and the number of gateways agents present in the simulation.\
+                                        To obtain the graphs it is necessary to run multiple experiments.')
 
     args = parser.parse_args()
     

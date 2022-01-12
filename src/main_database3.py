@@ -355,9 +355,7 @@ def put(DO_id):
                     else:
                         token=3
 
-            new_weights = {str(i):j for i in ag_ids for j in ag_weights} if not token==3 else {}
-
-
+            # new_weights = {str(i):j for i in ag_ids for j in ag_weights} if not token==3 else {}
         except Exception as error:
             raise error
         
@@ -483,9 +481,9 @@ def put(DO_id):
 
     # keep track if the event has been uploaded on the db for the first time
     if return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, "events": events, 'latency': latency, 'reputation': reputations, 'reputation2': reputations2}#, 'weights': new_weights}
     elif not return_flag:
-        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2, 'weights': new_weights}
+        return {"message": "Created a new DO and IH.",  "DO": result_do, 'reputation': reputations, 'reputation2': reputations2}#, 'weights': new_weights}
 
 
 

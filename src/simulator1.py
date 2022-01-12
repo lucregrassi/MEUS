@@ -1,3 +1,4 @@
+import os
 import csv
 import copy
 import math
@@ -25,7 +26,7 @@ from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple, latency_plot, l
 
 
 class Simulator:
-    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25):
+    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd())):
         self.n_agents           = n_agents
         self.n_gateways         = n_gateways
         self.perc_seen_ev       = 0
@@ -55,6 +56,8 @@ class Simulator:
         self.loop_duration      = []
         self.mean_loop_duration = []
         self.interval           = 0
+        self.store_latency      = store_latency
+        self.path               = path
 
 
     def compute_destination(self, current_node, ag):
@@ -72,7 +75,7 @@ class Simulator:
                 source_nodes.append(source)
 
 
-        adj_nodes           = source_nodes + target_nodes
+        adj_nodes = source_nodes + target_nodes
             # print(adj_nodes)
             # input()
 
@@ -207,8 +210,7 @@ class Simulator:
                             distance = 2
                         elif self.interval*2 <= a.error < self.interval*3:
                             distance = 3
-                        # else:
-                        #     distance = 3
+
                         seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=distance)
                         seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=distance)
                         seen_ev     = (seen_sit, seen_obj)
@@ -247,41 +249,10 @@ class Simulator:
             
             knowledge = []
 
-            # reputs  = []
-            # reputs2 = []
-            # reliabs = []
-            # ratings = []
-
-            # for i in range(agent.num_info_sent, len(agent.ies)):
-            #     ie = copy.deepcopy(agent.ies[i])
-            #     ie = NewIEtoDict(ie)
-
-            #     n = str(ie[0]['id'])
-
-            #     knowledge.append(ie)
-
             knowledge   = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
             ns          = [NewIEtoDict(copy.deepcopy(agent.ies[i]))[0] for i in range(agent.num_info_sent, len(agent.ies))]
             distances   = [self.agents_dict[str(n['id'])].err_distances[ getIndexOfTuple(    self.agents_dict[str(n['id'])].err_distances, 1, n['when']) ][0] for n in ns]
-                # reputs.append(self.agents_dict[n].reputation)
-                # reputs2.append(self.agents_dict[n].reputation2)
 
-
-                # reliabs.append(
-                #     self.agents_dict[n].error_list[ getIndexOfTuple(    self.agents_dict[n].error_list, 1, ie[0]['when']) ][0]
-                #     )
-
-                # ratings.append(
-                #     self.agents_dict[n].rating_list[ getIndexOfTuple(    self.agents_dict[n].rating_list, 1, ie[0]['when']) ][0]
-                # )
-            
-
-            # knowledge.append({  'db_sender':        agent.n,
-            #                     'time':             loop,
-            #                     'sent_where':       agent.curr_node,
-            #                     'reputations':      reputs,
-            #                     'reputations2':     reputs2,
-            #                     'reliabilities':    reliabs})
             knowledge.append({  'db_sender':        agent.n,
                                 'distances':        distances,
                                 'time':             loop,
@@ -290,65 +261,9 @@ class Simulator:
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
 
-            '''weights update'''
-            for a, w in res['weights'].items():
-                self.agents_dict[str(a)].weight = w
-
-
-            # ''' Reputations '''
-        
-            # for l, rep in enumerate(res['reputation']):
-
-            #     key = str(rep['id'])
-
-            #     self.agents_dict[key].reputation     = rep['rep']
-            #     self.agents_dict[key].reputations.append(self.agents_dict[key].reputation)
-            #     self.agents_dict[key].num_info_seen  = rep['times']
-            #     self.agents_dict2[key]['rep'].append(rep['rep'])
-            #     self.agents_dict2[key]['when'].append(rep['when'])
-
-            #     if self.first_time:
-
-            #         self.mean_succ_rate.append(statistics.mean(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
-            #                                                     if self.agents_dict[i].num_info_seen > 0))
-                    
-            #         self.stddev_succ_rate.append(statistics.stdev(self.agents_dict[i].reputation for i in self.agents_dict.keys()\
-            #                                                     if self.agents_dict[i].num_info_seen > 0))
-
-            #     self.first_time=True
-            # self.first_time=False
-            
-            # for k, rep2 in enumerate(res['reputation2']):
-                
-            #     key = str(rep2['id'])
-
-            #     if 'times' in res['reputation2'][k]:
-
-            #         self.agents_dict[key].reputation2    = rep2['rep']
-            #         self.agents_dict[key].reputations2.append(self.agents_dict[key].reputation2 )
-            #         self.agents_dict[key].num_info_seen2 = rep2['times']
-            #         self.agents_dict2[key]['rep2'].append(rep2['rep'])
-            #         self.agents_dict2[key]['when2'].append(rep2['when'])
-
-            #     else:
-            #         key = str(rep2['id'])
-            #         self.agents_dict[key].reputation2   = rep2['rep']
-            #         self.agents_dict[key].reputations2.append(self.agents_dict[key].reputation2 )
-            #         self.agents_dict2[key]['rep2'].append(rep2['rep'])
-            #         self.agents_dict2[key]['when2'].append(loop)
-
-            #     if self.first_time:
-
-            #         self.mean_succ_rate2.append(statistics.mean(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
-            #                                                     if self.agents_dict[i].num_info_seen > 0))
-
-            #         self.stddev_succ_rate2.append(statistics.stdev(self.agents_dict[i].reputation2 for i in self.agents_dict.keys()\
-            #                                                     if self.agents_dict[i].num_info_seen > 0))
-
-            #     self.first_time=True
-
-            # self.similarity_err.append(statistics.mean( abs(self.agents_dict[j].reputation - self.agents_dict[j].reputation2) for j in self.agents_dict.keys()\
-            #                                                     if self.agents_dict[j].num_info_seen > 0))
+            # '''weights update'''
+            # for a, w in res['weights'].items():
+            #     self.agents_dict[str(a)].weight = w
 
             # percentage of events seen
             if 'events' in res:
@@ -404,7 +319,6 @@ class Simulator:
         for i in range(self.n_agents):
 
             # curr_node = random.choice(list(n[0] for n in self.G.nodes.data()))
-            # inde = np.random.randint(0, len(l)-1)
             curr_node = l[np.random.randint(0, len(l)-1)]
 
             situation = {}
@@ -413,12 +327,6 @@ class Simulator:
             dest_node, dist = self.compute_destination(curr_node, None)
 
             # Instantiate the Person class passing the arguments
-            # if i > ag_global and not g_flag:
-                
-            #     mu, sigma = 0, 2
-            #     g_flag = True
-
-            # err = np.random.normal(mu, sigma, 1)[0]
             err = np.random.random()
 
             agent = Agent(i, curr_node, dest_node, dist, err) #if i!= 3 else Agent(i, curr_node, dest_node, dist, 0)
@@ -478,7 +386,6 @@ class Simulator:
                 agent.global_conn   = [1, 2, 3]
                 agent.weight        = 6
 
-            # agent.global_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
             # Initialize array of local connections, choosing randomly, removing duplicates
             agent.local_conn = [1, 2, 3]
             # agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
@@ -501,8 +408,7 @@ class Simulator:
         # while self.perc_seen_ev<self.threshold:
         while count < 3000:
             start_time = time.time()
-        # while self.obs_ev < 6:
-            # obs_ev = 0
+
             print("\nIteration " + str(count))
 
             for key in self.agents_dict.keys():
@@ -563,19 +469,30 @@ class Simulator:
         print("total time to get all events on the db: ", self.t_all)
         print(f"Experiment finished in {self.toc - self.tic:0.4f} seconds")
 
+        if self.store_latency:
+            try:
+                if not os.path.exists(self.path + '/lats'):
+                        os.makedirs(self.path + '/lats')
+            except OSError:
+                print ('Error: Creating directory of data')
 
-        pat = '/Users/mario/Desktop/Fellowship_Unige/MEUS/'
+            with open(self.path + '/lats/error_plot_{0}%.csv'.format(str(self.n_gateways*100)), 'w') as f:
+                writer = csv.DictWriter(f, fieldnames=['lats'])
+                writer.writeheader()
 
+            with open(path + '/lats/error_plot_{0}%.csv'.format(str(self.n_gateways*100)), 'a') as f:
+                writer = csv.DictWriter(f, fieldnames=['lats'])
+                for el in self.latency:
+                    writer.writerow({'lats': el})
 
-        plt.style.use('seaborn-whitegrid')
-        # plt.figure(500)
-        plt.plot(self.mean_loop_duration, label='loop duration', c='b')
-        
-        plt.legend(loc='upper left')
-        plt.ylabel('duration')
-        plt.xlabel('# of loops')
-        plt.tight_layout()
-        plt.savefig(path.join(pat, 'loop_duration.svg'))
+            plt.style.use('seaborn-whitegrid')
+            plt.plot(self.mean_loop_duration, label='loop duration', c='b')
+            
+            plt.legend(loc='upper left')
+            plt.ylabel('duration')
+            plt.xlabel('# of loops')
+            plt.tight_layout()
+            plt.savefig(path.join(self.path, 'loop_duration.svg'))
 
         input("check 3 explore_graph.py")
         response = requests.delete(self.BASE + "IE/1" )

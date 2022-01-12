@@ -11,10 +11,8 @@ import pandas as pd
 from pprint import pprint
 from sketch import lis, Compute_dist
 from matplotlib import pyplot as plt
-from matplotlib.ticker import MaxNLocator
 
-
-def plot():
+def plot_metrics():
     
     outpath = os.path.abspath(os.getcwd()) + '/'
 
@@ -55,7 +53,7 @@ def plot():
                                             for n in range(len(dist[count]))]
 
             plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), plotted_to_be, label="dist")
-            plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), Kalpha[count], label='Kalpha', marker='*')
+            plt.plot(list(map(str, [i for i in range(len(Kalpha[count]))])), Kalpha[count], label='Kalpha', marker='*')
 
             if len(cvr[count])==0:
                 for j,el in enumerate(dist[count]):
@@ -93,5 +91,7 @@ def plot():
             plt.savefig(os.path.join(outpath+'plots/', str(i)+'.svg'))
         count += 1
 
+# def plot_events():
+
 if __name__=='__main__':
-    plot()
+    plot_metrics()

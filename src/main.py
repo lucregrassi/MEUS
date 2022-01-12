@@ -19,7 +19,8 @@ def main():
         Loop distance:              {args.loop_distance}\n\
         Seed:                       {args.seed}\n\
         Threshold:                  {args.threshold}\n\
-        Error rate:                 {args.err_rate}")
+        Error rate:                 {args.err_rate}\n\
+        Store Latency data:         {args.st}")
     
     if args.setup_map is True:
         save_graph(args.place)
@@ -32,7 +33,8 @@ def main():
                             loop_distance   = args.loop_distance,
                             seed            = args.seed,
                             threshold       = args.threshold,
-                            err_rate        = args.err_rate)
+                            err_rate        = args.err_rate,
+                            store_latency   = args.st)
     simulator.run()
 
 if __name__=="__main__":
