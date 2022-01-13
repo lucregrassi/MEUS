@@ -146,15 +146,22 @@ def latency_plot(rad_gat):
     assert type(rad_gat)==str and (rad_gat=='radius' or rad_gat=='gateways'),\
         "The parameter over to which plot the graph shoud be either 'radius' or 'gateways' of type string."
 
-    outpath         = os.path.abspath(os.getcwd()) + '/lats/'
+    assert os.path.exists(os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)),\
+        'You either have not set the flag -st to True when runnning the simulation or the parameter over which to plot the latencies is not the same one you chose for the simulation. Cannot plot latencies.'
+
+    outpath         = os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)
     files           = [file for file in os.listdir(outpath) if file.endswith('.csv')]
     num_of_files    = len(files)
 
-    assert rad_gat=='radius' and num_of_files < 3, \
-        'Number of latencies for the magnitude of the radius plot has to be at least 3.'
+    assert num_of_files >= 3,\
+        'You have to run at least 3 experiments first.'
 
-    assert rad_gat=='gateways' and  num_of_files < 4,\
-        'Number of latencies for the number of gateways parameter plot has to be at least 4.'
+    if rad_gat=='radius':
+        assert rad_gat=='radius' and num_of_files < 3, \
+            'Number of latencies for the magnitude of the radius plot has to be at least 3.'
+    else:
+        assert rad_gat=='gateways' and  num_of_files < 4,\
+            'Number of latencies for the number of gateways parameter plot has to be at least 4.'
 
 
     latencies = [pd.read_csv(outpath + '/{0}0.0%.csv'.format(str(i)))['lats'] for i.split('.')[0][0] in files] if rad_gat=='gateways' \

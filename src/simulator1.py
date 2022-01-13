@@ -26,7 +26,7 @@ from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple, latency_plot, l
 
 
 class Simulator:
-    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd())):
+    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3):
         self.n_agents           = n_agents
         self.n_gateways         = n_gateways
         self.perc_seen_ev       = 0
@@ -58,6 +58,7 @@ class Simulator:
         self.interval           = 0
         self.store_latency      = store_latency
         self.path               = path
+        self.radius             = radius
 
 
     def compute_destination(self, current_node, ag):
@@ -406,7 +407,7 @@ class Simulator:
         old_story = 0
         count = 0
         # while self.perc_seen_ev<self.threshold:
-        while count < 3000:
+        while count < 500:
             start_time = time.time()
 
             print("\nIteration " + str(count))
@@ -434,6 +435,12 @@ class Simulator:
 
 
     def run(self):
+
+        if self.store_latency:
+            x = input("Which parameter are you changing for plotting the latency prfiles ? [gateways/radius]")
+
+            assert x=='gateways' or x=='radius',\
+                'please enter a valid value as the prompt suggests.'
 
         self.onto.load()
         np.random.seed(self.seed)
@@ -471,28 +478,40 @@ class Simulator:
 
         if self.store_latency:
             try:
-                if not os.path.exists(self.path + '/lats'):
-                        os.makedirs(self.path + '/lats')
+                if not os.path.exists(self.path + '/lats_{0}'.format(x)):
+                        os.makedirs(self.path + '/lats_{0}'.format(x))
             except OSError:
                 print ('Error: Creating directory of data')
 
-            with open(self.path + '/lats/{0}%.csv'.format(str(self.n_gateways*100)), 'w') as f:
-                writer = csv.DictWriter(f, fieldnames=['lats'])
-                writer.writeheader()
+            self.path = self.path + '/lats_{0}/'.format(x)
 
-            with open(path + '/lats/{0}%.csv'.format(str(self.n_gateways*100)), 'a') as f:
-                writer = csv.DictWriter(f, fieldnames=['lats'])
-                for el in self.latency:
-                    writer.writerow({'lats': el})
+            if x=='gateways':
+                with open(self.path + '{0}%.csv'.format(str(self.n_gateways*100)), 'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=['lats'])
+                    writer.writeheader()
 
-            plt.style.use('seaborn-whitegrid')
-            plt.plot(self.mean_loop_duration, label='loop duration', c='b')
-            
-            plt.legend(loc='upper left')
-            plt.ylabel('duration')
-            plt.xlabel('# of loops')
-            plt.tight_layout()
-            plt.savefig(path.join(self.path, 'loop_duration.svg'))
+                with open(self.path + '{0}%.csv'.format(str(self.n_gateways*100)), 'a') as f:
+                    writer = csv.DictWriter(f, fieldnames=['lats'])
+                    for el in self.latency:
+                        writer.writerow({'lats': el})
+            else:
+                with open(self.path + '{0}Km.csv'.format(self.radius), 'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=['lats'])
+                    writer.writeheader()
+
+                with open(path + '{0}Km.csv'.format(self.radius), 'a') as f:
+                    writer = csv.DictWriter(f, fieldnames=['lats'])
+                    for el in self.latency:
+                        writer.writerow({'lats': el})
+
+        plt.style.use('seaborn-whitegrid')
+        plt.plot(self.mean_loop_duration, label='loop duration', c='b')
+        
+        plt.legend(loc='upper left')
+        plt.ylabel('duration')
+        plt.xlabel('# of loops')
+        plt.tight_layout()
+        plt.savefig(path.join(self.path, 'loop_duration.svg'))
 
         input("check 3 explore_graph.py")
         response = requests.delete(self.BASE + "IE/1" )
