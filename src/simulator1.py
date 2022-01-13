@@ -26,7 +26,7 @@ from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple, latency_plot, l
 
 
 class Simulator:
-    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3):
+    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0):
         self.n_agents           = n_agents
         self.n_gateways         = n_gateways
         self.perc_seen_ev       = 0
@@ -59,6 +59,7 @@ class Simulator:
         self.store_latency      = store_latency
         self.path               = path
         self.radius             = radius
+        self.th                 = th
 
 
     def compute_destination(self, current_node, ag):
@@ -404,32 +405,59 @@ class Simulator:
         # Exchange info between agents in the initial position
         self.exchange_information(0)
 
-        old_story = 0
         count = 0
-        # while self.perc_seen_ev<self.threshold:
-        while count < 500:
-            start_time = time.time()
+        assert self.th >=0,\
+            'threshold for end of experiment cannot be a negative value.'
+        if self.th==0:            
+            while self.perc_seen_ev<self.threshold:
+                start_time = time.time()
 
-            print("\nIteration " + str(count))
+                print("\nIteration " + str(count))
 
-            for key in self.agents_dict.keys():
-                # Update the position of the agent
-                # for ie in self.agents_dict[key].ies:
-                #     print(ie[0], ", ", ie[1:] )
-                    # input()
-                self.update_position(self.agents_dict[key], count)
-            
-            self.exchange_information(count)
+                for key in self.agents_dict.keys():
+                    # Update the position of the agent
+                    # for ie in self.agents_dict[key].ies:
+                    #     print(ie[0], ", ", ie[1:] )
+                        # input()
+                    self.update_position(self.agents_dict[key], count)
+                
+                self.exchange_information(count)
 
-            for key in self.agents_dict.keys():
-                self.send_info(self.agents_dict[key], count)
+                for key in self.agents_dict.keys():
+                    self.send_info(self.agents_dict[key], count)
 
-            print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
-            count += 1
+                print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
+                count += 1
 
-            self.loop_duration.append(time.time()-start_time)
+                self.loop_duration.append(time.time()-start_time)
 
-            self.mean_loop_duration.append(statistics.mean(self.loop_duration))
+                self.mean_loop_duration.append(statistics.mean(self.loop_duration))
+        
+        else:
+            while count<self.th:
+                start_time = time.time()
+
+                print("\nIteration " + str(count))
+
+                for key in self.agents_dict.keys():
+                    # Update the position of the agent
+                    # for ie in self.agents_dict[key].ies:
+                    #     print(ie[0], ", ", ie[1:] )
+                        # input()
+                    self.update_position(self.agents_dict[key], count)
+                
+                self.exchange_information(count)
+
+                for key in self.agents_dict.keys():
+                    self.send_info(self.agents_dict[key], count)
+
+                print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
+                count += 1
+
+                self.loop_duration.append(time.time()-start_time)
+
+                self.mean_loop_duration.append(statistics.mean(self.loop_duration))
+
 
         return count
 
@@ -437,6 +465,7 @@ class Simulator:
     def run(self):
 
         if self.store_latency:
+            self.th = 0
             x = input("Which parameter are you changing for plotting the latency prfiles ? [gateways/radius]")
 
             assert x=='gateways' or x=='radius',\

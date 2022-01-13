@@ -150,7 +150,8 @@ def latency_plot(rad_gat):
         'You either have not set the flag -st to True when runnning the simulation or the parameter over which to plot the latencies is not the same one you chose for the simulation. Cannot plot latencies.'
 
     outpath         = os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)
-    files           = [file for file in os.listdir(outpath) if file.endswith('.csv')]
+    files_ns        = [file for file in os.listdir(outpath) if file.endswith('.csv')]
+    files           = sorted(files_ns, key=lambda x: int(x.split('.')[0]))
     num_of_files    = len(files)
 
     assert num_of_files >= 3,\
@@ -164,27 +165,26 @@ def latency_plot(rad_gat):
             'Number of latencies for the number of gateways parameter plot has to be at least 4.'
 
 
-    latencies = [pd.read_csv(outpath + '/{0}0.0%.csv'.format(str(i)))['lats'] for i.split('.')[0][0] in files] if rad_gat=='gateways' \
-        else [pd.read_csv(outpath + '/{0}Km.csv'.format(str(i)))['lats'] for i.split('.')[0][0] in files]
-
+    latencies = [pd.read_csv(outpath + '/{0}.0%.csv'.format(i.split('.')[0]))['lats'] for i in files] if rad_gat=='gateways' \
+        else [pd.read_csv(outpath + '/{0}Km.csv'.format(i.split('.')[0][0]))['lats'] for i in files]
 
     plt.style.use('seaborn-whitegrid')
     plt.figure()
 
     if rad_gat=='radius':
-        plt.plot(latencies[0], label='1km radius')
-        plt.plot(latencies[1], label='3km radius')
-        plt.plot(latencies[2], label='5km radius')
+        plt.plot(latencies[0], label='{0}km radius'.format(files[0].split('.')[0][0]))
+        plt.plot(latencies[1], label='{0}km radius'.format(files[1].split('.')[0][0]))
+        plt.plot(latencies[2], label='{0}km radius'.format(files[2].split('.')[0][0]))
 
         plt.legend(loc='upper left')
         plt.ylabel('lat [#loops]')
         plt.xlabel('# of obs')
 
     else:
-        plt.plot(latencies[0], label='latency 30%')
-        plt.plot(latencies[1], label='latency 50%')
-        plt.plot(latencies[2], label='latency 70%')
-        plt.plot(latencies[3], label='latency 90%')
+        plt.plot(latencies[0], label='latency {0}%'.format(files[0].split('.')[0]))
+        plt.plot(latencies[1], label='latency {0}%'.format(files[1].split('.')[0]))
+        plt.plot(latencies[2], label='latency {0}%'.format(files[2].split('.')[0]))
+        plt.plot(latencies[3], label='latency {0}%'.format(files[3].split('.')[0]))
 
         plt.legend(loc='upper left')
         plt.ylabel('lat [#loops]')
@@ -368,7 +368,7 @@ def parse_args():
     parser.add_argument('-seed', default=57, type=int,
                             help='random seed to obtain a specific experiment outcome.')
 
-    parser.add_argument('-threshold', default=100, type=int,
+    parser.add_argument('-threshold', default=70, type=int,
                             help='percentage of events stored in the database to end the experiment.')
 
     parser.add_argument('-err_rate', default=0.2, type=float,
@@ -382,6 +382,9 @@ def parse_args():
                                 This has to be used whenever is the intention of the user to plot graphs about latency decrease according\
                                     to parameters such as the radius amplitude and the number of gateways agents present in the simulation.\
                                         To obtain the graphs it is necessary to run multiple experiments.')
+
+    parser.add_argument('-nl', default=0, type=int,
+                            help='The simulation will stop upon reaching nl number of loops instead of the percentage of seen events.')
 
     args = parser.parse_args()
     

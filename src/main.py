@@ -35,7 +35,8 @@ def main():
                             threshold       = args.threshold,
                             err_rate        = args.err_rate,
                             store_latency   = args.st,
-                            radius          = args.radius_4g)
+                            radius          = args.radius_4g,
+                            th              = args.nl)
     simulator.run()
 
 if __name__=="__main__":
