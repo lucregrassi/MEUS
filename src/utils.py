@@ -157,10 +157,10 @@ def latency_plot(rad_gat):
         'You have to run at least 3 experiments first.'
 
     if rad_gat=='radius':
-        assert rad_gat=='radius' and num_of_files < 3, \
+        assert rad_gat=='radius' and num_of_files >= 3, \
             'Number of latencies for the magnitude of the radius plot has to be at least 3.'
     else:
-        assert rad_gat=='gateways' and  num_of_files < 4,\
+        assert rad_gat=='gateways' and  num_of_files >= 4,\
             'Number of latencies for the number of gateways parameter plot has to be at least 4.'
 
 
