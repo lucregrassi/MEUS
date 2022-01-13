@@ -111,7 +111,7 @@ It has to be noticed that, in order to plot the latency profiles, prior to launc
 ```bash
 python main.py -st True
 ```
-The results of the latencies would be stored in a folder src/lats_<either 'gateways' or 'radius'> (according to the param that is being tweaked during the current sets of simulations).
+The results of the latencies would be stored in a folder src/lats_<either 'gateways' or 'radius'> (according to the param that is being tweaked during the current sets of simulations). From this folder then the plot_graphs.py script will retrieve the data and proceed on plotting the graphs.
 ## Authors
 | Name | E-mail |
 |------|--------|
