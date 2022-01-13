@@ -11,6 +11,7 @@ import pandas as pd
 from pprint import pprint
 from sketch import lis, Compute_dist
 from matplotlib import pyplot as plt
+from utils import latency_plot
 
 def plot_metrics():
     
@@ -91,7 +92,25 @@ def plot_metrics():
             plt.savefig(os.path.join(outpath+'plots/', str(i)+'.svg'))
         count += 1
 
-# def plot_events():
-
 if __name__=='__main__':
+
+    ''' plotting the profile of CVR and Kalpha for every single node'''
     plot_metrics()
+
+
+    ''' plotting the curves of the latency over some other parameter:
+        - percentage of gateways' agents
+        - magnitude of the radius of the hub(s)'''
+
+    x = input("Do you wish to plot also the latencies over some parameter ? [y/n]")
+
+    assert x=='y' or x=='n', \
+        'Input should be either y or n.'
+
+    if x=='y':
+
+        param = input("Over which other parameter do you wish to plot the metrics:\n\
+            - percentage of gateways' agents\n\
+            - magnitude of the radius of the hub(s) ? [gateways/radius]")
+        
+        latency_plot(param)

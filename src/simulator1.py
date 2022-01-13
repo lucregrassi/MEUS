@@ -476,11 +476,11 @@ class Simulator:
             except OSError:
                 print ('Error: Creating directory of data')
 
-            with open(self.path + '/lats/error_plot_{0}%.csv'.format(str(self.n_gateways*100)), 'w') as f:
+            with open(self.path + '/lats/{0}%.csv'.format(str(self.n_gateways*100)), 'w') as f:
                 writer = csv.DictWriter(f, fieldnames=['lats'])
                 writer.writeheader()
 
-            with open(path + '/lats/error_plot_{0}%.csv'.format(str(self.n_gateways*100)), 'a') as f:
+            with open(path + '/lats/{0}%.csv'.format(str(self.n_gateways*100)), 'a') as f:
                 writer = csv.DictWriter(f, fieldnames=['lats'])
                 for el in self.latency:
                     writer.writerow({'lats': el})

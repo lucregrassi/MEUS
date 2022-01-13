@@ -9,6 +9,7 @@ import operator
 import itertools
 import statistics
 import numpy as np
+import pandas as pd
 import krippendorff
 from os import path
 
@@ -140,29 +141,51 @@ def getIndexOfTuple(l, index, value):
     raise ValueError("list.index(x): x not in list")
 
 
-def latency_plot(latencies, pth):
+def latency_plot(rad_gat):
 
-    # if len(latencies) < 4:
-    #     raise Exception
+    assert type(rad_gat)==str and (rad_gat=='radius' or rad_gat=='gateways'),\
+        "The parameter over to which plot the graph shoud be either 'radius' or 'gateways' of type string."
+
+    outpath         = os.path.abspath(os.getcwd()) + '/lats/'
+    files           = [file for file in os.listdir(outpath) if file.endswith('.csv')]
+    num_of_files    = len(files)
+
+    assert rad_gat=='radius' and num_of_files < 3, \
+        'Number of latencies for the magnitude of the radius plot has to be at least 3.'
+
+    assert rad_gat=='gateways' and  num_of_files < 4,\
+        'Number of latencies for the number of gateways parameter plot has to be at least 4.'
+
+
+    latencies = [pd.read_csv(outpath + '/{0}0.0%.csv'.format(str(i)))['lats'] for i.split('.')[0][0] in files] if rad_gat=='gateways' \
+        else [pd.read_csv(outpath + '/{0}Km.csv'.format(str(i)))['lats'] for i.split('.')[0][0] in files]
+
 
     plt.style.use('seaborn-whitegrid')
-
-    outpath = pth
-
     plt.figure()
 
-    plt.plot(latencies[0], label='1km radius')
-    plt.plot(latencies[1], label='3km radius')
-    plt.plot(latencies[2], label='5km radius')
-    # plt.plot(latencies[3], label='latency_90%')
-    # plt.axhline(y = statistics.mean(latencies), color = 'r', linestyle = '-', linewidth=.4)
+    if rad_gat=='radius':
+        plt.plot(latencies[0], label='1km radius')
+        plt.plot(latencies[1], label='3km radius')
+        plt.plot(latencies[2], label='5km radius')
 
-    plt.legend(loc='upper left')
-    plt.ylabel('lat [#loops]')
-    plt.xlabel('# of obs')
+        plt.legend(loc='upper left')
+        plt.ylabel('lat [#loops]')
+        plt.xlabel('# of obs')
+
+    else:
+        plt.plot(latencies[0], label='latency 30%')
+        plt.plot(latencies[1], label='latency 50%')
+        plt.plot(latencies[2], label='latency 70%')
+        plt.plot(latencies[3], label='latency 90%')
+
+        plt.legend(loc='upper left')
+        plt.ylabel('lat [#loops]')
+        plt.xlabel('# of obs')
 
     plt.tight_layout()
-    plt.savefig(path.join(outpath, "error_plot.svg"))
+    plt.savefig(path.join(outpath, "error_plot_{0}.svg".format(rad_gat)))
+
 
 
 def latency_meanStddev_plot(rep1_mean, rep1_stddev, rep2_mean, rep2_stddev, err_rate, pth):
