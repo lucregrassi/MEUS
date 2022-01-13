@@ -21,4 +21,4 @@ src/plotter.py
 src/graph/*
 graph
 src/prova.py
-src/sketch.py
+#src/sketch.py
