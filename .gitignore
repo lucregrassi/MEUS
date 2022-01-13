@@ -12,8 +12,8 @@ images
 *.log
 *.json
 *.svg
-./src/figures.py
-./src/figures2.py
+src/figures.py
+src/figures2.py
 # simulator1.py
 #prova.py
 src/plotter.py
@@ -21,3 +21,4 @@ src/plotter.py
 src/graph/*
 graph
 src/prova.py
+src/sketch.py

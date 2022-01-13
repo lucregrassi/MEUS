@@ -102,6 +102,13 @@ The files have a name which is the id of the a specific node. Each file is a csv
 
 Every row in the file represent a new observation being reported for that event in that node.
 
+## Plotting results
+In order to plot the metrics of evaluation for every event in the graph and the latency profiles:
+```bash
+python plot_graphs.py
+```
+It has to be noticed that, in order to plot the latency profiles, prior to launching the script the user should have run already 3 or 4 experiments keeping fixed every parameter except for either the magnitude of the radius of the hub(s) or the percentage of gateways' agents present in the environment.
+
 ## Authors
 | Name | E-mail |
 |------|--------|
