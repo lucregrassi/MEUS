@@ -150,7 +150,6 @@ if __name__=='__main__':
 
     '''Showing how many times agents agree and disagree on observations and their respective mean and stddev of the distance (how much an observation is different from the ground truth).'''
     show_mean_and_stddev()
-    input("ok.")
 
     ''' plotting the profile of CVR and Kalpha for every single node'''
     plot_metrics()
