@@ -12,6 +12,46 @@ from pprint import pprint
 from sketch import lis, Compute_dist
 from matplotlib import pyplot as plt
 from utils import latency_plot
+from collections import Counter
+import logging
+
+# Create and configure logger
+logging.basicConfig(filename="prova2.log",
+                    level=logging.DEBUG)
+
+
+def show_mean_and_stddev():
+
+    outpath = os.path.abspath(os.getcwd()) + '/'
+
+    try:
+        if not os.path.exists(outpath + '/meanStddv'):
+            os.makedirs(outpath + '/meanStddv')
+    except OSError:
+        print ('Error: Creating directory of data meanStddv.')
+
+    files   = [file for file in os.listdir(outpath) if file.endswith('.csv')]
+
+    # cvr       = [float(pd.read_csv(outpath + file)['CVR'][i]) for file in files for i in range(len(pd.read_csv(outpath + file)['CVR'])) if float(pd.read_csv(outpath + file)['CVR'][i])!=-2] 
+    cvr       = [[float(pd.read_csv(outpath + file)['CVR'][i]) if float(pd.read_csv(outpath + file)['CVR'][i])!=-2 else None for i in range(len(pd.read_csv(outpath + file)['CVR'])) ] for file in files]
+    dist      = [float(pd.read_csv(outpath + file)['distance'][i]) for file in files for i in range(len(pd.read_csv(outpath + file)['distance']))]
+    Kalpha    = [float(pd.read_csv(outpath + file)['Kalpha'][i]) for file in files for i in range(len(pd.read_csv(outpath + file)['Kalpha']))]
+
+    flatten_cvr = list(itertools.chain(*cvr))
+
+    agree       = [dist[i] for i, el in enumerate(flatten_cvr) if el==1]
+    disagree    = [dist[i] for i, el in enumerate(flatten_cvr) if el==0]
+
+    x1 = 0
+    x2 = 1
+
+    d = Counter(flatten_cvr)
+
+    print(f"Value {x1} has been dtected {d[x1]} times")
+    print(f"Value {x2} has been dtected {d[x2]} times")
+    print(f"Mean distance and standard deviation for agreement are:\n {round(statistics.mean(agree), 3)}, {round(statistics.stdev(agree), 3)}")
+    print(f"Mean distance and standard deviation for disagreement are:\n {round(statistics.mean(disagree), 3)}, {round(statistics.stdev(disagree), 3)}")
+
 
 def plot_metrics():
     
@@ -26,6 +66,7 @@ def plot_metrics():
     fields = [ 'distance', 'CVR', 'Kalpha']
 
     files   = [file for file in os.listdir(outpath) if file.endswith('.csv')]
+
     cvr     = [[float(pd.read_csv(outpath + file)['CVR'][i]) if float(pd.read_csv(outpath + file)['CVR'][i])!=-2 else None for i in range(len(pd.read_csv(outpath + file)['CVR'])) ] for file in files] 
     dist    = [[float(pd.read_csv(outpath + file)['distance'][i]) for i in range(len(pd.read_csv(outpath + file)['distance']))] for file in files]
     Kalpha  = [[float(pd.read_csv(outpath + file)['Kalpha'][i]) for i in range(len(pd.read_csv(outpath + file)['Kalpha']))] for file in files]
@@ -45,13 +86,26 @@ def plot_metrics():
             plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
                                             gts[count]['situation'],
                                             lis)
-                                            if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
-                                            or gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
-                                            and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                            if gts[count]['situation'] not in [obs['situation'] for obs in obss[count][n]]\
+                                            or gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]]\
+                                            and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
                                             else\
-                                            0 if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]] and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                            0 if gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]] and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
                                             else None\
                                             for n in range(len(dist[count]))]
+            
+            # plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
+            #                                 gts[count]['situation'],
+            #                                 lis)
+            #                                 if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+            #                                 or gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+            #                                 and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+            #                                 else\
+            #                                 0 if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]] and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+            #                                 else None\
+            #                                 for n in range(len(dist[count]))]
+            
+            logging.debug(plotted_to_be)
 
             plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), plotted_to_be, label="dist")
             plt.plot(list(map(str, [i for i in range(len(Kalpha[count]))])), Kalpha[count], label='Kalpha', marker='*')
@@ -93,6 +147,10 @@ def plot_metrics():
         count += 1
 
 if __name__=='__main__':
+
+    '''Showing how many times agents agree and disagree on observations and their respective mean and stddev of the distance (how much an observation is different from the ground truth).'''
+    show_mean_and_stddev()
+    input("ok.")
 
     ''' plotting the profile of CVR and Kalpha for every single node'''
     plot_metrics()

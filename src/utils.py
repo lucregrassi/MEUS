@@ -260,12 +260,8 @@ def compute_KrippendorffAlpha(node_info, n_gateways):
 
 def compute_CVR(node_info, query_ev, CVR, n_gateways):
 
-    # panel_size = len(list(np.unique(np.asarray(list(itertools.chain(*node_info['whos']))))))
     panel_size = np.sum([2 if coder>n_gateways else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))])
     candidate = max(node_info['votes'])
-    # print(node_info['votes'])
-    # print(candidate)
-    # input()
 
     ev_id = str(query_ev.id)
 
@@ -274,13 +270,12 @@ def compute_CVR(node_info, query_ev, CVR, n_gateways):
         value = 0
         # if the threshold majority is reached
         if candidate>=CVR[panel_size]:
-        # print("event in node", ev_id, " is: ", node_info['obs'][node_info['votes'].index(candidate)])
             value = 1
             # if the reported observation match the actual event
-            index = node_info['votes'].index(candidate)
+            # index = node_info['votes'].index(candidate)
             
-            if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
-                value = 1
+            # if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
+            #     value = 1
     return value
 
     
