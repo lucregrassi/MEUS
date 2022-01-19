@@ -60,10 +60,6 @@ def recursive_up(cls, dictionary, i):
 
     parent_cls = cls.is_a[0]
 
-    # print("************************************************")
-    # print(parent_cls)
-    # print(dictionary)
-
     if i not in dictionary:
         dictionary[i] = [parent_cls]
     else:
@@ -127,103 +123,6 @@ def get_cls_at_dist(start_cls_name, err_rate, distance):
     if distance not in dictionary:
         distance = max(dictionary.keys())
     return random.choice(dictionary[distance])
-
-
-def ontology_to_Adjlis(ontology):
-    dictionary = {}
-
-    classes = list(ontology.classes())
-
-    start = classes[classes.index(ontology.Situation)]
-
-    classes.remove(start)
-
-    dictionary[str(start).split('.')[1]] = [()]
-    for cls in classes:
-        if len(list(cls.subclasses()))>0:
-            for subcls in list(cls.subclasses()):
-                dictionary[str(cls).split('.')[1]] = str(subcls).split('.')[1]
-
-
-# def go_down(cls, has_subCls):
-#     if len(cls.subclasses())==0:
-#         return
-#     else:
-#         has_subCls = [list(cls.subclasses())[i] for i in range(list(cls.subclasses())) \
-#                         if  len(list(list(cls.subclasses())[i]))>0]
-#         go_down(list(cls.subclasses()))
-
-
-# def compute_distance(estimate, real):
-    
-#     up_jumps    = 0
-#     down_jumps  = 0
-#     arr = []
-#     flag = False
-
-#     _estimate = copy.deepcopy(estimate)
-#     _destimate = copy.deepcopy(estimate)
-
-#     if _estimate==real:
-#         return np.abs(up_jumps-down_jumps)
-
-#     # while real not in arr:
-
-#     #     # I have to climb down the ontology tree
-#     #     if _destimate==onto.Situation  or _destimate==onto.Object:
-#     #         flag=True
-#     #         if _destimate :
-                
-#     #             down_jumps += 1
-#     #             _destimate==[subcls for subcls in list(_destimate.subclasses())].index(_destimate)
-            
-#     #         else:
-
-#     #     else:
-#     #         # If I have reached the top I have now to keep going down
-#     #         if flag:
-
-#     #         # I have to check if I have to climb till the top of the ontology tree or go down
-#     #         else:
-#             # Not at the same layer
-#     if real not in _destimate.is_a[0].subclasses():
-        
-#         # check if it is in the layer just below
-#         if any(real in nest for nest in \
-#             [list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
-#             for i in range(len(list(_destimate.is_a[0].subclasses()))) ]):
-
-#                 down_jumps += 1
-
-#                 return np.abs(up_jumps-down_jumps)
-
-#             # for i, nest in enumerate([list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
-#             #     for i in range(len(list(_destimate.is_a[0].subclasses()))) ]):
-
-#             #     if _destimate in nest:
-#             #         for j, val in enumerate(nest):
-#             #             _destimate=[list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
-#             #                     \for i in range(len(list(_destimate.is_a[0].subclasses()))) ][i][j]
-
-#         else:
-#             # if the level below contains any parent of the real class
-#             if real.is_a[0] in [list(list(_destimate.is_a[0].subclasses())[i].subclasses()) \
-#             for i in range(len(list(_destimate.is_a[0].subclasses())))]:
-
-#                 down_jumps += 2
-
-#                 return np.abs(up_jumps-down_jumps)
-
-#             else:
-#                 # I have to climb upward
-#                 up_jumps += 1   
-#                 _destimate = _destimate.is_a[0]
-
-#     else:
-#         up_jumps += 1
-#         return np.abs(up_jumps-down_jumps)
-
-#     # return np.abs(up_jumps-down_jumps)
 
 
 

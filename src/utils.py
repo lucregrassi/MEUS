@@ -235,25 +235,18 @@ def compute_KrippendorffAlpha(node_info, n_gateways):
 
     rel_data = []
     
-    coders = list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))
-    Nobs = len(node_info['obs'])
-    history = list(itertools.chain(*node_info['rels']))
-    rel_data = [list(itertools.chain([[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]]*2))\
+    coders      = list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))
+    Nobs        = len(node_info['obs'])
+    history     = list(itertools.chain(*node_info['rels']))
+    rel_data    = [list(itertools.chain([[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]]*2))\
             if coder>=n_gateways else list(itertools.chain([[1 if (i, coder) in history and coder==history[history.index( (i, coder))][1] else 0 for i in range(Nobs)]]*6)) for coder in coders]
 
-    # print(rel_data)
-    # rel_data = [el if len(batch)==6 else batch for batch in rel_data for el in batch]
     rel_data = [el for batch in rel_data for el in batch]
-    # print(rel_data)
     rel_data = np.asarray(rel_data)
-    # print(rel_data)
-    # print(type(rel_data[0]))
-    # print(type(rel_data[0][0]))
     rel_data = rel_data[[ np.any(rel_data[k]) for k in range(len(rel_data))]]
-    # print("---")
+
     if len(rel_data[0])==1:
         return np.nan
-
 
     return krippendorff.alpha(reliability_data=rel_data, level_of_measurement='nominal')
 
@@ -263,26 +256,18 @@ def compute_CVR(node_info, query_ev, CVR, n_gateways):
     panel_size = np.sum([2 if coder>n_gateways else 6 for coder in list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))])
     candidate = max(node_info['votes'])
 
-    ev_id = str(query_ev.id)
-
     value = -2
     if panel_size in CVR.keys():
         value = 0
         # if the threshold majority is reached
         if candidate>=CVR[panel_size]:
             value = 1
-            # if the reported observation match the actual event
-            # index = node_info['votes'].index(candidate)
-            
-            # if query_ev.situation==node_info['obs'][index]['situation'] and query_ev.obj==node_info['obs'][index]['object']:
-            #     value = 1
+
     return value
 
     
 
 def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, n_gateways, distance):
-    # outpath = '/Users/mario/Desktop/Fellowship_Unige/MEUS/MEUS/'
-    # fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'CVR', 'Kalpha']
 
     node_info = copy.deepcopy(node_info_)
 
@@ -363,7 +348,7 @@ def parse_args():
     parser.add_argument('-seed', default=57, type=int,
                             help='random seed to obtain a specific experiment outcome.')
 
-    parser.add_argument('-threshold', default=70, type=int,
+    parser.add_argument('-threshold', default=30, type=int,
                             help='percentage of events stored in the database to end the experiment.')
 
     parser.add_argument('-err_rate', default=0.2, type=float,

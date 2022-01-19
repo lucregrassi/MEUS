@@ -16,8 +16,8 @@ from collections import Counter
 import logging
 
 # Create and configure logger
-logging.basicConfig(filename="prova2.log",
-                    level=logging.DEBUG)
+# logging.basicConfig(filename="prova2.log",
+#                     level=logging.DEBUG)
 
 
 def show_mean_and_stddev():
@@ -25,8 +25,8 @@ def show_mean_and_stddev():
     outpath = os.path.abspath(os.getcwd()) + '/'
 
     try:
-        if not os.path.exists(outpath + '/meanStddv'):
-            os.makedirs(outpath + '/meanStddv')
+        if not os.path.exists(outpath + 'meanStddv'):
+            os.makedirs(outpath + 'meanStddv')
     except OSError:
         print ('Error: Creating directory of data meanStddv.')
 
@@ -52,6 +52,22 @@ def show_mean_and_stddev():
     print(f"Mean distance and standard deviation for agreement are:\n {round(statistics.mean(agree), 3)}, {round(statistics.stdev(agree), 3)}")
     print(f"Mean distance and standard deviation for disagreement are:\n {round(statistics.mean(disagree), 3)}, {round(statistics.stdev(disagree), 3)}")
 
+    with open(outpath + 'meanStddv/agreement.csv', 'w') as f:
+        writer = csv.DictWriter(f, ['mean', 'stddev', 'ratio'])
+        writer.writeheader()
+
+        writer.writerow({     'mean': round(statistics.mean(agree), 3),
+                            'stddev': round(statistics.stdev(agree), 3),
+                             'ratio':  str(round(d[x2]/(d[x2] + d[x1])*100, 2)) + '%'})
+
+    with open(outpath + 'meanStddv/disagreement.csv', 'w') as f:
+        writer = csv.DictWriter(f, ['mean', 'stddev', 'ratio'])
+        writer.writeheader()
+
+        writer.writerow({     'mean': round(statistics.mean(disagree), 3),
+                            'stddev': round(statistics.stdev(disagree), 3),
+                             'ratio':  str(round(d[x1]/(d[x2] + d[x1])*100, 2)) + '%'})
+        
 
 def plot_metrics():
     
@@ -78,34 +94,33 @@ def plot_metrics():
 
     count = 0
     for i in [int(file.split('.')[0]) for file in files]:
-        print(i)
 
         if len(dist[count])>1:
             plt.figure(i)
 
-            plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
-                                            gts[count]['situation'],
-                                            lis)
-                                            if gts[count]['situation'] not in [obs['situation'] for obs in obss[count][n]]\
-                                            or gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]]\
-                                            and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
-                                            else\
-                                            0 if gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]] and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
-                                            else None\
-                                            for n in range(len(dist[count]))]
-            
             # plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
             #                                 gts[count]['situation'],
             #                                 lis)
-            #                                 if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
-            #                                 or gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
-            #                                 and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+            #                                 if gts[count]['situation'] not in [obs['situation'] for obs in obss[count][n]]\
+            #                                 or gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]]\
+            #                                 and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
             #                                 else\
-            #                                 0 if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]] and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+            #                                 0 if gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]] and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
             #                                 else None\
             #                                 for n in range(len(dist[count]))]
             
-            logging.debug(plotted_to_be)
+            plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
+                                            gts[count]['situation'],
+                                            lis)
+                                            if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+                                            or gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+                                            and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                            else\
+                                            0 if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]] and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                            else None\
+                                            for n in range(len(dist[count]))]
+            
+            # logging.debug(plotted_to_be)
 
             plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), plotted_to_be, label="dist")
             plt.plot(list(map(str, [i for i in range(len(Kalpha[count]))])), Kalpha[count], label='Kalpha', marker='*')

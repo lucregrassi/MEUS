@@ -4,6 +4,7 @@ import copy
 import math
 import json
 import time
+import shutil
 
 import random
 import logging
@@ -15,18 +16,20 @@ import numpy as np
 import osmnx as ox
 import pandas as pd
 from owlready2 import *
+from glob import glob
 
 from Agent import Agent
 from pprint import pprint
 import matplotlib.pyplot as plt
 from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
-from utils import NewIEtoDict, plot_agent_perf, getIndexOfTuple, latency_plot, latency_meanStddev_plot
+from utils import NewIEtoDict, getIndexOfTuple
+from connectivity import build_graph, color
 
 
 
 class Simulator:
-    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0):
+    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0, param='gateways'):
         self.n_agents           = n_agents
         self.n_gateways         = n_gateways
         self.perc_seen_ev       = 0
@@ -60,6 +63,7 @@ class Simulator:
         self.path               = path
         self.radius             = radius
         self.th                 = th
+        self.param              = param
 
 
     def compute_destination(self, current_node, ag):
@@ -385,8 +389,8 @@ class Simulator:
 
             # Initialize the connections owned by the person
             if i < ag_global:
-                agent.global_conn   = [1, 2, 3]
-                agent.weight        = 6
+                agent.global_conn = [1, 2, 3]
+                agent.weight      = 6
 
             # Initialize array of local connections, choosing randomly, removing duplicates
             agent.local_conn = [1, 2, 3]
@@ -464,12 +468,25 @@ class Simulator:
 
     def run(self):
 
+        num_exps = 0
+
         if self.store_latency:
             self.th = 0
-            x = input("Which parameter are you changing for plotting the latency prfiles ? [gateways/radius]")
+            num_exps = len(glob('./exp[0-4]'))
 
-            assert x=='gateways' or x=='radius',\
-                'please enter a valid value as the prompt suggests.'
+            if self.param=='gateways':
+                # num_exps = len(glob('./exp[0-6]'))
+                if num_exps==0:
+                    self.n_gateways = 0.2
+                else:
+                    self.n_gateways = 0.2*num_exps + 0.2
+            else:
+                if num_exps==0:    
+                    build_graph(1, 1)
+                else:
+                    build_graph(1, num_exps+2)
+                
+
 
         self.onto.load()
         np.random.seed(self.seed)
@@ -507,31 +524,35 @@ class Simulator:
 
         if self.store_latency:
             try:
-                if not os.path.exists(self.path + '/lats_{0}'.format(x)):
-                        os.makedirs(self.path + '/lats_{0}'.format(x))
+                if not os.path.exists(self.path +'/exp{0}/lats'.format(num_exps)):
+                    os.makedirs(self.path + '/exp{0}/lats'.format(num_exps))
+
             except OSError:
-                print ('Error: Creating directory of data')
+                print ('Error: Creating directory of data lats')
 
-            self.path = self.path + '/lats_{0}/'.format(x)
 
-            if x=='gateways':
-                with open(self.path + '{0}%.csv'.format(str(self.n_gateways*100)), 'w') as f:
+            if self.param=='gateways':
+                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(self.n_gateways*100)), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['lats'])
                     writer.writeheader()
 
-                with open(self.path + '{0}%.csv'.format(str(self.n_gateways*100)), 'a') as f:
-                    writer = csv.DictWriter(f, fieldnames=['lats'])
                     for el in self.latency:
                         writer.writerow({'lats': el})
+
             else:
-                with open(self.path + '{0}Km.csv'.format(self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/lats/{1}Km.csv'.format(num_exps,self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['lats'])
                     writer.writeheader()
 
-                with open(path + '{0}Km.csv'.format(self.radius), 'a') as f:
-                    writer = csv.DictWriter(f, fieldnames=['lats'])
                     for el in self.latency:
                         writer.writerow({'lats': el})
+
+            csv_files = sorted(glob( './*.csv'))
+
+
+            for csv_f in csv_files:
+                shutil.move(csv_f, './exp{0}'.format(num_exps))
+            
 
         plt.style.use('seaborn-whitegrid')
         plt.plot(self.mean_loop_duration, label='loop duration', c='b')
@@ -542,7 +563,7 @@ class Simulator:
         plt.tight_layout()
         plt.savefig(path.join(self.path, 'loop_duration.svg'))
 
-        input("check 3 explore_graph.py")
+        # input("check 3 explore_graph.py")
         response = requests.delete(self.BASE + "IE/1" )
         res = response.json()
         pprint(res)
