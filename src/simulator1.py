@@ -27,6 +27,9 @@ from utils import NewIEtoDict, getIndexOfTuple
 from connectivity import build_graph, color
 
 
+logging.basicConfig(filename="prova2.log",
+                    level=logging.DEBUG)
+
 
 class Simulator:
     def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0, param='gateways'):
@@ -479,7 +482,12 @@ class Simulator:
                 if num_exps==0:
                     self.n_gateways = 0.2
                 else:
-                    self.n_gateways = 0.2*num_exps + 0.2
+                    self.n_gateways = round(0.2*num_exps + 0.2, 2)
+
+                    print('\nn_gateways:', self.n_gateways)
+
+                logging.debug(self.n_gateways)
+
             else:
                 if num_exps==0:    
                     build_graph(1, 1)
@@ -532,7 +540,7 @@ class Simulator:
 
 
             if self.param=='gateways':
-                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(round(self.n_gateways*100),1)), 'w') as f:
+                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(round(self.n_gateways*100, 1))), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['lats'])
                     writer.writeheader()
 
