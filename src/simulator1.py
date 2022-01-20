@@ -532,7 +532,7 @@ class Simulator:
 
 
             if self.param=='gateways':
-                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(self.n_gateways*100)), 'w') as f:
+                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(round(self.n_gateways*100),1)), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['lats'])
                     writer.writeheader()
 

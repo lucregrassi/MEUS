@@ -17,6 +17,7 @@ from owlready2 import *
 from pprint import pprint
 from functools import reduce  # forward compatibility for Python 3
 import matplotlib.pyplot as plt
+from glob import glob
 
 
 
@@ -146,13 +147,16 @@ def latency_plot(rad_gat):
     assert type(rad_gat)==str and (rad_gat=='radius' or rad_gat=='gateways'),\
         "The parameter over to which plot the graph shoud be either 'radius' or 'gateways' of type string."
 
-    assert os.path.exists(os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)),\
-        'You either have not set the flag -st to True when runnning the simulation or the parameter over which to plot the latencies is not the same one you chose for the simulation. Cannot plot latencies.'
+    # assert os.path.exists(os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)),\
+    #     'You either have not set the flag -st to True when runnning the simulation or the parameter over which to plot the latencies is not the same one you chose for the simulation. Cannot plot latencies.'
 
-    outpath         = os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)
-    files_ns        = [file for file in os.listdir(outpath) if file.endswith('.csv')]
-    files           = sorted(files_ns, key=lambda x: int(x.split('.')[0]))
-    num_of_files    = len(files)
+    outpath = os.path.abspath(os.getcwd()) + '/'
+    folders = sorted(glob(outpath + 'exp[0-4]'))
+
+    files = [file for folder in folders for file in os.listdir(folder+'/lats')]
+    num_of_files = len(files)
+
+
 
     assert num_of_files >= 3,\
         'You have to run at least 3 experiments first.'
@@ -165,8 +169,8 @@ def latency_plot(rad_gat):
             'Number of latencies for the number of gateways parameter plot has to be at least 4.'
 
 
-    latencies = [pd.read_csv(outpath + '/{0}.0%.csv'.format(i.split('.')[0]))['lats'] for i in files] if rad_gat=='gateways' \
-        else [pd.read_csv(outpath + '/{0}Km.csv'.format(i.split('.')[0][0]))['lats'] for i in files]
+    latencies = [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in os.listdir(folder+'/lats')] if rad_gat=='gateways' \
+        else [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in os.listdir(folder+'/lats')]
 
     plt.style.use('seaborn-whitegrid')
     plt.figure()
