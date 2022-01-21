@@ -107,11 +107,10 @@ In order to plot the metrics of evaluation for every event in the graph and the 
 ```bash
 python plot_graphs.py
 ```
-It has to be noticed that, in order to plot the latency profiles, prior to launching the script the user should have run already 3 or 4 experiments keeping fixed every parameter except for either the magnitude of the radius of the hub(s) or the percentage of gateways' agents present in the environment. The experiments for the simulator should be run with the -st flag set to True:
+The experiments for the simulator should be run with the -st flag set to True and the simualtor will perform either 3 or 4 experiments according to the parameter set (radius and gateways, respectively):
 ```bash
 python main.py -st True
 ```
-The results of the latencies would be stored in a folder src/lats_<either 'gateways' or 'radius'> (according to the param that is being tweaked during the current sets of simulations). From this folder then the plot_graphs.py script will retrieve the data and proceed on plotting the graphs.
 ## Authors
 | Name | E-mail |
 |------|--------|

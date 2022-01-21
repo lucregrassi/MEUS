@@ -17,6 +17,7 @@ import osmnx as ox
 import pandas as pd
 from owlready2 import *
 from glob import glob
+from save_graph import save_graph
 
 from Agent import Agent
 from pprint import pprint
@@ -41,7 +42,7 @@ class Simulator:
         self.agents_dict2       = {}
         self.node_state_dict    = {}
         self.events             = []
-        self.G                  = ox.load_graphml('graph/graph.graphml')
+        # self.G                  = ox.load_graphml('graph/graph.graphml')
         self.tic                = 0
         self.toc                = 0
         self.t_all              = 0
@@ -425,7 +426,7 @@ class Simulator:
                     # Update the position of the agent
                     # for ie in self.agents_dict[key].ies:
                     #     print(ie[0], ", ", ie[1:] )
-                        # input()
+                    #     input()
                     self.update_position(self.agents_dict[key], count)
                 
                 self.exchange_information(count)
@@ -489,11 +490,16 @@ class Simulator:
                 logging.debug(self.n_gateways)
 
             else:
-                if num_exps==0:    
+                if num_exps==0:
+
+                    if not os.path.exists('./graph/graph_temp.graphml'):
+                        save_graph('Amatrice, Rieti, Lazio')
                     build_graph(1, 1)
+                    self.radius = 1
                 else:
                     build_graph(1, num_exps+2)
-                
+                    self.radius = num_exps + 2
+        self.G = ox.load_graphml('graph/graph.graphml')
 
 
         self.onto.load()
@@ -548,7 +554,7 @@ class Simulator:
                         writer.writerow({'lats': el})
 
             else:
-                with open(self.path + '/exp{0}/lats/{1}Km.csv'.format(num_exps,self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/lats/{1}Km.csv'.format(num_exps, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['lats'])
                     writer.writeheader()
 
