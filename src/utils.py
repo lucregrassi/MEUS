@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 import krippendorff
 from os import path
+import os
 
 from owlready2 import *
 from pprint import pprint

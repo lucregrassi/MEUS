@@ -87,6 +87,7 @@ def plot_metrics():
     outpath = os.path.abspath(os.getcwd()) + '/'
     folders = sorted(glob(outpath + 'exp[0-4]'))
 
+
     for folder in folders:
         try:
             if not os.path.exists(outpath + folder.split('/')[-1] + '/plots'):
@@ -112,7 +113,7 @@ def plot_metrics():
         for i in [int(file.split('.')[0]) for file in files]:
 
             if len(dist[count])>1:
-                plt.figure(i)
+                plt.figure(folder.split('/')[-1]+'_'+str(i))
 
                 # plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
                 #                                 gts[count]['situation'],

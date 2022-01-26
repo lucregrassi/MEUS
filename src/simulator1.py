@@ -568,14 +568,14 @@ class Simulator:
                 shutil.move(csv_f, './exp{0}'.format(num_exps))
             
 
-        plt.style.use('seaborn-whitegrid')
-        plt.plot(self.mean_loop_duration, label='loop duration', c='b')
+        # plt.style.use('seaborn-whitegrid')
+        # plt.plot(self.mean_loop_duration, label='loop duration', c='b')
         
-        plt.legend(loc='upper left')
-        plt.ylabel('duration')
-        plt.xlabel('# of loops')
-        plt.tight_layout()
-        plt.savefig(path.join(self.path, 'loop_duration.svg'))
+        # plt.legend(loc='upper left')
+        # plt.ylabel('duration')
+        # plt.xlabel('# of loops')
+        # plt.tight_layout()
+        # plt.savefig(path.join(self.path, 'loop_duration.svg'))
 
         # input("check 3 explore_graph.py")
         response = requests.delete(self.BASE + "IE/1" )
