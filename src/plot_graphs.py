@@ -45,41 +45,53 @@ def show_mean_and_stddev():
 
         flatten_cvr = list(itertools.chain(*cvr))
 
-        agree       = [dist[i] for i, el in enumerate(flatten_cvr) if el==1]
-        disagree    = [dist[i] for i, el in enumerate(flatten_cvr) if el==0]
+        dist_agree       = [dist[i] for i, el in enumerate(flatten_cvr) if el==1]
+        dist_disagree    = [dist[i] for i, el in enumerate(flatten_cvr) if el==0]
+
+        Kalpha_agree    = [Kalpha[i] for i, el in enumerate(flatten_cvr) if el==1]
+        Kalpha_disagree = [Kalpha[i] for i, el in enumerate(flatten_cvr) if el==0]
 
         x1 = 0
         x2 = 1
 
         d = Counter(flatten_cvr)
 
+        a_dmean      = round(statistics.mean(dist_agree), 3) if d[x2]>=2 else None
+        a_dstddev    = round(statistics.stdev(dist_agree), 3) if d[x2]>=2 else None
 
-        a_mean      = round(statistics.mean(agree), 3) if d[x2]>=2 else None
-        a_stddev    = round(statistics.stdev(agree), 3) if d[x2]>=2 else None
+        da_dmean     = round(statistics.mean(dist_disagree), 3) if d[x1]>=2 else None
+        da_dstddev   = round(statistics.stdev(dist_disagree), 3) if d[x1]>=2 else None
 
-        da_mean     = round(statistics.stdev(disagree), 3) if d[x1]>=2 else None
-        da_stddev   = round(statistics.stdev(disagree), 3) if d[x1]>=2 else None
+        a_Kmean     = round(statistics.mean(Kalpha_agree), 3) if d[x2]>=2 else None
+        a_Kstddev   = round(statistics.stdev(Kalpha_agree), 3) if d[x2]>=2 else None
+
+        da_Kmean    = round(statistics.mean(Kalpha_disagree), 3) if d[x1]>=2 else None
+        da_Kstddev  = round(statistics.stdev(Kalpha_disagree), 3) if d[x1]>=2 else None
 
         print(f"Value {x1} has been dtected {d[x1]} times")
         print(f"Value {x2} has been dtected {d[x2]} times")
-        print(f"Mean distance and standard deviation for agreement are:\n {a_mean}, {a_stddev}")
-        print(f"Mean distance and standard deviation for disagreement are:\n {da_mean}, {da_stddev}")
+        print(f"Mean distance and standard deviation for agreement are:\n {a_dmean}, {a_dstddev}")
+        print(f"Mean distance and standard deviation for disagreement are:\n {da_dmean}, {da_dstddev}")
 
         with open(exp_path + '/meanStddv/agreement.csv', 'w') as f:
-            writer = csv.DictWriter(f, ['mean', 'stddev', 'ratio'])
+            writer = csv.DictWriter(f, ['dist_mean', 'dist_stddev', 'Kalpha_mean', 'Kalpha_stddev', 'ratio'])
             writer.writeheader()
 
-            writer.writerow({     'mean': a_mean,
-                                'stddev': a_stddev,
-                                'ratio':  str(round(d[x2]/(d[x2] + d[x1])*100, 2)) + '%'})
+            writer.writerow({     'dist_mean':      a_dmean,
+                                'dist_stddev':      a_dstddev,
+                                'Kalpha_mean':      a_Kmean,
+                                'Kalpha_stddev':    a_Kstddev,
+                                'ratio':            str(round(d[x2]/(d[x2] + d[x1])*100, 2)) + '%'})
 
         with open(exp_path + '/meanStddv/disagreement.csv', 'w') as f:
-            writer = csv.DictWriter(f, ['mean', 'stddev', 'ratio'])
+            writer = csv.DictWriter(f, ['dist_mean', 'dist_stddev', 'Kalpha_mean', 'Kalpha_stddev', 'ratio'])
             writer.writeheader()
 
-            writer.writerow({     'mean': da_mean,
-                                'stddev': da_stddev,
-                                'ratio':  str(round(d[x1]/(d[x2] + d[x1])*100, 2)) + '%'})
+            writer.writerow({     'dist_mean':      da_dmean,
+                                'dist_stddev':      da_dstddev,
+                                'Kalpha_mean':      da_Kmean,
+                                'Kalpha_stddev':    da_Kstddev,
+                                'ratio':            str(round(d[x1]/(d[x2] + d[x1])*100, 2)) + '%'})
             
 
 def plot_metrics():
@@ -115,27 +127,25 @@ def plot_metrics():
             if len(dist[count])>1:
                 plt.figure(folder.split('/')[-1]+'_'+str(i))
 
+                plotted_to_be = [dist[count][n]
+                                                if gts[count]['situation'] not in [obs['situation'] for obs in obss[count][n]]\
+                                                or gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]]\
+                                                and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                                else\
+                                                0 if gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]] and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                                                else None\
+                                                for n in range(len(dist[count]))]
+                
                 # plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
                 #                                 gts[count]['situation'],
                 #                                 lis)
-                #                                 if gts[count]['situation'] not in [obs['situation'] for obs in obss[count][n]]\
-                #                                 or gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]]\
-                #                                 and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                #                                 if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+                #                                 or gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
+                #                                 and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
                 #                                 else\
-                #                                 0 if gts[count]['situation'] in [obs['situation'] for obs in obss[count][n]] and [obs['situation'] for obs in obss[count][n]].index(gts[count]['situation'])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
+                #                                 0 if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]] and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
                 #                                 else None\
                 #                                 for n in range(len(dist[count]))]
-                
-                plotted_to_be = [Compute_dist(  obss[count][n][[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))]['situation'],
-                                                gts[count]['situation'],
-                                                lis)
-                                                if gts[count] not in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
-                                                or gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]]\
-                                                and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])!=[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
-                                                else\
-                                                0 if gts[count] in [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]] and [{'situation':obs['situation'], 'object': obs['object'] } for obs in obss[count][n]].index(gts[count])==[obs['coders'] for obs in obss[count][n]].index(np.max([obs['coders'] for obs in obss[count][n]]))\
-                                                else None\
-                                                for n in range(len(dist[count]))]
                 
                 # logging.debug(plotted_to_be)
 
