@@ -1,77 +1,67 @@
-import os
 import csv
 import copy
 import math
 import json
-import time
 import shutil
-
-import random
 import logging
 import requests
 import statistics
-from os import path
-
 import numpy as np
 import osmnx as ox
-import pandas as pd
 from owlready2 import *
 from glob import glob
 from save_graph import save_graph
 
 from Agent import Agent
 from pprint import pprint
-import matplotlib.pyplot as plt
 from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
 from utils import NewIEtoDict, getIndexOfTuple
-from connectivity import build_graph, color
-
+from connectivity import build_graph
 
 logging.basicConfig(filename="prova2.log",
                     level=logging.DEBUG)
 
 
 class Simulator:
-    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0, param='gateways'):
-        self.n_agents           = n_agents
-        self.n_gateways         = n_gateways
-        self.perc_seen_ev       = 0
-        self.loop_distance      = loop_distance
-        self.agents_dict        = {}
-        self.agents_dict2       = {}
-        self.node_state_dict    = {}
-        self.events             = []
+    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25,
+                 store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0, param='gateways'):
+        self.n_agents = n_agents
+        self.n_gateways = n_gateways
+        self.perc_seen_ev = 0
+        self.loop_distance = loop_distance
+        self.agents_dict = {}
+        self.agents_dict2 = {}
+        self.node_state_dict = {}
+        self.events = []
         # self.G                  = ox.load_graphml('graph/graph.graphml')
-        self.tic                = 0
-        self.toc                = 0
-        self.t_all              = 0
-        self.BASE               = "http://127.0.0.1:5000/"
-        self.seed               = seed
-        self.num_loops          = 0
-        self.threshold          = threshold
-        self.onto               = get_ontology("ontology/MEUS.owl")
-        self.obs_ev             = 0
-        self.latency            = []
-        self.err_rate           = err_rate
-        self.mean_succ_rate     = []
-        self.mean_succ_rate2    = []
-        self.stddev_succ_rate   = []
-        self.stddev_succ_rate2  = []
-        self.first_time         = False
-        self.similarity_err     = []
-        self.loop_duration      = []
+        self.tic = 0
+        self.toc = 0
+        self.t_all = 0
+        self.BASE = "http://127.0.0.1:5000/"
+        self.seed = seed
+        self.num_loops = 0
+        self.threshold = threshold
+        self.onto = get_ontology("ontology/MEUS.owl")
+        self.obs_ev = 0
+        self.latency = []
+        self.err_rate = err_rate
+        self.mean_succ_rate = []
+        self.mean_succ_rate2 = []
+        self.stddev_succ_rate = []
+        self.stddev_succ_rate2 = []
+        self.first_time = False
+        self.similarity_err = []
+        self.loop_duration = []
         self.mean_loop_duration = []
-        self.interval           = 0
-        self.store_latency      = store_latency
-        self.path               = path
-        self.radius             = radius
-        self.th                 = th
-        self.param              = param
-
+        self.interval = 0
+        self.store_latency = store_latency
+        self.path = path
+        self.radius = radius
+        self.th = th
+        self.param = param
 
     def compute_destination(self, current_node, ag):
-
         # if len([n for n in self.G.neighbors(current_node)])==0:
         #     print([n for n in self.G.neighbors(current_node)])
         source_nodes = []
@@ -84,24 +74,22 @@ class Simulator:
             if target == current_node:
                 source_nodes.append(source)
 
-
         adj_nodes = source_nodes + target_nodes
-            # print(adj_nodes)
-            # input()
+        # print(adj_nodes)
+        # input()
 
         # destination_node    = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
-        destination_node    = int(np.random.choice(adj_nodes))
+        destination_node = int(np.random.choice(adj_nodes))
         if destination_node in target_nodes:
-                edges_of_interest = self.G[current_node][destination_node]
+            edges_of_interest = self.G[current_node][destination_node]
         else:
             edges_of_interest = self.G[destination_node][current_node]
-            
+
         for edge in edges_of_interest.values():
             distance = edge.get('length')
         # distance            = self.G[current_node][destination_node][0]['length']
 
         return destination_node, distance
-
 
     def exchange_information(self, loop):
         delete = []
@@ -114,9 +102,10 @@ class Simulator:
                     for ag_id in self.node_state_dict[k]:
                         # If the teller has a different id (is not the listener), and if they both have
                         candidate = self.agents_dict[str(ag_id)]
-                        if candidate.n != listener.n and len(candidate.ies)>0:
+                        if candidate.n != listener.n and len(candidate.ies) > 0:
                             # Look for common local connections
-                            perform_exchange = True if any(j in candidate.local_conn for j in listener.local_conn) else False
+                            perform_exchange = True if any(
+                                j in candidate.local_conn for j in listener.local_conn) else False
                             # If there is at least a common local connection or a common global connection available
                             if perform_exchange:
                                 teller = candidate
@@ -138,21 +127,20 @@ class Simulator:
                                             for quadrupla in IE_teller[1:]:
                                                 # If the listener is not a teller in a tuple of the IE,
                                                 # or the teller has not previously told the information to the listener
-                                                if quadrupla[0]==listener.n:
+                                                if quadrupla[0] == listener.n:
                                                     already_told = True
                                                     break
                                             for tup in lis_ie[1:]:
-                                                if (tup[0]==teller.n and tup[1]==listener.n):
+                                                if tup[0] == teller.n and tup[1] == listener.n:
                                                     already_told = True
                                                     break
 
                                     if not already_told:
                                         if same_root:
                                             if len(IE_teller[1:]) > 0:
-
-                                                target_extend = []
-                                                target_extend.append((teller.n, listener.n, int(k), loop))
-                                                target_extend.extend(elem for elem in IE_teller[1:] if elem not in listener.ies[index])
+                                                target_extend = [(teller.n, listener.n, int(k), loop)]
+                                                target_extend.extend(
+                                                    elem for elem in IE_teller[1:] if elem not in listener.ies[index])
 
                                                 # communicating the information to the listener
                                                 listener.ies[index].extend(target_extend)
@@ -167,27 +155,24 @@ class Simulator:
         for k in delete:
             del self.node_state_dict[k]
 
-
-    def update_position(self, a, loop): 
-
+    def update_position(self, a, loop):
         if not a.moving:
             # Arrived to destination node
-            previous_node               = a.curr_node
-            a.curr_node                 = a.dest_node
-            destination_node, distance  = self.compute_destination(a.dest_node, a.n)
-            a.dest_node                 = destination_node
-            a.distance                  = distance
+            previous_node = a.curr_node
+            a.curr_node = a.dest_node
+            destination_node, distance = self.compute_destination(a.dest_node, a.n)
+            a.dest_node = destination_node
+            a.distance = distance
             # a.path = path
             a.moving = True
             a.road = 0
-
 
             node_situation = []
             node_object = []
             flag = False
             # Update the counters in the nodes and acquire the situation and the object in the new current node
-            self.G.nodes[previous_node]['n_agents']  = int(self.G.nodes[previous_node]['n_agents']) - 1
-            self.G.nodes[a.curr_node]['n_agents']    = int(self.G.nodes[a.curr_node]['n_agents'])   + 1
+            self.G.nodes[previous_node]['n_agents'] = int(self.G.nodes[previous_node]['n_agents']) - 1
+            self.G.nodes[a.curr_node]['n_agents'] = int(self.G.nodes[a.curr_node]['n_agents']) + 1
 
             if (str(previous_node)) in self.node_state_dict and a.n in self.node_state_dict[str(previous_node)]:
                 self.node_state_dict[str(previous_node)].remove(a.n)
@@ -199,36 +184,34 @@ class Simulator:
 
             if self.G.nodes[a.curr_node]['situation'] != 'None':
                 flag = True
-                node_situation  = self.G.nodes[a.curr_node]['situation']
-                node_object     = self.G.nodes[a.curr_node]['object']
-
+                node_situation = self.G.nodes[a.curr_node]['situation']
+                node_object = self.G.nodes[a.curr_node]['object']
 
             # Add the new current node to the list of visited nodes of the person
             a.visited_nodes.append(a.curr_node)
             # The actual situation and object seen by the person depend on its trustworthiness
             if flag:
-    
-                # agents can have an error rate in the self.interval [0.5, 1]
-                a.error     = round(np.random.random(), 2)
-                distance    = 0
 
-                if a.n>math.floor(self.n_gateways*self.n_agents ):
-                    if a.error<self.err_rate:
+                # agents can have an error rate in the self.interval [0.5, 1]
+                a.error = round(np.random.random(), 2)
+                distance = 0
+
+                if a.n > math.floor(self.n_gateways * self.n_agents):
+                    if a.error < self.err_rate:
                         if 0. <= a.error <= self.interval:
                             distance = 1
-                        elif self.interval <= a.error < self.interval*2:
+                        elif self.interval <= a.error < self.interval * 2:
                             distance = 2
-                        elif self.interval*2 <= a.error < self.interval*3:
+                        elif self.interval * 2 <= a.error < self.interval * 3:
                             distance = 3
 
-                        seen_sit    = get_cls_at_dist(node_situation, self.err_rate, distance=distance)
-                        seen_obj    = get_cls_at_dist(node_object, self.err_rate, distance=distance)
-                        seen_ev     = (seen_sit, seen_obj)
+                        seen_sit = get_cls_at_dist(node_situation, self.err_rate, distance=distance)
+                        seen_obj = get_cls_at_dist(node_object, self.err_rate, distance=distance)
+                        seen_ev = (seen_sit, seen_obj)
                     else:
-                        seen_ev     = (node_situation, node_object)
+                        seen_ev = (node_situation, node_object)
                 else:
-                    seen_ev     = (node_situation, node_object)
-
+                    seen_ev = (node_situation, node_object)
 
                 a.seen_events.append(seen_ev)
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
@@ -240,34 +223,31 @@ class Simulator:
             # If the person is moving, check if it has reached the destination
             if a.distance > 0:
                 # If it has not reached the destination, move of the defined distance
-                a.distance  -= self.loop_distance
-                a.road      += self.loop_distance 
-
+                a.distance -= self.loop_distance
+                a.road += self.loop_distance
                 # geolocalise_me(a)
             else:
                 # If the distance is 0 or negative it means that the destination has been reached
                 a.moving = False
 
-
     def send_info(self, agent, loop):
-
         conn = self.G.nodes.get(agent.curr_node)['connection']
         conn = conn.split(",")
         conn_new = [int(i) for i in conn]
 
-        if any(j in agent.global_conn for j in conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(agent.ies):
-            
+        if any(j in agent.global_conn for j in conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(
+                agent.ies):
             knowledge = []
+            knowledge = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
+            ns = [NewIEtoDict(copy.deepcopy(agent.ies[i]))[0] for i in range(agent.num_info_sent, len(agent.ies))]
+            distances = [self.agents_dict[str(n['id'])].err_distances[
+                             getIndexOfTuple(self.agents_dict[str(n['id'])].err_distances, 1, n['when'])][0] for n in
+                         ns]
+            knowledge.append({'db_sender': agent.n,
+                              'distances': distances,
+                              'time': loop,
+                              'sent_where': agent.curr_node})
 
-            knowledge   = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
-            ns          = [NewIEtoDict(copy.deepcopy(agent.ies[i]))[0] for i in range(agent.num_info_sent, len(agent.ies))]
-            distances   = [self.agents_dict[str(n['id'])].err_distances[ getIndexOfTuple(    self.agents_dict[str(n['id'])].err_distances, 1, n['when']) ][0] for n in ns]
-
-            knowledge.append({  'db_sender':        agent.n,
-                                'distances':        distances,
-                                'time':             loop,
-                                'sent_where':       agent.curr_node})
- 
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
 
@@ -280,25 +260,24 @@ class Simulator:
                 ind = 0
                 for i, ev in enumerate(res['events']):
                     # checking if its the first time the observation has been made
-                    if ev['first_time']==1 and 'db_time' not in self.events[i]:
-                    
-                        self.events[i]  = ev
+                    if ev['first_time'] == 1 and 'db_time' not in self.events[i]:
 
-                        toc_db  = time.perf_counter()
-                        t       = toc_db - self.tic
+                        self.events[i] = ev
+
+                        toc_db = time.perf_counter()
+                        t = toc_db - self.tic
                         self.events[i]['db_time'] = t
 
                         self.obs_ev += 1
-                        self.perc_seen_ev = 100*self.obs_ev/len(self.events)
+                        self.perc_seen_ev = 100 * self.obs_ev / len(self.events)
 
                         # self.latency.append(res['latency2'][indice]['lat'])
                         self.latency.append(res['latency'][ind]['sent_at_loop'])
 
                         ind += 1
 
-                        if self.perc_seen_ev>=self.threshold:
+                        if self.perc_seen_ev >= self.threshold:
                             return
-
 
             # elif loop >= len(self.events) and 'all_events_db' in res:
             #     toc_all_db = time.perf_counter()
@@ -312,38 +291,29 @@ class Simulator:
             #     pprint(knowledge)
             #     input()
 
-            # consider only informations that have not yet been sent to the db
-            prior_threshold     = agent.num_info_sent
+            # consider only information that have not yet been sent to the db
+            prior_threshold = agent.num_info_sent
             agent.num_info_sent += (len(agent.ies) - prior_threshold)
 
-
     def simulate(self):
-
-        ag_global = math.floor(self.n_gateways*self.n_agents)
-
+        ag_global = math.floor(self.n_gateways * self.n_agents)
         mu, sigma = 0, 1
-
         l = [n[0] for n in self.G.nodes.data()]
-
         g_flag = False
         for i in range(self.n_agents):
 
             # curr_node = random.choice(list(n[0] for n in self.G.nodes.data()))
-            curr_node = l[np.random.randint(0, len(l)-1)]
-
+            curr_node = l[np.random.randint(0, len(l) - 1)]
             situation = {}
             obj = []
-
             dest_node, dist = self.compute_destination(curr_node, None)
 
             # Instantiate the Person class passing the arguments
             err = np.random.random()
 
-            agent = Agent(i, curr_node, dest_node, dist, err) #if i!= 3 else Agent(i, curr_node, dest_node, dist, 0)
-            
-            agent.mu    = mu
+            agent = Agent(i, curr_node, dest_node, dist, err)  # if i!= 3 else Agent(i, curr_node, dest_node, dist, 0)
+            agent.mu = mu
             agent.sigma = sigma
-
             agent.visited_nodes.append(curr_node)
 
             for elem in self.G.nodes(data=True):
@@ -361,22 +331,20 @@ class Simulator:
                         obj = elem[1]['object']
 
                         agent.error = round(np.random.random(), 2)
-                        distance    = 0
+                        distance = 0
 
-
-                        if i>ag_global:
-                            if agent.error<self.err_rate:
+                        if i > ag_global:
+                            if agent.error < self.err_rate:
                                 if 0. <= agent.error <= self.interval:
                                     distance = 1
-                                elif self.interval <= agent.error < self.interval*2:
+                                elif self.interval <= agent.error < self.interval * 2:
                                     distance = 2
-                                elif self.interval*2 <= agent.error < self.interval*3:
+                                elif self.interval * 2 <= agent.error < self.interval * 3:
                                     distance = 3
 
-
-                                seen_sit    = get_cls_at_dist(situation, self.err_rate, distance=distance)
-                                seen_obj    = get_cls_at_dist(obj, self.err_rate, distance=distance)
-                                seen_ev     = (seen_sit, seen_obj)
+                                seen_sit = get_cls_at_dist(situation, self.err_rate, distance=distance)
+                                seen_obj = get_cls_at_dist(obj, self.err_rate, distance=distance)
+                                seen_ev = (seen_sit, seen_obj)
 
                             else:
                                 seen_ev = (situation, obj)
@@ -385,16 +353,16 @@ class Simulator:
 
                         agent.seen_events.append(seen_ev)
 
-                        agent.ies.append([NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
+                        agent.ies.append(
+                            [NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
                         agent.error_list.append((agent.error, 0))
                         agent.err_distances.append((distance, 0))
                         # agent.rating_list.append((agent.rating, 0))
 
-
             # Initialize the connections owned by the person
             if i < ag_global:
                 agent.global_conn = [1, 2, 3]
-                agent.weight      = 6
+                agent.weight = 6
 
             # Initialize array of local connections, choosing randomly, removing duplicates
             agent.local_conn = [1, 2, 3]
@@ -402,22 +370,21 @@ class Simulator:
             self.agents_dict[str(i)] = agent
 
             # initial reputation and error of each agent
-            self.agents_dict2[str(i)] = {   'rep':      [agent.reputation],
-                                            'rep2':     [agent.reputation2],
-                                            'rel':      [agent.error],
-                                            'when':     [0],
-                                            'when2':    [0]
-                                        }
-
+            self.agents_dict2[str(i)] = {'rep': [agent.reputation],
+                                         'rep2': [agent.reputation2],
+                                         'rel': [agent.error],
+                                         'when': [0],
+                                         'when2': [0]
+                                         }
 
         # Exchange info between agents in the initial position
         self.exchange_information(0)
 
         count = 0
-        assert self.th >=0,\
+        assert self.th >= 0, \
             'threshold for end of experiment cannot be a negative value.'
-        if self.th==0:            
-            while self.perc_seen_ev<self.threshold:
+        if self.th == 0:
+            while self.perc_seen_ev < self.threshold:
                 start_time = time.time()
 
                 print("\nIteration " + str(count))
@@ -428,7 +395,7 @@ class Simulator:
                     #     print(ie[0], ", ", ie[1:] )
                     #     input()
                     self.update_position(self.agents_dict[key], count)
-                
+
                 self.exchange_information(count)
 
                 for key in self.agents_dict.keys():
@@ -437,12 +404,10 @@ class Simulator:
                 print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
                 count += 1
 
-                self.loop_duration.append(time.time()-start_time)
-
+                self.loop_duration.append(time.time() - start_time)
                 self.mean_loop_duration.append(statistics.mean(self.loop_duration))
-        
         else:
-            while count<self.th:
+            while count < self.th:
                 start_time = time.time()
 
                 print("\nIteration " + str(count))
@@ -451,9 +416,9 @@ class Simulator:
                     # Update the position of the agent
                     # for ie in self.agents_dict[key].ies:
                     #     print(ie[0], ", ", ie[1:] )
-                        # input()
+                    # input()
                     self.update_position(self.agents_dict[key], count)
-                
+
                 self.exchange_information(count)
 
                 for key in self.agents_dict.keys():
@@ -462,49 +427,40 @@ class Simulator:
                 print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
                 count += 1
 
-                self.loop_duration.append(time.time()-start_time)
+                self.loop_duration.append(time.time() - start_time)
 
                 self.mean_loop_duration.append(statistics.mean(self.loop_duration))
-
-
         return count
 
-
     def run(self):
-
         num_exps = 0
-
         if self.store_latency:
             self.th = 0
             num_exps = len(glob('./exp[0-4]'))
-
-            if self.param=='gateways':
+            if self.param == 'gateways':
                 # num_exps = len(glob('./exp[0-6]'))
-                if num_exps==0:
+                if num_exps == 0:
                     self.n_gateways = 0.2
                 else:
-                    self.n_gateways = round(0.2*num_exps + 0.2, 2)
+                    self.n_gateways = round(0.2 * num_exps + 0.2, 2)
 
                     print('\nn_gateways:', self.n_gateways)
 
                 logging.debug(self.n_gateways)
-
             else:
-                if num_exps==0:
+                if num_exps == 0:
 
                     if not os.path.exists('./graph/graph_temp.graphml'):
                         save_graph('Amatrice, Rieti, Lazio')
                     build_graph(1, 1)
                     self.radius = 1
                 else:
-                    build_graph(1, num_exps+2)
+                    build_graph(1, num_exps + 2)
                     self.radius = num_exps + 2
         self.G = ox.load_graphml('graph/graph.graphml')
 
-
         self.onto.load()
         np.random.seed(self.seed)
-
         self.interval = self.err_rate / 3
 
         # collecting events in the environment
@@ -512,24 +468,24 @@ class Simulator:
             #     print(node)
             # input("checking nodes")
             if node[1]['situation'] != 'None':
-
                 self.events.append({
-                    'situation':    node[1]['situation'],
-                    'object':       node[1]['object'],
-                    'where':        node[0],
-                    'mistaken':     {'times': 0, 'difference': []},
-                    'correct':      0,
-                    'first_time':   0
+                    'situation': node[1]['situation'],
+                    'object': node[1]['object'],
+                    'where': node[0],
+                    'mistaken': {'times': 0, 'difference': []},
+                    'correct': 0,
+                    'first_time': 0
                 })
-        
-        inf = {'events': self.events, 'n_agents': self.n_agents, 'n_gateways': math.floor(self.n_gateways*self.n_agents)}
+
+        inf = {'events': self.events, 'n_agents': self.n_agents,
+               'n_gateways': math.floor(self.n_gateways * self.n_agents)}
 
         response = requests.put(self.BASE + "/IE/events", json.dumps(inf))
-        
+
         ''' Running the simulation '''
-        self.tic        = time.perf_counter()
-        self.num_loops  = self.simulate()
-        self.toc        = time.perf_counter()
+        self.tic = time.perf_counter()
+        self.num_loops = self.simulate()
+        self.toc = time.perf_counter()
 
         pprint(self.events)
 
@@ -538,39 +494,34 @@ class Simulator:
 
         if self.store_latency:
             try:
-                if not os.path.exists(self.path +'/exp{0}/lats'.format(num_exps)):
+                if not os.path.exists(self.path + '/exp{0}/lats'.format(num_exps)):
                     os.makedirs(self.path + '/exp{0}/lats'.format(num_exps))
 
             except OSError:
-                print ('Error: Creating directory of data lats')
+                print('Error: Creating directory of data lats')
 
-
-            if self.param=='gateways':
-                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(round(self.n_gateways*100, 1))), 'w') as f:
+            if self.param == 'gateways':
+                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(round(self.n_gateways * 100, 1))),
+                          'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['lats'])
                     writer.writeheader()
 
                     for el in self.latency:
                         writer.writerow({'lats': el})
-
             else:
                 with open(self.path + '/exp{0}/lats/{1}Km.csv'.format(num_exps, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['lats'])
                     writer.writeheader()
-
                     for el in self.latency:
                         writer.writerow({'lats': el})
 
-            csv_files = sorted(glob( './*.csv'))
-
-
+            csv_files = sorted(glob('./*.csv'))
             for csv_f in csv_files:
                 shutil.move(csv_f, './exp{0}'.format(num_exps))
-            
 
         # plt.style.use('seaborn-whitegrid')
         # plt.plot(self.mean_loop_duration, label='loop duration', c='b')
-        
+
         # plt.legend(loc='upper left')
         # plt.ylabel('duration')
         # plt.xlabel('# of loops')
@@ -578,6 +529,6 @@ class Simulator:
         # plt.savefig(path.join(self.path, 'loop_duration.svg'))
 
         # input("check 3 explore_graph.py")
-        response = requests.delete(self.BASE + "IE/1" )
+        response = requests.delete(self.BASE + "IE/1")
         res = response.json()
         pprint(res)

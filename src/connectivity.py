@@ -1,10 +1,7 @@
 import math
 import random
-import logging
 import osmnx as ox
-from datetime import datetime
 import networkx as nx
-from pprint import pprint
 
 
 random.seed(1)

@@ -1,8 +1,5 @@
 from owlready2 import *
 import random
-import math
-import copy
-import numpy as np
 
 # Import and load the ontology from the owl file
 onto = get_ontology("ontology/MEUS.owl")
@@ -70,9 +67,8 @@ def recursive_up(cls, dictionary, i):
         # print("yo")
         return
     else:
-        i +=1
+        i += 1
         recursive_up(parent_cls, dictionary, i)
-
 
 
 def recursive_down(start_cls, dictionary, i):
