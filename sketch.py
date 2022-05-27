@@ -235,15 +235,3 @@ def Compute_dist(cls1, cls2, lis):
     for t, val in enumerate(lis[cls1]):
         if val[0] == cls2:
             return lis[cls1][t][1]
-
-# print(Compute_dist('NoFoodPeople', 'Situation', lis))
-# input()
-# # H = {
-# #             'A': 1,
-# #             'B': 1,
-# #             'C': 1,
-# #             'D': 1
-# #         }
-# H = {key:1 for key in lis.keys()}
-# graph1 = Graph(lis, H)
-# graph1.a_star_algorithm('NoFoodPeople', 'Situation')

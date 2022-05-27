@@ -11,30 +11,29 @@ import osmnx as ox
 from owlready2 import *
 from glob import glob
 from save_graph import save_graph
-
 from Agent import Agent
 from pprint import pprint
 from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
 from utils import NewIEtoDict, getIndexOfTuple
 from connectivity import build_graph
+from scipy.stats import halfnorm
 
 logging.basicConfig(filename="prova2.log",
                     level=logging.DEBUG)
 
 
 class Simulator:
-    def __init__(self, n_agents=100, n_gateways=0.3, loop_distance=20, seed=3, threshold=70, err_rate=0.25,
-                 store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0, param='gateways'):
+    def __init__(self, n_agents=100, gateway_ratio=0.3, loop_distance=100, seed=3, threshold=30, std_dev=1,
+                 std_dev_gateway=0.5, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0,
+                 param='std_dev'):
         self.n_agents = n_agents
-        self.n_gateways = n_gateways
+        self.gateway_ratio = gateway_ratio
         self.perc_seen_ev = 0
         self.loop_distance = loop_distance
         self.agents_dict = {}
-        self.agents_dict2 = {}
         self.node_state_dict = {}
         self.events = []
-        # self.G                  = ox.load_graphml('graph/graph.graphml')
         self.tic = 0
         self.toc = 0
         self.t_all = 0
@@ -45,21 +44,21 @@ class Simulator:
         self.onto = get_ontology("ontology/MEUS.owl")
         self.obs_ev = 0
         self.latency = []
-        self.err_rate = err_rate
+        self.dir_obs_latency = []
+        self.std_dev = std_dev
+        self.std_dev_gateway = std_dev_gateway
         self.mean_succ_rate = []
-        self.mean_succ_rate2 = []
         self.stddev_succ_rate = []
-        self.stddev_succ_rate2 = []
         self.first_time = False
         self.similarity_err = []
         self.loop_duration = []
         self.mean_loop_duration = []
-        self.interval = 0
         self.store_latency = store_latency
         self.path = path
         self.radius = radius
         self.th = th
         self.param = param
+        self.G = None
 
     def compute_destination(self, current_node, ag):
         # if len([n for n in self.G.neighbors(current_node)])==0:
@@ -75,20 +74,15 @@ class Simulator:
                 source_nodes.append(source)
 
         adj_nodes = source_nodes + target_nodes
-        # print(adj_nodes)
-        # input()
-
         # destination_node    = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
         destination_node = int(np.random.choice(adj_nodes))
         if destination_node in target_nodes:
             edges_of_interest = self.G[current_node][destination_node]
         else:
             edges_of_interest = self.G[destination_node][current_node]
-
+        distance = 0
         for edge in edges_of_interest.values():
             distance = edge.get('length')
-        # distance            = self.G[current_node][destination_node][0]['length']
-
         return destination_node, distance
 
     def exchange_information(self, loop):
@@ -134,7 +128,6 @@ class Simulator:
                                                 if tup[0] == teller.n and tup[1] == listener.n:
                                                     already_told = True
                                                     break
-
                                     if not already_told:
                                         if same_root:
                                             if len(IE_teller[1:]) > 0:
@@ -163,7 +156,6 @@ class Simulator:
             destination_node, distance = self.compute_destination(a.dest_node, a.n)
             a.dest_node = destination_node
             a.distance = distance
-            # a.path = path
             a.moving = True
             a.road = 0
 
@@ -191,33 +183,17 @@ class Simulator:
             a.visited_nodes.append(a.curr_node)
             # The actual situation and object seen by the person depend on its trustworthiness
             if flag:
-
-                # agents can have an error rate in the self.interval [0.5, 1]
-                a.error = round(np.random.random(), 2)
-                distance = 0
-
-                if a.n > math.floor(self.n_gateways * self.n_agents):
-                    if a.error < self.err_rate:
-                        if 0. <= a.error <= self.interval:
-                            distance = 1
-                        elif self.interval <= a.error < self.interval * 2:
-                            distance = 2
-                        elif self.interval * 2 <= a.error < self.interval * 3:
-                            distance = 3
-
-                        seen_sit = get_cls_at_dist(node_situation, self.err_rate, distance=distance)
-                        seen_obj = get_cls_at_dist(node_object, self.err_rate, distance=distance)
-                        seen_ev = (seen_sit, seen_obj)
-                    else:
-                        seen_ev = (node_situation, node_object)
-                else:
-                    seen_ev = (node_situation, node_object)
+                seen_sit = get_cls_at_dist(node_situation, distance=a.error)
+                seen_obj = get_cls_at_dist(node_object, distance=a.error)
+                seen_ev = (seen_sit, seen_obj)
 
                 a.seen_events.append(seen_ev)
                 a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
-                a.error_list.append((a.error, loop))
-                # a.rating_list.append((a.rating, loop))
-                a.err_distances.append((distance, loop))
+                if a.n < self.n_agents * self.gateway_ratio:
+                    a.error_list.append((self.std_dev_gateway, loop))
+                else:
+                    a.error_list.append((self.std_dev, loop))
+                a.err_distances.append((a.error, loop))
 
         else:
             # If the person is moving, check if it has reached the destination
@@ -225,7 +201,6 @@ class Simulator:
                 # If it has not reached the destination, move of the defined distance
                 a.distance -= self.loop_distance
                 a.road += self.loop_distance
-                # geolocalise_me(a)
             else:
                 # If the distance is 0 or negative it means that the destination has been reached
                 a.moving = False
@@ -234,86 +209,82 @@ class Simulator:
         conn = self.G.nodes.get(agent.curr_node)['connection']
         conn = conn.split(",")
         conn_new = [int(i) for i in conn]
-
         if any(j in agent.global_conn for j in conn_new) and len(agent.ies) > 0 and agent.num_info_sent < len(
                 agent.ies):
-            knowledge = []
             knowledge = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
             ns = [NewIEtoDict(copy.deepcopy(agent.ies[i]))[0] for i in range(agent.num_info_sent, len(agent.ies))]
+            print("NS:", ns)
             distances = [self.agents_dict[str(n['id'])].err_distances[
-                             getIndexOfTuple(self.agents_dict[str(n['id'])].err_distances, 1, n['when'])][0] for n in
-                         ns]
+                             getIndexOfTuple(self.agents_dict[str(n['id'])].err_distances, 1, n['when'])][0]
+                         for n in ns]
             knowledge.append({'db_sender': agent.n,
                               'distances': distances,
                               'time': loop,
                               'sent_where': agent.curr_node})
-
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
-
-            # '''weights update'''
-            # for a, w in res['weights'].items():
-            #     self.agents_dict[str(a)].weight = w
-
             # percentage of events seen
             if 'events' in res:
                 ind = 0
                 for i, ev in enumerate(res['events']):
-                    # checking if its the first time the observation has been made
+                    # checking if it's the first time the observation has been made
                     if ev['first_time'] == 1 and 'db_time' not in self.events[i]:
-
                         self.events[i] = ev
-
                         toc_db = time.perf_counter()
                         t = toc_db - self.tic
                         self.events[i]['db_time'] = t
-
                         self.obs_ev += 1
+                        # Percentage of seen events
                         self.perc_seen_ev = 100 * self.obs_ev / len(self.events)
-
-                        # self.latency.append(res['latency2'][indice]['lat'])
                         self.latency.append(res['latency'][ind]['sent_at_loop'])
-
+                        print("Latency:", res['latency'][ind]['sent_at_loop'])
+                        for n in ns:
+                            self.dir_obs_latency.append(res['latency'][ind]['sent_at_loop'] - n["when"])
                         ind += 1
-
                         if self.perc_seen_ev >= self.threshold:
                             return
-
-            # elif loop >= len(self.events) and 'all_events_db' in res:
-            #     toc_all_db = time.perf_counter()
-            #     self.t_all = toc_all_db - self.tic
-
-            # if agent.num_info_sent>0 and not (len(agent.ies)-agent.num_info_sent) == (len(knowledge)-1):
-            #     print("Houston we have a problem!")
-            #     print("agent.num_info_sent: ", agent.num_info_sent)
-            #     print("len(agent.ies): ", len(agent.ies))
-            #     print("len(knowledge): ", len(knowledge)-1)
-            #     pprint(knowledge)
-            #     input()
 
             # consider only information that have not yet been sent to the db
             prior_threshold = agent.num_info_sent
             agent.num_info_sent += (len(agent.ies) - prior_threshold)
 
     def simulate(self):
-        ag_global = math.floor(self.n_gateways * self.n_agents)
+        n_gateway_agents = math.floor(self.gateway_ratio * self.n_agents)
         mu, sigma = 0, 1
         l = [n[0] for n in self.G.nodes.data()]
-        g_flag = False
-        for i in range(self.n_agents):
 
-            # curr_node = random.choice(list(n[0] for n in self.G.nodes.data()))
+        normal_agents = self.n_agents-n_gateway_agents
+        # Generate float values distributed normally, centered in 0 and a certain standard deviation
+        rv = halfnorm.rvs(loc=0, scale=self.std_dev, size=normal_agents)
+        distances = []
+        for elem in rv:
+            if math.floor(elem) > 3:
+                distances.append(3)
+            else:
+                distances.append(math.floor(elem))
+
+        rv = halfnorm.rvs(loc=0, scale=self.std_dev_gateway, size=n_gateway_agents)
+        distances_gateway = []
+        for elem in rv:
+            if math.floor(elem) > 3:
+                distances_gateway.append(3)
+            else:
+                distances_gateway.append(math.floor(elem))
+
+        # Initialize agents
+        for i in range(self.n_agents):
             curr_node = l[np.random.randint(0, len(l) - 1)]
-            situation = {}
-            obj = []
             dest_node, dist = self.compute_destination(curr_node, None)
 
-            # Instantiate the Person class passing the arguments
-            err = np.random.random()
-
-            agent = Agent(i, curr_node, dest_node, dist, err)  # if i!= 3 else Agent(i, curr_node, dest_node, dist, 0)
-            agent.mu = mu
-            agent.sigma = sigma
+            # The error of an agent is initialized to zero
+            agent = Agent(i, curr_node, dest_node, dist, mu=mu, sigma=sigma)
+            # Initialize the connections owned by the person
+            if i < n_gateway_agents:
+                agent.global_conn = [1, 2, 3]
+                agent.weight = 6
+                agent.error = distances_gateway[i]
+            else:
+                agent.error = distances[i-n_gateway_agents]
             agent.visited_nodes.append(curr_node)
 
             for elem in self.G.nodes(data=True):
@@ -330,52 +301,23 @@ class Simulator:
                         situation = elem[1]['situation']
                         obj = elem[1]['object']
 
-                        agent.error = round(np.random.random(), 2)
-                        distance = 0
-
-                        if i > ag_global:
-                            if agent.error < self.err_rate:
-                                if 0. <= agent.error <= self.interval:
-                                    distance = 1
-                                elif self.interval <= agent.error < self.interval * 2:
-                                    distance = 2
-                                elif self.interval * 2 <= agent.error < self.interval * 3:
-                                    distance = 3
-
-                                seen_sit = get_cls_at_dist(situation, self.err_rate, distance=distance)
-                                seen_obj = get_cls_at_dist(obj, self.err_rate, distance=distance)
-                                seen_ev = (seen_sit, seen_obj)
-
-                            else:
-                                seen_ev = (situation, obj)
-                        else:
-                            seen_ev = (situation, obj)
+                        seen_sit = get_cls_at_dist(situation, distance=agent.error)
+                        seen_obj = get_cls_at_dist(obj, distance=agent.error)
+                        seen_ev = (seen_sit, seen_obj)
 
                         agent.seen_events.append(seen_ev)
 
                         agent.ies.append(
                             [NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
-                        agent.error_list.append((agent.error, 0))
-                        agent.err_distances.append((distance, 0))
-                        # agent.rating_list.append((agent.rating, 0))
-
-            # Initialize the connections owned by the person
-            if i < ag_global:
-                agent.global_conn = [1, 2, 3]
-                agent.weight = 6
+                        if i < n_gateway_agents:
+                            agent.error_list.append((self.std_dev_gateway, 0))
+                        else:
+                            agent.error_list.append((self.std_dev, 0))
+                        agent.err_distances.append((agent.error, 0))
 
             # Initialize array of local connections, choosing randomly, removing duplicates
             agent.local_conn = [1, 2, 3]
-            # agent.local_conn = list(dict.fromkeys(random.choices([1, 2, 3], k=random.randint(1, 3))))
             self.agents_dict[str(i)] = agent
-
-            # initial reputation and error of each agent
-            self.agents_dict2[str(i)] = {'rep': [agent.reputation],
-                                         'rep2': [agent.reputation2],
-                                         'rel': [agent.error],
-                                         'when': [0],
-                                         'when2': [0]
-                                         }
 
         # Exchange info between agents in the initial position
         self.exchange_information(0)
@@ -386,49 +328,28 @@ class Simulator:
         if self.th == 0:
             while self.perc_seen_ev < self.threshold:
                 start_time = time.time()
-
                 print("\nIteration " + str(count))
-
                 for key in self.agents_dict.keys():
-                    # Update the position of the agent
-                    # for ie in self.agents_dict[key].ies:
-                    #     print(ie[0], ", ", ie[1:] )
-                    #     input()
                     self.update_position(self.agents_dict[key], count)
-
                 self.exchange_information(count)
-
                 for key in self.agents_dict.keys():
                     self.send_info(self.agents_dict[key], count)
-
                 print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
                 count += 1
-
                 self.loop_duration.append(time.time() - start_time)
                 self.mean_loop_duration.append(statistics.mean(self.loop_duration))
         else:
             while count < self.th:
                 start_time = time.time()
-
                 print("\nIteration " + str(count))
-
                 for key in self.agents_dict.keys():
-                    # Update the position of the agent
-                    # for ie in self.agents_dict[key].ies:
-                    #     print(ie[0], ", ", ie[1:] )
-                    # input()
                     self.update_position(self.agents_dict[key], count)
-
                 self.exchange_information(count)
-
                 for key in self.agents_dict.keys():
                     self.send_info(self.agents_dict[key], count)
-
                 print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
                 count += 1
-
                 self.loop_duration.append(time.time() - start_time)
-
                 self.mean_loop_duration.append(statistics.mean(self.loop_duration))
         return count
 
@@ -438,35 +359,41 @@ class Simulator:
             self.th = 0
             num_exps = len(glob('./exp[0-4]'))
             if self.param == 'gateways':
-                # num_exps = len(glob('./exp[0-6]'))
                 if num_exps == 0:
-                    self.n_gateways = 0.2
+                    if not os.path.exists('graph/graph_temp.graphml'):
+                        print("Saving and building graph")
+                        save_graph('Amatrice, Rieti, Lazio')
+                    build_graph(1, 1)
+                    self.gateway_ratio = 0.2
                 else:
-                    self.n_gateways = round(0.2 * num_exps + 0.2, 2)
-
-                    print('\nn_gateways:', self.n_gateways)
-
-                logging.debug(self.n_gateways)
-            else:
+                    self.gateway_ratio = round(0.2 * num_exps + 0.2, 2)
+            elif self.param == "radius":
                 if num_exps == 0:
-
-                    if not os.path.exists('./graph/graph_temp.graphml'):
+                    if not os.path.exists('graph/graph_temp.graphml'):
+                        print("Saving and building graph")
                         save_graph('Amatrice, Rieti, Lazio')
                     build_graph(1, 1)
                     self.radius = 1
                 else:
                     build_graph(1, num_exps + 2)
                     self.radius = num_exps + 2
+            else:
+                if num_exps == 0:
+                    if not os.path.exists('graph/graph_temp.graphml'):
+                        save_graph('Amatrice, Rieti, Lazio')
+                    build_graph(1, 1)
+                    self.std_dev = 1
+                    self.std_dev_gateway = 1
+                else:
+                    build_graph(1, 1)
+                    self.std_dev = num_exps + 1
+                    self.std_dev_gateway = num_exps + 0.5
         self.G = ox.load_graphml('graph/graph.graphml')
-
         self.onto.load()
         np.random.seed(self.seed)
-        self.interval = self.err_rate / 3
 
         # collecting events in the environment
         for node in self.G.nodes(data=True):
-            #     print(node)
-            # input("checking nodes")
             if node[1]['situation'] != 'None':
                 self.events.append({
                     'situation': node[1]['situation'],
@@ -478,9 +405,9 @@ class Simulator:
                 })
 
         inf = {'events': self.events, 'n_agents': self.n_agents,
-               'n_gateways': math.floor(self.n_gateways * self.n_agents)}
+               'n_gateways': math.floor(self.gateway_ratio * self.n_agents)}
 
-        response = requests.put(self.BASE + "/IE/events", json.dumps(inf))
+        requests.put(self.BASE + "/IE/events", json.dumps(inf))
 
         ''' Running the simulation '''
         self.tic = time.perf_counter()
@@ -494,41 +421,57 @@ class Simulator:
 
         if self.store_latency:
             try:
-                if not os.path.exists(self.path + '/exp{0}/lats'.format(num_exps)):
-                    os.makedirs(self.path + '/exp{0}/lats'.format(num_exps))
-
+                if not os.path.exists(self.path + '/exp{0}/csv'.format(num_exps)):
+                    os.makedirs(self.path + '/exp{0}/csv'.format(num_exps))
+                if not os.path.exists(self.path + '/exp{0}/sent_to_db_loop'.format(num_exps)):
+                    os.makedirs(self.path + '/exp{0}/sent_to_db_loop'.format(num_exps))
+                if not os.path.exists(self.path + '/exp{0}/dir_obs_lats'.format(num_exps)):
+                    os.makedirs(self.path + '/exp{0}/dir_obs_lats'.format(num_exps))
             except OSError:
                 print('Error: Creating directory of data lats')
 
             if self.param == 'gateways':
-                with open(self.path + '/exp{0}/lats/{1}%.csv'.format(num_exps, str(round(self.n_gateways * 100, 1))),
+                with open(self.path + '/exp{0}/sent_to_db_loop/{1}%_gateways.csv'.format(num_exps, str(round(self.gateway_ratio * 100, 1))),
                           'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['lats'])
+                    writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
                     writer.writeheader()
+                    for el in self.latency:
+                        writer.writerow({'sent_to_db_loop': el})
+                with open(self.path + '/exp{0}/dir_obs_lats/{1}%_gateways.csv'.format(num_exps, str(round(self.gateway_ratio * 100, 1))),
+                          'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
+                    writer.writeheader()
+                    for el in self.dir_obs_latency:
+                        writer.writerow({'dir_obs_lats': el})
+            elif self.param == 'gateways':
+                with open(self.path + '/exp{0}/sent_to_db_loop/{1}Km_radius.csv'.format(num_exps, self.radius), 'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
+                    writer.writeheader()
+                    for el in self.latency:
+                        writer.writerow({'sent_to_db_loop': el})
 
-                    for el in self.latency:
-                        writer.writerow({'lats': el})
+                with open(self.path + '/exp{0}/dir_obs_lats/{1}Km_radius.csv'.format(num_exps, self.radius), 'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
+                    writer.writeheader()
+                    for el in self.dir_obs_latency:
+                        writer.writerow({'dir_obs_lats': el})
             else:
-                with open(self.path + '/exp{0}/lats/{1}Km.csv'.format(num_exps, self.radius), 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['lats'])
+                with open(self.path + '/exp{0}/sent_to_db_loop/{1}_dev_std.csv'.format(num_exps, self.radius), 'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
                     writer.writeheader()
                     for el in self.latency:
-                        writer.writerow({'lats': el})
+                        writer.writerow({'sent_to_db_loop': el})
+
+                with open(self.path + '/exp{0}/dir_obs_lats/{1}_dev_std.csv'.format(num_exps, self.radius), 'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
+                    writer.writeheader()
+                    for el in self.dir_obs_latency:
+                        writer.writerow({'dir_obs_lats': el})
 
             csv_files = sorted(glob('./*.csv'))
             for csv_f in csv_files:
-                shutil.move(csv_f, './exp{0}'.format(num_exps))
+                shutil.move(csv_f, './exp{0}/csv/'.format(num_exps))
 
-        # plt.style.use('seaborn-whitegrid')
-        # plt.plot(self.mean_loop_duration, label='loop duration', c='b')
-
-        # plt.legend(loc='upper left')
-        # plt.ylabel('duration')
-        # plt.xlabel('# of loops')
-        # plt.tight_layout()
-        # plt.savefig(path.join(self.path, 'loop_duration.svg'))
-
-        # input("check 3 explore_graph.py")
         response = requests.delete(self.BASE + "IE/1")
         res = response.json()
         pprint(res)

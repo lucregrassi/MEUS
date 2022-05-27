@@ -37,18 +37,10 @@ def setup_connection(graph, connection, hubs, radius):
     deg_centrality_list.sort(key=lambda a: a[1])
 
     nodes = [deg_centrality_list[i+(i*5)][0] for i in range(hubs)]
-    # nodes = [key for key in deg_centrality.keys() if deg_centrality_list[-1]==deg_centrality[key]]
-
-    # nodes = [nodes[0]]
-
-    # print(nodes)
-    # input()
 
     for node in graph.nodes(data=True):
         # If the node is an hub
         if node[0] in nodes:
-
-            # print("node[1]['connection']: ", node[1]['connection'])
             if str(connection) not in node[1]['connection']:
                 # Add the connection passed as parameter to the connections of that node
                 node[1]['connection'] = str(node[1]['connection']) + str(connection)
@@ -116,13 +108,10 @@ def setup_connection(graph, connection, hubs, radius):
 # print(conn_nodes)
 
 def build_graph(hubs_4g, radius_4g):
-
     G = ox.load_graphml('graph/graph_temp.graphml')
     G = setup_connection(G, 1, hubs_4g, radius_4g)
-
     # Save the graph with the connections initialized
     ox.save_graphml(G, filepath='graph/graph.graphml')
-
     # Plot and save the image showing the areas covered by the connections
     # Note: red=4g, green=5g, blue=Wi-Fi
     # nc = color(G)

@@ -1,6 +1,6 @@
 class Agent:
     def __init__(self, n, curr_node=0, dest_node=0, distance=0, error=0, path={}, moving=False, road=0, num_info_sent=0,
-                 num_info_seen=0, num_info_seen2=0, mu=0, sigma=1):
+                 num_info_seen=0, mu=0, sigma=1):
         super().__init__()
         self.n = n
         self.curr_node = curr_node
@@ -13,14 +13,12 @@ class Agent:
         self.moving = moving
         self.road = road  # distance (between 2 nodes) traveled so far by agent
         self.reputation = 0.5
-        self.reputation2 = 0.5
         self.reputations = []
         self.reputations2 = []
         self.mu = mu
         self.sigma = sigma
         self.num_info_sent = num_info_sent
         self.num_info_seen = num_info_seen
-        self.num_info_seen2 = num_info_seen2
         self.visited_nodes = []
         self.seen_events = []
         self.met_agents = []
@@ -30,7 +28,6 @@ class Agent:
         self.local_conn = []
         self.ies = []
         self.ordered_reps = []
-        self.ordered_reps2 = []
         self.ordered_rels = []
         self.rating = 0
         self.weight = 2
@@ -56,4 +53,3 @@ class Agent:
                                 "Global connections: " + str(self.global_conn) + " \n " \
                                                                                  "Local connections: " + str(
             self.local_conn)
-        # "Path to follow: " + str(self.path) + "\n"

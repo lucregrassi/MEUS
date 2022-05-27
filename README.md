@@ -59,7 +59,7 @@ class dirObsTab(db.Model):
     id              = db.Column(db.Integer, primary_key=True)                             # Integer uniquely identifying the entry in the db
     situation       = db.Column(db.String(50), nullable=False)                            # situation "field" of an event
     obj             = db.Column(db.String(50), nullable=False)                            # object "field" of an event
-    when            = db.Column(db.Integer, nullable=False)                               # loop at which the event=(situation, object) has ben observed
+    when            = db.Column(db.Integer, nullable=False)                               # loop at which the event=(situation, object) has been observed
     where           = db.Column(db.Integer, nullable=False)                               # node wherein the observation has occurred
     who             = db.Column(db.Integer, nullable=False)                               # agent who has made the observation
     info_histories  = db.relationship('infoHistoryTab', backref="dir_obs_tab", lazy=True) # relation with the history_tab

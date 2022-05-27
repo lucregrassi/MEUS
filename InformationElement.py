@@ -15,7 +15,7 @@ class InformationElement:
     def __str__(self):
         return "[Information Element: " + str(self.n) + ", " + str(self.history) + ", " + str(self.where) + ", " + str(
             self.when) + ", " \
-               + str(self.what) + "]"  # "\nroot:" + str(self.root) + "]"
+               + str(self.what) + "]"
 
     def __eq__(self, other):
         if isinstance(other, InformationElement):
@@ -26,7 +26,7 @@ class InformationElement:
 
     def asdict(self):
         return {'id': self.n, 'history': self.history, 'where': self.where, 'when': self.when,
-                'what': self.what}  # , 'root': self.root}
+                'what': self.what}
 
 
 class NewInformationElement:
@@ -76,15 +76,10 @@ class DirectObservation:
 class NewDirectObservation:
     def __init__(self, event=None, error=0):
         super().__init__()
-        # self.who = who
-        # self.where = where
-        # self.when = when
         self.event = event
         self.error = error
 
     def __str__(self):
-        # return "[Direct Observation: " + str(self.who) + ", " + str(self.where) + ", " +\
-        #     str(self.when) + ", " + str(self.event) + ", " + str(self.error) + "]"
         return "DO: " + str(self.event) + ", " + str(self.error)
 
     def __eq__(self, other):

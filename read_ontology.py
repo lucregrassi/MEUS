@@ -98,7 +98,7 @@ def recursive_down(start_cls, dictionary, i):
 
 
 # Return a randomly chosen class among those at a certain distance from the starting one
-def get_cls_at_dist(start_cls_name, err_rate, distance):
+def get_cls_at_dist(start_cls_name, distance):
     start_cls = onto.Situation
     
     for cls in onto.classes():
@@ -111,10 +111,8 @@ def get_cls_at_dist(start_cls_name, err_rate, distance):
     else:
         dictionary = {}
         recursive_up(start_cls, dictionary, 1)
-        # print("returned")
 
     recursive_down(start_cls, dictionary, 1)
-    # print(dictionary)
 
     if distance not in dictionary:
         distance = max(dictionary.keys())
