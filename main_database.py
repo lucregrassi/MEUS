@@ -121,6 +121,7 @@ fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'dis
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
     json_data = json.loads(request.data)
+    print(json_data)
     events.extend(json_data['events'])
     global gateways
     gateways = json_data['n_gateways']
@@ -144,7 +145,8 @@ def receiving_events_list():
         agents_dict2[str(agent)] = {'positive': 0, 'negative': 0, 'times': 0, 'weight': 1}
         agents_perf[str(agent)] = []
 
-    pprint(events)
+    pprint("NUMBER OF EVENTS", len(events))
+    #pprint(events)
 
     return {"message": "registered events in the environments", "events": events}
 
@@ -161,6 +163,7 @@ def get(e_id, sit, obj):
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
 def put(DO_id):
     json_data = json.loads(request.data)
+    print(json_data)
     data_do, data_ih, distances = NewPreProcessing(json_data)
 
     flag = False
@@ -231,7 +234,6 @@ def put(DO_id):
                     # if this agent has not reported this observation before
                     # if dirObsTab.query.filter_by()
                     if dobs['who'] not in events_dict2[ev_id]['whos'][index]:
-
                         events_dict2[ev_id]['whos'][index].append(dobs['who'])
                         events_dict2[ev_id]['whens'][index].append([dobs['when']])
                         if dobs['who'] > gateways:

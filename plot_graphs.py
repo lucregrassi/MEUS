@@ -21,8 +21,7 @@ def show_mean_and_stddev():
         except OSError:
             print('Error: Creating directory of data mean_std_dev.')
 
-        exp_path = outpath + folder.split('/')[-1] + '/'
-
+        exp_path = outpath + folder.split('/')[-1] + '/csv/'
         files = [file for file in os.listdir(exp_path) if file.endswith('.csv')]
 
         cvr = [[float(pd.read_csv(exp_path + file)['CVR'][i]) if float(
@@ -58,7 +57,8 @@ def show_mean_and_stddev():
         da_Kmean = round(statistics.mean(Kalpha_disagree), 3) if d[x1] >= 2 else None
         da_Kstddev = round(statistics.stdev(Kalpha_disagree), 3) if d[x1] >= 2 else None
 
-        with open(exp_path + '/mean_std_dev/agreement.csv', 'w') as f:
+        avg_path = outpath + folder.split('/')[-1]
+        with open(avg_path + '/mean_std_dev/agreement.csv', 'w') as f:
             writer = csv.DictWriter(f, ['dist_mean', 'dist_stddev', 'Kalpha_mean', 'Kalpha_stddev', 'ratio'])
             writer.writeheader()
             try:
@@ -71,7 +71,7 @@ def show_mean_and_stddev():
                              'Kalpha_stddev': a_Kstddev,
                              'ratio': ratio})
 
-        with open(exp_path + '/mean_std_dev/disagreement.csv', 'w') as f:
+        with open(avg_path + '/mean_std_dev/disagreement.csv', 'w') as f:
             writer = csv.DictWriter(f, ['dist_mean', 'dist_stddev', 'Kalpha_mean', 'Kalpha_stddev', 'ratio'])
             writer.writeheader()
 
@@ -85,7 +85,7 @@ def show_mean_and_stddev():
                              'Kalpha_stddev': da_Kstddev,
                              'ratio': ratio})
 
-        with open(exp_path + '/mean_std_dev/average_latency.csv', 'w') as f:
+        with open(avg_path + '/mean_std_dev/average_latency.csv', 'w') as f:
             for file in os.listdir(folder + '/dir_obs_lats'):
                 dir_obs_lat_mean = folder + '/dir_obs_lats/' + file
             lats = []

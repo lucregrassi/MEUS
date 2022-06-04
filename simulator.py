@@ -223,11 +223,22 @@ class Simulator:
                               'sent_where': agent.curr_node})
             response = requests.put(self.BASE + "IE/1", json.dumps(knowledge))
             res = response.json()
+
+            try:
+                print("latency vector", res['latency'])
+                for lat in res['latency']:
+                    print("latenza giusta:", lat['sent_at_loop'] - lat['when'])
+                    self.dir_obs_latency.append(lat['sent_at_loop'] - lat['when'])
+            except KeyError as er:
+                print(er)
+
+            # print(res)
             # percentage of events seen
             if 'events' in res:
                 ind = 0
                 for i, ev in enumerate(res['events']):
                     # checking if it's the first time the observation has been made
+
                     if ev['first_time'] == 1 and 'db_time' not in self.events[i]:
                         self.events[i] = ev
                         toc_db = time.perf_counter()
@@ -237,13 +248,9 @@ class Simulator:
                         # Percentage of seen events
                         self.perc_seen_ev = 100 * self.obs_ev / len(self.events)
                         self.latency.append(res['latency'][ind]['sent_at_loop'])
-                        print("Latency:", res['latency'][ind]['sent_at_loop'])
-                        for n in ns:
-                            self.dir_obs_latency.append(res['latency'][ind]['sent_at_loop'] - n["when"])
                         ind += 1
-                        if self.perc_seen_ev >= self.threshold:
-                            return
-
+            if self.perc_seen_ev >= self.threshold:
+                return
             # consider only information that have not yet been sent to the db
             prior_threshold = agent.num_info_sent
             agent.num_info_sent += (len(agent.ies) - prior_threshold)
@@ -416,7 +423,7 @@ class Simulator:
 
         pprint(self.events)
 
-        print("total time to get all events on the db: ", self.t_all)
+        print("Total time to get all events on the db: ", self.t_all)
         print(f"Experiment finished in {self.toc - self.tic:0.4f} seconds")
 
         if self.store_latency:
@@ -443,13 +450,12 @@ class Simulator:
                     writer.writeheader()
                     for el in self.dir_obs_latency:
                         writer.writerow({'dir_obs_lats': el})
-            elif self.param == 'gateways':
+            elif self.param == 'radius':
                 with open(self.path + '/exp{0}/sent_to_db_loop/{1}Km_radius.csv'.format(num_exps, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
                     writer.writeheader()
                     for el in self.latency:
                         writer.writerow({'sent_to_db_loop': el})
-
                 with open(self.path + '/exp{0}/dir_obs_lats/{1}Km_radius.csv'.format(num_exps, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
                     writer.writeheader()
@@ -461,7 +467,6 @@ class Simulator:
                     writer.writeheader()
                     for el in self.latency:
                         writer.writerow({'sent_to_db_loop': el})
-
                 with open(self.path + '/exp{0}/dir_obs_lats/{1}_dev_std.csv'.format(num_exps, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
                     writer.writeheader()

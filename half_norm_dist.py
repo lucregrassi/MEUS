@@ -2,6 +2,7 @@ from scipy.stats import halfnorm
 import numpy as np
 import math
 
+np.random.seed(0)
 rv = halfnorm.rvs(loc=0, scale=3, size=100)
 print(rv)
 distances = []

@@ -13,6 +13,62 @@ import matplotlib.pyplot as plt
 from glob import glob
 
 
+def latency_plot(rad_gat):
+
+    assert type(rad_gat)==str and (rad_gat=='radius' or rad_gat=='gateways'),\
+        "The parameter over to which plot the graph shoud be either 'radius' or 'gateways' of type string."
+
+    # assert os.path.exists(os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)),\
+    #     'You either have not set the flag -st to True when runnning the simulation or the parameter over which to plot the latencies is not the same one you chose for the simulation. Cannot plot latencies.'
+
+    outpath = os.path.abspath(os.getcwd()) + '/'
+    folders = sorted(glob(outpath + 'exp[0-4]'))
+
+    files = [file for folder in folders for file in os.listdir(folder+'/lats')]
+    num_of_files = len(files)
+
+
+
+    assert num_of_files >= 3,\
+        'You have to run at least 3 experiments first.'
+
+    if rad_gat=='radius':
+        assert rad_gat=='radius' and num_of_files >= 3, \
+            'Number of latencies for the magnitude of the radius plot has to be at least 3.'
+    else:
+        assert rad_gat=='gateways' and  num_of_files >= 4,\
+            'Number of latencies for the number of gateways parameter plot has to be at least 4.'
+
+
+    latencies = [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in os.listdir(folder+'/lats')] if rad_gat=='gateways' \
+        else [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in os.listdir(folder+'/lats')]
+
+    plt.style.use('seaborn-whitegrid')
+    plt.figure()
+
+    if rad_gat=='radius':
+        plt.plot(latencies[0], label='{0}km radius'.format(files[0].split('.')[0][0]))
+        plt.plot(latencies[1], label='{0}km radius'.format(files[1].split('.')[0][0]))
+        plt.plot(latencies[2], label='{0}km radius'.format(files[2].split('.')[0][0]))
+
+        plt.legend(loc='upper left')
+        plt.ylabel('lat [#loops]')
+        plt.xlabel('# of obs')
+
+    else:
+        plt.plot(latencies[0], label='latency {0}%'.format(files[0].split('.')[0]))
+        plt.plot(latencies[1], label='latency {0}%'.format(files[1].split('.')[0]))
+        plt.plot(latencies[2], label='latency {0}%'.format(files[2].split('.')[0]))
+        plt.plot(latencies[3], label='latency {0}%'.format(files[3].split('.')[0]))
+
+        plt.legend(loc='upper left')
+        plt.ylabel('lat [#loops]')
+        plt.xlabel('# of obs')
+
+    plt.tight_layout()
+    plt.savefig(path.join(outpath, "error_plot_{0}.svg".format(rad_gat)))
+
+
 def plotter(agent, real_time_pos):
     xs = []
     ys = []
