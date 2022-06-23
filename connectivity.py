@@ -36,7 +36,8 @@ def setup_connection(graph, connection, hubs, radius):
     deg_centrality_list = list(deg_centrality.items())
     deg_centrality_list.sort(key=lambda a: a[1])
 
-    nodes = [deg_centrality_list[i+(i*5)][0] for i in range(hubs)]
+    # assisi (i+1)*2
+    nodes = [deg_centrality_list[(i+1)*2][0] for i in range(hubs)]
 
     for node in graph.nodes(data=True):
         # If the node is a hub

@@ -9,7 +9,7 @@ exp0_rad
 exp1_rad
 exp2_rad
 exp1_gateway_amatrice/gateway15
-exp2_radius_experiment/sent_to_db_radius.svg
+exp2_radius_amatrice/sent_to_db_radius.svg
 sent_to_db_std_dev.svg
 exp1_gateway_frabosa/sent_to_db_gateways.svg
 *.db

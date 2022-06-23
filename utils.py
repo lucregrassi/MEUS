@@ -345,7 +345,8 @@ def parse_args():
     parser.add_argument('-setup_map', default=False, type=bool,
                         help='If set to True initialize the map when the simulation is launched.')
 
-    parser.add_argument('-place', default='Frabosa Soprana, Cuneo, Piemonte', type=str,
+    # Amatrice, Rieti, Lazio
+    parser.add_argument('-place', default='Assisi, Perugia, Umbria', type=str,
                         help='Place where to run the simulation in the format (Town, Province, Region). Example: "Amatrice, Rieti, Lazio".')
 
     parser.add_argument('-hubs_4g', default=3, type=int,
