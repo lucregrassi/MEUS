@@ -12,7 +12,7 @@ from glob import glob
 
 def show_mean_and_stddev():
     outpath = os.path.abspath(os.getcwd()) + '/'
-    folders = sorted(glob(outpath + 'exp[0-4]'))
+    folders = sorted(glob(outpath + 'exp[0-8]'))
 
     for folder in folders:
         try:
@@ -97,7 +97,7 @@ def show_mean_and_stddev():
 
 
 def plot_metrics():
-    folders = sorted(glob(os.getcwd() + '/exp[0-4]'))
+    folders = sorted(glob(os.getcwd() + '/exp[0-8]'))
 
     for folder in folders:
         try:

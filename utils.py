@@ -14,39 +14,37 @@ from glob import glob
 
 
 def latency_plot(rad_gat):
-
-    assert type(rad_gat)==str and (rad_gat=='radius' or rad_gat=='gateways'),\
+    assert type(rad_gat) == str and (rad_gat == 'radius' or rad_gat == 'gateways'), \
         "The parameter over to which plot the graph shoud be either 'radius' or 'gateways' of type string."
 
     # assert os.path.exists(os.path.abspath(os.getcwd()) + '/lats_{0}/'.format(rad_gat)),\
-    #     'You either have not set the flag -st to True when runnning the simulation or the parameter over which to plot the latencies is not the same one you chose for the simulation. Cannot plot latencies.'
+    #     'You either have not set the flag -st to True when running the simulation or the parameter over which to plot the latencies is not the same one you chose for the simulation. Cannot plot latencies.'
 
     outpath = os.path.abspath(os.getcwd()) + '/'
-    folders = sorted(glob(outpath + 'exp[0-4]'))
+    folders = sorted(glob(outpath + 'exp[0-5]'))
 
-    files = [file for folder in folders for file in os.listdir(folder+'/lats')]
+    files = [file for folder in folders for file in os.listdir(folder + '/lats')]
     num_of_files = len(files)
 
-
-
-    assert num_of_files >= 3,\
+    assert num_of_files >= 3, \
         'You have to run at least 3 experiments first.'
 
-    if rad_gat=='radius':
-        assert rad_gat=='radius' and num_of_files >= 3, \
+    if rad_gat == 'radius':
+        assert rad_gat == 'radius' and num_of_files >= 3, \
             'Number of latencies for the magnitude of the radius plot has to be at least 3.'
     else:
-        assert rad_gat=='gateways' and  num_of_files >= 4,\
+        assert rad_gat == 'gateways' and num_of_files >= 4, \
             'Number of latencies for the number of gateways parameter plot has to be at least 4.'
 
-
-    latencies = [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in os.listdir(folder+'/lats')] if rad_gat=='gateways' \
-        else [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in os.listdir(folder+'/lats')]
+    latencies = [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in
+                 os.listdir(folder + '/lats')] if rad_gat == 'gateways' \
+        else [pd.read_csv(folder + '/lats/' + file)['lats'] for folder in folders for file in
+              os.listdir(folder + '/lats')]
 
     plt.style.use('seaborn-whitegrid')
     plt.figure()
 
-    if rad_gat=='radius':
+    if rad_gat == 'radius':
         plt.plot(latencies[0], label='{0}km radius'.format(files[0].split('.')[0][0]))
         plt.plot(latencies[1], label='{0}km radius'.format(files[1].split('.')[0][0]))
         plt.plot(latencies[2], label='{0}km radius'.format(files[2].split('.')[0][0]))
@@ -186,19 +184,12 @@ def sent_at_loop_plot(param):
         "You have to choose a number from 1 to 3."
 
     outpath = os.path.abspath(os.getcwd()) + '/'
-    folders = sorted(glob(outpath + 'exp[0-4]'))
+    folders = sorted(glob(outpath + 'exp[0-5]'))
 
     files = [file for folder in folders for file in os.listdir(folder + '/sent_to_db_loop')]
     num_of_files = len(files)
 
     assert num_of_files >= 3, 'You have to run at least 3 experiments first.'
-
-    if param == "radius" or param == "std_dev":
-        assert num_of_files >= 3, \
-            'Number of latencies for the magnitude of the radius plot  or the std dev has to be at least 3.'
-    else:
-        assert num_of_files >= 4, \
-            'Number of latencies for the number of gateways parameter plot has to be at least 4.'
 
     sent_to_db = [pd.read_csv(folder + '/sent_to_db_loop/' + file)['sent_to_db_loop'] for folder in folders for file in
                   os.listdir(folder + '/sent_to_db_loop')]
@@ -206,19 +197,24 @@ def sent_at_loop_plot(param):
     plt.style.use('seaborn-whitegrid')
     plt.figure()
 
-    if param == 'radius':
-        plt.plot(sent_to_db[0], label='{0}Km radius'.format(files[0].split('.')[0][0]))
-        plt.plot(sent_to_db[1], label='{0}Km radius'.format(files[1].split('.')[0][0]))
-        plt.plot(sent_to_db[2], label='{0}Km radius'.format(files[2].split('.')[0][0]))
-        plt.legend(loc='upper left')
-        plt.ylabel('Simulation loops')
-        plt.xlabel('Number of observations')
-
-    elif param == "gateways":
+    if param == "gateways":
         plt.plot(sent_to_db[0], label='Gateways {0}%'.format(files[0].split('.')[0]))
         plt.plot(sent_to_db[1], label='Gateways {0}%'.format(files[1].split('.')[0]))
         plt.plot(sent_to_db[2], label='Gateways {0}%'.format(files[2].split('.')[0]))
         plt.plot(sent_to_db[3], label='Gateways {0}%'.format(files[3].split('.')[0]))
+        plt.plot(sent_to_db[4], label='Gateways {0}%'.format(files[4].split('.')[0]))
+        plt.plot(sent_to_db[5], label='Gateways {0}%'.format(files[5].split('.')[0]))
+        plt.legend(loc='upper left')
+        plt.ylabel('Simulation loops')
+        plt.xlabel('Number of observations')
+
+    elif param == 'radius':
+        plt.plot(sent_to_db[0], label='{0}Km radius'.format(files[0].split('.')[0][0]))
+        plt.plot(sent_to_db[1], label='{0}Km radius'.format(files[1].split('.')[0][0]))
+        plt.plot(sent_to_db[2], label='{0}Km radius'.format(files[2].split('.')[0][0]))
+        plt.plot(sent_to_db[3], label='{0}Km radius'.format(files[3].split('.')[0][0]))
+        plt.plot(sent_to_db[4], label='{0}Km radius'.format(files[4].split('.')[0][0]))
+        plt.plot(sent_to_db[5], label='{0}Km radius'.format(files[5].split('.')[0][0]))
         plt.legend(loc='upper left')
         plt.ylabel('Simulation loops')
         plt.xlabel('Number of observations')
@@ -227,6 +223,12 @@ def sent_at_loop_plot(param):
         plt.plot(sent_to_db[0], label='Std dev {0}'.format(files[0].split('.')[0]))
         plt.plot(sent_to_db[1], label='Std dev {0}'.format(files[1].split('.')[0]))
         plt.plot(sent_to_db[2], label='Std dev {0}'.format(files[2].split('.')[0]))
+        plt.plot(sent_to_db[3], label='Std dev {0}'.format(files[3].split('.')[0]))
+        plt.plot(sent_to_db[4], label='Std dev {0}'.format(files[4].split('.')[0]))
+        plt.plot(sent_to_db[5], label='Std dev {0}'.format(files[5].split('.')[0]))
+        plt.plot(sent_to_db[6], label='Std dev {0}'.format(files[6].split('.')[0]))
+        plt.plot(sent_to_db[7], label='Std dev {0}'.format(files[7].split('.')[0]))
+        plt.plot(sent_to_db[8], label='Std dev {0}'.format(files[8].split('.')[0]))
         plt.legend(loc='upper left')
         plt.ylabel('Simulation loops')
         plt.xlabel('Number of observations')
@@ -286,14 +288,15 @@ def compute_CVR(node_info, CVR, n_gateways):
         # if the threshold majority is reached
         if candidate >= CVR[panel_size]:
             value = 1
-
     return value
 
 
-def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, n_gateways, distance):
+def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, n_gateways, distance,
+           normal_agent_weight, gateway_agent_weight):
     node_info = copy.deepcopy(node_info_)
     for i, obs in enumerate(node_info['obs']):
-        obs['coders'] = np.sum([2 if coder > n_gateways else 6 for coder in node_info['whos'][i]])
+        obs['coders'] = np.sum([normal_agent_weight if coder > n_gateways else gateway_agent_weight
+                                for coder in node_info['whos'][i]])
     files = [file for file in os.listdir(outpath) if file.endswith('.csv')]
     # if I have only 1 coder the Kalpha value will be 1
     if np.isnan(kalpha) and len(node_info['obs']) == 1:
@@ -303,7 +306,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
         with open(ev_id + '.csv', 'a') as f:
             writer = csv.DictWriter(f, fieldnames=fields)
             info = {
-                'Ncoders': np.sum([2 if coder > n_gateways else 6 for coder in
+                'Ncoders': np.sum([normal_agent_weight if coder > n_gateways else gateway_agent_weight for coder in
                                    list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
                 'who': ag,
                 'when': when,
@@ -320,7 +323,7 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
             writer = csv.DictWriter(f, fieldnames=fields)
             writer.writeheader()
             info = {
-                'Ncoders': np.sum([2 if coder > n_gateways else 6 for coder in
+                'Ncoders': np.sum([normal_agent_weight if coder > n_gateways else gateway_agent_weight for coder in
                                    list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))]),
                 'who': ag,
                 'when': when,
@@ -330,7 +333,6 @@ def logger(ev_id, ag, when, node_info_, cvr, kalpha, outpath, fields, query_ev, 
                 'distance': distance,
                 'CVR': cvr,
                 'Kalpha': kalpha
-
             }
             writer.writerow(info)
 
@@ -343,19 +345,19 @@ def parse_args():
     parser.add_argument('-setup_map', default=False, type=bool,
                         help='If set to True initialize the map when the simulation is launched.')
 
-    parser.add_argument('-place', default='Amatrice, Rieti, Lazio', type=str,
+    parser.add_argument('-place', default='Frabosa Soprana, Cuneo, Piemonte', type=str,
                         help='Place where to run the simulation in the format (Town, Province, Region). Example: "Amatrice, Rieti, Lazio".')
 
     parser.add_argument('-hubs_4g', default=3, type=int,
                         help='number of hub for the 4g internet connection.')
 
-    parser.add_argument('-radius_4g', default=5, type=int,
+    parser.add_argument('-radius_4g', default=2, type=int,
                         help='magnitude of the radius of each internet hub.')
 
-    parser.add_argument('-n_agents', default=200, type=int,
+    parser.add_argument('-n_agents', default=1000, type=int,
                         help='number of agents present in the environment.')
 
-    parser.add_argument('-gateway_ratio', default=0.3, type=float,
+    parser.add_argument('-gateway_ratio', default=0.05, type=float,
                         help='percentage of gateways agents present in the environment. Ex. if I want 30 percent of gateways agents: -n_gateways 0.3')
 
     parser.add_argument('-loop_distance', default=100, type=int,
@@ -370,7 +372,7 @@ def parse_args():
     parser.add_argument('-std_dev', default=1, type=float,
                         help='the higher the std dev the more agents will make wrong observations.')
 
-    parser.add_argument('-std_dev_gateway', default=0.5, type=float,
+    parser.add_argument('-std_dev_gateway', default=0.2, type=float,
                         help='the higher the std dev the more gateway agents will make wrong observations.')
 
     parser.add_argument('-st', default=False, type=bool,

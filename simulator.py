@@ -24,8 +24,8 @@ logging.basicConfig(filename="prova2.log",
 
 
 class Simulator:
-    def __init__(self, n_agents=100, gateway_ratio=0.3, loop_distance=100, seed=3, threshold=30, std_dev=1,
-                 std_dev_gateway=0.5, store_latency=False, path=os.path.abspath(os.getcwd()), radius=3, th=0,
+    def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.15, loop_distance=100, seed=13, threshold=30, std_dev=1,
+                 std_dev_gateway=0.2, store_latency=False, path=os.path.abspath(os.getcwd()), radius=2, th=0,
                  param='std_dev'):
         self.n_agents = n_agents
         self.gateway_ratio = gateway_ratio
@@ -43,7 +43,7 @@ class Simulator:
         self.threshold = threshold
         self.onto = get_ontology("ontology/MEUS.owl")
         self.obs_ev = 0
-        self.latency = []
+        self.sent_at_loop = []
         self.dir_obs_latency = []
         self.std_dev = std_dev
         self.std_dev_gateway = std_dev_gateway
@@ -58,9 +58,10 @@ class Simulator:
         self.radius = radius
         self.th = th
         self.param = param
+        self.num_exp = num_exp
         self.G = None
 
-    def compute_destination(self, current_node, ag):
+    def compute_destination(self, current_node):
         # if len([n for n in self.G.neighbors(current_node)])==0:
         #     print([n for n in self.G.neighbors(current_node)])
         source_nodes = []
@@ -153,7 +154,7 @@ class Simulator:
             # Arrived to destination node
             previous_node = a.curr_node
             a.curr_node = a.dest_node
-            destination_node, distance = self.compute_destination(a.dest_node, a.n)
+            destination_node, distance = self.compute_destination(a.dest_node)
             a.dest_node = destination_node
             a.distance = distance
             a.moving = True
@@ -213,7 +214,6 @@ class Simulator:
                 agent.ies):
             knowledge = [NewIEtoDict(copy.deepcopy(agent.ies[i])) for i in range(agent.num_info_sent, len(agent.ies))]
             ns = [NewIEtoDict(copy.deepcopy(agent.ies[i]))[0] for i in range(agent.num_info_sent, len(agent.ies))]
-            print("NS:", ns)
             distances = [self.agents_dict[str(n['id'])].err_distances[
                              getIndexOfTuple(self.agents_dict[str(n['id'])].err_distances, 1, n['when'])][0]
                          for n in ns]
@@ -225,15 +225,15 @@ class Simulator:
             res = response.json()
 
             try:
-                print("latency vector", res['latency'])
+                print("Latency vector", res['latency'])
                 for lat in res['latency']:
-                    print("latenza giusta:", lat['sent_at_loop'] - lat['when'])
+                    print("Latency:", lat['sent_at_loop'] - lat['when'])
                     self.dir_obs_latency.append(lat['sent_at_loop'] - lat['when'])
             except KeyError as er:
                 print(er)
 
             # print(res)
-            # percentage of events seen
+            # Percentage of seen events
             if 'events' in res:
                 ind = 0
                 for i, ev in enumerate(res['events']):
@@ -247,7 +247,7 @@ class Simulator:
                         self.obs_ev += 1
                         # Percentage of seen events
                         self.perc_seen_ev = 100 * self.obs_ev / len(self.events)
-                        self.latency.append(res['latency'][ind]['sent_at_loop'])
+                        self.sent_at_loop.append(res['latency'][ind]['sent_at_loop'])
                         ind += 1
             if self.perc_seen_ev >= self.threshold:
                 return
@@ -278,17 +278,21 @@ class Simulator:
             else:
                 distances_gateway.append(math.floor(elem))
 
+        normal_agent_weight = math.ceil(6/(self.std_dev/0.5))
+        gateway_agent_weight = math.ceil(6/(self.std_dev_gateway/0.5))
+        requests.post(self.BASE + "/IE", data=json.dumps({"normal_agent_weight": normal_agent_weight,
+                                                          "gateway_agent_weight": gateway_agent_weight}))
+
         # Initialize agents
         for i in range(self.n_agents):
             curr_node = l[np.random.randint(0, len(l) - 1)]
-            dest_node, dist = self.compute_destination(curr_node, None)
+            dest_node, dist = self.compute_destination(curr_node)
 
             # The error of an agent is initialized to zero
             agent = Agent(i, curr_node, dest_node, dist, mu=mu, sigma=sigma)
             # Initialize the connections owned by the person
             if i < n_gateway_agents:
                 agent.global_conn = [1, 2, 3]
-                agent.weight = 6
                 agent.error = distances_gateway[i]
             else:
                 agent.error = distances[i-n_gateway_agents]
@@ -361,40 +365,9 @@ class Simulator:
         return count
 
     def run(self):
-        num_exps = 0
         if self.store_latency:
             self.th = 0
-            num_exps = len(glob('./exp[0-4]'))
-            if self.param == 'gateways':
-                if num_exps == 0:
-                    if not os.path.exists('graph/graph_temp.graphml'):
-                        print("Saving and building graph")
-                        save_graph('Amatrice, Rieti, Lazio')
-                    build_graph(1, 1)
-                    self.gateway_ratio = 0.2
-                else:
-                    self.gateway_ratio = round(0.2 * num_exps + 0.2, 2)
-            elif self.param == "radius":
-                if num_exps == 0:
-                    if not os.path.exists('graph/graph_temp.graphml'):
-                        print("Saving and building graph")
-                        save_graph('Amatrice, Rieti, Lazio')
-                    build_graph(1, 1)
-                    self.radius = 1
-                else:
-                    build_graph(1, num_exps + 2)
-                    self.radius = num_exps + 2
-            else:
-                if num_exps == 0:
-                    if not os.path.exists('graph/graph_temp.graphml'):
-                        save_graph('Amatrice, Rieti, Lazio')
-                    build_graph(1, 1)
-                    self.std_dev = 1
-                    self.std_dev_gateway = 1
-                else:
-                    build_graph(1, 1)
-                    self.std_dev = num_exps + 1
-                    self.std_dev_gateway = num_exps + 0.5
+
         self.G = ox.load_graphml('graph/graph.graphml')
         self.onto.load()
         np.random.seed(self.seed)
@@ -428,46 +401,46 @@ class Simulator:
 
         if self.store_latency:
             try:
-                if not os.path.exists(self.path + '/exp{0}/csv'.format(num_exps)):
-                    os.makedirs(self.path + '/exp{0}/csv'.format(num_exps))
-                if not os.path.exists(self.path + '/exp{0}/sent_to_db_loop'.format(num_exps)):
-                    os.makedirs(self.path + '/exp{0}/sent_to_db_loop'.format(num_exps))
-                if not os.path.exists(self.path + '/exp{0}/dir_obs_lats'.format(num_exps)):
-                    os.makedirs(self.path + '/exp{0}/dir_obs_lats'.format(num_exps))
+                if not os.path.exists(self.path + '/exp{0}/csv'.format(self.num_exp)):
+                    os.makedirs(self.path + '/exp{0}/csv'.format(self.num_exp))
+                if not os.path.exists(self.path + '/exp{0}/sent_to_db_loop'.format(self.num_exp)):
+                    os.makedirs(self.path + '/exp{0}/sent_to_db_loop'.format(self.num_exp))
+                if not os.path.exists(self.path + '/exp{0}/dir_obs_lats'.format(self.num_exp)):
+                    os.makedirs(self.path + '/exp{0}/dir_obs_lats'.format(self.num_exp))
             except OSError:
                 print('Error: Creating directory of data lats')
 
             if self.param == 'gateways':
-                with open(self.path + '/exp{0}/sent_to_db_loop/{1}%_gateways.csv'.format(num_exps, str(round(self.gateway_ratio * 100, 1))),
+                with open(self.path + '/exp{0}/sent_to_db_loop/{1}%_gateways.csv'.format(self.num_exp, str(round(self.gateway_ratio * 100, 1))),
                           'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
                     writer.writeheader()
-                    for el in self.latency:
+                    for el in self.sent_at_loop:
                         writer.writerow({'sent_to_db_loop': el})
-                with open(self.path + '/exp{0}/dir_obs_lats/{1}%_gateways.csv'.format(num_exps, str(round(self.gateway_ratio * 100, 1))),
+                with open(self.path + '/exp{0}/dir_obs_lats/{1}%_gateways.csv'.format(self.num_exp, str(round(self.gateway_ratio * 100, 1))),
                           'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
                     writer.writeheader()
                     for el in self.dir_obs_latency:
                         writer.writerow({'dir_obs_lats': el})
             elif self.param == 'radius':
-                with open(self.path + '/exp{0}/sent_to_db_loop/{1}Km_radius.csv'.format(num_exps, self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/sent_to_db_loop/{1}Km_radius.csv'.format(self.num_exp, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
                     writer.writeheader()
-                    for el in self.latency:
+                    for el in self.sent_at_loop:
                         writer.writerow({'sent_to_db_loop': el})
-                with open(self.path + '/exp{0}/dir_obs_lats/{1}Km_radius.csv'.format(num_exps, self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/dir_obs_lats/{1}Km_radius.csv'.format(self.num_exp, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
                     writer.writeheader()
                     for el in self.dir_obs_latency:
                         writer.writerow({'dir_obs_lats': el})
             else:
-                with open(self.path + '/exp{0}/sent_to_db_loop/{1}_dev_std.csv'.format(num_exps, self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/sent_to_db_loop/{1}_dev_std.csv'.format(self.num_exp, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
                     writer.writeheader()
-                    for el in self.latency:
+                    for el in self.sent_at_loop:
                         writer.writerow({'sent_to_db_loop': el})
-                with open(self.path + '/exp{0}/dir_obs_lats/{1}_dev_std.csv'.format(num_exps, self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/dir_obs_lats/{1}_dev_std.csv'.format(self.num_exp, self.radius), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
                     writer.writeheader()
                     for el in self.dir_obs_latency:
@@ -475,7 +448,7 @@ class Simulator:
 
             csv_files = sorted(glob('./*.csv'))
             for csv_f in csv_files:
-                shutil.move(csv_f, './exp{0}/csv/'.format(num_exps))
+                shutil.move(csv_f, './exp{0}/csv/'.format(self.num_exp))
 
         response = requests.delete(self.BASE + "IE/1")
         res = response.json()

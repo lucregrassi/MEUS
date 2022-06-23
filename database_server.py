@@ -14,6 +14,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databaseMEUS.db'
 db = SQLAlchemy(app)
 
+normal_agent_weight = 2
+gateway_agent_weight = 6
+
 
 # -- MODEL --
 class DirObsTab(db.Model):
@@ -118,6 +121,17 @@ outpath = os.path.abspath(os.getcwd())
 fields = ['Ncoders', 'who', 'when', 'what', 'observations', 'ground_truth', 'distance', 'CVR', 'Kalpha']
 
 
+@app.route("/IE", methods=["POST"])
+def post():
+    global normal_agent_weight
+    global gateway_agent_weight
+    data = json.loads(request.data)
+    normal_agent_weight = data["normal_agent_weight"]
+    gateway_agent_weight = data["gateway_agent_weight"]
+    print(normal_agent_weight, gateway_agent_weight)
+    return {"ack": "ok"}
+
+
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
     json_data = json.loads(request.data)
@@ -145,8 +159,7 @@ def receiving_events_list():
         agents_dict2[str(agent)] = {'positive': 0, 'negative': 0, 'times': 0, 'weight': 1}
         agents_perf[str(agent)] = []
 
-    pprint("NUMBER OF EVENTS", len(events))
-    #pprint(events)
+    # pprint(events)
 
     return {"message": "registered events in the environments", "events": events}
 
@@ -158,6 +171,7 @@ def get(e_id, sit, obj):
     outcome = True if event_query.situation == sit and event_query.obj == obj else False
 
     return {'coorect_event': outcome}
+
 
 
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
@@ -199,7 +213,6 @@ def put(DO_id):
             # an agent cannot say twice his observation about one event.
             # if not dirObsTab.query.filter_by(who=dobs['who']).first():
             if not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
-                # if not dirObsTab.query.filter_by(   situation   = dokbj']).first():
                 if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
 
                     events_dict2[ev_id]['obs'].append({'situation': dobs['situation'],
@@ -227,7 +240,7 @@ def put(DO_id):
                            fields,
                            query_ev,
                            gateways,
-                           distances[i])
+                           distances[i], normal_agent_weight, gateway_agent_weight)
                 else:
                     index = events_dict2[ev_id]['obs'].index({'situation': dobs['situation'], 'object': dobs['obj']})
 
@@ -258,7 +271,7 @@ def put(DO_id):
                                fields,
                                query_ev,
                                gateways,
-                               distances[i])
+                               distances[i], normal_agent_weight, gateway_agent_weight)
         except Exception as error:
             raise error
 

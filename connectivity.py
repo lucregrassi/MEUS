@@ -39,7 +39,7 @@ def setup_connection(graph, connection, hubs, radius):
     nodes = [deg_centrality_list[i+(i*5)][0] for i in range(hubs)]
 
     for node in graph.nodes(data=True):
-        # If the node is an hub
+        # If the node is a hub
         if node[0] in nodes:
             if str(connection) not in node[1]['connection']:
                 # Add the connection passed as parameter to the connections of that node
@@ -114,6 +114,6 @@ def build_graph(hubs_4g, radius_4g):
     ox.save_graphml(G, filepath='graph/graph.graphml')
     # Plot and save the image showing the areas covered by the connections
     # Note: red=4g, green=5g, blue=Wi-Fi
-    # nc = color(G)
-    # ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="images/conn.png")
+    nc = color(G)
+    ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="connections/conn.png")
     # input("Press enter and close plot to start simulation")
