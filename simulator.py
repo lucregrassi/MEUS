@@ -16,10 +16,9 @@ from pprint import pprint
 from read_ontology import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
 from utils import NewIEtoDict, getIndexOfTuple
-from connectivity import build_graph
 from scipy.stats import halfnorm
 
-logging.basicConfig(filename="prova2.log",
+logging.basicConfig(filename="logfile.log",
                     level=logging.DEBUG)
 
 
