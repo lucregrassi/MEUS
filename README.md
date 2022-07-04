@@ -2,7 +2,7 @@
 This project in Python 3 allows to simulate the behaviour of people moving between the nodes of a graph imported from OpenStreetMap.
 Each node contains the information about how many people are in that node, and which kind of connection is available.
 
-## How to create a virtual env containing OpenStreetMap and install dependencies
+## How to create a virtual environment containing OpenStreetMap and install dependencies
 
 Download zip or git clone this repository to your machine:
 ```bash
@@ -25,16 +25,9 @@ pip install -r requirements.txt
 ## Launch local server and set up database
 run the commands
 ```bash
-cd src/
-python main_database3.py
+python database_server.py
 ```
-copy the base address which will show up in the terminal upon launching the script.
-Open a python shell and type:
-```python3
->> from main_database3 import db
->> db.create_all()
-```
-This command has generated the database file where to store the data from the simulation.
+This command generates the database file where to store the data from the simulation and launches the server.
 
 ## Start the simulation
 To change the simulation parameters type the -h flag to get help and change parameters.
@@ -47,9 +40,9 @@ To run the simulation with default parameters, open the terminal and type:
 python main.py
 ```
 <p align='center'>
-    <img src='assets/conn.png' width=50% height=50%>
+    <img src='connections/Amatrice_connections.png' width=50% height=50%>
 </p>
-The image above is the graph representation of the italian town of Amatrice wherein agents explore the environment and if they happen to be in the same node and having compatible devices they are able to exchange relevant information previously gathered. The red dots are nodes in which a global network connection is available (necessary to send data to the remote database).
+The image above is the graph representation of the italian town of Amatrice where agents explore the environment. If they happen to be in the same node and having compatible devices they can exchange relevant information previously gathered with other agents. The red dots are nodes in which a global network connection is available (necessary to send data to the remote database).
 
 ## Database structure
 The database has 2 main tables:
@@ -88,11 +81,11 @@ open a python shell and run the following command:
 ```
 
 ## Output Data
-In the main_database3.py file (the server) there is the possibility to set the out path where to set the results obtained from the simulation concerning the decisions of the agents.
-The files have a name which is the id of the a specific node. Each file is a csv file in which the fields are the following:
-- Ncoders:      number of voters for this event
+In the database_server.py file (the server) there is the possibility to set the out path where to set the results obtained from the simulation concerning the decisions of the agents.
+The csv files are named with the id of specific nodes. Each file contains the following fields:
+- Ncoders:      number of voters for the event
 - who:          the specific agent's id
-- when:         time loop when the observation has happened
+- when:         time loop when the observation has been made
 - what:         index of the reported observation
 - observations: list of the observations made so far
 - ground truth: the actual event present in this node
@@ -102,15 +95,25 @@ The files have a name which is the id of the a specific node. Each file is a csv
 
 Every row in the file represent a new observation being reported for that event in that node.
 
-## Plotting results
-In order to plot the metrics of evaluation for every event in the graph and the latency profiles:
-```bash
-python plot_graphs.py
-```
-The experiments for the simulator should be run with the -st flag set to True and the simualtor will perform either 3 or 4 experiments according to the parameter set (radius and gateways, respectively):
+The experiments should be run by setting the -st flag to True. 
 ```bash
 python main.py -st True
 ```
+There are 3 possible experiments that you can choose to perform:
+1. Varying the percentage of gateway agents (6 simulations)
+2. Varying the hub coverage radius (6 simulations)
+3. Varying the standard deviation of the agents (9 simulations)
+
+The data of each simulation will be saved in a folder called "exp#" where # corresponds to the number of the simulation.
+
+Note that before performing another experiment, the folders created during previous experiments should be renamed, moved or deleted.
+
+## Plotting results
+In order to plot the metrics of evaluation for every node in the graph, after performing an experiment, run the following script:
+```bash
+python plot_graphs.py
+```
+
 ## Authors
 | Name | E-mail |
 |------|--------|
