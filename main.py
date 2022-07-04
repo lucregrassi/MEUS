@@ -30,12 +30,12 @@ def main():
     if args.st:
         if not os.path.isfile("graph/graph_temp.graphml"):
             save_graph(args.place)
-        build_graph(args.hubs_4g, args.radius_4g)
         user_input = input("Enter which parameter do you wish to vary:\n1 - Gateway agent percentage\n2 - Hub radius\n"
                            "3 - Standard Deviation of the Gaussian distribution of the error of the agents\n")
         assert user_input in ["1", "2", "3"], "Parameter should be either 1, 2, or 3."
 
         if user_input == '1':
+            build_graph(args.hubs_4g, args.radius_4g)
             for i in range(6):
                 if i == 0:
                     gateway_ratio = 0.1
@@ -59,8 +59,7 @@ def main():
             for i in range(6):
                 radius = round(3 - 0.5 * i, 1)
                 # Rebuild graph with different hub radius
-                if i > 0:
-                    build_graph(args.hubs_4g, radius)
+                build_graph(args.hubs_4g, radius)
                 print("Experiment: " + str(i) + "\nRadius: " + str(radius))
                 simulator = Simulator(num_exp=i,
                                       n_agents=args.n_agents,
@@ -76,6 +75,7 @@ def main():
                                       param="radius")
                 simulator.run()
         else:
+            build_graph(args.hubs_4g, args.radius_4g)
             for i in range(9):
                 if i < 3:
                     std_dev = 1
@@ -107,6 +107,7 @@ def main():
                                       param="std_dev")
                 simulator.run()
     else:
+        build_graph(args.hubs_4g, args.radius_4g)
         simulator = Simulator(num_exp=0,
                               n_agents=args.n_agents,
                               gateway_ratio=args.gateway_ratio,

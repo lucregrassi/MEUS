@@ -116,5 +116,8 @@ def build_graph(hubs_4g, radius_4g):
     # Plot and save the image showing the areas covered by the connections
     # Note: red=4g, green=5g, blue=Wi-Fi
     nc = color(G)
-    ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="connections/conn.png")
+    ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="connections/amatrice.png")
     # input("Press enter and close plot to start simulation")
+
+
+build_graph(3, 2)

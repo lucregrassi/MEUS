@@ -47,3 +47,6 @@ def save_graph(place):
     # Save the graph in a graphml file
     # Note: the file is named "temp" because the connections are still not initialized.
     ox.save_graphml(G, filepath='graph/graph_temp.graphml')
+
+
+save_graph("Amatrice, Rieti, Lazio")
