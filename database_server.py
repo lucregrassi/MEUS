@@ -6,7 +6,7 @@ from flask_restful import Api, fields
 from sqlalchemy.orm import joinedload
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import Schema, fields as mafields, ValidationError
-from utils import NewPreProcessing, compute_Krippendorff_Alpha, compute_CVR, logger, lawshe_values as CVR
+from utils import NewPreProcessing, compute_Krippendorff_Alpha, compute_CVR, logger
 
 app = Flask(__name__)
 api = Api(app)
@@ -136,6 +136,7 @@ def post():
 def receiving_events_list():
     json_data = json.loads(request.data)
     print(json_data)
+    print("CIAO")
     events.extend(json_data['events'])
     global gateways
     gateways = json_data['n_gateways']
@@ -171,7 +172,6 @@ def get(e_id, sit, obj):
     outcome = True if event_query.situation == sit and event_query.obj == obj else False
 
     return {'coorect_event': outcome}
-
 
 
 @app.route("/IE/<int:DO_id>", methods=["PUT"])
@@ -221,21 +221,21 @@ def put(DO_id):
                     events_dict2[ev_id]['whos'].append([dobs['who']])
                     events_dict2[ev_id]['times'].append([1])
                     if dobs['who'] > gateways:
-                        events_dict2[ev_id]['votes'].append(2)
+                        events_dict2[ev_id]['votes'].append(normal_agent_weight)
                     else:
-                        events_dict2[ev_id]['votes'].append(6)
+                        events_dict2[ev_id]['votes'].append(gateway_agent_weight)
 
                     events_dict2[ev_id]['whens'].append([[dobs['when']]])
                     events_dict2[ev_id]['rels'].append([(len(events_dict2[ev_id]['obs']) - 1, dobs['who'])])
 
                     '''CVR method'''
-                    cvr_res = compute_CVR(events_dict2[ev_id], CVR, gateways)
+                    cvr_res = compute_CVR(events_dict2[ev_id], gateways, normal_agent_weight, gateway_agent_weight)
                     logger(ev_id,
                            dobs['who'],
                            dobs['when'],
                            events_dict2[ev_id],
                            cvr_res,
-                           round(compute_Krippendorff_Alpha(events_dict2[ev_id], gateways), 3),
+                           round(compute_Krippendorff_Alpha(events_dict2[ev_id], gateways, normal_agent_weight, gateway_agent_weight), 3),
                            outpath,
                            fields,
                            query_ev,
@@ -250,23 +250,23 @@ def put(DO_id):
                         events_dict2[ev_id]['whos'][index].append(dobs['who'])
                         events_dict2[ev_id]['whens'][index].append([dobs['when']])
                         if dobs['who'] > gateways:
-                            events_dict2[ev_id]['votes'][index] += 2
+                            events_dict2[ev_id]['votes'][index] += normal_agent_weight
                         else:
-                            events_dict2[ev_id]['votes'][index] += 6
+                            events_dict2[ev_id]['votes'][index] += gateway_agent_weight
 
                         events_dict2[ev_id]['times'][index].append(1)
 
                         events_dict2[ev_id]['rels'][index].append((index, dobs['who']))
 
                         '''CVR method'''
-                        cvr_res = compute_CVR(events_dict2[ev_id], CVR, gateways)
+                        cvr_res = compute_CVR(events_dict2[ev_id], gateways, normal_agent_weight, gateway_agent_weight)
 
                         logger(ev_id,
                                dobs['who'],
                                dobs['when'],
                                events_dict2[ev_id],
                                cvr_res,
-                               round(compute_Krippendorff_Alpha(events_dict2[ev_id], gateways), 3),
+                               round(compute_Krippendorff_Alpha(events_dict2[ev_id], gateways, normal_agent_weight, gateway_agent_weight), 3),
                                outpath,
                                fields,
                                query_ev,
@@ -435,7 +435,7 @@ def delete(DO_id):
 
 
 if __name__ == "__main__":
-    if os.path.exists("databaseMEUS.db"):
-        os.remove("databaseMEUS.db")
+    if os.path.exists("src/databaseMEUS.db"):
+        os.remove("src/databaseMEUS.db")
     db.create_all()
     app.run(debug=True)

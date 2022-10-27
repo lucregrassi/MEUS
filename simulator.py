@@ -10,10 +10,9 @@ import numpy as np
 import osmnx as ox
 from owlready2 import *
 from glob import glob
-from save_graph import save_graph
 from Agent import Agent
 from pprint import pprint
-from read_ontology import get_cls_at_dist
+from ontology_utils import get_cls_at_dist
 from InformationElement import NewInformationElement, NewDirectObservation
 from utils import NewIEtoDict, getIndexOfTuple
 from scipy.stats import halfnorm
@@ -144,7 +143,7 @@ class Simulator:
                                             listener.ies.append(copy.deepcopy(IE_teller))
                                             listener.ies[-1].append((teller.n, listener.n, int(k), loop))
 
-        # Avoid that they can meet again once they exchange their info and they are still in the same node
+        # Avoid that they can meet again once they exchange their info, and they are still in the same node
         for k in delete:
             del self.node_state_dict[k]
 

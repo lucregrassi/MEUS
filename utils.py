@@ -261,15 +261,15 @@ def latency_meanStddev_plot(rep1_mean, rep1_stddev, rep2_mean, rep2_stddev, err_
     plt.savefig(path.join(outpath, 'stddev_rep_plot_{0}%.svg'.format(str(int((1 - err_rate) * 100)))))
 
 
-def compute_Krippendorff_Alpha(node_info, n_gateways):
+def compute_Krippendorff_Alpha(node_info, n_gateways, normal_agent_weight, gateway_agent_weight):
     coders = list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))
     Nobs = len(node_info['obs'])
     history = list(itertools.chain(*node_info['rels']))
     rel_data = [list(itertools.chain([[1 if (i, coder) in history and coder == history[history.index((i, coder))][
-        1] else 0 for i in range(Nobs)]] * 2)) \
+        1] else 0 for i in range(Nobs)]] * normal_agent_weight)) \
                     if coder >= n_gateways else list(itertools.chain([[1 if (i, coder) in history and coder ==
                                                                             history[history.index((i, coder))][1] else 0
-                                                                       for i in range(Nobs)]] * 6)) for coder in coders]
+                                                                       for i in range(Nobs)]] * gateway_agent_weight)) for coder in coders]
     rel_data = [el for batch in rel_data for el in batch]
     rel_data = np.asarray(rel_data)
     rel_data = rel_data[[np.any(rel_data[k]) for k in range(len(rel_data))]]
@@ -278,15 +278,16 @@ def compute_Krippendorff_Alpha(node_info, n_gateways):
     return krippendorff.alpha(reliability_data=rel_data, level_of_measurement='nominal')
 
 
-def compute_CVR(node_info, CVR, n_gateways):
-    panel_size = np.sum([2 if coder > n_gateways else 6 for coder in
+def compute_CVR(node_info, n_gateways, normal_agent_weight, gateway_agent_weight):
+    # Compute total number of voters based on their weight
+    panel_size = np.sum([normal_agent_weight if coder > n_gateways else gateway_agent_weight for coder in
                          list(np.unique(np.asarray(list(itertools.chain(*node_info['whos'])))))])
     candidate = max(node_info['votes'])
     value = -2
-    if panel_size in CVR.keys():
+    if panel_size in lawshe_values.keys():
         value = 0
         # if the threshold majority is reached
-        if candidate >= CVR[panel_size]:
+        if candidate >= lawshe_values[panel_size]:
             value = 1
     return value
 

@@ -1,5 +1,4 @@
 import os.path
-
 from utils import parse_args
 from simulator import Simulator
 from save_graph import save_graph
@@ -29,6 +28,7 @@ def main():
 
     if args.st:
         if not os.path.isfile("graph/graph_temp.graphml"):
+            print("Saving graph...")
             save_graph(args.place)
         user_input = input("Enter which parameter do you wish to vary:\n1 - Gateway agent percentage\n2 - Hub radius\n"
                            "3 - Standard Deviation of the Gaussian distribution of the error of the agents\n")

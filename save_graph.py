@@ -1,5 +1,5 @@
 import osmnx as ox
-from read_ontology import random_event
+from ontology_utils import random_event
 
 
 # OSMnx documentation
@@ -49,4 +49,4 @@ def save_graph(place):
     ox.save_graphml(G, filepath='graph/graph_temp.graphml')
 
 
-save_graph("Amatrice, Rieti, Lazio")
+# save_graph("Amatrice, Rieti, Lazio")

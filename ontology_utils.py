@@ -1,5 +1,6 @@
 from owlready2 import *
 import random
+import networkx as nx
 
 # Import and load the ontology from the owl file
 onto = get_ontology("ontology/MEUS.owl")
@@ -100,7 +101,6 @@ def recursive_down(start_cls, dictionary, i):
 # Return a randomly chosen class among those at a certain distance from the starting one
 def get_cls_at_dist(start_cls_name, distance):
     start_cls = onto.Situation
-    
     for cls in onto.classes():
         if cls.name == start_cls_name:
             start_cls = cls
@@ -117,6 +117,25 @@ def get_cls_at_dist(start_cls_name, distance):
     if distance not in dictionary:
         distance = max(dictionary.keys())
     return random.choice(dictionary[distance])
+
+
+# This method returns the shortest paths between all nodes of a networkx graph, created starting from the
+# Ontology. The nodes are the classes and the graph is not oriented.
+def shortest_path_graph():
+    G = nx.Graph()
+    for cls in list(onto.classes()):
+        G.add_node(cls.name)
+        for subclass in list(cls.subclasses()):
+            G.add_edge(cls.name, subclass.name)
+    return dict(nx.all_pairs_shortest_path_length(G))
+
+
+# This function returns the shortest path between the classes of the individuals corresponding to the topic numbers
+def distance_between_two_classes(cls1, cls2):
+    shortest_paths_length = shortest_path_graph()
+    return shortest_paths_length[cls1][cls2]
+
+
 
 
 
