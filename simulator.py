@@ -22,7 +22,7 @@ logging.basicConfig(filename="logfile.log",
 
 
 class Simulator:
-    def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.15, loop_distance=100, seed=13, threshold=30, std_dev=1,
+    def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.15, loop_distance=100, seed=69, threshold=30, std_dev=1,
                  std_dev_gateway=0.2, store_latency=False, path=os.path.abspath(os.getcwd()), radius=2, th=0,
                  param='std_dev'):
         self.n_agents = n_agents

@@ -20,7 +20,7 @@ def main():
         Seed:                       {args.seed}\n\
         Store Latency data:         {args.st}")
 
-    if args.setup_map is True:
+    if args.setup_map:
         print("Saving graph...")
         save_graph(args.place)
         print("Setting up connections...")
@@ -78,18 +78,18 @@ def main():
             build_graph(args.hubs_4g, args.radius_4g)
             for i in range(9):
                 if i < 3:
-                    std_dev = 1
+                    std_dev = 0.5
                 elif 3 <= i <= 5:
-                    std_dev = 2
+                    std_dev = 1
                 else:
-                    std_dev = 3
+                    std_dev = 1.5
 
                 if i == 0 or i == 3 or i == 6:
                     std_dev_gateway = 0.2
                 elif i == 1 or i == 4 or i == 7:
-                    std_dev_gateway = 0.6
+                    std_dev_gateway = 0.5
                 else:
-                    std_dev_gateway = 1
+                    std_dev_gateway = 0.8
 
                 print("Experiment " + str(i) + "\nAgent's std: " + str(std_dev) + "\nGateway agent's std: "
                       + str(std_dev_gateway))

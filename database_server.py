@@ -135,8 +135,7 @@ def post():
 @app.route("/IE/events", methods=["PUT"])
 def receiving_events_list():
     json_data = json.loads(request.data)
-    print(json_data)
-    print("CIAO")
+    # print(json_data)
     events.extend(json_data['events'])
     global gateways
     gateways = json_data['n_gateways']

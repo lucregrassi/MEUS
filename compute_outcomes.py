@@ -6,9 +6,9 @@ from utils import lawshe_values
 from ontology_utils import distance_between_two_classes
 
 city = "amatrice"
-folder_name = "/experiments/exp3_stddev_" + city + "/"
+folder_name = "/experiments/exp3_stddev_" + city + "_new_seed69/"
 exp_folder_path = os.getcwd() + folder_name
-folders = sorted(glob(exp_folder_path + 'exp[0-8]'))
+folders = sorted(glob(exp_folder_path + '/exp[0-8]'))
 
 
 def first_valid_observation():
@@ -111,4 +111,5 @@ def all_valid_observations():
 
 
 first_valid_observation()
+all_valid_observations()
 
