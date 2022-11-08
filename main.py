@@ -18,7 +18,8 @@ def main():
         Hub number                  {args.hubs_4g}\n\
         Hub Radius                  {args.radius_4g}\n\
         Seed:                       {args.seed}\n\
-        Store Latency data:         {args.st}")
+        Store Latency data:         {args.st}\n\
+        Epidemic:                   {args.epidemic}")
 
     if args.setup_map:
         print("Saving graph...")
@@ -52,7 +53,8 @@ def main():
                                       std_dev_gateway=args.std_dev_gateway,
                                       store_latency=args.st,
                                       radius=args.radius_4g,
-                                      th=args.nl,
+                                      nl=args.nl,
+                                      epidemic=args.epidemic,
                                       param="gateways")
                 simulator.run()
         elif user_input == "2":
@@ -71,7 +73,8 @@ def main():
                                       std_dev_gateway=args.std_dev_gateway,
                                       store_latency=args.st,
                                       radius=radius,
-                                      th=args.nl,
+                                      nl=args.nl,
+                                      epidemic=args.epidemic,
                                       param="radius")
                 simulator.run()
         else:
@@ -103,7 +106,8 @@ def main():
                                       std_dev_gateway=std_dev_gateway,
                                       store_latency=args.st,
                                       radius=args.radius_4g,
-                                      th=args.nl,
+                                      nl=args.nl,
+                                      epidemic=args.epidemic,
                                       param="std_dev")
                 simulator.run()
     else:
@@ -118,7 +122,8 @@ def main():
                               std_dev_gateway=args.std_dev_gateway,
                               store_latency=args.st,
                               radius=args.radius_4g,
-                              th=args.nl)
+                              nl=args.nl,
+                              epidemic=args.epidemic)
         simulator.run()
 
 

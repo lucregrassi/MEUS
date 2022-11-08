@@ -356,7 +356,7 @@ def parse_args():
     parser.add_argument('-radius_4g', default=2, type=int,
                         help='magnitude of the radius of each internet hub.')
 
-    parser.add_argument('-n_agents', default=20000, type=int,
+    parser.add_argument('-n_agents', default=5000, type=int,
                         help='number of agents present in the environment.')
 
     parser.add_argument('-gateway_ratio', default=0.01, type=float,
@@ -384,6 +384,10 @@ def parse_args():
                                         To obtain the graphs it is necessary to run multiple experiments.')
     parser.add_argument('-nl', default=0, type=int,
                         help='The simulation will stop upon reaching nl number of loops instead of the percentage of seen events.')
+
+    parser.add_argument('-epidemic', default=True, type=bool,
+                        help='If set to True, agents will not exchange IEs with the same DO.')
+
     args = parser.parse_args()
     return args
 

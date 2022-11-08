@@ -5,9 +5,9 @@ import statistics
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
-from utils import sent_at_loop_plot
 from collections import Counter
 from glob import glob
+from utils import sent_at_loop_plot
 
 
 def show_mean_and_stddev():
@@ -190,15 +190,16 @@ if __name__ == '__main__':
         - percentage of gateways' agents
         - magnitude of the radius of the hub(s)'''
 
-    param = input("Over which other parameter do you wish to plot the metrics:\n\
-        1 - Percentage of gateways' agents\n\
-        2 - Magnitude of the radius of the hub(s)?\n\
-        3 - Standard deviation of the distribution of the agents' error\n")
-    if param == "1":
-        param = "gateways"
-    elif param == "2":
-        param = "radius"
-    else:
-        param = "std_dev"
+    # TODO: uncomment for graphs comparing the loop number at which observations have been sent
+    # param = input("Over which other parameter do you wish to plot the metrics:\n\
+    #     1 - Percentage of gateways' agents\n\
+    #     2 - Magnitude of the radius of the hub(s)?\n\
+    #     3 - Standard deviation of the distribution of the agents' error\n")
+    # if param == "1":
+    #     param = "gateways"
+    # elif param == "2":
+    #     param = "radius"
+    # else:
+    #     param = "std_dev"
 
-    sent_at_loop_plot(param)
+    # sent_at_loop_plot(param)

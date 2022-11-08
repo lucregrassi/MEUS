@@ -23,8 +23,8 @@ logging.basicConfig(filename="logfile.log",
 
 class Simulator:
     def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.15, loop_distance=100, seed=69, threshold=30, std_dev=1,
-                 std_dev_gateway=0.2, store_latency=False, path=os.path.abspath(os.getcwd()), radius=2, th=0,
-                 param='std_dev'):
+                 std_dev_gateway=0.2, store_latency=False, path=os.path.abspath(os.getcwd()), radius=2, nl=0,
+                 param='std_dev', epidemic=True):
         self.n_agents = n_agents
         self.gateway_ratio = gateway_ratio
         self.perc_seen_ev = 0
@@ -54,10 +54,11 @@ class Simulator:
         self.store_latency = store_latency
         self.path = path
         self.radius = radius
-        self.th = th
+        self.simulation_steps = nl
         self.param = param
         self.num_exp = num_exp
         self.G = None
+        self.epidemic = epidemic
 
     def compute_destination(self, current_node):
         # if len([n for n in self.G.neighbors(current_node)])==0:
@@ -93,7 +94,7 @@ class Simulator:
                 for agent_id in self.node_state_dict[k]:
                     listener = self.agents_dict[str(agent_id)]
                     for ag_id in self.node_state_dict[k]:
-                        # If the teller has a different id (is not the listener), and if they both have
+                        # If the teller has a different id (is not the listener), and if they both have some IEs
                         candidate = self.agents_dict[str(ag_id)]
                         if candidate.n != listener.n and len(candidate.ies) > 0:
                             # Look for common local connections
@@ -111,37 +112,40 @@ class Simulator:
                                     same_root = False
                                     already_told = False
                                     # print("teller: ", IE_teller[0],", ",IE_teller[1:])
-                                    for i, lis_ie in enumerate(listener.ies):
-                                        # If the IEs have the same root (can happen only once)
-                                        if IE_teller[0] == lis_ie[0]:
+                                    for i, IE_lis in enumerate(listener.ies):
+                                        # If the IEs have the same root
+                                        if IE_teller[0] == IE_lis[0]:
                                             same_root = True
-                                            index = i
-                                            # For each quadrupla in the IE
-                                            for quadrupla in IE_teller[1:]:
-                                                # If the listener is not a teller in a tuple of the IE,
-                                                # or the teller has not previously told the information to the listener
-                                                if quadrupla[0] == listener.n:
-                                                    already_told = True
-                                                    break
-                                            for tup in lis_ie[1:]:
-                                                if tup[0] == teller.n and tup[1] == listener.n:
-                                                    already_told = True
-                                                    break
+                                            # If epidemic and two IEs have same DO, do not communicate it
+                                            if self.epidemic:
+                                                already_told = True
+                                            else:
+                                                index = i
+                                                # For each quadrupla in the IE
+                                                for quadrupla in IE_teller[1:]:
+                                                    # If the listener is not a teller in a tuple of the IE,
+                                                    # or the teller has not previously told the information to the listener
+                                                    if quadrupla[0] == listener.n:
+                                                        already_told = True
+                                                        break
+                                                for tup in IE_lis[1:]:
+                                                    if tup[0] == teller.n and tup[1] == listener.n:
+                                                        already_told = True
+                                                        break
                                     if not already_told:
-                                        if same_root:
+                                        if self.epidemic or not same_root:
+                                            # Append the new IE to the listener (making a deepcopy of the IE of the teller)
+                                            listener.ies.append(copy.deepcopy(IE_teller))
+                                            listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                        else:
                                             if len(IE_teller[1:]) > 0:
                                                 target_extend = [(teller.n, listener.n, int(k), loop)]
                                                 target_extend.extend(
                                                     elem for elem in IE_teller[1:] if elem not in listener.ies[index])
-
                                                 # communicating the information to the listener
                                                 listener.ies[index].extend(target_extend)
                                             else:
                                                 listener.ies[index].append((teller.n, listener.n, int(k), loop))
-                                        else:
-                                            # Append the new IE to the listener (making a deepcopy of the IE of the teller)
-                                            listener.ies.append(copy.deepcopy(IE_teller))
-                                            listener.ies[-1].append((teller.n, listener.n, int(k), loop))
 
         # Avoid that they can meet again once they exchange their info, and they are still in the same node
         for k in delete:
@@ -193,7 +197,6 @@ class Simulator:
                 else:
                     a.error_list.append((self.std_dev, loop))
                 a.err_distances.append((a.error, loop))
-
         else:
             # If the person is moving, check if it has reached the destination
             if a.distance > 0:
@@ -259,6 +262,7 @@ class Simulator:
         l = [n[0] for n in self.G.nodes.data()]
 
         normal_agents = self.n_agents-n_gateway_agents
+        # TODO: questa cosa va rifatta ogni volta, non solo all'inizio
         # Generate float values distributed normally, centered in 0 and a certain standard deviation
         rv = halfnorm.rvs(loc=0, scale=self.std_dev, size=normal_agents)
         distances = []
@@ -332,9 +336,9 @@ class Simulator:
         self.exchange_information(0)
 
         count = 0
-        assert self.th >= 0, \
-            'threshold for end of experiment cannot be a negative value.'
-        if self.th == 0:
+        assert self.simulation_steps >= 0, \
+            'number of loops for end of experiment cannot be a negative value.'
+        if self.simulation_steps == 0:
             while self.perc_seen_ev < self.threshold:
                 start_time = time.time()
                 print("\nIteration " + str(count))
@@ -348,7 +352,7 @@ class Simulator:
                 self.loop_duration.append(time.time() - start_time)
                 self.mean_loop_duration.append(statistics.mean(self.loop_duration))
         else:
-            while count < self.th:
+            while count < self.simulation_steps:
                 start_time = time.time()
                 print("\nIteration " + str(count))
                 for key in self.agents_dict.keys():
@@ -364,7 +368,7 @@ class Simulator:
 
     def run(self):
         if self.store_latency:
-            self.th = 0
+            self.simulation_steps = 0
 
         self.G = ox.load_graphml('graph/graph.graphml')
         self.onto.load()
@@ -433,12 +437,12 @@ class Simulator:
                     for el in self.dir_obs_latency:
                         writer.writerow({'dir_obs_lats': el})
             else:
-                with open(self.path + '/exp{0}/sent_to_db_loop/{1}_dev_std.csv'.format(self.num_exp, self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/sent_to_db_loop/{1}_{2}_dev_std.csv'.format(self.num_exp, self.std_dev, self.std_dev_gateway), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
                     writer.writeheader()
                     for el in self.sent_at_loop:
                         writer.writerow({'sent_to_db_loop': el})
-                with open(self.path + '/exp{0}/dir_obs_lats/{1}_dev_std.csv'.format(self.num_exp, self.radius), 'w') as f:
+                with open(self.path + '/exp{0}/dir_obs_lats/{1}_{2}_dev_std.csv'.format(self.num_exp, self.std_dev, self.std_dev_gateway), 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
                     writer.writeheader()
                     for el in self.dir_obs_latency:
