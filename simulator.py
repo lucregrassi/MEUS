@@ -59,6 +59,10 @@ class Simulator:
         self.num_exp = num_exp
         self.G = None
         self.epidemic = epidemic
+        self.halfnorm_size = 20011
+        self.n_gateway_agents = 0
+        self.gateway_agents_errors = []
+        self.normal_agents_errors = []
 
     def compute_destination(self, current_node):
         # if len([n for n in self.G.neighbors(current_node)])==0:
@@ -256,29 +260,35 @@ class Simulator:
             prior_threshold = agent.num_info_sent
             agent.num_info_sent += (len(agent.ies) - prior_threshold)
 
+    # Update the errors of the agents at each simulation loop
+    def update_agents_errors(self, count):
+        # Change agents errors by shifting the values
+        for n_ag, ag in self.agents_dict:
+            # Store the error index needed by the agent based on the simulation loop
+            error_index = self.n_agents * count + int(n_ag)
+            # Based on the type of the agent get the error
+            if int(n_ag) < self.n_gateway_agents:
+                ag.error = self.gateway_agents_errors[error_index % self.halfnorm_size]
+            else:
+                ag.error = self.normal_agents_errors[error_index % self.halfnorm_size]
+
     def simulate(self):
-        n_gateway_agents = math.floor(self.gateway_ratio * self.n_agents)
+        self.n_gateway_agents = math.floor(self.gateway_ratio * self.n_agents)
         mu, sigma = 0, 1
         l = [n[0] for n in self.G.nodes.data()]
 
-        normal_agents = self.n_agents-n_gateway_agents
-        # TODO: questa cosa va rifatta ogni volta, non solo all'inizio
-        # Generate float values distributed normally, centered in 0 and a certain standard deviation
-        rv = halfnorm.rvs(loc=0, scale=self.std_dev, size=normal_agents)
-        distances = []
-        for elem in rv:
-            if math.floor(elem) > 3:
-                distances.append(3)
-            else:
-                distances.append(math.floor(elem))
+        rv = halfnorm.rvs(loc=0, scale=self.std_dev_gateway, size=self.halfnorm_size)
+        if math.floor(rv[0]) > 3:
+            self.gateway_agents_errors.error = 3
+        else:
+            self.gateway_agents_errors.error = math.floor(rv[0])
 
-        rv = halfnorm.rvs(loc=0, scale=self.std_dev_gateway, size=n_gateway_agents)
-        distances_gateway = []
-        for elem in rv:
-            if math.floor(elem) > 3:
-                distances_gateway.append(3)
-            else:
-                distances_gateway.append(math.floor(elem))
+        normal_agents_errors = []
+        rv = halfnorm.rvs(loc=0, scale=self.std_dev, size=self.halfnorm_size)
+        if math.floor(rv[0]) > 3:
+            self.normal_agents_errors.error = 3
+        else:
+            self.normal_agents_errors.error = math.floor(rv[0])
 
         normal_agent_weight = math.ceil(6/(self.std_dev/0.5))
         gateway_agent_weight = math.ceil(6/(self.std_dev_gateway/0.5))
@@ -292,12 +302,13 @@ class Simulator:
 
             # The error of an agent is initialized to zero
             agent = Agent(i, curr_node, dest_node, dist, mu=mu, sigma=sigma)
-            # Initialize the connections owned by the person
-            if i < n_gateway_agents:
+            # Initialize the connections and the error of the agents
+            if i < self.n_gateway_agents:
                 agent.global_conn = [1, 2, 3]
-                agent.error = distances_gateway[i]
+                # Generate float values distributed normally, centered in 0 and a certain standard deviation
+                agent.error = self.gateway_agents_errors[i]
             else:
-                agent.error = distances[i-n_gateway_agents]
+                agent.error = normal_agents_errors[i - self.n_gateway_agents]
             agent.visited_nodes.append(curr_node)
 
             for elem in self.G.nodes(data=True):
@@ -322,7 +333,7 @@ class Simulator:
 
                         agent.ies.append(
                             [NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
-                        if i < n_gateway_agents:
+                        if i < self.n_gateway_agents:
                             agent.error_list.append((self.std_dev_gateway, 0))
                         else:
                             agent.error_list.append((self.std_dev, 0))
@@ -335,6 +346,7 @@ class Simulator:
         # Exchange info between agents in the initial position
         self.exchange_information(0)
 
+        # Initialize simulation loops counter
         count = 0
         assert self.simulation_steps >= 0, \
             'number of loops for end of experiment cannot be a negative value.'
@@ -349,6 +361,7 @@ class Simulator:
                     self.send_info(self.agents_dict[key], count)
                 print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
                 count += 1
+                self.update_agents_errors(count)
                 self.loop_duration.append(time.time() - start_time)
                 self.mean_loop_duration.append(statistics.mean(self.loop_duration))
         else:
@@ -362,6 +375,7 @@ class Simulator:
                     self.send_info(self.agents_dict[key], count)
                 print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
                 count += 1
+                self.update_agents_errors(count)
                 self.loop_duration.append(time.time() - start_time)
                 self.mean_loop_duration.append(statistics.mean(self.loop_duration))
         return count
