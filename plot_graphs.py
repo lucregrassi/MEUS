@@ -7,7 +7,6 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from collections import Counter
 from glob import glob
-from utils import sent_at_loop_plot
 
 
 def show_mean_and_stddev():
@@ -86,10 +85,8 @@ def show_mean_and_stddev():
                              'ratio': ratio})
 
         with open(avg_path + '/mean_std_dev/average_latency.csv', 'w') as f:
-            for file in os.listdir(folder + '/dir_obs_lats'):
-                dir_obs_lat_mean = folder + '/dir_obs_lats/' + file
             lats = []
-            with open(dir_obs_lat_mean) as file:
+            with open(folder + '/dir_obs_lats.csv', 'r') as file:
                 for line in file.readlines()[1:]:
                     lats.append(int(line))
             avg = sum(lats) / len(lats)
@@ -141,8 +138,10 @@ def plot_metrics():
                                          else None \
                                  for n in range(len(dist[count]))]
 
-                plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), plotted_to_be, label="Distance of the most voted observation from the ground truth")
-                plt.plot(list(map(str, [i for i in range(len(Kalpha[count]))])), Kalpha[count], label="Krippendorff's Alpha",
+                plt.plot(list(map(str, [i for i in range(len(plotted_to_be))])), plotted_to_be,
+                         label="Distance of the most voted observation from the ground truth")
+                plt.plot(list(map(str, [i for i in range(len(Kalpha[count]))])), Kalpha[count],
+                         label="Krippendorff's Alpha",
                          marker='*')
 
                 if len(cvr[count]) == 0:
@@ -158,12 +157,14 @@ def plot_metrics():
                             obss1 = list(eval(pd.read_csv(csv_path + str(i) + '.csv')['observations'][k]))
                             gt1 = dict(eval(pd.read_csv(csv_path + str(i) + '.csv')['ground_truth'][0]))
                             try:
-                                index = [{'situation': obs['situation'], 'object': obs['object']} for obs in obss1].index(
+                                index = [{'situation': obs['situation'], 'object': obs['object']} for obs in
+                                         obss1].index(
                                     gt1)
                             except ValueError:
                                 index = -1
                             # if the ground truth coincides with the majorly voted event
-                            if index == [obs['coders'] for obs in obss1].index(np.max([obs['coders'] for obs in obss1])):
+                            if index == [obs['coders'] for obs in obss1].index(
+                                    np.max([obs['coders'] for obs in obss1])):
                                 plt.scatter(k, 0, s=20, color='green', marker='o')
                             else:
                                 plt.scatter(k, plotted_to_be[k], s=20, color='magenta', marker='o')
@@ -178,7 +179,6 @@ def plot_metrics():
 
 
 if __name__ == '__main__':
-
     '''Showing how many times agents agree and disagree on observations and their respective mean and stddev of 
     the distance (how much an observation is different from the ground truth).'''
     show_mean_and_stddev()

@@ -2,7 +2,7 @@ import os
 import json
 from pprint import pprint
 from flask import Flask, request
-from flask_restful import Api, fields
+from flask_restful import Api
 from sqlalchemy.orm import joinedload
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import Schema, fields as mafields, ValidationError
@@ -213,10 +213,8 @@ def put(DO_id):
             # if not dirObsTab.query.filter_by(who=dobs['who']).first():
             if not any(dobs['who'] in nest for nest in events_dict2[ev_id]['whos']):
                 if {'situation': dobs['situation'], 'object': dobs['obj']} not in events_dict2[ev_id]['obs']:
-
                     events_dict2[ev_id]['obs'].append({'situation': dobs['situation'],
                                                        'object': dobs['obj']})
-
                     events_dict2[ev_id]['whos'].append([dobs['who']])
                     events_dict2[ev_id]['times'].append([1])
                     if dobs['who'] > gateways:
@@ -252,9 +250,7 @@ def put(DO_id):
                             events_dict2[ev_id]['votes'][index] += normal_agent_weight
                         else:
                             events_dict2[ev_id]['votes'][index] += gateway_agent_weight
-
                         events_dict2[ev_id]['times'][index].append(1)
-
                         events_dict2[ev_id]['rels'][index].append((index, dobs['who']))
 
                         '''CVR method'''

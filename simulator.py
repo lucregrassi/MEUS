@@ -1,21 +1,22 @@
-import csv
+from InformationElement import NewInformationElement, NewDirectObservation
+from utils import NewIEtoDict, getIndexOfTuple
+from ontology_utils import get_cls_at_dist
+from scipy.stats import halfnorm
+from pprint import pprint
+from owlready2 import *
+from Agent import Agent
+from glob import glob
+import numpy as np
+import osmnx as ox
+import statistics
+import requests
+import logging
+import shutil
 import copy
 import math
 import json
-import shutil
-import logging
-import requests
-import statistics
-import numpy as np
-import osmnx as ox
-from owlready2 import *
-from glob import glob
-from Agent import Agent
-from pprint import pprint
-from ontology_utils import get_cls_at_dist
-from InformationElement import NewInformationElement, NewDirectObservation
-from utils import NewIEtoDict, getIndexOfTuple
-from scipy.stats import halfnorm
+import csv
+
 
 logging.basicConfig(filename="logfile.log",
                     level=logging.DEBUG)
@@ -23,8 +24,8 @@ logging.basicConfig(filename="logfile.log",
 
 class Simulator:
     def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.15, loop_distance=100, seed=69, threshold=30, std_dev=1,
-                 std_dev_gateway=0.2, store_latency=False, path=os.path.abspath(os.getcwd()), radius=2, nl=0,
-                 param='std_dev', epidemic=True):
+                 std_dev_gateway=0.2, path=os.path.abspath(os.getcwd()), radius=2, nl=0,
+                 epidemic=True):
         self.n_agents = n_agents
         self.gateway_ratio = gateway_ratio
         self.perc_seen_ev = 0
@@ -51,11 +52,9 @@ class Simulator:
         self.similarity_err = []
         self.loop_duration = []
         self.mean_loop_duration = []
-        self.store_latency = store_latency
         self.path = path
         self.radius = radius
         self.simulation_steps = nl
-        self.param = param
         self.num_exp = num_exp
         self.G = None
         self.epidemic = epidemic
@@ -63,6 +62,7 @@ class Simulator:
         self.n_gateway_agents = 0
         self.gateway_agents_errors = []
         self.normal_agents_errors = []
+        self.agents_do_log = {}
 
     def compute_destination(self, current_node):
         # if len([n for n in self.G.neighbors(current_node)])==0:
@@ -78,7 +78,7 @@ class Simulator:
                 source_nodes.append(source)
 
         adj_nodes = source_nodes + target_nodes
-        # destination_node    = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
+        # destination_node  = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
         destination_node = int(np.random.choice(adj_nodes))
         if destination_node in target_nodes:
             edges_of_interest = self.G[current_node][destination_node]
@@ -263,32 +263,37 @@ class Simulator:
     # Update the errors of the agents at each simulation loop
     def update_agents_errors(self, count):
         # Change agents errors by shifting the values
-        for n_ag, ag in self.agents_dict:
+        for n_ag, ag in self.agents_dict.items():
             # Store the error index needed by the agent based on the simulation loop
-            error_index = self.n_agents * count + int(n_ag)
+            error_index = (self.n_agents * count + int(n_ag)) % self.halfnorm_size
             # Based on the type of the agent get the error
             if int(n_ag) < self.n_gateway_agents:
-                ag.error = self.gateway_agents_errors[error_index % self.halfnorm_size]
+                ag.error = self.gateway_agents_errors[error_index]
             else:
-                ag.error = self.normal_agents_errors[error_index % self.halfnorm_size]
+                ag.error = self.normal_agents_errors[error_index]
 
     def simulate(self):
         self.n_gateway_agents = math.floor(self.gateway_ratio * self.n_agents)
         mu, sigma = 0, 1
         l = [n[0] for n in self.G.nodes.data()]
 
+        print("\nGenerating random errors for gateway agents")
         rv = halfnorm.rvs(loc=0, scale=self.std_dev_gateway, size=self.halfnorm_size)
-        if math.floor(rv[0]) > 3:
-            self.gateway_agents_errors.error = 3
-        else:
-            self.gateway_agents_errors.error = math.floor(rv[0])
+        print(rv)
+        for elem in rv:
+            if math.floor(elem) > 3:
+                self.gateway_agents_errors.append(3)
+            else:
+                self.gateway_agents_errors.append(math.floor(elem))
 
-        normal_agents_errors = []
+        print("Generating random errors for normal agents")
         rv = halfnorm.rvs(loc=0, scale=self.std_dev, size=self.halfnorm_size)
-        if math.floor(rv[0]) > 3:
-            self.normal_agents_errors.error = 3
-        else:
-            self.normal_agents_errors.error = math.floor(rv[0])
+        print(rv)
+        for elem in rv:
+            if math.floor(elem) > 3:
+                self.normal_agents_errors.append(3)
+            else:
+                self.normal_agents_errors.append(math.floor(elem))
 
         normal_agent_weight = math.ceil(6/(self.std_dev/0.5))
         gateway_agent_weight = math.ceil(6/(self.std_dev_gateway/0.5))
@@ -308,7 +313,7 @@ class Simulator:
                 # Generate float values distributed normally, centered in 0 and a certain standard deviation
                 agent.error = self.gateway_agents_errors[i]
             else:
-                agent.error = normal_agents_errors[i - self.n_gateway_agents]
+                agent.error = self.normal_agents_errors[i - self.n_gateway_agents]
             agent.visited_nodes.append(curr_node)
 
             for elem in self.G.nodes(data=True):
@@ -348,42 +353,39 @@ class Simulator:
 
         # Initialize simulation loops counter
         count = 0
-        assert self.simulation_steps >= 0, \
-            'number of loops for end of experiment cannot be a negative value.'
-        if self.simulation_steps == 0:
-            while self.perc_seen_ev < self.threshold:
-                start_time = time.time()
-                print("\nIteration " + str(count))
-                for key in self.agents_dict.keys():
-                    self.update_position(self.agents_dict[key], count)
-                self.exchange_information(count)
-                for key in self.agents_dict.keys():
-                    self.send_info(self.agents_dict[key], count)
-                print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
-                count += 1
-                self.update_agents_errors(count)
-                self.loop_duration.append(time.time() - start_time)
-                self.mean_loop_duration.append(statistics.mean(self.loop_duration))
-        else:
-            while count < self.simulation_steps:
-                start_time = time.time()
-                print("\nIteration " + str(count))
-                for key in self.agents_dict.keys():
-                    self.update_position(self.agents_dict[key], count)
-                self.exchange_information(count)
-                for key in self.agents_dict.keys():
-                    self.send_info(self.agents_dict[key], count)
-                print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
-                count += 1
-                self.update_agents_errors(count)
-                self.loop_duration.append(time.time() - start_time)
-                self.mean_loop_duration.append(statistics.mean(self.loop_duration))
+        assert self.simulation_steps >= 0, 'number of loops of the experiment cannot be a negative value.'
+        # Run the simulation until a certain percentage of seen events is reached or a certain number of loops
+        while (self.simulation_steps == 0 and self.perc_seen_ev < self.threshold) or (count < self.simulation_steps):
+            start_time = time.time()
+            print("\nIteration " + str(count))
+            # Loop on agents' dictionary to store number of DOs and jumps
+            do_dict = {}
+            for n_ag, ag in self.agents_dict.items():
+                n_do = len(ag.ies)
+                n_jumps = 0
+                # Count total jumps in the IEs of the agent
+                for ag_ie in ag.ies:
+                    n_jumps = n_jumps + len(ag_ie) - 1
+                # Store number of DOs and total jumps in the dictionary
+                do_dict[n_ag] = (n_do, n_jumps)
+            # Store data regarding DOs and jumps owned by all agents at a certain loop
+            self.agents_do_log[count] = do_dict
+
+            for key in self.agents_dict.keys():
+                self.update_position(self.agents_dict[key], count)
+            self.exchange_information(count)
+            for key in self.agents_dict.keys():
+                self.send_info(self.agents_dict[key], count)
+            print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
+            count += 1
+            # Change agents' error by taking the successive values in the list of errors
+            self.update_agents_errors(count)
+            self.loop_duration.append(time.time() - start_time)
+            self.mean_loop_duration.append(statistics.mean(self.loop_duration))
+        print(self.agents_do_log)
         return count
 
     def run(self):
-        if self.store_latency:
-            self.simulation_steps = 0
-
         self.G = ox.load_graphml('graph/graph.graphml')
         self.onto.load()
         np.random.seed(self.seed)
@@ -415,56 +417,36 @@ class Simulator:
         print("Total time to get all events on the db: ", self.t_all)
         print(f"Experiment finished in {self.toc - self.tic:0.4f} seconds")
 
-        if self.store_latency:
-            try:
-                if not os.path.exists(self.path + '/exp{0}/csv'.format(self.num_exp)):
-                    os.makedirs(self.path + '/exp{0}/csv'.format(self.num_exp))
-                if not os.path.exists(self.path + '/exp{0}/sent_to_db_loop'.format(self.num_exp)):
-                    os.makedirs(self.path + '/exp{0}/sent_to_db_loop'.format(self.num_exp))
-                if not os.path.exists(self.path + '/exp{0}/dir_obs_lats'.format(self.num_exp)):
-                    os.makedirs(self.path + '/exp{0}/dir_obs_lats'.format(self.num_exp))
-            except OSError:
-                print('Error: Creating directory of data lats')
+        # Create csv folder to store files containing the observations made in each vertex
+        try:
+            if not os.path.exists(self.path + '/exp{0}/csv'.format(self.num_exp)):
+                os.makedirs(self.path + '/exp{0}/csv'.format(self.num_exp))
+        except OSError:
+            print('Error: Creating directory of data lats')
 
-            if self.param == 'gateways':
-                with open(self.path + '/exp{0}/sent_to_db_loop/{1}%_gateways.csv'.format(self.num_exp, str(round(self.gateway_ratio * 100, 1))),
-                          'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
-                    writer.writeheader()
-                    for el in self.sent_at_loop:
-                        writer.writerow({'sent_to_db_loop': el})
-                with open(self.path + '/exp{0}/dir_obs_lats/{1}%_gateways.csv'.format(self.num_exp, str(round(self.gateway_ratio * 100, 1))),
-                          'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
-                    writer.writeheader()
-                    for el in self.dir_obs_latency:
-                        writer.writerow({'dir_obs_lats': el})
-            elif self.param == 'radius':
-                with open(self.path + '/exp{0}/sent_to_db_loop/{1}Km_radius.csv'.format(self.num_exp, self.radius), 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
-                    writer.writeheader()
-                    for el in self.sent_at_loop:
-                        writer.writerow({'sent_to_db_loop': el})
-                with open(self.path + '/exp{0}/dir_obs_lats/{1}Km_radius.csv'.format(self.num_exp, self.radius), 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
-                    writer.writeheader()
-                    for el in self.dir_obs_latency:
-                        writer.writerow({'dir_obs_lats': el})
-            else:
-                with open(self.path + '/exp{0}/sent_to_db_loop/{1}_{2}_dev_std.csv'.format(self.num_exp, self.std_dev, self.std_dev_gateway), 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
-                    writer.writeheader()
-                    for el in self.sent_at_loop:
-                        writer.writerow({'sent_to_db_loop': el})
-                with open(self.path + '/exp{0}/dir_obs_lats/{1}_{2}_dev_std.csv'.format(self.num_exp, self.std_dev, self.std_dev_gateway), 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
-                    writer.writeheader()
-                    for el in self.dir_obs_latency:
-                        writer.writerow({'dir_obs_lats': el})
+        # Save the logs related to the number of DOs and the total jumps for each agent in each simulation loop
+        with open(self.path + '/exp{0}/agents_ies_log.json'.format(self.num_exp), 'w') as f:
+            json.dump(self.agents_do_log, f, ensure_ascii=False, indent=4)
 
-            csv_files = sorted(glob('./*.csv'))
-            for csv_f in csv_files:
-                shutil.move(csv_f, './exp{0}/csv/'.format(self.num_exp))
+        # Save the simulation loop at which each IE has been communicated to the database
+        with open(self.path + '/exp{0}/sent_to_db_loop.csv'.format(self.num_exp), 'w') as f:
+            writer = csv.DictWriter(f, fieldnames=['sent_to_db_loop'])
+            writer.writeheader()
+            for el in self.sent_at_loop:
+                writer.writerow({'sent_to_db_loop': el})
+
+        # Save the latency of each DO (difference between loop at which it was communicated and loop at which it was
+        # observed)
+        with open(self.path + '/exp{0}/dir_obs_lats.csv'.format(self.num_exp), 'w') as f:
+            writer = csv.DictWriter(f, fieldnames=['dir_obs_lats'])
+            writer.writeheader()
+            for el in self.dir_obs_latency:
+                writer.writerow({'dir_obs_lats': el})
+
+        # Move all csv files created during the simulation inside the csv folder
+        csv_files = sorted(glob('./*.csv'))
+        for csv_f in csv_files:
+            shutil.move(csv_f, './exp{0}/csv/'.format(self.num_exp))
 
         response = requests.delete(self.BASE + "IE/1")
         res = response.json()

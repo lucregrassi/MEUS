@@ -6,3 +6,6 @@ flask_restful
 owlready2~=0.25
 marshmallow~=3.11.1
 krippendorff
+numpy
+osmnx
+scipy

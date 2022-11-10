@@ -356,10 +356,10 @@ def parse_args():
     parser.add_argument('-radius_4g', default=2, type=int,
                         help='magnitude of the radius of each internet hub.')
 
-    parser.add_argument('-n_agents', default=5000, type=int,
+    parser.add_argument('-n_agents', default=100, type=int,
                         help='number of agents present in the environment.')
 
-    parser.add_argument('-gateway_ratio', default=0.01, type=float,
+    parser.add_argument('-gateway_ratio', default=0.3, type=float,
                         help='percentage of gateways agents present in the environment. Ex. if I want 30 percent of gateways agents: -n_gateways 0.3')
 
     parser.add_argument('-loop_distance', default=100, type=int,
@@ -377,11 +377,6 @@ def parse_args():
     parser.add_argument('-std_dev_gateway', default=0.2, type=float,
                         help='the higher the std dev the more gateway agents will make wrong observations.')
 
-    parser.add_argument('-st', default=False, type=bool,
-                        help='if set to true make the simulator store results about the latency to csv files.\
-                                This has to be used whenever is the intention of the user to plot graphs about latency decrease according\
-                                    to parameters such as the radius amplitude and the number of gateways agents present in the simulation.\
-                                        To obtain the graphs it is necessary to run multiple experiments.')
     parser.add_argument('-nl', default=0, type=int,
                         help='The simulation will stop upon reaching nl number of loops instead of the percentage of seen events.')
 
