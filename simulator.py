@@ -181,6 +181,7 @@ class Simulator:
             else:
                 self.node_state_dict[str(a.curr_node)].append(a.n)
 
+            # If there is something to be observed in the node, set a flag to True
             if self.G.nodes[a.curr_node]['situation'] != 'None':
                 flag = True
                 node_situation = self.G.nodes[a.curr_node]['situation']
@@ -190,8 +191,12 @@ class Simulator:
             a.visited_nodes.append(a.curr_node)
             # The actual situation and object seen by the person depend on its trustworthiness
             if flag:
-                seen_sit = get_cls_at_dist(node_situation, distance=a.error)
-                seen_obj = get_cls_at_dist(node_object, distance=a.error)
+                # Perform the observation according to the agent's error
+                # The error is distributed among the situation and the object - their sum is the total error
+                situation_error = np.random.randint(a.error+1)
+                object_error = a.error - situation_error
+                seen_sit = get_cls_at_dist(node_situation, distance=situation_error)
+                seen_obj = get_cls_at_dist(node_object, distance=object_error)
                 seen_ev = (seen_sit, seen_obj)
 
                 a.seen_events.append(seen_ev)

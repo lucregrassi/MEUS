@@ -371,7 +371,7 @@ def parse_args():
     parser.add_argument('-threshold', default=30, type=int,
                         help='percentage of events stored in the database to end the experiment.')
 
-    parser.add_argument('-std_dev', default=1, type=float,
+    parser.add_argument('-std_dev', default=0.5, type=float,
                         help='the higher the std dev the more agents will make wrong observations.')
 
     parser.add_argument('-std_dev_gateway', default=0.2, type=float,
