@@ -1,0 +1,10 @@
+place Assisi
+total agents 5000
+gateway agents 100
+std normal agents 0.2
+std gateway agents 0.5
+epidemic True
+seed 69
+loop distance 100
+hubs 3
+radius 2

@@ -23,7 +23,7 @@ logging.basicConfig(filename="logfile.log",
 
 
 class Simulator:
-    def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.15, loop_distance=100, seed=69, threshold=30, std_dev=1,
+    def __init__(self, num_exp=0, n_agents=100, gateway_ratio=0.3, loop_distance=100, seed=69, threshold=30, std_dev=0.5,
                  std_dev_gateway=0.2, path=os.path.abspath(os.getcwd()), radius=2, nl=0,
                  epidemic=True):
         self.n_agents = n_agents
@@ -193,7 +193,13 @@ class Simulator:
             if flag:
                 # Perform the observation according to the agent's error
                 # The error is distributed among the situation and the object - their sum is the total error
-                situation_error = np.random.randint(a.error+1)
+                if a.error != 0:
+                    situation_error = np.random.randint(a.error+1)
+                else:
+                    # To maintain the sequence of random numbers and make the agents move in the same way
+                    # np.random.randint(1) does not count as a call to random because the result is always 0
+                    situation_error = 0
+                    np.random.randint(2)
                 object_error = a.error - situation_error
                 seen_sit = get_cls_at_dist(node_situation, distance=situation_error)
                 seen_obj = get_cls_at_dist(node_object, distance=object_error)
@@ -235,9 +241,8 @@ class Simulator:
             res = response.json()
 
             try:
-                print("Latency vector", res['latency'])
                 for lat in res['latency']:
-                    print("Latency:", lat['sent_at_loop'] - lat['when'])
+                    # print("Latency:", lat['sent_at_loop'] - lat['when'])
                     self.dir_obs_latency.append(lat['sent_at_loop'] - lat['when'])
             except KeyError as er:
                 print(er)
@@ -381,13 +386,12 @@ class Simulator:
             self.exchange_information(count)
             for key in self.agents_dict.keys():
                 self.send_info(self.agents_dict[key], count)
-            print(f"percentage of events seen: {self.perc_seen_ev:0.2f}%")
+            print(f"Percentage of events seen: {self.perc_seen_ev:0.2f}%")
             count += 1
             # Change agents' error by taking the successive values in the list of errors
             self.update_agents_errors(count)
             self.loop_duration.append(time.time() - start_time)
             self.mean_loop_duration.append(statistics.mean(self.loop_duration))
-        print(self.agents_do_log)
         return count
 
     def run(self):
@@ -417,7 +421,7 @@ class Simulator:
         self.num_loops = self.simulate()
         self.toc = time.perf_counter()
 
-        pprint(self.events)
+        # pprint(self.events)
 
         print("Total time to get all events on the db: ", self.t_all)
         print(f"Experiment finished in {self.toc - self.tic:0.4f} seconds")
@@ -455,4 +459,4 @@ class Simulator:
 
         response = requests.delete(self.BASE + "IE/1")
         res = response.json()
-        pprint(res)
+        # pprint(res)

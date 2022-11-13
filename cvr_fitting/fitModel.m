@@ -30,7 +30,7 @@ mdl = fitnlm(tbl, modelfun, beta0);
 % The actual coefficients are in the "Estimate" column of the "Coefficients" table that's part of the mode.
 coefficients = mdl.Coefficients{:, 'Estimate'}
 % Create smoothed/regressed data using the model:
-X = 5:1:100
+X = 5:1:200
 yFitted = coefficients(1) + coefficients(2) * exp(-coefficients(3)*X);
 
 output = table;

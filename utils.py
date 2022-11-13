@@ -343,11 +343,12 @@ def parse_args():
                                      usage=argparse.SUPPRESS,
                                      formatter_class=argparse.RawTextHelpFormatter)
 
-    parser.add_argument('-setup_map', default=False, type=bool,
+    parser.add_argument('-setup_map', action='store_true',
                         help='If set to True initialize the map when the simulation is launched.')
 
     # Amatrice, Rieti, Lazio
-    parser.add_argument('-place', default='Assisi, Perugia, Umbria', type=str,
+    # Assisi, Perugia, Umbria
+    parser.add_argument('-place', default='Amatrice, Rieti, Lazio', type=str,
                         help='Place where to run the simulation in the format (Town, Province, Region). Example: "Amatrice, Rieti, Lazio".')
 
     parser.add_argument('-hubs_4g', default=3, type=int,
@@ -356,10 +357,10 @@ def parse_args():
     parser.add_argument('-radius_4g', default=2, type=int,
                         help='magnitude of the radius of each internet hub.')
 
-    parser.add_argument('-n_agents', default=100, type=int,
+    parser.add_argument('-n_agents', default=5000, type=int,
                         help='number of agents present in the environment.')
 
-    parser.add_argument('-gateway_ratio', default=0.3, type=float,
+    parser.add_argument('-gateway_ratio', default=0.02, type=float,
                         help='percentage of gateways agents present in the environment. Ex. if I want 30 percent of gateways agents: -n_gateways 0.3')
 
     parser.add_argument('-loop_distance', default=100, type=int,
@@ -380,7 +381,7 @@ def parse_args():
     parser.add_argument('-nl', default=0, type=int,
                         help='The simulation will stop upon reaching nl number of loops instead of the percentage of seen events.')
 
-    parser.add_argument('-epidemic', default=True, type=bool,
+    parser.add_argument('-epidemic', action='store_true',
                         help='If set to True, agents will not exchange IEs with the same DO.')
 
     args = parser.parse_args()

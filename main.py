@@ -7,18 +7,6 @@ from connectivity import build_graph
 
 def main():
     args = parse_args()
-    print(f"The simulation will take place in {args.place}.")
-    print(f"Parameters:\n\
-        Number of agents:           {args.n_agents}\n\
-        Percentage of gateways agents:  {args.gateway_ratio}\n\
-        Loop distance:              {args.loop_distance}\n\
-        Threshold:                  {args.threshold}\n\
-        Standard Deviation:         {args.std_dev}\n\
-        Gateway Agents Std Dev      {args.std_dev_gateway}\n\
-        Hub number                  {args.hubs_4g}\n\
-        Hub Radius                  {args.radius_4g}\n\
-        Seed:                       {args.seed}\n\
-        Epidemic:                   {args.epidemic}")
 
     if args.setup_map:
         print("Saving graph...")
@@ -29,6 +17,8 @@ def main():
     if not os.path.isfile("graph/graph_temp.graphml"):
         print("Saving graph...")
         save_graph(args.place)
+    print("Epidemic", args.epidemic)
+
     user_input = input("Choose the experiment to perform:\n1 - Number of agents\n2 - Hub radius\n"
                        "3 - Standard Deviation of the Gaussian distribution of the error of the agents\n")
 
@@ -45,7 +35,7 @@ def main():
                 n_agents = 20000
                 gateway_ratio = 0.005
 
-            print("Experiment: " + str(i) + "\nNumber of agents: ", n_agents)
+            print("Experiment: " + str(i) + "\nNumber of agents:", n_agents, "\nGateway ratio:", gateway_ratio)
             simulator = Simulator(num_exp=i,
                                   n_agents=n_agents,
                                   gateway_ratio=gateway_ratio,
@@ -62,6 +52,7 @@ def main():
         for i in range(6):
             radius = round(3 - 0.5 * i, 1)
             # Rebuild graph with different hub radius
+            print("Rebuilding graph with a different hub radius")
             build_graph(args.hubs_4g, radius)
             print("Experiment: " + str(i) + "\nRadius: " + str(radius))
             simulator = Simulator(num_exp=i,
@@ -108,7 +99,19 @@ def main():
                                   epidemic=args.epidemic)
             simulator.run()
     else:
-        build_graph(args.hubs_4g, args.radius_4g)
+        print(f"The simulation will take place in {args.place}.")
+        print(f"Parameters:\n\
+               Number of agents:   {args.n_agents}\n\
+               Percentage of GAs:  {args.gateway_ratio}\n\
+               Loop distance:      {args.loop_distance}\n\
+               Threshold:          {args.threshold}\n\
+               Standard deviation: {args.std_dev}\n\
+               GAs std dev         {args.std_dev_gateway}\n\
+               Hub number          {args.hubs_4g}\n\
+               Hub radius          {args.radius_4g}\n\
+               Seed:               {args.seed}\n\
+               Epidemic:           {args.epidemic}")
+
         simulator = Simulator(num_exp=0,
                               n_agents=args.n_agents,
                               gateway_ratio=args.gateway_ratio,
@@ -119,7 +122,7 @@ def main():
                               std_dev_gateway=args.std_dev_gateway,
                               radius=args.radius_4g,
                               nl=args.nl,
-                              epidemic=args.epidemic)
+                              epidemic=bool(args.epidemic))
         simulator.run()
 
 

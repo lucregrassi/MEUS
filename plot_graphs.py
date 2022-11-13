@@ -15,10 +15,10 @@ def show_mean_and_stddev():
 
     for folder in folders:
         try:
-            if not os.path.exists(outpath + folder.split('/')[-1] + '/mean_std_dev'):
-                os.makedirs(outpath + folder.split('/')[-1] + '/mean_std_dev')
+            if not os.path.exists(outpath + folder.split('/')[-1] + '/stats'):
+                os.makedirs(outpath + folder.split('/')[-1] + '/stats')
         except OSError:
-            print('Error: Creating directory of data mean_std_dev.')
+            print('Error: Creating directory of data stats.')
 
         exp_path = outpath + folder.split('/')[-1] + '/csv/'
         files = [file for file in os.listdir(exp_path) if file.endswith('.csv')]
@@ -57,7 +57,7 @@ def show_mean_and_stddev():
         da_Kstddev = round(statistics.stdev(Kalpha_disagree), 3) if d[x1] >= 2 else None
 
         avg_path = outpath + folder.split('/')[-1]
-        with open(avg_path + '/mean_std_dev/agreement.csv', 'w') as f:
+        with open(avg_path + '/stats/agreement.csv', 'w') as f:
             writer = csv.DictWriter(f, ['dist_mean', 'dist_stddev', 'Kalpha_mean', 'Kalpha_stddev', 'ratio'])
             writer.writeheader()
             try:
@@ -70,7 +70,7 @@ def show_mean_and_stddev():
                              'Kalpha_stddev': a_Kstddev,
                              'ratio': ratio})
 
-        with open(avg_path + '/mean_std_dev/disagreement.csv', 'w') as f:
+        with open(avg_path + '/stats/disagreement.csv', 'w') as f:
             writer = csv.DictWriter(f, ['dist_mean', 'dist_stddev', 'Kalpha_mean', 'Kalpha_stddev', 'ratio'])
             writer.writeheader()
 
@@ -84,7 +84,7 @@ def show_mean_and_stddev():
                              'Kalpha_stddev': da_Kstddev,
                              'ratio': ratio})
 
-        with open(avg_path + '/mean_std_dev/average_latency.csv', 'w') as f:
+        with open(avg_path + '/stats/average_latency.csv', 'w') as f:
             lats = []
             with open(folder + '/dir_obs_lats.csv', 'r') as file:
                 for line in file.readlines()[1:]:
