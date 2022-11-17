@@ -19,25 +19,20 @@ def main():
         save_graph(args.place)
     print("Epidemic", args.epidemic)
 
-    user_input = input("Choose the experiment to perform:\n1 - Number of agents\n2 - Hub radius\n"
-                       "3 - Standard Deviation of the Gaussian distribution of the error of the agents\n")
+    user_input = input("Choose the experiment to perform:\n"
+                       "1 - Gateway ratio\n"
+                       "2 - Hub radius\n"
+                       "3 - Agents' observation error\n"
+                       "4 - Number of agents\n"
+                       "5 - Single experiment\n")
 
-    if user_input == '1':
+    if user_input == "1":
         build_graph(args.hubs_4g, args.radius_4g)
-        for i in range(3):
-            if i == 0:
-                n_agents = 5000
-                gateway_ratio = 0.02
-            elif i == 1:
-                n_agents = 10000
-                gateway_ratio = 0.01
-            else:
-                n_agents = 20000
-                gateway_ratio = 0.005
-
-            print("Experiment: " + str(i) + "\nNumber of agents:", n_agents, "\nGateway ratio:", gateway_ratio)
+        for i in range(4):
+            gateway_ratio = 0.005 + (0.005 * i)
+            print("Experiment " + str(i) + "\nAgents: " + str(args.n_agents) + "\nGateway ratio: " + str(gateway_ratio))
             simulator = Simulator(num_exp=i,
-                                  n_agents=n_agents,
+                                  n_agents=args.n_agents,
                                   gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
                                   seed=args.seed,
@@ -98,6 +93,33 @@ def main():
                                   nl=args.nl,
                                   epidemic=args.epidemic)
             simulator.run()
+    elif user_input == '4':
+        print("Rebuilding graph")
+        build_graph(args.hubs_4g, args.radius_4g)
+        for i in range(3):
+            if i == 0:
+                n_agents = 5000
+                gateway_ratio = 0.02
+            elif i == 1:
+                n_agents = 10000
+                gateway_ratio = 0.01
+            else:
+                n_agents = 20000
+                gateway_ratio = 0.005
+
+            print("Experiment: " + str(i) + "\nNumber of agents:", n_agents, "\nGateway ratio:", gateway_ratio)
+            simulator = Simulator(num_exp=i,
+                                  n_agents=n_agents,
+                                  gateway_ratio=gateway_ratio,
+                                  loop_distance=args.loop_distance,
+                                  seed=args.seed,
+                                  threshold=args.threshold,
+                                  std_dev=args.std_dev,
+                                  std_dev_gateway=args.std_dev_gateway,
+                                  radius=args.radius_4g,
+                                  nl=args.nl,
+                                  epidemic=args.epidemic)
+            simulator.run()
     else:
         print(f"The simulation will take place in {args.place}.")
         print(f"Parameters:\n\
@@ -111,6 +133,8 @@ def main():
                Hub radius          {args.radius_4g}\n\
                Seed:               {args.seed}\n\
                Epidemic:           {args.epidemic}")
+        print("Building graph")
+        build_graph(args.hubs_4g, args.radius_4g)
 
         simulator = Simulator(num_exp=0,
                               n_agents=args.n_agents,
@@ -122,7 +146,7 @@ def main():
                               std_dev_gateway=args.std_dev_gateway,
                               radius=args.radius_4g,
                               nl=args.nl,
-                              epidemic=bool(args.epidemic))
+                              epidemic=args.epidemic)
         simulator.run()
 
 

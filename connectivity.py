@@ -1,10 +1,6 @@
 import math
-import random
 import osmnx as ox
 import networkx as nx
-
-
-random.seed(1)
 
 # Load the "temporary" graph saved
 # G = ox.load_graphml('graph/graph_temp.graphml')
@@ -28,11 +24,8 @@ def color(graph):
 
 # This function randomly picks as many nodes as the number of hubs specified as parameter, and
 def setup_connection(graph, connection, hubs, radius):
-    # nodes = random.choices(list(graph.nodes), k=hubs)
-
     # picking up nodes according to a centrality degree in the graph
     deg_centrality = nx.degree_centrality(graph)
-
     deg_centrality_list = list(deg_centrality.items())
     deg_centrality_list.sort(key=lambda a: a[1])
 

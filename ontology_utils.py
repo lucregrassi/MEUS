@@ -1,12 +1,10 @@
 from owlready2 import *
-import random
+import numpy as np
 import networkx as nx
 
 # Import and load the ontology from the owl file
 onto = get_ontology("ontology/MEUS.owl")
 onto.load()
-
-random.seed(1)
 
 
 # This function takes a random leaf of a class
@@ -15,7 +13,7 @@ def get_leaf(cls):
     for c in onto.search(is_a=cls, subclasses=[]):
         if not list(c.subclasses()):
             leafs.append(c)
-    rand_leaf = random.choice(leafs)
+    rand_leaf = np.random.choice(leafs)
     return rand_leaf
 
 
@@ -55,17 +53,12 @@ def append_value(dict_obj, key, value):
 
 
 def recursive_up(cls, dictionary, i):
-
     parent_cls = cls.is_a[0]
-
     if i not in dictionary:
         dictionary[i] = [parent_cls]
     else:
         append_value(dictionary, i, parent_cls)
-
     if parent_cls == onto.Situation or parent_cls == onto.Object or parent_cls == onto.Thing:
-        # print(dictionary)
-        # print("yo")
         return
     else:
         i += 1
@@ -76,23 +69,16 @@ def recursive_down(start_cls, dictionary, i):
     if i in dictionary:
         for cls in dictionary[i]:
             for subclass in cls.subclasses():
-
                 t = list(dictionary.values())
                 flat_list = []
-
                 for sublist in t:
                     for item in sublist:
-
                         flat_list.append(item)
-
                 if subclass not in flat_list and subclass != start_cls:
                     if i+1 in dictionary:
-
                         append_value(dictionary, i+1, subclass)
-
                     else:
                         dictionary[i+1] = [subclass]
-                        
         recursive_down(start_cls, dictionary, i+1)
     else:
         return
@@ -107,16 +93,33 @@ def get_cls_at_dist(start_cls_name, distance):
             break
 
     if distance == 0:
+        print("Cls at distance 0")
+        np.random.randint(2)
+        print(start_cls)
         return start_cls
     else:
+        print("Cls at distance", distance)
         dictionary = {}
         recursive_up(start_cls, dictionary, 1)
-
-    recursive_down(start_cls, dictionary, 1)
+        recursive_down(start_cls, dictionary, 1)
 
     if distance not in dictionary:
+        print("distance not in dict")
         distance = max(dictionary.keys())
-    return random.choice(dictionary[distance])
+    print(dictionary[distance])
+
+    if len(dictionary[distance]) == 1:
+        print("Only one class at distance", distance)
+        np.random.randint(2)
+        cls_at_dist = dictionary[distance]
+        print(cls_at_dist)
+        return cls_at_dist
+
+    np.random.randint(2)
+    # cls_at_dist = np.random.choice(dictionary[distance])
+    cls_at_dist = dictionary[distance][0]
+    print(cls_at_dist)
+    return cls_at_dist
 
 
 # This method returns the shortest paths between all nodes of a networkx graph, created starting from the

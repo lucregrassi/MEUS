@@ -1,7 +1,7 @@
-place Assisi
-total agents 10000
-gateway agents 100
-std normal agents 0.2
+place Amatrice
+total agents 5000
+gateway ratio 0.02
+std normal agents 0.5
 std gateway agents 0.5
 epidemic True
 seed 69

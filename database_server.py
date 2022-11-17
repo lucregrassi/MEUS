@@ -430,7 +430,7 @@ def delete(DO_id):
 
 
 if __name__ == "__main__":
-    if os.path.exists("src/databaseMEUS.db"):
-        os.remove("src/databaseMEUS.db")
+    if os.path.exists("databaseMEUS.db"):
+        os.remove("databaseMEUS.db")
     db.create_all()
     app.run(debug=True)

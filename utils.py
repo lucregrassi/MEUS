@@ -266,10 +266,9 @@ def compute_Krippendorff_Alpha(node_info, n_gateways, normal_agent_weight, gatew
     Nobs = len(node_info['obs'])
     history = list(itertools.chain(*node_info['rels']))
     rel_data = [list(itertools.chain([[1 if (i, coder) in history and coder == history[history.index((i, coder))][
-        1] else 0 for i in range(Nobs)]] * normal_agent_weight)) \
-                    if coder >= n_gateways else list(itertools.chain([[1 if (i, coder) in history and coder ==
-                                                                            history[history.index((i, coder))][1] else 0
-                                                                       for i in range(Nobs)]] * gateway_agent_weight)) for coder in coders]
+        1] else 0 for i in range(Nobs)]] * normal_agent_weight)) if coder >= n_gateways
+                else list(itertools.chain([[1 if (i, coder) in history and coder == history[history.index((i, coder))][1]
+                                            else 0 for i in range(Nobs)]] * gateway_agent_weight)) for coder in coders]
     rel_data = [el for batch in rel_data for el in batch]
     rel_data = np.asarray(rel_data)
     rel_data = rel_data[[np.any(rel_data[k]) for k in range(len(rel_data))]]

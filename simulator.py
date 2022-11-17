@@ -2,7 +2,6 @@ from InformationElement import NewInformationElement, NewDirectObservation
 from utils import NewIEtoDict, getIndexOfTuple
 from ontology_utils import get_cls_at_dist
 from scipy.stats import halfnorm
-from pprint import pprint
 from owlready2 import *
 from Agent import Agent
 from glob import glob
@@ -78,8 +77,9 @@ class Simulator:
                 source_nodes.append(source)
 
         adj_nodes = source_nodes + target_nodes
-        # destination_node  = int(np.random.choice([n for n in self.G.neighbors(current_node)]))
+        print("Adjacent nodes", adj_nodes)
         destination_node = int(np.random.choice(adj_nodes))
+        print("Chosen destination node", destination_node)
         if destination_node in target_nodes:
             edges_of_interest = self.G[current_node][destination_node]
         else:
@@ -165,6 +165,10 @@ class Simulator:
             a.distance = distance
             a.moving = True
             a.road = 0
+            if loop < 100:
+                print("loop: ", loop, " a.n", a.n, " destination: ", destination_node)
+            else:
+                exit(0)
 
             node_situation = []
             node_object = []
@@ -197,7 +201,6 @@ class Simulator:
                     situation_error = np.random.randint(a.error+1)
                 else:
                     # To maintain the sequence of random numbers and make the agents move in the same way
-                    # np.random.randint(1) does not count as a call to random because the result is always 0
                     situation_error = 0
                     np.random.randint(2)
                 object_error = a.error - situation_error
@@ -245,7 +248,9 @@ class Simulator:
                     # print("Latency:", lat['sent_at_loop'] - lat['when'])
                     self.dir_obs_latency.append(lat['sent_at_loop'] - lat['when'])
             except KeyError as er:
-                print(er)
+                # print(er)
+                pass
+
 
             # print(res)
             # Percentage of seen events
@@ -287,18 +292,16 @@ class Simulator:
         mu, sigma = 0, 1
         l = [n[0] for n in self.G.nodes.data()]
 
-        print("\nGenerating random errors for gateway agents")
+        # Generate random errors for gateway agents
         rv = halfnorm.rvs(loc=0, scale=self.std_dev_gateway, size=self.halfnorm_size)
-        print(rv)
         for elem in rv:
             if math.floor(elem) > 3:
                 self.gateway_agents_errors.append(3)
             else:
                 self.gateway_agents_errors.append(math.floor(elem))
 
-        print("Generating random errors for normal agents")
+        # Generate random errors for normal agents
         rv = halfnorm.rvs(loc=0, scale=self.std_dev, size=self.halfnorm_size)
-        print(rv)
         for elem in rv:
             if math.floor(elem) > 3:
                 self.normal_agents_errors.append(3)
