@@ -16,7 +16,6 @@ import math
 import json
 import csv
 
-
 logging.basicConfig(filename="logfile.log",
                     level=logging.DEBUG)
 
@@ -63,7 +62,7 @@ class Simulator:
         self.normal_agents_errors = []
         self.agents_do_log = {}
 
-    def compute_destination(self, current_node):
+    def compute_destination(self, current_node, ag_n):
         # if len([n for n in self.G.neighbors(current_node)])==0:
         #     print([n for n in self.G.neighbors(current_node)])
         source_nodes = []
@@ -77,9 +76,19 @@ class Simulator:
                 source_nodes.append(source)
 
         adj_nodes = source_nodes + target_nodes
-        print("Adjacent nodes", adj_nodes)
+        # Choose the index of the destination node using the randomly generated numbers
+        # rand_n_index = (self.n_agents * loop + int(agent_number)) % self.halfnorm_size
+        # rand_number = self.rand_numbers[rand_n_index]
+        # dest_node_index = rand_number % len(adj_nodes)
+        # destination_node = adj_nodes[dest_node_index]
+        # destination_node = rand_lucre(adj_nodes)
+        if ag_n == 23:
+            print("Adjacent nodes:", adj_nodes)
+            print("Random generator", np.random.get_state()[1][0])
         destination_node = int(np.random.choice(adj_nodes))
-        print("Chosen destination node", destination_node)
+        if ag_n == 23:
+            print("Chosen node:", destination_node)
+        # print("Chosen destination node", destination_node)
         if destination_node in target_nodes:
             edges_of_interest = self.G[current_node][destination_node]
         else:
@@ -160,15 +169,11 @@ class Simulator:
             # Arrived to destination node
             previous_node = a.curr_node
             a.curr_node = a.dest_node
-            destination_node, distance = self.compute_destination(a.dest_node)
+            destination_node, distance = self.compute_destination(a.dest_node, a.n)
             a.dest_node = destination_node
             a.distance = distance
             a.moving = True
             a.road = 0
-            if loop < 100:
-                print("loop: ", loop, " a.n", a.n, " destination: ", destination_node)
-            else:
-                exit(0)
 
             node_situation = []
             node_object = []
@@ -251,7 +256,6 @@ class Simulator:
                 # print(er)
                 pass
 
-
             # print(res)
             # Percentage of seen events
             if 'events' in res:
@@ -315,9 +319,9 @@ class Simulator:
 
         # Initialize agents
         for i in range(self.n_agents):
-            curr_node = l[np.random.randint(0, len(l) - 1)]
-            dest_node, dist = self.compute_destination(curr_node)
-
+            rand_index = np.random.randint(0, len(l))
+            curr_node = l[rand_index]
+            dest_node, dist = self.compute_destination(curr_node, i)
             # The error of an agent is initialized to zero
             agent = Agent(i, curr_node, dest_node, dist, mu=mu, sigma=sigma)
             # Initialize the connections and the error of the agents
@@ -328,7 +332,6 @@ class Simulator:
             else:
                 agent.error = self.normal_agents_errors[i - self.n_gateway_agents]
             agent.visited_nodes.append(curr_node)
-
             for elem in self.G.nodes(data=True):
                 if elem[0] == curr_node:
                     # Increment the number of people in that node
@@ -342,7 +345,6 @@ class Simulator:
                     if elem[1]['situation'] != 'None':
                         situation = elem[1]['situation']
                         obj = elem[1]['object']
-
                         seen_sit = get_cls_at_dist(situation, distance=agent.error)
                         seen_obj = get_cls_at_dist(obj, distance=agent.error)
                         seen_ev = (seen_sit, seen_obj)
@@ -356,11 +358,11 @@ class Simulator:
                         else:
                             agent.error_list.append((self.std_dev, 0))
                         agent.err_distances.append((agent.error, 0))
-
-            # Initialize array of local connections, choosing randomly, removing duplicates
+                        if i == 4460:
+                            print("Rand generator at the end", np.random.get_state()[1][0])
+            # Initialize array of local connections
             agent.local_conn = [1, 2, 3]
             self.agents_dict[str(i)] = agent
-
         # Exchange info between agents in the initial position
         self.exchange_information(0)
 
@@ -369,11 +371,15 @@ class Simulator:
         assert self.simulation_steps >= 0, 'number of loops of the experiment cannot be a negative value.'
         # Run the simulation until a certain percentage of seen events is reached or a certain number of loops
         while (self.simulation_steps == 0 and self.perc_seen_ev < self.threshold) or (count < self.simulation_steps):
-            start_time = time.time()
+            # Reset the seed of the random at every loop with a random number
             print("\nIteration " + str(count))
+            start_time = time.time()
             # Loop on agents' dictionary to store number of DOs and jumps
             do_dict = {}
             for n_ag, ag in self.agents_dict.items():
+                if n_ag == '23':
+                    print("loop", count, "ag", n_ag, "rand", np.random.get_state()[1][0], "curr node", ag.curr_node, "dest node", ag.dest_node)
+
                 n_do = len(ag.ies)
                 n_jumps = 0
                 # Count total jumps in the IEs of the agent
@@ -384,6 +390,7 @@ class Simulator:
             # Store data regarding DOs and jumps owned by all agents at a certain loop
             self.agents_do_log[count] = do_dict
 
+            # Update the position of the agents
             for key in self.agents_dict.keys():
                 self.update_position(self.agents_dict[key], count)
             self.exchange_information(count)
@@ -400,6 +407,8 @@ class Simulator:
     def run(self):
         self.G = ox.load_graphml('graph/graph.graphml')
         self.onto.load()
+        # Initial seed used to initialize agent's position, generate errors with halfnorm and sequence of random
+        # numbers used to reset the seed at every loop
         np.random.seed(self.seed)
 
         # collecting events in the environment

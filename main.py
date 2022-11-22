@@ -3,10 +3,12 @@ from utils import parse_args
 from simulator import Simulator
 from save_graph import save_graph
 from connectivity import build_graph
+import numpy as np
 
 
 def main():
     args = parse_args()
+    np.random.seed(args.seed)
 
     if args.setup_map:
         print("Saving graph...")

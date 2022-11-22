@@ -93,32 +93,31 @@ def get_cls_at_dist(start_cls_name, distance):
             break
 
     if distance == 0:
-        print("Cls at distance 0")
+        # print("Cls at distance 0")
         np.random.randint(2)
-        print(start_cls)
+        # print(start_cls)
         return start_cls
     else:
-        print("Cls at distance", distance)
+        # print("Cls at distance", distance)
         dictionary = {}
         recursive_up(start_cls, dictionary, 1)
         recursive_down(start_cls, dictionary, 1)
 
     if distance not in dictionary:
-        print("distance not in dict")
         distance = max(dictionary.keys())
-    print(dictionary[distance])
+    # print(dictionary[distance])
 
     if len(dictionary[distance]) == 1:
-        print("Only one class at distance", distance)
+        # print("Only one class at distance", distance)
         np.random.randint(2)
         cls_at_dist = dictionary[distance]
-        print(cls_at_dist)
+        # print(cls_at_dist)
         return cls_at_dist
 
-    np.random.randint(2)
-    # cls_at_dist = np.random.choice(dictionary[distance])
-    cls_at_dist = dictionary[distance][0]
-    print(cls_at_dist)
+    # random.randint(0, 2)
+    cls_at_dist = np.random.choice(dictionary[distance])
+    # cls_at_dist = dictionary[distance][0]
+    # print(cls_at_dist)
     return cls_at_dist
 
 

@@ -1,2874 +1,1286 @@
-Building graph
-Only one class at distance 1
-Only one class at distance 1
-Cls at distance 0
-Cls at distance 0
-Cls at distance 0
-Cls at distance 0
-Cls at distance 0
-Cls at distance 0
-
-Iteration 0
-loop:  0  a.n 0  destination:  8388334388
-loop:  0  a.n 1  destination:  4379091325
-loop:  0  a.n 2  destination:  1204808509
-Only one class at distance 1
-Cls at distance 0
-loop:  0  a.n 3  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  0  a.n 4  destination:  1232340402
-loop:  0  a.n 5  destination:  6164704081
-loop:  0  a.n 6  destination:  6135932550
-loop:  0  a.n 7  destination:  6139565287
-loop:  0  a.n 8  destination:  4365365266
-loop:  0  a.n 9  destination:  6140707138
-loop:  0  a.n 10  destination:  4365290632
-loop:  0  a.n 11  destination:  1204810230
-loop:  0  a.n 12  destination:  4366104414
-loop:  0  a.n 13  destination:  4365985779
-loop:  0  a.n 14  destination:  3787956690
-loop:  0  a.n 15  destination:  6140707097
-loop:  0  a.n 16  destination:  4365792929
-loop:  0  a.n 17  destination:  3787877985
-loop:  0  a.n 18  destination:  4365985892
-loop:  0  a.n 19  destination:  4365399230
-loop:  0  a.n 20  destination:  4365047066
-loop:  0  a.n 21  destination:  4367664971
-loop:  0  a.n 22  destination:  4365090839
-loop:  0  a.n 23  destination:  6139565248
-loop:  0  a.n 24  destination:  4364764725
-loop:  0  a.n 25  destination:  8436036946
-loop:  0  a.n 26  destination:  1232340264
-loop:  0  a.n 27  destination:  6140707303
-loop:  0  a.n 28  destination:  932304242
-loop:  0  a.n 29  destination:  4364802050
-loop:  0  a.n 30  destination:  932301064
-loop:  0  a.n 31  destination:  4365464180
-loop:  0  a.n 32  destination:  4365369979
-loop:  0  a.n 33  destination:  4364330625
-loop:  0  a.n 34  destination:  4365370402
-loop:  0  a.n 35  destination:  4369497571
-loop:  0  a.n 36  destination:  8682647261
-loop:  0  a.n 37  destination:  6139565216
-loop:  0  a.n 38  destination:  3787877816
-loop:  0  a.n 39  destination:  7709851952
-loop:  0  a.n 40  destination:  4365277035
-Cls at distance 0
-Cls at distance 0
-loop:  0  a.n 41  destination:  6855880551
-Cls at distance 0
-loop:  0  a.n 42  destination:  82604271
-Cls at distance 0
-Cls at distance 0
-loop:  0  a.n 43  destination:  3918289508
-loop:  0  a.n 44  destination:  4364805751
-loop:  0  a.n 45  destination:  8567738058
-loop:  0  a.n 46  destination:  4365701293
-loop:  0  a.n 47  destination:  4365792654
-loop:  0  a.n 48  destination:  3918474203
-loop:  0  a.n 49  destination:  6131582997
-loop:  0  a.n 50  destination:  6140707138
-loop:  0  a.n 51  destination:  4364736596
-loop:  0  a.n 52  destination:  4365381568
-loop:  0  a.n 53  destination:  932303966
-loop:  0  a.n 54  destination:  4364317665
-loop:  0  a.n 55  destination:  6129374817
-loop:  0  a.n 56  destination:  4364792292
-loop:  0  a.n 57  destination:  1818074466
-loop:  0  a.n 58  destination:  4367663303
-loop:  0  a.n 59  destination:  4365491791
-loop:  0  a.n 60  destination:  4365337723
-loop:  0  a.n 61  destination:  8567730086
-loop:  0  a.n 62  destination:  6164664528
-loop:  0  a.n 63  destination:  4365792426
-loop:  0  a.n 64  destination:  4364297185
-loop:  0  a.n 65  destination:  4365985918
-Cls at distance 0
-Cls at distance 0
-loop:  0  a.n 66  destination:  3787887071
-loop:  0  a.n 67  destination:  1204809685
-loop:  0  a.n 68  destination:  6139565305
-loop:  0  a.n 69  destination:  932303358
-loop:  0  a.n 70  destination:  4364793656
-loop:  0  a.n 71  destination:  6135932501
-loop:  0  a.n 72  destination:  932302240
-loop:  0  a.n 73  destination:  4365361340
-loop:  0  a.n 74  destination:  7603585161
-loop:  0  a.n 75  destination:  4365264566
-loop:  0  a.n 76  destination:  4366921009
-loop:  0  a.n 77  destination:  4364209079
-loop:  0  a.n 78  destination:  4364759212
-loop:  0  a.n 79  destination:  1204809273
-loop:  0  a.n 80  destination:  932304222
-loop:  0  a.n 81  destination:  4364521964
-loop:  0  a.n 82  destination:  4369456301
-loop:  0  a.n 83  destination:  1232340265
-loop:  0  a.n 84  destination:  4369250926
-loop:  0  a.n 85  destination:  4369745768
-loop:  0  a.n 86  destination:  4365985652
-loop:  0  a.n 87  destination:  1232340428
-loop:  0  a.n 88  destination:  4364796462
-loop:  0  a.n 89  destination:  4365792537
-loop:  0  a.n 90  destination:  4364703160
-Cls at distance 0
-Cls at distance 0
-loop:  0  a.n 91  destination:  1251732748
-loop:  0  a.n 92  destination:  4366104523
-loop:  0  a.n 93  destination:  4364317150
-loop:  0  a.n 94  destination:  1818074466
-loop:  0  a.n 95  destination:  3722107650
-loop:  0  a.n 96  destination:  4365365265
-loop:  0  a.n 97  destination:  4369497617
-loop:  0  a.n 98  destination:  4366119410
-loop:  0  a.n 99  destination:  4365814062
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 3.39%
-
-Iteration 1
-Percentage of events seen: 3.39%
-
-Iteration 2
-Percentage of events seen: 3.39%
-
-Iteration 3
-loop:  3  a.n 0  destination:  8388334382
-Cls at distance 0
-Cls at distance 0
-loop:  3  a.n 1  destination:  4379091411
-loop:  3  a.n 3  destination:  4365371031
-loop:  3  a.n 4  destination:  4471887121
-loop:  3  a.n 5  destination:  6164704075
-loop:  3  a.n 8  destination:  4365365265
-loop:  3  a.n 9  destination:  4364330611
-loop:  3  a.n 10  destination:  3057607178
-loop:  3  a.n 12  destination:  4366104417
-loop:  3  a.n 18  destination:  4365985918
-loop:  3  a.n 20  destination:  4364805724
-loop:  3  a.n 22  destination:  6139565467
-loop:  3  a.n 23  destination:  3787887062
-loop:  3  a.n 25  destination:  4364340191
-loop:  3  a.n 26  destination:  4364522012
-loop:  3  a.n 27  destination:  6140707306
-loop:  3  a.n 29  destination:  4364802063
-loop:  3  a.n 30  destination:  1248527427
-loop:  3  a.n 32  destination:  4365369982
-Cls at distance 0
-Cls at distance 0
-loop:  3  a.n 34  destination:  4365421539
-loop:  3  a.n 35  destination:  4369497600
-loop:  3  a.n 36  destination:  3787887070
-loop:  3  a.n 37  destination:  6139565240
-loop:  3  a.n 38  destination:  1232340477
-loop:  3  a.n 39  destination:  4365865089
-loop:  3  a.n 41  destination:  6855880545
-loop:  3  a.n 42  destination:  4364446714
-loop:  3  a.n 44  destination:  3918274107
-Only one class at distance 1
-Only one class at distance 1
-loop:  3  a.n 45  destination:  3722112848
-loop:  3  a.n 50  destination:  4364330611
-loop:  3  a.n 51  destination:  5591153200
-loop:  3  a.n 52  destination:  4365381570
-loop:  3  a.n 53  destination:  4364758216
-loop:  3  a.n 54  destination:  4364317675
-loop:  3  a.n 56  destination:  4364790451
-loop:  3  a.n 62  destination:  6164664519
-loop:  3  a.n 63  destination:  4365792424
-loop:  3  a.n 64  destination:  3918523077
-loop:  3  a.n 65  destination:  6138161298
-loop:  3  a.n 66  destination:  3787887070
-loop:  3  a.n 67  destination:  1204810230
-loop:  3  a.n 68  destination:  6139565306
-loop:  3  a.n 70  destination:  4364793650
-loop:  3  a.n 71  destination:  4365701306
-loop:  3  a.n 72  destination:  932301543
-loop:  3  a.n 73  destination:  4371251033
-loop:  3  a.n 75  destination:  932299733
-loop:  3  a.n 77  destination:  4364209078
-loop:  3  a.n 78  destination:  4364759548
-loop:  3  a.n 79  destination:  2733798697
-loop:  3  a.n 80  destination:  4364796464
-loop:  3  a.n 81  destination:  4365361337
-loop:  3  a.n 82  destination:  4364886857
-loop:  3  a.n 87  destination:  6139565588
-loop:  3  a.n 89  destination:  932301064
-loop:  3  a.n 93  destination:  1232340232
-Percentage of events seen: 3.39%
-
-Iteration 4
-loop:  4  a.n 6  destination:  6135932574
-loop:  4  a.n 13  destination:  82604577
-loop:  4  a.n 19  destination:  4364802052
-loop:  4  a.n 21  destination:  4367664921
-loop:  4  a.n 33  destination:  4364330623
-loop:  4  a.n 40  destination:  3789303362
-loop:  4  a.n 43  destination:  4365387836
-loop:  4  a.n 46  destination:  4364515230
-loop:  4  a.n 55  destination:  932301410
-loop:  4  a.n 58  destination:  4365850068
-loop:  4  a.n 69  destination:  4369251142
-loop:  4  a.n 76  destination:  4366920886
-loop:  4  a.n 85  destination:  4369745769
-loop:  4  a.n 86  destination:  4365985575
-loop:  4  a.n 90  destination:  4364703149
-loop:  4  a.n 95  destination:  8567730108
-loop:  4  a.n 96  destination:  4365352054
-loop:  4  a.n 97  destination:  4369497600
-loop:  4  a.n 99  destination:  4365814045
-Percentage of events seen: 3.39%
-
-Iteration 5
-loop:  5  a.n 7  destination:  6139565291
-loop:  5  a.n 15  destination:  4367461585
-loop:  5  a.n 16  destination:  4365792915
-loop:  5  a.n 17  destination:  3787877984
-loop:  5  a.n 24  destination:  4364764754
-loop:  5  a.n 47  destination:  4365792707
-loop:  5  a.n 48  destination:  3918474195
-loop:  5  a.n 49  destination:  6131583026
-loop:  5  a.n 57  destination:  1818074456
-loop:  5  a.n 92  destination:  4367569521
-loop:  5  a.n 94  destination:  1818074456
-Percentage of events seen: 3.39%
-
-Iteration 6
-loop:  6  a.n 0  destination:  4368756420
-loop:  6  a.n 1  destination:  4379091412
-loop:  6  a.n 3  destination:  4365371080
-Cls at distance 0
-Cls at distance 0
-loop:  6  a.n 4  destination:  1232340402
-loop:  6  a.n 5  destination:  6164704081
-loop:  6  a.n 8  destination:  4365365266
-loop:  6  a.n 9  destination:  4365976733
-loop:  6  a.n 10  destination:  3057607179
-loop:  6  a.n 12  destination:  4366104414
-loop:  6  a.n 18  destination:  6138161298
-loop:  6  a.n 20  destination:  4365047066
-loop:  6  a.n 22  destination:  6139565463
-loop:  6  a.n 23  destination:  6139565248
-loop:  6  a.n 25  destination:  4364340076
-loop:  6  a.n 26  destination:  3918474182
-loop:  6  a.n 27  destination:  6140707303
-loop:  6  a.n 28  destination:  4365792407
-loop:  6  a.n 29  destination:  4364802050
-loop:  6  a.n 32  destination:  4365369981
-loop:  6  a.n 35  destination:  4369497617
-loop:  6  a.n 37  destination:  6139565239
-loop:  6  a.n 39  destination:  7709851952
-loop:  6  a.n 41  destination:  4369424009
-loop:  6  a.n 42  destination:  4364793648
-Cls at distance 0
-loop:  6  a.n 45  destination:  3722112837
-loop:  6  a.n 50  destination:  6140707138
-loop:  6  a.n 51  destination:  4364736596
-loop:  6  a.n 52  destination:  3787994340
-loop:  6  a.n 54  destination:  4364317665
-loop:  6  a.n 56  destination:  4364792292
-Only one class at distance 1
-Cls at distance 0
-loop:  6  a.n 60  destination:  4357784263
-loop:  6  a.n 62  destination:  6164664523
-loop:  6  a.n 63  destination:  4365792426
-loop:  6  a.n 64  destination:  4365290633
-loop:  6  a.n 66  destination:  3787887071
-loop:  6  a.n 68  destination:  1232340265
-loop:  6  a.n 71  destination:  82604219
-loop:  6  a.n 72  destination:  932300356
-loop:  6  a.n 73  destination:  4365361340
-loop:  6  a.n 75  destination:  4365264561
-loop:  6  a.n 78  destination:  4364759212
-loop:  6  a.n 79  destination:  1204809933
-loop:  6  a.n 81  destination:  4364431357
-loop:  6  a.n 82  destination:  4364887093
-loop:  6  a.n 83  destination:  6139565306
-loop:  6  a.n 87  destination:  1232340428
-loop:  6  a.n 88  destination:  4364923502
-loop:  6  a.n 89  destination:  4365792537
-loop:  6  a.n 93  destination:  4364317150
-loop:  6  a.n 98  destination:  4366119352
-Percentage of events seen: 3.39%
-
-Iteration 7
-loop:  7  a.n 2  destination:  4367640321
-loop:  7  a.n 65  destination:  4365985893
-loop:  7  a.n 77  destination:  4364209079
-loop:  7  a.n 84  destination:  4369250818
-loop:  7  a.n 85  destination:  4369745768
-loop:  7  a.n 86  destination:  4365985650
-Percentage of events seen: 3.39%
-
-Iteration 8
-loop:  8  a.n 6  destination:  6135932550
-loop:  8  a.n 7  destination:  6139565292
-loop:  8  a.n 16  destination:  4365792932
-loop:  8  a.n 17  destination:  3787877985
-loop:  8  a.n 21  destination:  4367664971
-loop:  8  a.n 33  destination:  4364330625
-loop:  8  a.n 40  destination:  4364881768
-Cls at distance 0
-loop:  8  a.n 43  destination:  4365387840
-loop:  8  a.n 46  destination:  4366030200
-loop:  8  a.n 55  destination:  4365370692
-loop:  8  a.n 58  destination:  1204809270
-loop:  8  a.n 59  destination:  4365491388
-loop:  8  a.n 70  destination:  4364793656
-loop:  8  a.n 76  destination:  4366920885
-loop:  8  a.n 80  destination:  932304222
-loop:  8  a.n 90  destination:  3787866122
-Cls at distance 0
-Cls at distance 0
-loop:  8  a.n 96  destination:  4365365265
-loop:  8  a.n 97  destination:  4471887147
-loop:  8  a.n 99  destination:  4365813989
-Only one class at distance 1
-Percentage of events seen: 3.39%
-
-Iteration 9
-loop:  9  a.n 0  destination:  3787877901
-loop:  9  a.n 1  destination:  4379091949
-loop:  9  a.n 3  destination:  4365371031
-loop:  9  a.n 4  destination:  1232340689
-loop:  9  a.n 5  destination:  6164704075
-loop:  9  a.n 8  destination:  4365377319
-loop:  9  a.n 9  destination:  387949872
-Cls at distance 0
-Only one class at distance 1
-loop:  9  a.n 10  destination:  3057607178
-loop:  9  a.n 12  destination:  4366104417
-loop:  9  a.n 19  destination:  4364297199
-loop:  9  a.n 20  destination:  4364805724
-loop:  9  a.n 23  destination:  3787887062
-loop:  9  a.n 27  destination:  6140707306
-loop:  9  a.n 29  destination:  4364802115
-loop:  9  a.n 30  destination:  932300994
-Cls at distance 0
-Cls at distance 0
-loop:  9  a.n 31  destination:  4365464710
-loop:  9  a.n 32  destination:  4365369982
-loop:  9  a.n 36  destination:  8682647261
-loop:  9  a.n 37  destination:  6139565240
-loop:  9  a.n 39  destination:  1204810935
-loop:  9  a.n 42  destination:  4364446714
-loop:  9  a.n 47  destination:  4365792616
-loop:  9  a.n 50  destination:  4364330611
-loop:  9  a.n 51  destination:  4369595029
-loop:  9  a.n 52  destination:  4364317661
-loop:  9  a.n 53  destination:  4364759238
-loop:  9  a.n 54  destination:  4364317675
-loop:  9  a.n 56  destination:  4364750111
-loop:  9  a.n 62  destination:  6164664522
-Only one class at distance 1
-Cls at distance 0
-loop:  9  a.n 63  destination:  4365792435
-loop:  9  a.n 66  destination:  3787887070
-loop:  9  a.n 72  destination:  932301543
-loop:  9  a.n 73  destination:  4365361337
-loop:  9  a.n 78  destination:  4364759230
-loop:  9  a.n 79  destination:  1204809652
-loop:  9  a.n 81  destination:  4365361355
-loop:  9  a.n 82  destination:  4364886874
-loop:  9  a.n 87  destination:  6139565358
-loop:  9  a.n 89  destination:  932301064
-loop:  9  a.n 93  destination:  4364317151
-Percentage of events seen: 4.24%
-
-Iteration 10
-loop:  10  a.n 13  destination:  4365985779
-loop:  10  a.n 14  destination:  3787956713
-loop:  10  a.n 15  destination:  3787956656
-loop:  10  a.n 18  destination:  4365985893
-loop:  10  a.n 22  destination:  6139565467
-Only one class at distance 1
-Only one class at distance 1
-loop:  10  a.n 24  destination:  4364764725
-loop:  10  a.n 35  destination:  4369497600
-loop:  10  a.n 41  destination:  6855880545
-loop:  10  a.n 48  destination:  3918474203
-loop:  10  a.n 49  destination:  6131582997
-loop:  10  a.n 57  destination:  1818074466
-loop:  10  a.n 68  destination:  3787878004
-loop:  10  a.n 71  destination:  1232340705
-loop:  10  a.n 74  destination:  7603585102
-loop:  10  a.n 83  destination:  1232340265
-loop:  10  a.n 85  destination:  4369745752
-loop:  10  a.n 86  destination:  4365985744
-loop:  10  a.n 92  destination:  4366104523
-loop:  10  a.n 94  destination:  1818074466
-Percentage of events seen: 4.24%
-
-Iteration 11
-loop:  11  a.n 7  destination:  6139565291
-loop:  11  a.n 16  destination:  4365792915
-loop:  11  a.n 17  destination:  6139565352
-loop:  11  a.n 43  destination:  4365387836
-loop:  11  a.n 44  destination:  1232340378
-loop:  11  a.n 45  destination:  4364800242
-loop:  11  a.n 55  destination:  932301410
-loop:  11  a.n 58  destination:  4365850068
-loop:  11  a.n 59  destination:  4365491791
-Cls at distance 0
-Cls at distance 0
-loop:  11  a.n 75  destination:  4365299736
-loop:  11  a.n 76  destination:  4366920886
-loop:  11  a.n 77  destination:  932303466
-Percentage of events seen: 4.24%
-
-Iteration 12
-loop:  12  a.n 1  destination:  4379092043
-loop:  12  a.n 3  destination:  932302451
-Cls at distance 0
-Cls at distance 0
-loop:  12  a.n 5  destination:  6164704081
-loop:  12  a.n 6  destination:  6135932574
-loop:  12  a.n 10  destination:  4366920564
-loop:  12  a.n 12  destination:  4366104414
-loop:  12  a.n 19  destination:  4364802104
-loop:  12  a.n 20  destination:  4365047066
-loop:  12  a.n 21  destination:  4367664921
-loop:  12  a.n 23  destination:  6139565248
-loop:  12  a.n 27  destination:  6140707303
-loop:  12  a.n 29  destination:  3057607179
-loop:  12  a.n 32  destination:  932301224
-loop:  12  a.n 33  destination:  4364330623
-loop:  12  a.n 37  destination:  6139565239
-loop:  12  a.n 39  destination:  7709851952
-loop:  12  a.n 42  destination:  4364446708
-Cls at distance 0
-loop:  12  a.n 50  destination:  6140707138
-loop:  12  a.n 51  destination:  4364736596
-loop:  12  a.n 54  destination:  4364317696
-loop:  12  a.n 56  destination:  4364750129
-loop:  12  a.n 62  destination:  6164664523
-loop:  12  a.n 63  destination:  4365792428
-loop:  12  a.n 66  destination:  8682647261
-loop:  12  a.n 72  destination:  932302240
-loop:  12  a.n 73  destination:  4364431357
-loop:  12  a.n 78  destination:  4364759212
-loop:  12  a.n 81  destination:  4369487711
-loop:  12  a.n 82  destination:  6139565241
-loop:  12  a.n 87  destination:  1232340428
-loop:  12  a.n 88  destination:  4364796462
-loop:  12  a.n 89  destination:  1248527427
-loop:  12  a.n 90  destination:  4365273137
-loop:  12  a.n 91  destination:  1251733179
-Only one class at distance 1
-Cls at distance 0
-loop:  12  a.n 93  destination:  4365097467
-loop:  12  a.n 96  destination:  4365365266
-loop:  12  a.n 97  destination:  4471887163
-loop:  12  a.n 98  destination:  4366119390
-loop:  12  a.n 99  destination:  4365814045
-Percentage of events seen: 4.24%
-
-Iteration 13
-loop:  13  a.n 0  destination:  3787877985
-loop:  13  a.n 8  destination:  4365365266
-loop:  13  a.n 40  destination:  3789303362
-loop:  13  a.n 52  destination:  3787994340
-loop:  13  a.n 64  destination:  3057607173
-loop:  13  a.n 65  destination:  4365985779
-loop:  13  a.n 69  destination:  932303358
-loop:  13  a.n 70  destination:  4364793650
-loop:  13  a.n 80  destination:  932300260
-Percentage of events seen: 4.24%
-
-Iteration 14
-loop:  14  a.n 2  destination:  4367640340
-Only one class at distance 1
-loop:  14  a.n 7  destination:  6139565292
-loop:  14  a.n 11  destination:  1415549925
-loop:  14  a.n 16  destination:  4365792932
-loop:  14  a.n 22  destination:  4364341631
-loop:  14  a.n 26  destination:  4364395480
-loop:  14  a.n 35  destination:  4369497617
-loop:  14  a.n 41  destination:  6855880551
-loop:  14  a.n 43  destination:  3918289508
-loop:  14  a.n 44  destination:  7609049035
-loop:  14  a.n 45  destination:  3722112837
-loop:  14  a.n 47  destination:  4365792604
-loop:  14  a.n 55  destination:  4365370692
-loop:  14  a.n 58  destination:  4365850052
-loop:  14  a.n 59  destination:  4365491611
-loop:  14  a.n 76  destination:  4366920885
-loop:  14  a.n 77  destination:  4364521964
-loop:  14  a.n 79  destination:  1204809933
-loop:  14  a.n 83  destination:  6139565306
-loop:  14  a.n 84  destination:  4369250926
-loop:  14  a.n 85  destination:  4369745768
-loop:  14  a.n 86  destination:  4365985763
-Percentage of events seen: 4.24%
-
-Iteration 15
-loop:  15  a.n 1  destination:  4379091949
-loop:  15  a.n 3  destination:  4364330623
-loop:  15  a.n 5  destination:  6164704075
-loop:  15  a.n 12  destination:  4366104417
-loop:  15  a.n 19  destination:  4365290630
-loop:  15  a.n 20  destination:  4364805724
-loop:  15  a.n 23  destination:  3787887062
-loop:  15  a.n 24  destination:  2278397960
-loop:  15  a.n 25  destination:  4364340191
-loop:  15  a.n 27  destination:  4364757034
-loop:  15  a.n 32  destination:  292929625
-loop:  15  a.n 36  destination:  4369456013
-loop:  15  a.n 37  destination:  6139565240
-loop:  15  a.n 39  destination:  3918245473
-loop:  15  a.n 48  destination:  932300260
-loop:  15  a.n 49  destination:  6131583026
-loop:  15  a.n 50  destination:  4364330611
-loop:  15  a.n 51  destination:  5591153200
-loop:  15  a.n 56  destination:  4364745331
-loop:  15  a.n 57  destination:  1818074456
-loop:  15  a.n 62  destination:  6164664522
-Cls at distance 0
-Only one class at distance 1
-loop:  15  a.n 63  destination:  4365792435
-loop:  15  a.n 72  destination:  932301543
-loop:  15  a.n 73  destination:  4365361355
-loop:  15  a.n 74  destination:  7603585161
-loop:  15  a.n 78  destination:  4364759548
-loop:  15  a.n 81  destination:  4379099888
-loop:  15  a.n 82  destination:  4364886874
-loop:  15  a.n 87  destination:  6139565358
-loop:  15  a.n 92  destination:  4367569521
-loop:  15  a.n 93  destination:  8443675826
-loop:  15  a.n 94  destination:  1818071569
-loop:  15  a.n 95  destination:  3722107650
-loop:  15  a.n 96  destination:  4365365265
-Percentage of events seen: 4.24%
-
-Iteration 16
-loop:  16  a.n 4  destination:  4364411770
-loop:  16  a.n 6  destination:  4364515217
-loop:  16  a.n 13  destination:  82604577
-loop:  16  a.n 17  destination:  3787877985
-loop:  16  a.n 18  destination:  82604134
-loop:  16  a.n 21  destination:  4367663385
-loop:  16  a.n 29  destination:  3057607178
-loop:  16  a.n 31  destination:  4368101056
-loop:  16  a.n 33  destination:  932302451
-loop:  16  a.n 38  destination:  3787877816
-loop:  16  a.n 42  destination:  4364446714
-loop:  16  a.n 46  destination:  6135932488
-loop:  16  a.n 54  destination:  4364317675
-loop:  16  a.n 68  destination:  4364317129
-loop:  16  a.n 80  destination:  4365337612
-loop:  16  a.n 97  destination:  4471887147
-loop:  16  a.n 99  destination:  4365814062
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 4.24%
-
-Iteration 17
-loop:  17  a.n 7  destination:  6139565291
-loop:  17  a.n 8  destination:  4365365287
-loop:  17  a.n 11  destination:  82604022
-loop:  17  a.n 16  destination:  4365792915
-loop:  17  a.n 22  destination:  6139565467
-loop:  17  a.n 41  destination:  4366956861
-loop:  17  a.n 45  destination:  3722107627
-loop:  17  a.n 52  destination:  4365381570
-loop:  17  a.n 55  destination:  932301410
-loop:  17  a.n 58  destination:  4365850068
-loop:  17  a.n 61  destination:  3722081387
-loop:  17  a.n 64  destination:  3057607179
-Cls at distance 0
-loop:  17  a.n 67  destination:  1204809408
-loop:  17  a.n 76  destination:  4365377319
-loop:  17  a.n 77  destination:  932303466
-loop:  17  a.n 90  destination:  3787866112
-loop:  17  a.n 91  destination:  4366770423
-loop:  17  a.n 98  destination:  4366119352
-Percentage of events seen: 4.24%
-
-Iteration 18
-loop:  18  a.n 1  destination:  4379092043
-loop:  18  a.n 3  destination:  4364330625
-loop:  18  a.n 5  destination:  6164704081
-loop:  18  a.n 10  destination:  3057607178
-loop:  18  a.n 12  destination:  4366104419
-loop:  18  a.n 19  destination:  4365290631
-loop:  18  a.n 20  destination:  4365047066
-loop:  18  a.n 23  destination:  3787887058
-loop:  18  a.n 27  destination:  6140707303
-loop:  18  a.n 30  destination:  4364758910
-loop:  18  a.n 35  destination:  4369497600
-loop:  18  a.n 37  destination:  6139565245
-loop:  18  a.n 40  destination:  4365277035
-Cls at distance 0
-Cls at distance 0
-loop:  18  a.n 43  destination:  4365387836
-loop:  18  a.n 47  destination:  4365792616
-loop:  18  a.n 48  destination:  3918474203
-loop:  18  a.n 50  destination:  4365976733
-loop:  18  a.n 51  destination:  4364209078
-loop:  18  a.n 56  destination:  4364792292
-Only one class at distance 1
-Only one class at distance 1
-loop:  18  a.n 60  destination:  4357784397
-loop:  18  a.n 62  destination:  6164664528
-loop:  18  a.n 63  destination:  4365792426
-loop:  18  a.n 66  destination:  3787887070
-loop:  18  a.n 70  destination:  82604271
-loop:  18  a.n 71  destination:  1232340689
-loop:  18  a.n 72  destination:  932302240
-loop:  18  a.n 73  destination:  4371251033
-loop:  18  a.n 78  destination:  4364757023
-loop:  18  a.n 81  destination:  4364431359
-loop:  18  a.n 82  destination:  6139565241
-loop:  18  a.n 83  destination:  1232340265
-loop:  18  a.n 85  destination:  4369745761
-loop:  18  a.n 86  destination:  4365985776
-loop:  18  a.n 87  destination:  3787878004
-loop:  18  a.n 88  destination:  4364923502
-loop:  18  a.n 89  destination:  932301064
-Cls at distance 0
-Cls at distance 0
-loop:  18  a.n 96  destination:  4365352054
-Percentage of events seen: 4.24%
-
-Iteration 19
-loop:  19  a.n 29  destination:  4366920564
-loop:  19  a.n 32  destination:  932301224
-loop:  19  a.n 33  destination:  4365371031
-loop:  19  a.n 36  destination:  8682647261
-loop:  19  a.n 39  destination:  1204810377
-loop:  19  a.n 46  destination:  4364515238
-loop:  19  a.n 53  destination:  4364758192
-loop:  19  a.n 79  destination:  1204809652
-Percentage of events seen: 4.24%
-
-Iteration 20
-loop:  20  a.n 7  destination:  4364317129
-loop:  20  a.n 14  destination:  3787956722
-loop:  20  a.n 16  destination:  4365792932
-loop:  20  a.n 22  destination:  6139565463
-loop:  20  a.n 26  destination:  4364521993
-loop:  20  a.n 41  destination:  3030507593
-Cls at distance 0
-Only one class at distance 1
-loop:  20  a.n 42  destination:  4364793648
-Cls at distance 0
-Cls at distance 0
-loop:  20  a.n 44  destination:  1232340378
-loop:  20  a.n 45  destination:  3722112837
-loop:  20  a.n 49  destination:  6164704525
-loop:  20  a.n 52  destination:  4364796767
-loop:  20  a.n 54  destination:  4364317665
-loop:  20  a.n 55  destination:  4365370692
-loop:  20  a.n 57  destination:  4366029664
-loop:  20  a.n 58  destination:  4367663303
-loop:  20  a.n 64  destination:  3057607178
-loop:  20  a.n 67  destination:  1204808752
-loop:  20  a.n 68  destination:  6139565352
-loop:  20  a.n 74  destination:  7603585102
-loop:  20  a.n 77  destination:  4364521964
-loop:  20  a.n 90  destination:  4365387840
-loop:  20  a.n 91  destination:  8523489766
-loop:  20  a.n 92  destination:  4366104523
-loop:  20  a.n 94  destination:  3787892648
-loop:  20  a.n 97  destination:  4364500190
-loop:  20  a.n 99  destination:  4365814045
-Percentage of events seen: 4.24%
-
-Iteration 21
-loop:  21  a.n 1  destination:  4379092044
-loop:  21  a.n 2  destination:  4367640321
-loop:  21  a.n 4  destination:  4364411774
-loop:  21  a.n 5  destination:  8429818426
-loop:  21  a.n 8  destination:  4365365266
-Only one class at distance 1
-Cls at distance 0
-loop:  21  a.n 11  destination:  1204809739
-loop:  21  a.n 12  destination:  4366104417
-loop:  21  a.n 17  destination:  3787877901
-loop:  21  a.n 19  destination:  4365290630
-loop:  21  a.n 20  destination:  4364805724
-loop:  21  a.n 24  destination:  4364764758
-loop:  21  a.n 27  destination:  6140707306
-loop:  21  a.n 30  destination:  4364759521
-loop:  21  a.n 37  destination:  4366474369
-loop:  21  a.n 48  destination:  932300260
-loop:  21  a.n 50  destination:  387949872
-Cls at distance 0
-Only one class at distance 1
-loop:  21  a.n 56  destination:  1204809169
-loop:  21  a.n 62  destination:  1818066398
-loop:  21  a.n 63  destination:  4365792424
-loop:  21  a.n 65  destination:  82604577
-loop:  21  a.n 70  destination:  4364793650
-loop:  21  a.n 72  destination:  932302116
-loop:  21  a.n 73  destination:  4365361340
-loop:  21  a.n 78  destination:  4364759230
-loop:  21  a.n 81  destination:  4379099888
-loop:  21  a.n 82  destination:  4364886874
-loop:  21  a.n 84  destination:  4369250818
-loop:  21  a.n 85  destination:  4369745768
-loop:  21  a.n 87  destination:  1232340265
-loop:  21  a.n 93  destination:  4365097467
-Percentage of events seen: 4.24%
-
-Iteration 22
-loop:  22  a.n 3  destination:  4364330623
-loop:  22  a.n 13  destination:  4365985779
-loop:  22  a.n 18  destination:  82604140
-loop:  22  a.n 21  destination:  4367664921
-loop:  22  a.n 23  destination:  3787886808
-loop:  22  a.n 28  destination:  932304242
-loop:  22  a.n 33  destination:  4365371080
-Cls at distance 0
-Cls at distance 0
-loop:  22  a.n 35  destination:  4471887147
-loop:  22  a.n 40  destination:  3789303362
-loop:  22  a.n 43  destination:  4365387840
-loop:  22  a.n 46  destination:  6135932502
-loop:  22  a.n 47  destination:  4365792604
-loop:  22  a.n 53  destination:  4364759238
-loop:  22  a.n 59  destination:  4365491501
-loop:  22  a.n 69  destination:  4365850069
-loop:  22  a.n 83  destination:  3787878004
-loop:  22  a.n 86  destination:  4365985763
-loop:  22  a.n 96  destination:  4365352042
-loop:  22  a.n 98  destination:  4365985744
-Percentage of events seen: 4.24%
-
-Iteration 23
-loop:  23  a.n 6  destination:  6135932502
-loop:  23  a.n 16  destination:  4365792915
-loop:  23  a.n 32  destination:  3030507628
-loop:  23  a.n 36  destination:  4365926625
-loop:  23  a.n 39  destination:  4364805216
-loop:  23  a.n 41  destination:  4366956861
-loop:  23  a.n 42  destination:  4364446714
-loop:  23  a.n 45  destination:  3722107627
-loop:  23  a.n 51  destination:  4364209079
-loop:  23  a.n 54  destination:  932301472
-loop:  23  a.n 55  destination:  932301410
-loop:  23  a.n 64  destination:  4366920564
-loop:  23  a.n 67  destination:  1204809408
-loop:  23  a.n 68  destination:  4364317129
-loop:  23  a.n 76  destination:  4365365266
-loop:  23  a.n 77  destination:  4364521962
-Percentage of events seen: 4.24%
-
-Iteration 24
-loop:  24  a.n 0  destination:  3787877984
-loop:  24  a.n 1  destination:  4379092043
-loop:  24  a.n 4  destination:  4364411770
-loop:  24  a.n 9  destination:  932301966
-loop:  24  a.n 10  destination:  4366920564
-loop:  24  a.n 11  destination:  387950276
-loop:  24  a.n 12  destination:  4366104515
-loop:  24  a.n 19  destination:  4364802104
-loop:  24  a.n 20  destination:  4364805701
-loop:  24  a.n 22  destination:  6139565467
-Cls at distance 0
-Cls at distance 0
-loop:  24  a.n 24  destination:  4364765524
-loop:  24  a.n 25  destination:  4366963876
-loop:  24  a.n 26  destination:  4364395480
-loop:  24  a.n 27  destination:  6140707303
-loop:  24  a.n 37  destination:  6139565245
-loop:  24  a.n 48  destination:  932304222
-loop:  24  a.n 52  destination:  4364796768
-loop:  24  a.n 56  destination:  4364792292
-loop:  24  a.n 57  destination:  1818074456
-loop:  24  a.n 58  destination:  3918523137
-loop:  24  a.n 63  destination:  4365792426
-loop:  24  a.n 66  destination:  3787887071
-loop:  24  a.n 70  destination:  3030507590
-loop:  24  a.n 72  destination:  2915264610
-loop:  24  a.n 73  destination:  4365361337
-loop:  24  a.n 78  destination:  6140706879
-loop:  24  a.n 79  destination:  1204810623
-loop:  24  a.n 81  destination:  4369487711
-loop:  24  a.n 82  destination:  4364887093
-loop:  24  a.n 85  destination:  4369745769
-loop:  24  a.n 88  destination:  4364796462
-loop:  24  a.n 89  destination:  4365792571
-loop:  24  a.n 90  destination:  3787866112
-loop:  24  a.n 91  destination:  4366770434
-loop:  24  a.n 99  destination:  4365814062
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 4.24%
-
-Iteration 25
-loop:  25  a.n 8  destination:  4365377319
-loop:  25  a.n 23  destination:  1232340879
-loop:  25  a.n 29  destination:  3057607178
-loop:  25  a.n 33  destination:  4365371031
-loop:  25  a.n 34  destination:  4365370402
-loop:  25  a.n 43  destination:  4365387836
-loop:  25  a.n 46  destination:  6135932510
-loop:  25  a.n 49  destination:  6131583026
-loop:  25  a.n 53  destination:  4364758216
-loop:  25  a.n 61  destination:  3722081355
-Cls at distance 0
-Cls at distance 0
-loop:  25  a.n 62  destination:  4364209089
-loop:  25  a.n 74  destination:  7603585161
-loop:  25  a.n 75  destination:  4364317701
-loop:  25  a.n 92  destination:  4367569521
-loop:  25  a.n 97  destination:  4471887147
-Percentage of events seen: 5.08%
-
-Iteration 26
-loop:  26  a.n 3  destination:  932302451
-loop:  26  a.n 5  destination:  1251733179
-loop:  26  a.n 16  destination:  4365792917
-loop:  26  a.n 30  destination:  4364758910
-loop:  26  a.n 32  destination:  4365372420
-loop:  26  a.n 35  destination:  4369497600
-loop:  26  a.n 36  destination:  6135931111
-loop:  26  a.n 40  destination:  4365277035
-Cls at distance 0
-Cls at distance 0
-loop:  26  a.n 41  destination:  6855880551
-Cls at distance 0
-Only one class at distance 1
-loop:  26  a.n 42  destination:  82604271
-Cls at distance 0
-Cls at distance 0
-loop:  26  a.n 44  destination:  7609049035
-loop:  26  a.n 45  destination:  3722112837
-loop:  26  a.n 47  destination:  4365792616
-loop:  26  a.n 55  destination:  4365370692
-loop:  26  a.n 67  destination:  1204810230
-loop:  26  a.n 68  destination:  6139565291
-loop:  26  a.n 69  destination:  932303358
-loop:  26  a.n 77  destination:  4364521964
-loop:  26  a.n 86  destination:  4366119333
-loop:  26  a.n 95  destination:  8567730108
-loop:  26  a.n 96  destination:  4365352054
-Percentage of events seen: 5.08%
-
-Iteration 27
-loop:  27  a.n 0  destination:  6139565350
-loop:  27  a.n 1  destination:  4379092164
-loop:  27  a.n 4  destination:  1232340689
-loop:  27  a.n 7  destination:  3787878004
-loop:  27  a.n 14  destination:  3787956727
-loop:  27  a.n 15  destination:  4367461585
-loop:  27  a.n 19  destination:  4365290630
-loop:  27  a.n 27  destination:  6140707306
-loop:  27  a.n 37  destination:  4366474369
-loop:  27  a.n 48  destination:  3918474203
-loop:  27  a.n 51  destination:  4364429860
-loop:  27  a.n 52  destination:  4364796767
-loop:  27  a.n 56  destination:  1204809169
-loop:  27  a.n 59  destination:  4365491611
-loop:  27  a.n 63  destination:  4365792435
-loop:  27  a.n 65  destination:  4365985779
-loop:  27  a.n 66  destination:  3787887070
-loop:  27  a.n 70  destination:  3030507617
-loop:  27  a.n 71  destination:  4364411770
-loop:  27  a.n 73  destination:  4364431357
-loop:  27  a.n 76  destination:  4365365265
-loop:  27  a.n 78  destination:  4364759230
-loop:  27  a.n 79  destination:  1204809652
-loop:  27  a.n 81  destination:  4379099888
-loop:  27  a.n 82  destination:  9962233702
-loop:  27  a.n 85  destination:  4369745768
-loop:  27  a.n 87  destination:  6139565306
-loop:  27  a.n 89  destination:  4365792654
-loop:  27  a.n 93  destination:  4364317151
-Percentage of events seen: 5.08%
-
-Iteration 28
-loop:  28  a.n 2  destination:  4367640340
-Cls at distance 0
-loop:  28  a.n 11  destination:  4359008403
-loop:  28  a.n 12  destination:  4366104417
-loop:  28  a.n 13  destination:  4365985893
-loop:  28  a.n 21  destination:  4367664971
-loop:  28  a.n 22  destination:  4365090839
-loop:  28  a.n 26  destination:  82604276
-loop:  28  a.n 33  destination:  932302451
-Cls at distance 0
-Cls at distance 0
-loop:  28  a.n 43  destination:  4369958754
-loop:  28  a.n 54  destination:  4364317665
-loop:  28  a.n 57  destination:  1818074466
-loop:  28  a.n 83  destination:  6139565358
-loop:  28  a.n 84  destination:  4369250926
-loop:  28  a.n 90  destination:  3787866108
-loop:  28  a.n 99  destination:  4365814045
-Percentage of events seen: 5.08%
-
-Iteration 29
-loop:  29  a.n 3  destination:  4365371031
-loop:  29  a.n 6  destination:  4364515217
-loop:  29  a.n 8  destination:  4365365489
-loop:  29  a.n 18  destination:  82604134
-loop:  29  a.n 31  destination:  3918523002
-loop:  29  a.n 32  destination:  4365372428
-loop:  29  a.n 38  destination:  4368434963
-loop:  29  a.n 41  destination:  4366956861
-loop:  29  a.n 42  destination:  4364793650
-loop:  29  a.n 45  destination:  3722107627
-loop:  29  a.n 46  destination:  6135932507
-loop:  29  a.n 55  destination:  932301410
-loop:  29  a.n 58  destination:  4367663303
-loop:  29  a.n 62  destination:  1818066398
-Cls at distance 0
-Cls at distance 0
-loop:  29  a.n 64  destination:  3057607178
-loop:  29  a.n 67  destination:  1415549925
-loop:  29  a.n 77  destination:  4364521962
-loop:  29  a.n 91  destination:  8523489766
-Percentage of events seen: 5.08%
-
-Iteration 30
-loop:  30  a.n 0  destination:  6139565348
-loop:  30  a.n 1  destination:  4379092043
-loop:  30  a.n 10  destination:  3057607178
-loop:  30  a.n 14  destination:  3787956722
-loop:  30  a.n 16  destination:  4365792915
-loop:  30  a.n 19  destination:  4365290631
-loop:  30  a.n 27  destination:  4364758915
-loop:  30  a.n 35  destination:  4369497571
-loop:  30  a.n 36  destination:  4365926625
-loop:  30  a.n 37  destination:  6139565245
-loop:  30  a.n 40  destination:  3789303362
-loop:  30  a.n 47  destination:  4365792654
-loop:  30  a.n 48  destination:  3918474195
-loop:  30  a.n 49  destination:  3787942077
-loop:  30  a.n 51  destination:  4364209079
-loop:  30  a.n 52  destination:  2949090816
-loop:  30  a.n 56  destination:  1204810030
-loop:  30  a.n 60  destination:  4357784263
-loop:  30  a.n 61  destination:  3722081387
-loop:  30  a.n 63  destination:  4365792428
-loop:  30  a.n 66  destination:  3787887071
-loop:  30  a.n 69  destination:  4365850069
-loop:  30  a.n 70  destination:  3030507590
-loop:  30  a.n 73  destination:  4365361355
-loop:  30  a.n 74  destination:  4228877952
-loop:  30  a.n 75  destination:  4364317689
-loop:  30  a.n 76  destination:  4365365266
-loop:  30  a.n 78  destination:  4364757023
-loop:  30  a.n 79  destination:  1204810623
-loop:  30  a.n 81  destination:  4364431359
-loop:  30  a.n 82  destination:  4364887093
-loop:  30  a.n 85  destination:  4369745761
-loop:  30  a.n 86  destination:  4365985763
-loop:  30  a.n 88  destination:  4364923502
-loop:  30  a.n 92  destination:  4366104523
-loop:  30  a.n 96  destination:  4365365265
-loop:  30  a.n 97  destination:  4471887163
-loop:  30  a.n 98  destination:  4365985763
-Percentage of events seen: 5.08%
-
-Iteration 31
-loop:  31  a.n 7  destination:  6139565358
-loop:  31  a.n 11  destination:  387950276
-loop:  31  a.n 20  destination:  4364874291
-loop:  31  a.n 22  destination:  6139565462
-loop:  31  a.n 25  destination:  4364340191
-loop:  31  a.n 26  destination:  4364395483
-loop:  31  a.n 29  destination:  4366920564
-loop:  31  a.n 30  destination:  4364758625
-loop:  31  a.n 33  destination:  4365371031
-loop:  31  a.n 83  destination:  6139565357
-loop:  31  a.n 87  destination:  1232340265
-loop:  31  a.n 93  destination:  4365097467
-Percentage of events seen: 5.08%
-
-Iteration 32
-loop:  32  a.n 3  destination:  932302451
-Cls at distance 0
-Cls at distance 0
-loop:  32  a.n 4  destination:  1232340705
-loop:  32  a.n 12  destination:  4366104515
-loop:  32  a.n 17  destination:  3787877985
-loop:  32  a.n 21  destination:  4367664921
-loop:  32  a.n 24  destination:  4364765544
-loop:  32  a.n 38  destination:  4364725060
-loop:  32  a.n 41  destination:  4366956847
-Cls at distance 0
-loop:  32  a.n 42  destination:  4364793656
-loop:  32  a.n 43  destination:  6855902397
-loop:  32  a.n 44  destination:  1232340378
-loop:  32  a.n 45  destination:  3918245344
-loop:  32  a.n 46  destination:  6135932510
-loop:  32  a.n 55  destination:  4365370692
-loop:  32  a.n 59  destination:  4365491554
-loop:  32  a.n 67  destination:  1204809408
-loop:  32  a.n 71  destination:  4364411774
-loop:  32  a.n 72  destination:  932302116
-loop:  32  a.n 77  destination:  4364521964
-loop:  32  a.n 89  destination:  4365792571
-loop:  32  a.n 90  destination:  3787866107
-loop:  32  a.n 99  destination:  4365814062
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.08%
-
-Iteration 33
-loop:  33  a.n 0  destination:  6139565350
-loop:  33  a.n 1  destination:  4379091949
-loop:  33  a.n 14  destination:  3787956727
-loop:  33  a.n 19  destination:  4365290630
-loop:  33  a.n 27  destination:  6140707306
-loop:  33  a.n 31  destination:  3918522991
-loop:  33  a.n 32  destination:  932300464
-loop:  33  a.n 35  destination:  4369497558
-loop:  33  a.n 37  destination:  6139565240
-loop:  33  a.n 51  destination:  4364429860
-loop:  33  a.n 54  destination:  932299872
-loop:  33  a.n 56  destination:  3788835288
-loop:  33  a.n 57  destination:  1818074456
-loop:  33  a.n 62  destination:  82604259
-loop:  33  a.n 63  destination:  4365792435
-loop:  33  a.n 65  destination:  4365985893
-loop:  33  a.n 66  destination:  3787887070
-loop:  33  a.n 68  destination:  6139565292
-loop:  33  a.n 70  destination:  3030507617
-loop:  33  a.n 73  destination:  4369487711
-loop:  33  a.n 75  destination:  4364317701
-loop:  33  a.n 76  destination:  4365365265
-loop:  33  a.n 78  destination:  4364759521
-loop:  33  a.n 79  destination:  1204809652
-loop:  33  a.n 80  destination:  932300260
-loop:  33  a.n 81  destination:  4379099888
-loop:  33  a.n 82  destination:  4364886857
-loop:  33  a.n 85  destination:  4369745768
-Percentage of events seen: 5.08%
-
-Iteration 34
-loop:  34  a.n 7  destination:  6139565357
-loop:  34  a.n 8  destination:  4364757375
-loop:  34  a.n 11  destination:  1204809739
-loop:  34  a.n 16  destination:  4365792917
-loop:  34  a.n 20  destination:  4364805701
-loop:  34  a.n 22  destination:  4365090839
-loop:  34  a.n 26  destination:  82604276
-loop:  34  a.n 33  destination:  4364330636
-Only one class at distance 1
-Cls at distance 0
-loop:  34  a.n 36  destination:  6135931111
-loop:  34  a.n 39  destination:  1204810030
-loop:  34  a.n 40  destination:  4365277035
-Cls at distance 0
-Cls at distance 0
-loop:  34  a.n 47  destination:  4365792707
-loop:  34  a.n 58  destination:  4367675012
-loop:  34  a.n 69  destination:  932300976
-loop:  34  a.n 83  destination:  6139565358
-loop:  34  a.n 86  destination:  4366119333
-loop:  34  a.n 91  destination:  4366770423
-loop:  34  a.n 93  destination:  8443675826
-loop:  34  a.n 94  destination:  3787941964
-loop:  34  a.n 96  destination:  4365365259
-loop:  34  a.n 97  destination:  4471887147
-loop:  34  a.n 98  destination:  4365985744
-Percentage of events seen: 5.08%
-
-Iteration 35
-loop:  35  a.n 2  destination:  4367640321
-loop:  35  a.n 3  destination:  4364330623
-loop:  35  a.n 6  destination:  6135932511
-loop:  35  a.n 24  destination:  4364765524
-loop:  35  a.n 41  destination:  4366956861
-loop:  35  a.n 43  destination:  3918289514
-loop:  35  a.n 45  destination:  3918245351
-loop:  35  a.n 46  destination:  4365701295
-loop:  35  a.n 48  destination:  3918474182
-loop:  35  a.n 49  destination:  3787942133
-loop:  35  a.n 53  destination:  4365992042
-loop:  35  a.n 55  destination:  932301410
-loop:  35  a.n 61  destination:  8567730086
-Cls at distance 0
-Cls at distance 0
-loop:  35  a.n 64  destination:  3057607179
-loop:  35  a.n 67  destination:  1204808752
-loop:  35  a.n 71  destination:  4364411770
-loop:  35  a.n 77  destination:  932303466
-loop:  35  a.n 84  destination:  4369250818
-loop:  35  a.n 87  destination:  6139565306
-loop:  35  a.n 90  destination:  4364332274
-loop:  35  a.n 92  destination:  4366104504
-Percentage of events seen: 5.08%
-
-Iteration 36
-loop:  36  a.n 0  destination:  4364317140
-loop:  36  a.n 1  destination:  4379091954
-loop:  36  a.n 10  destination:  3057607179
-loop:  36  a.n 12  destination:  4366104417
-loop:  36  a.n 13  destination:  4365985779
-loop:  36  a.n 14  destination:  4367462101
-loop:  36  a.n 18  destination:  82604140
-loop:  36  a.n 19  destination:  4364802104
-loop:  36  a.n 21  destination:  4367663385
-loop:  36  a.n 27  destination:  6140707303
-loop:  36  a.n 32  destination:  4365372428
-loop:  36  a.n 35  destination:  1232340612
-loop:  36  a.n 37  destination:  6139565239
-loop:  36  a.n 38  destination:  3787877816
-Cls at distance 0
-Cls at distance 0
-loop:  36  a.n 50  destination:  4366048729
-loop:  36  a.n 51  destination:  4364209081
-loop:  36  a.n 52  destination:  4364796769
-loop:  36  a.n 62  destination:  4364521906
-loop:  36  a.n 63  destination:  4365792428
-loop:  36  a.n 66  destination:  8682647261
-loop:  36  a.n 68  destination:  6139565291
-loop:  36  a.n 70  destination:  3030507590
-loop:  36  a.n 73  destination:  4379099888
-loop:  36  a.n 75  destination:  4365299736
-loop:  36  a.n 76  destination:  4365365259
-loop:  36  a.n 78  destination:  4364758910
-loop:  36  a.n 79  destination:  1204809933
-loop:  36  a.n 81  destination:  4364431359
-loop:  36  a.n 82  destination:  4364887093
-loop:  36  a.n 85  destination:  4369745761
-loop:  36  a.n 88  destination:  4364796462
-loop:  36  a.n 99  destination:  4365814045
-Percentage of events seen: 5.08%
-
-Iteration 37
-loop:  37  a.n 7  destination:  6139565358
-loop:  37  a.n 8  destination:  4365365489
-loop:  37  a.n 20  destination:  4364805724
-loop:  37  a.n 22  destination:  6139565467
-loop:  37  a.n 26  destination:  4364395483
-loop:  37  a.n 29  destination:  3057607178
-loop:  37  a.n 30  destination:  4364758910
-loop:  37  a.n 33  destination:  4365371031
-loop:  37  a.n 39  destination:  3788835288
-loop:  37  a.n 42  destination:  3030507584
-loop:  37  a.n 69  destination:  2733798697
-loop:  37  a.n 83  destination:  3787878004
-loop:  37  a.n 89  destination:  4365792536
-loop:  37  a.n 95  destination:  3722107650
-loop:  37  a.n 96  destination:  4365365265
-Percentage of events seen: 5.08%
-
-Iteration 38
-loop:  38  a.n 3  destination:  932302451
-loop:  38  a.n 11  destination:  82604022
-loop:  38  a.n 16  destination:  4366920885
-loop:  38  a.n 24  destination:  4364764758
-loop:  38  a.n 25  destination:  4366963876
-loop:  38  a.n 28  destination:  4365969591
-loop:  38  a.n 36  destination:  4365926625
-loop:  38  a.n 40  destination:  3789303362
-loop:  38  a.n 41  destination:  6855880551
-Cls at distance 0
-Cls at distance 0
-loop:  38  a.n 44  destination:  7609049035
-loop:  38  a.n 46  destination:  4365701293
-loop:  38  a.n 47  destination:  4365792654
-loop:  38  a.n 55  destination:  6129374817
-loop:  38  a.n 57  destination:  1818074466
-loop:  38  a.n 58  destination:  3918523137
-loop:  38  a.n 59  destination:  4365491611
-loop:  38  a.n 64  destination:  3057607173
-loop:  38  a.n 67  destination:  1204809408
-loop:  38  a.n 71  destination:  82604253
-loop:  38  a.n 77  destination:  4364521964
-loop:  38  a.n 86  destination:  4365985763
-loop:  38  a.n 90  destination:  3787866107
-loop:  38  a.n 91  destination:  1885276830
-loop:  38  a.n 97  destination:  4369497600
-loop:  38  a.n 98  destination:  4366119352
-Percentage of events seen: 5.08%
-
-Iteration 39
-loop:  39  a.n 0  destination:  1232340428
-loop:  39  a.n 1  destination:  4379091411
-loop:  39  a.n 6  destination:  4364515217
-loop:  39  a.n 10  destination:  3057607178
-loop:  39  a.n 14  destination:  6140707181
-loop:  39  a.n 19  destination:  4364297199
-loop:  39  a.n 27  destination:  6140707306
-loop:  39  a.n 32  destination:  4365372420
-loop:  39  a.n 37  destination:  6139565240
-loop:  39  a.n 45  destination:  3722106190
-loop:  39  a.n 51  destination:  4364429860
-loop:  39  a.n 53  destination:  4365977369
-loop:  39  a.n 62  destination:  6164664485
-loop:  39  a.n 63  destination:  4365792435
-loop:  39  a.n 68  destination:  6139565292
-loop:  39  a.n 70  destination:  3030507581
-loop:  39  a.n 73  destination:  4364431359
-loop:  39  a.n 76  destination:  4365365265
-loop:  39  a.n 81  destination:  4364431358
-loop:  39  a.n 82  destination:  4364886857
-loop:  39  a.n 85  destination:  4369751896
-loop:  39  a.n 87  destination:  1232340265
-loop:  39  a.n 92  destination:  4366104441
-Percentage of events seen: 5.08%
-
-Iteration 40
-loop:  40  a.n 7  destination:  3787878004
-loop:  40  a.n 8  destination:  4364757375
-loop:  40  a.n 12  destination:  4366104419
-loop:  40  a.n 22  destination:  4364341631
-loop:  40  a.n 26  destination:  3030507583
-loop:  40  a.n 31  destination:  3918522983
-loop:  40  a.n 33  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  40  a.n 38  destination:  1232340477
-loop:  40  a.n 42  destination:  4379091319
-loop:  40  a.n 49  destination:  6131583073
-loop:  40  a.n 52  destination:  2949090818
-loop:  40  a.n 69  destination:  1204809933
-loop:  40  a.n 72  destination:  932303084
-loop:  40  a.n 83  destination:  1232340265
-loop:  40  a.n 93  destination:  4369745752
-loop:  40  a.n 94  destination:  3787934851
-loop:  40  a.n 96  destination:  4365365259
-loop:  40  a.n 99  destination:  4365813989
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.08%
-
-Iteration 41
-loop:  41  a.n 3  destination:  4365371031
-loop:  41  a.n 4  destination:  82604219
-loop:  41  a.n 9  destination:  932304242
-loop:  41  a.n 11  destination:  1204809739
-loop:  41  a.n 23  destination:  3787886808
-loop:  41  a.n 35  destination:  4364725019
-loop:  41  a.n 41  destination:  6855880561
-loop:  41  a.n 43  destination:  3918289508
-loop:  41  a.n 46  destination:  4365701295
-loop:  41  a.n 54  destination:  4364317665
-loop:  41  a.n 64  destination:  4365290633
-Cls at distance 0
-Cls at distance 0
-loop:  41  a.n 65  destination:  6138161298
-loop:  41  a.n 67  destination:  1204810230
-loop:  41  a.n 75  destination:  4364317701
-loop:  41  a.n 77  destination:  932303466
-loop:  41  a.n 78  destination:  4364759521
-loop:  41  a.n 79  destination:  2733798710
-loop:  41  a.n 90  destination:  3787866108
-Percentage of events seen: 5.08%
-
-Iteration 42
-loop:  42  a.n 1  destination:  4379091325
-loop:  42  a.n 2  destination:  4367640328
-Only one class at distance 1
-loop:  42  a.n 10  destination:  4365290632
-loop:  42  a.n 14  destination:  4367462101
-loop:  42  a.n 16  destination:  4365792917
-loop:  42  a.n 19  destination:  4364802104
-loop:  42  a.n 21  destination:  4367664921
-loop:  42  a.n 27  destination:  6140707303
-loop:  42  a.n 36  destination:  4365926592
-loop:  42  a.n 37  destination:  6139565239
-loop:  42  a.n 40  destination:  4364881768
-Cls at distance 0
-Cls at distance 0
-loop:  42  a.n 47  destination:  4365792707
-loop:  42  a.n 48  destination:  3918474195
-loop:  42  a.n 50  destination:  387949872
-loop:  42  a.n 51  destination:  4364429872
-loop:  42  a.n 53  destination:  4364758619
-loop:  42  a.n 55  destination:  932301410
-loop:  42  a.n 60  destination:  4365337723
-loop:  42  a.n 62  destination:  4364521906
-loop:  42  a.n 63  destination:  4365792426
-loop:  42  a.n 66  destination:  4369456013
-loop:  42  a.n 68  destination:  6139565291
-loop:  42  a.n 70  destination:  3030507590
-loop:  42  a.n 71  destination:  4366008966
-loop:  42  a.n 73  destination:  4364431358
-loop:  42  a.n 76  destination:  4365365259
-loop:  42  a.n 81  destination:  4364431359
-loop:  42  a.n 82  destination:  8481021726
-loop:  42  a.n 84  destination:  4369250926
-loop:  42  a.n 85  destination:  4369745761
-loop:  42  a.n 86  destination:  4365985744
-loop:  42  a.n 88  destination:  4364923502
-loop:  42  a.n 89  destination:  4365792571
-loop:  42  a.n 91  destination:  8523489766
-loop:  42  a.n 92  destination:  4366104523
-loop:  42  a.n 97  destination:  4471887147
-Percentage of events seen: 5.08%
-
-Iteration 43
-loop:  43  a.n 0  destination:  4364317140
-loop:  43  a.n 6  destination:  6135932574
-loop:  43  a.n 7  destination:  6139565358
-loop:  43  a.n 8  destination:  4365365489
-loop:  43  a.n 12  destination:  4366104417
-loop:  43  a.n 17  destination:  6139565352
-loop:  43  a.n 18  destination:  1818078869
-loop:  43  a.n 22  destination:  6139565467
-loop:  43  a.n 26  destination:  4364553081
-loop:  43  a.n 29  destination:  4365290632
-loop:  43  a.n 30  destination:  932300994
-loop:  43  a.n 32  destination:  3030507628
-loop:  43  a.n 33  destination:  4365371031
-loop:  43  a.n 42  destination:  3030507584
-loop:  43  a.n 45  destination:  3918245351
-loop:  43  a.n 52  destination:  4365384713
-loop:  43  a.n 57  destination:  1818071569
-loop:  43  a.n 61  destination:  3722081387
-loop:  43  a.n 69  destination:  2733798710
-loop:  43  a.n 72  destination:  932300080
-loop:  43  a.n 87  destination:  4364886867
-loop:  43  a.n 96  destination:  4365365265
-Percentage of events seen: 5.08%
-
-Iteration 44
-loop:  44  a.n 3  destination:  4364330636
-Cls at distance 0
-Only one class at distance 1
-loop:  44  a.n 11  destination:  387950276
-loop:  44  a.n 13  destination:  82604577
-loop:  44  a.n 15  destination:  6140707097
-loop:  44  a.n 20  destination:  4365047066
-loop:  44  a.n 28  destination:  932304242
-loop:  44  a.n 35  destination:  1232340612
-loop:  44  a.n 44  destination:  3918274125
-loop:  44  a.n 46  destination:  6135932510
-loop:  44  a.n 58  destination:  4367675012
-loop:  44  a.n 59  destination:  4365491501
-loop:  44  a.n 67  destination:  1204809685
-loop:  44  a.n 77  destination:  82604266
-loop:  44  a.n 79  destination:  2733798717
-loop:  44  a.n 90  destination:  3787866125
-loop:  44  a.n 99  destination:  4365814045
-Percentage of events seen: 5.08%
-
-Iteration 45
-loop:  45  a.n 1  destination:  4379091319
-loop:  45  a.n 10  destination:  3057607178
-loop:  45  a.n 14  destination:  6140707182
-loop:  45  a.n 19  destination:  4364297199
-loop:  45  a.n 25  destination:  4364340076
-loop:  45  a.n 27  destination:  6140707306
-loop:  45  a.n 31  destination:  4366920866
-loop:  45  a.n 36  destination:  4365926625
-loop:  45  a.n 37  destination:  6139565240
-loop:  45  a.n 41  destination:  6855880551
-loop:  45  a.n 51  destination:  4364429860
-loop:  45  a.n 56  destination:  1204810030
-loop:  45  a.n 62  destination:  82604259
-loop:  45  a.n 63  destination:  4365792435
-loop:  45  a.n 64  destination:  4365290632
-loop:  45  a.n 68  destination:  1232339906
-loop:  45  a.n 70  destination:  4364793650
-loop:  45  a.n 73  destination:  4364431359
-loop:  45  a.n 76  destination:  4365365265
-loop:  45  a.n 81  destination:  4364431365
-loop:  45  a.n 82  destination:  4364886857
-loop:  45  a.n 85  destination:  4369751896
-loop:  45  a.n 91  destination:  4366770434
-loop:  45  a.n 94  destination:  3787941981
-Percentage of events seen: 5.08%
-
-Iteration 46
-loop:  46  a.n 7  destination:  6139565357
-loop:  46  a.n 8  destination:  4365365287
-loop:  46  a.n 9  destination:  932301966
-loop:  46  a.n 12  destination:  4366104419
-loop:  46  a.n 16  destination:  4364759525
-loop:  46  a.n 22  destination:  4365090839
-loop:  46  a.n 24  destination:  2278397960
-loop:  46  a.n 26  destination:  3030507573
-loop:  46  a.n 29  destination:  4377754042
-loop:  46  a.n 30  destination:  4364758910
-loop:  46  a.n 32  destination:  4365372420
-loop:  46  a.n 33  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  46  a.n 42  destination:  4379091319
-loop:  46  a.n 47  destination:  932302382
-loop:  46  a.n 49  destination:  3787942133
-loop:  46  a.n 52  destination:  2949090818
-loop:  46  a.n 55  destination:  6129374817
-loop:  46  a.n 66  destination:  8682647261
-loop:  46  a.n 69  destination:  1204809273
-loop:  46  a.n 74  destination:  7603585161
-loop:  46  a.n 75  destination:  4365299736
-loop:  46  a.n 78  destination:  4364758910
-loop:  46  a.n 83  destination:  6139565306
-loop:  46  a.n 86  destination:  4365985650
-loop:  46  a.n 92  destination:  4366104504
-loop:  46  a.n 96  destination:  4365365266
-loop:  46  a.n 97  destination:  4471887163
-loop:  46  a.n 98  destination:  4366119410
-Percentage of events seen: 5.08%
-
-Iteration 47
-loop:  47  a.n 0  destination:  6139565350
-loop:  47  a.n 2  destination:  4367640321
-loop:  47  a.n 3  destination:  4365371031
-loop:  47  a.n 20  destination:  4364805724
-loop:  47  a.n 34  destination:  6138161293
-loop:  47  a.n 35  destination:  3102359231
-loop:  47  a.n 40  destination:  3789303362
-loop:  47  a.n 43  destination:  4365387836
-loop:  47  a.n 45  destination:  3918245344
-loop:  47  a.n 46  destination:  4365701295
-loop:  47  a.n 65  destination:  3787942135
-loop:  47  a.n 72  destination:  932303084
-loop:  47  a.n 77  destination:  932303466
-loop:  47  a.n 79  destination:  1204809273
-loop:  47  a.n 89  destination:  4365792536
-Percentage of events seen: 5.08%
-
-Iteration 48
-loop:  48  a.n 1  destination:  4379091325
-loop:  48  a.n 5  destination:  4366770423
-loop:  48  a.n 10  destination:  4365290632
-loop:  48  a.n 11  destination:  4359008403
-loop:  48  a.n 14  destination:  4367462101
-loop:  48  a.n 17  destination:  4364317138
-loop:  48  a.n 19  destination:  4364802052
-loop:  48  a.n 21  destination:  4367664863
-loop:  48  a.n 27  destination:  6140707303
-loop:  48  a.n 36  destination:  4365926592
-loop:  48  a.n 37  destination:  6139565216
-loop:  48  a.n 50  destination:  4365976733
-loop:  48  a.n 51  destination:  4364209079
-loop:  48  a.n 57  destination:  1818074466
-loop:  48  a.n 62  destination:  1818066398
-loop:  48  a.n 63  destination:  4365792426
-loop:  48  a.n 64  destination:  3057607178
-loop:  48  a.n 68  destination:  6139565291
-loop:  48  a.n 70  destination:  3030507590
-loop:  48  a.n 73  destination:  4379099888
-loop:  48  a.n 76  destination:  4365365259
-loop:  48  a.n 81  destination:  4364431359
-loop:  48  a.n 82  destination:  8481021726
-loop:  48  a.n 85  destination:  4369745761
-loop:  48  a.n 87  destination:  8593026669
-loop:  48  a.n 88  destination:  4364796462
-loop:  48  a.n 90  destination:  3787866108
-loop:  48  a.n 95  destination:  8567730108
-loop:  48  a.n 99  destination:  4365814062
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.08%
-
-[1232340705, 4365701306, 1232340619, 1232340705, 4365701306, 1232340619]
-
-Iteration 49
-loop:  49  a.n 4  destination:  1232340705
-loop:  49  a.n 7  destination:  6139565358
-loop:  49  a.n 8  destination:  4365365266
-Only one class at distance 1
-Cls at distance 0
-loop:  49  a.n 12  destination:  4366104528
-loop:  49  a.n 15  destination:  4367461585
-loop:  49  a.n 16  destination:  4364759223
-Cls at distance 0
-Cls at distance 0
-loop:  49  a.n 22  destination:  6139565462
-loop:  49  a.n 24  destination:  4364764758
-loop:  49  a.n 25  destination:  4364340191
-loop:  49  a.n 26  destination:  3030507571
-loop:  49  a.n 29  destination:  4365290632
-loop:  49  a.n 30  destination:  932300994
-loop:  49  a.n 32  destination:  3030507628
-loop:  49  a.n 33  destination:  4365371031
-loop:  49  a.n 39  destination:  1204810030
-loop:  49  a.n 41  destination:  4366956861
-loop:  49  a.n 42  destination:  3030507584
-loop:  49  a.n 44  destination:  7609049035
-loop:  49  a.n 47  destination:  4365792724
-loop:  49  a.n 48  destination:  4364796713
-loop:  49  a.n 52  destination:  4364796769
-loop:  49  a.n 54  destination:  932301472
-loop:  49  a.n 59  destination:  4365491611
-loop:  49  a.n 69  destination:  2733798717
-loop:  49  a.n 71  destination:  4366008849
-loop:  49  a.n 84  destination:  4365849671
-loop:  49  a.n 93  destination:  4369745756
-loop:  49  a.n 96  destination:  4365365287
-Percentage of events seen: 5.08%
-
-Iteration 50
-loop:  50  a.n 0  destination:  6139565348
-loop:  50  a.n 3  destination:  932302451
-Cls at distance 0
-Cls at distance 0
-loop:  50  a.n 6  destination:  4364515200
-loop:  50  a.n 13  destination:  4365985779
-loop:  50  a.n 20  destination:  4365047066
-loop:  50  a.n 28  destination:  4365792407
-loop:  50  a.n 31  destination:  3918522983
-loop:  50  a.n 34  destination:  6138160968
-loop:  50  a.n 46  destination:  6135932510
-loop:  50  a.n 55  destination:  932302448
-loop:  50  a.n 58  destination:  4367663303
-loop:  50  a.n 66  destination:  4365926625
-loop:  50  a.n 77  destination:  82604266
-loop:  50  a.n 79  destination:  2733798717
-loop:  50  a.n 80  destination:  932304222
-loop:  50  a.n 83  destination:  6139565305
-loop:  50  a.n 86  destination:  4365985744
-loop:  50  a.n 91  destination:  8523489766
-loop:  50  a.n 92  destination:  4366104441
-loop:  50  a.n 94  destination:  3787942006
-loop:  50  a.n 97  destination:  6139565678
-Percentage of events seen: 5.08%
-
-Iteration 51
-loop:  51  a.n 1  destination:  4379091411
-loop:  51  a.n 5  destination:  1251733179
-loop:  51  a.n 9  destination:  932304242
-loop:  51  a.n 10  destination:  4377754042
-loop:  51  a.n 11  destination:  1415549938
-loop:  51  a.n 14  destination:  6140707182
-loop:  51  a.n 17  destination:  6139565352
-loop:  51  a.n 19  destination:  4365399230
-loop:  51  a.n 27  destination:  6140707306
-loop:  51  a.n 35  destination:  1232340402
-loop:  51  a.n 36  destination:  4365926570
-loop:  51  a.n 37  destination:  6139565240
-loop:  51  a.n 43  destination:  4369958754
-loop:  51  a.n 45  destination:  3918245351
-loop:  51  a.n 51  destination:  4364209078
-loop:  51  a.n 61  destination:  8567730086
-Cls at distance 0
-Cls at distance 0
-loop:  51  a.n 62  destination:  4364209089
-loop:  51  a.n 63  destination:  4365792435
-loop:  51  a.n 64  destination:  4366920564
-loop:  51  a.n 68  destination:  1232339906
-loop:  51  a.n 70  destination:  3030507581
-loop:  51  a.n 72  destination:  932300080
-loop:  51  a.n 73  destination:  4379099884
-loop:  51  a.n 75  destination:  4364317701
-loop:  51  a.n 76  destination:  4365365265
-loop:  51  a.n 78  destination:  4364759521
-loop:  51  a.n 81  destination:  4379099888
-loop:  51  a.n 82  destination:  4365926625
-loop:  51  a.n 85  destination:  4369745768
-Percentage of events seen: 5.08%
-
-Iteration 52
-loop:  52  a.n 2  destination:  1204808509
-Cls at distance 0
-Cls at distance 0
-loop:  52  a.n 7  destination:  3787878004
-loop:  52  a.n 21  destination:  4367664921
-loop:  52  a.n 22  destination:  6139565459
-loop:  52  a.n 24  destination:  4364765544
-loop:  52  a.n 26  destination:  3030507610
-loop:  52  a.n 29  destination:  4377754042
-loop:  52  a.n 30  destination:  4364757297
-loop:  52  a.n 32  destination:  932301224
-loop:  52  a.n 33  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  52  a.n 40  destination:  4364881768
-Cls at distance 0
-loop:  52  a.n 41  destination:  6855880551
-Cls at distance 0
-Cls at distance 0
-loop:  52  a.n 42  destination:  4364793656
-loop:  52  a.n 47  destination:  932303358
-loop:  52  a.n 49  destination:  3787942077
-loop:  52  a.n 52  destination:  2949090818
-loop:  52  a.n 69  destination:  1204809273
-loop:  52  a.n 89  destination:  4365792571
-loop:  52  a.n 90  destination:  3787866107
-loop:  52  a.n 93  destination:  4461687485
-loop:  52  a.n 98  destination:  4366119420
-loop:  52  a.n 99  destination:  4365814045
-Percentage of events seen: 5.08%
-
-Iteration 53
-loop:  53  a.n 0  destination:  6139565350
-loop:  53  a.n 3  destination:  4364330623
-loop:  53  a.n 6  destination:  4364515196
-Only one class at distance 1
-Cls at distance 0
-loop:  53  a.n 8  destination:  4365365287
-loop:  53  a.n 12  destination:  4366104432
-loop:  53  a.n 20  destination:  4364805724
-loop:  53  a.n 38  destination:  1232340953
-loop:  53  a.n 46  destination:  6135932507
-loop:  53  a.n 55  destination:  4365370526
-loop:  53  a.n 57  destination:  1818074456
-loop:  53  a.n 66  destination:  8682647261
-loop:  53  a.n 77  destination:  6164664734
-loop:  53  a.n 79  destination:  1204809273
-loop:  53  a.n 80  destination:  4364796464
-loop:  53  a.n 83  destination:  6139565306
-loop:  53  a.n 92  destination:  4366104411
-loop:  53  a.n 96  destination:  4366920835
-Cls at distance 0
-Cls at distance 0
-loop:  53  a.n 97  destination:  4471887163
-Percentage of events seen: 5.08%
-
-Iteration 54
-loop:  54  a.n 1  destination:  4379091412
-loop:  54  a.n 5  destination:  8429818426
-loop:  54  a.n 10  destination:  4366920584
-loop:  54  a.n 11  destination:  1415549943
-loop:  54  a.n 14  destination:  4367462101
-loop:  54  a.n 15  destination:  3787956656
-loop:  54  a.n 17  destination:  4364317129
-loop:  54  a.n 27  destination:  4364758915
-loop:  54  a.n 36  destination:  3787888844
-loop:  54  a.n 37  destination:  6139565216
-loop:  54  a.n 44  destination:  3918274125
-loop:  54  a.n 54  destination:  4364317655
-loop:  54  a.n 58  destination:  3918523137
-loop:  54  a.n 59  destination:  4365491501
-loop:  54  a.n 60  destination:  6855881503
-loop:  54  a.n 63  destination:  4365792428
-loop:  54  a.n 68  destination:  6139565291
-loop:  54  a.n 70  destination:  4365361361
-loop:  54  a.n 73  destination:  4379099888
-loop:  54  a.n 76  destination:  4365365259
-loop:  54  a.n 81  destination:  4369487711
-loop:  54  a.n 85  destination:  4369745769
-loop:  54  a.n 86  destination:  4365985650
-loop:  54  a.n 87  destination:  4364886867
-loop:  54  a.n 88  destination:  4364923502
-Percentage of events seen: 5.08%
-
-Iteration 55
-loop:  55  a.n 7  destination:  4364317129
-loop:  55  a.n 22  destination:  6139565462
-loop:  55  a.n 29  destination:  3057607169
-loop:  55  a.n 30  destination:  1248527369
-loop:  55  a.n 31  destination:  3918522991
-loop:  55  a.n 32  destination:  4364209137
-loop:  55  a.n 33  destination:  4365371031
-loop:  55  a.n 34  destination:  6138160963
-loop:  55  a.n 35  destination:  3102359231
-loop:  55  a.n 41  destination:  4366956861
-loop:  55  a.n 42  destination:  4364793650
-loop:  55  a.n 43  destination:  4365387836
-loop:  55  a.n 45  destination:  3918245344
-loop:  55  a.n 48  destination:  3918474195
-loop:  55  a.n 51  destination:  5591153200
-loop:  55  a.n 52  destination:  4364317784
-loop:  55  a.n 62  destination:  1818066398
-Cls at distance 0
-Cls at distance 0
-loop:  55  a.n 69  destination:  932300976
-loop:  55  a.n 72  destination:  932303950
-loop:  55  a.n 84  destination:  4369250926
-loop:  55  a.n 90  destination:  4364332265
-loop:  55  a.n 91  destination:  4366770422
-loop:  55  a.n 94  destination:  3787942046
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.08%
-
-Iteration 56
-loop:  56  a.n 0  destination:  3787877984
-loop:  56  a.n 3  destination:  4365370904
-loop:  56  a.n 6  destination:  4364515200
-loop:  56  a.n 9  destination:  4365969591
-loop:  56  a.n 13  destination:  4365985893
-loop:  56  a.n 16  destination:  4364758641
-loop:  56  a.n 19  destination:  4364297185
-loop:  56  a.n 20  destination:  4365047066
-loop:  56  a.n 21  destination:  4367664971
-loop:  56  a.n 26  destination:  3030507571
-loop:  56  a.n 38  destination:  4364796726
-loop:  56  a.n 46  destination:  6135932510
-loop:  56  a.n 47  destination:  4365792724
-loop:  56  a.n 66  destination:  4369456013
-loop:  56  a.n 75  destination:  4365299736
-loop:  56  a.n 77  destination:  6164664735
-loop:  56  a.n 78  destination:  4364758910
-loop:  56  a.n 79  destination:  932300976
-loop:  56  a.n 83  destination:  1232340620
-loop:  56  a.n 92  destination:  4365421409
-loop:  56  a.n 97  destination:  4471887147
-loop:  56  a.n 98  destination:  4366119410
-loop:  56  a.n 99  destination:  4365814062
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.08%
-
-Iteration 57
-loop:  57  a.n 1  destination:  4379091949
-loop:  57  a.n 4  destination:  1232340689
-loop:  57  a.n 8  destination:  4365365489
-Cls at distance 0
-Only one class at distance 1
-loop:  57  a.n 11  destination:  387950263
-loop:  57  a.n 12  destination:  4365464247
-loop:  57  a.n 14  destination:  6140707182
-loop:  57  a.n 17  destination:  6139565291
-loop:  57  a.n 18  destination:  82604140
-loop:  57  a.n 23  destination:  3787886799
-loop:  57  a.n 24  destination:  4364765588
-loop:  57  a.n 27  destination:  6140707306
-loop:  57  a.n 37  destination:  8491909365
-loop:  57  a.n 40  destination:  3789303362
-loop:  57  a.n 49  destination:  3787942133
-loop:  57  a.n 53  destination:  4366875371
-loop:  57  a.n 55  destination:  932302448
-loop:  57  a.n 56  destination:  4364805216
-loop:  57  a.n 63  destination:  4365792435
-loop:  57  a.n 64  destination:  3057607178
-loop:  57  a.n 68  destination:  1232339906
-loop:  57  a.n 70  destination:  4365361359
-loop:  57  a.n 73  destination:  4379099884
-loop:  57  a.n 76  destination:  4365365265
-loop:  57  a.n 81  destination:  4379099888
-loop:  57  a.n 85  destination:  4369745768
-loop:  57  a.n 89  destination:  4365792654
-Percentage of events seen: 5.08%
-
-Iteration 58
-loop:  58  a.n 22  destination:  4365090839
-loop:  58  a.n 25  destination:  4364340076
-loop:  58  a.n 33  destination:  4365371080
-Cls at distance 0
-Cls at distance 0
-loop:  58  a.n 34  destination:  6138160968
-loop:  58  a.n 36  destination:  3787887088
-loop:  58  a.n 41  destination:  4366956847
-Cls at distance 0
-Cls at distance 0
-loop:  58  a.n 52  destination:  4364317757
-loop:  58  a.n 54  destination:  932301472
-loop:  58  a.n 57  destination:  1818074466
-loop:  58  a.n 67  destination:  4364865858
-loop:  58  a.n 69  destination:  1204809273
-loop:  58  a.n 71  destination:  4366008822
-loop:  58  a.n 80  destination:  932304222
-loop:  58  a.n 86  destination:  4365985744
-loop:  58  a.n 90  destination:  3787866107
-Percentage of events seen: 5.08%
-
-Iteration 59
-loop:  59  a.n 0  destination:  6139565350
-loop:  59  a.n 2  destination:  4367640321
-loop:  59  a.n 6  destination:  4364515196
-Cls at distance 0
-Cls at distance 0
-loop:  59  a.n 7  destination:  3787878004
-loop:  59  a.n 20  destination:  4364805724
-loop:  59  a.n 30  destination:  932304241
-loop:  59  a.n 35  destination:  4471887121
-loop:  59  a.n 38  destination:  4370518243
-loop:  59  a.n 43  destination:  3918289508
-loop:  59  a.n 44  destination:  4364874289
-loop:  59  a.n 45  destination:  3722107627
-loop:  59  a.n 46  destination:  6135932507
-loop:  59  a.n 58  destination:  4367663303
-loop:  59  a.n 59  destination:  4365491611
-loop:  59  a.n 61  destination:  3722081387
-loop:  59  a.n 62  destination:  82604259
-loop:  59  a.n 72  destination:  932299665
-loop:  59  a.n 77  destination:  6164664734
-loop:  59  a.n 79  destination:  1204809273
-loop:  59  a.n 92  destination:  4366104411
-loop:  59  a.n 95  destination:  3787999847
-loop:  59  a.n 96  destination:  4365352054
-Percentage of events seen: 5.08%
-
-Iteration 60
-loop:  60  a.n 1  destination:  4379091954
-loop:  60  a.n 8  destination:  4365365287
-loop:  60  a.n 11  destination:  1415549941
-loop:  60  a.n 14  destination:  4367462101
-loop:  60  a.n 16  destination:  4364757713
-loop:  60  a.n 19  destination:  3918523077
-loop:  60  a.n 21  destination:  4367664921
-loop:  60  a.n 26  destination:  3030507573
-loop:  60  a.n 27  destination:  6140707303
-loop:  60  a.n 29  destination:  932301698
-loop:  60  a.n 31  destination:  6855881524
-loop:  60  a.n 42  destination:  4364793656
-loop:  60  a.n 47  destination:  4365792787
-loop:  60  a.n 51  destination:  4461687472
-loop:  60  a.n 56  destination:  4364805092
-loop:  60  a.n 60  destination:  4365337723
-loop:  60  a.n 63  destination:  4365792428
-loop:  60  a.n 66  destination:  8682647261
-loop:  60  a.n 68  destination:  1232339846
-loop:  60  a.n 70  destination:  4365361361
-loop:  60  a.n 73  destination:  4379099888
-loop:  60  a.n 76  destination:  4365352054
-loop:  60  a.n 81  destination:  4369487711
-loop:  60  a.n 83  destination:  4364569022
-loop:  60  a.n 85  destination:  4369745769
-loop:  60  a.n 87  destination:  8593026669
-loop:  60  a.n 88  destination:  4364796462
-loop:  60  a.n 97  destination:  4471887163
-loop:  60  a.n 98  destination:  4366119352
-loop:  60  a.n 99  destination:  4365814045
-Percentage of events seen: 5.08%
-
-Iteration 61
-loop:  61  a.n 3  destination:  4364330623
-loop:  61  a.n 22  destination:  4365090842
-loop:  61  a.n 33  destination:  4365371031
-loop:  61  a.n 34  destination:  4365464604
-loop:  61  a.n 36  destination:  3787887097
-loop:  61  a.n 39  destination:  4364805216
-loop:  61  a.n 41  destination:  4366956861
-loop:  61  a.n 48  destination:  4364796713
-loop:  61  a.n 55  destination:  6129374817
-loop:  61  a.n 67  destination:  1204809685
-loop:  61  a.n 69  destination:  2733798717
-loop:  61  a.n 75  destination:  4365264561
-loop:  61  a.n 78  destination:  4364758625
-loop:  61  a.n 84  destination:  4365849671
-loop:  61  a.n 90  destination:  3787866108
-loop:  61  a.n 93  destination:  8504899911
-Percentage of events seen: 5.08%
-
-Iteration 62
-loop:  62  a.n 0  destination:  6139565348
-loop:  62  a.n 6  destination:  6135932537
-loop:  62  a.n 9  destination:  6140707211
-loop:  62  a.n 10  destination:  4366920567
-loop:  62  a.n 20  destination:  4364805701
-loop:  62  a.n 32  destination:  4365325891
-loop:  62  a.n 37  destination:  6139565216
-loop:  62  a.n 38  destination:  4364796724
-loop:  62  a.n 40  destination:  4364881768
-Cls at distance 0
-Cls at distance 0
-loop:  62  a.n 45  destination:  3918245338
-loop:  62  a.n 46  destination:  6135932510
-loop:  62  a.n 49  destination:  3787942077
-loop:  62  a.n 54  destination:  4364317665
-loop:  62  a.n 62  destination:  4364521906
-loop:  62  a.n 71  destination:  4366008849
-loop:  62  a.n 74  destination:  7603585118
-loop:  62  a.n 77  destination:  82604266
-loop:  62  a.n 79  destination:  2733798717
-loop:  62  a.n 82  destination:  4365926592
-loop:  62  a.n 86  destination:  4365985763
-loop:  62  a.n 89  destination:  4365792616
-loop:  62  a.n 91  destination:  8523489766
-loop:  62  a.n 92  destination:  4365421409
-loop:  62  a.n 95  destination:  8567730108
-loop:  62  a.n 96  destination:  4365365265
-Percentage of events seen: 5.08%
-
-Iteration 63
-loop:  63  a.n 1  destination:  4379091411
-loop:  63  a.n 7  destination:  4364317129
-loop:  63  a.n 8  destination:  4365365489
-Cls at distance 0
-loop:  63  a.n 14  destination:  6140707182
-loop:  63  a.n 19  destination:  3057607169
-loop:  63  a.n 23  destination:  8481021774
-loop:  63  a.n 24  destination:  4364765544
-loop:  63  a.n 26  destination:  4364534530
-loop:  63  a.n 27  destination:  6140707306
-loop:  63  a.n 35  destination:  3102359231
-loop:  63  a.n 43  destination:  3918289514
-loop:  63  a.n 50  destination:  4364330611
-Cls at distance 0
-Cls at distance 0
-loop:  63  a.n 52  destination:  4364317784
-loop:  63  a.n 57  destination:  1818074456
-loop:  63  a.n 63  destination:  4365792435
-loop:  63  a.n 64  destination:  4365290632
-loop:  63  a.n 70  destination:  4365361366
-loop:  63  a.n 72  destination:  932303950
-loop:  63  a.n 73  destination:  4369487711
-loop:  63  a.n 80  destination:  932300260
-loop:  63  a.n 81  destination:  4365361355
-loop:  63  a.n 83  destination:  1232339846
-loop:  63  a.n 85  destination:  4369745768
-Percentage of events seen: 5.08%
-
-Iteration 64
-loop:  64  a.n 11  destination:  387950263
-loop:  64  a.n 13  destination:  82604134
-loop:  64  a.n 17  destination:  6139565292
-loop:  64  a.n 21  destination:  4367664971
-loop:  64  a.n 22  destination:  4365090839
-loop:  64  a.n 30  destination:  1248527369
-loop:  64  a.n 33  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  64  a.n 34  destination:  6138160968
-loop:  64  a.n 39  destination:  4364805092
-loop:  64  a.n 41  destination:  4366956847
-Cls at distance 0
-loop:  64  a.n 47  destination:  4365792724
-loop:  64  a.n 55  destination:  6129374814
-loop:  64  a.n 58  destination:  4365850068
-loop:  64  a.n 59  destination:  4365491554
-loop:  64  a.n 66  destination:  4365926625
-loop:  64  a.n 67  destination:  4364865858
-loop:  64  a.n 68  destination:  8388334382
-loop:  64  a.n 69  destination:  932300555
-loop:  64  a.n 76  destination:  4365365265
-loop:  64  a.n 90  destination:  3787866125
-loop:  64  a.n 97  destination:  1232340207
-loop:  64  a.n 99  destination:  4365814062
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.08%
-
-Iteration 65
-loop:  65  a.n 0  destination:  6139565350
-loop:  65  a.n 9  destination:  4365969591
-loop:  65  a.n 16  destination:  4364758641
-loop:  65  a.n 31  destination:  932304089
-Cls at distance 0
-Cls at distance 0
-loop:  65  a.n 32  destination:  4365325906
-loop:  65  a.n 38  destination:  4364796719
-loop:  65  a.n 42  destination:  3030507584
-loop:  65  a.n 45  destination:  4364800494
-loop:  65  a.n 46  destination:  6135932502
-loop:  65  a.n 62  destination:  6164664485
-loop:  65  a.n 77  destination:  6164664733
-loop:  65  a.n 79  destination:  932300555
-loop:  65  a.n 82  destination:  4365926625
-loop:  65  a.n 92  destination:  4366104411
-loop:  65  a.n 95  destination:  3722107650
-Percentage of events seen: 5.93%
-
-Iteration 66
-loop:  66  a.n 1  destination:  4379091954
-loop:  66  a.n 2  destination:  4367640328
-Cls at distance 0
-Cls at distance 0
-loop:  66  a.n 3  destination:  4365370904
-loop:  66  a.n 4  destination:  1232340402
-loop:  66  a.n 6  destination:  4364515196
-loop:  66  a.n 8  destination:  4365377319
-loop:  66  a.n 10  destination:  4366920568
-loop:  66  a.n 12  destination:  4366104432
-loop:  66  a.n 14  destination:  4367462101
-loop:  66  a.n 26  destination:  3030507592
-loop:  66  a.n 27  destination:  4364758915
-loop:  66  a.n 28  destination:  4365792187
-loop:  66  a.n 50  destination:  6140707138
-loop:  66  a.n 60  destination:  6855881503
-loop:  66  a.n 63  destination:  4365792426
-loop:  66  a.n 64  destination:  4377754042
-loop:  66  a.n 70  destination:  4365361361
-loop:  66  a.n 71  destination:  4366008966
-loop:  66  a.n 73  destination:  4379099888
-loop:  66  a.n 80  destination:  932304222
-loop:  66  a.n 81  destination:  4364431357
-loop:  66  a.n 85  destination:  4369745769
-loop:  66  a.n 86  destination:  4365985744
-loop:  66  a.n 87  destination:  4364886867
-loop:  66  a.n 88  destination:  387949811
-loop:  66  a.n 89  destination:  4365792707
-loop:  66  a.n 93  destination:  4461687485
-Cls at distance 0
-Cls at distance 0
-loop:  66  a.n 96  destination:  4365365259
-loop:  66  a.n 98  destination:  4366119390
-Percentage of events seen: 5.93%
-
-Iteration 67
-loop:  67  a.n 7  destination:  6139565291
-loop:  67  a.n 17  destination:  6139565291
-loop:  67  a.n 22  destination:  6139565467
-loop:  67  a.n 25  destination:  4366963876
-loop:  67  a.n 29  destination:  4366920820
-loop:  67  a.n 33  destination:  4365371031
-loop:  67  a.n 34  destination:  6138161293
-loop:  67  a.n 35  destination:  4471887121
-loop:  67  a.n 37  destination:  6139565217
-loop:  67  a.n 40  destination:  3789303362
-loop:  67  a.n 41  destination:  4366956861
-loop:  67  a.n 48  destination:  3918474195
-loop:  67  a.n 49  destination:  3787942072
-loop:  67  a.n 54  destination:  4364317675
-loop:  67  a.n 55  destination:  6129374817
-loop:  67  a.n 61  destination:  8567730086
-Cls at distance 0
-Cls at distance 0
-loop:  67  a.n 66  destination:  8682647261
-loop:  67  a.n 67  destination:  4364865852
-loop:  67  a.n 68  destination:  8388334388
-loop:  67  a.n 69  destination:  932299174
-loop:  67  a.n 72  destination:  932299665
-loop:  67  a.n 78  destination:  4364757324
-loop:  67  a.n 84  destination:  4365849714
-loop:  67  a.n 97  destination:  6139565596
-Percentage of events seen: 5.93%
-
-Iteration 68
-loop:  68  a.n 0  destination:  4364317140
-loop:  68  a.n 9  destination:  6140707211
-loop:  68  a.n 11  destination:  1415549941
-loop:  68  a.n 19  destination:  3918523077
-loop:  68  a.n 21  destination:  4367664921
-loop:  68  a.n 32  destination:  4365325904
-loop:  68  a.n 36  destination:  3787887088
-loop:  68  a.n 42  destination:  4364212237
-loop:  68  a.n 45  destination:  4364800502
-loop:  68  a.n 47  destination:  932302382
-loop:  68  a.n 52  destination:  4365384722
-loop:  68  a.n 57  destination:  1818074466
-loop:  68  a.n 58  destination:  4365850052
-loop:  68  a.n 62  destination:  6164664505
-loop:  68  a.n 76  destination:  4365365259
-loop:  68  a.n 77  destination:  82604266
-loop:  68  a.n 79  destination:  932299174
-loop:  68  a.n 82  destination:  6135931111
-loop:  68  a.n 90  destination:  3918276081
-loop:  68  a.n 92  destination:  4366104499
-loop:  68  a.n 99  destination:  4365814045
-Percentage of events seen: 5.93%
-
-Iteration 69
-loop:  69  a.n 1  destination:  4379091949
-loop:  69  a.n 10  destination:  4366920567
-loop:  69  a.n 14  destination:  6140707181
-loop:  69  a.n 20  destination:  4364805698
-loop:  69  a.n 24  destination:  4364765524
-loop:  69  a.n 26  destination:  4364534530
-loop:  69  a.n 27  destination:  6140707306
-loop:  69  a.n 30  destination:  4364757297
-loop:  69  a.n 43  destination:  6855902397
-loop:  69  a.n 46  destination:  4364515238
-loop:  69  a.n 50  destination:  6140707136
-loop:  69  a.n 63  destination:  4365792435
-loop:  69  a.n 64  destination:  3057607169
-loop:  69  a.n 70  destination:  3030507581
-loop:  69  a.n 73  destination:  4364431359
-loop:  69  a.n 80  destination:  3918474203
-loop:  69  a.n 81  destination:  4365361355
-loop:  69  a.n 85  destination:  4369745768
-loop:  69  a.n 91  destination:  4366770423
-loop:  69  a.n 96  destination:  4365365265
-Percentage of events seen: 5.93%
-
-Iteration 70
-loop:  70  a.n 6  destination:  1251733551
-loop:  70  a.n 13  destination:  4365985968
-loop:  70  a.n 16  destination:  4366920853
-loop:  70  a.n 17  destination:  1232339906
-loop:  70  a.n 22  destination:  4364341631
-loop:  70  a.n 23  destination:  8491909365
-loop:  70  a.n 29  destination:  4364317146
-loop:  70  a.n 33  destination:  932302451
-Cls at distance 0
-Cls at distance 0
-loop:  70  a.n 41  destination:  3030507593
-Cls at distance 0
-Only one class at distance 1
-loop:  70  a.n 49  destination:  3787942070
-loop:  70  a.n 54  destination:  4364317665
-loop:  70  a.n 55  destination:  6129374814
-loop:  70  a.n 59  destination:  4365491611
-loop:  70  a.n 66  destination:  3787887070
-loop:  70  a.n 67  destination:  4364865858
-loop:  70  a.n 68  destination:  8388334382
-Cls at distance 0
-Cls at distance 0
-loop:  70  a.n 78  destination:  4365791184
-loop:  70  a.n 84  destination:  4365849636
-loop:  70  a.n 86  destination:  4365985650
-loop:  70  a.n 94  destination:  1818074457
-Percentage of events seen: 5.93%
-
-Iteration 71
-loop:  71  a.n 0  destination:  1232340428
-loop:  71  a.n 2  destination:  4367640321
-loop:  71  a.n 3  destination:  4364330623
-loop:  71  a.n 8  destination:  4365365266
-loop:  71  a.n 9  destination:  4365969591
-loop:  71  a.n 15  destination:  4367461585
-loop:  71  a.n 18  destination:  1818078869
-loop:  71  a.n 25  destination:  4364340191
-loop:  71  a.n 32  destination:  4365325900
-loop:  71  a.n 35  destination:  3102359231
-loop:  71  a.n 37  destination:  6139565216
-loop:  71  a.n 42  destination:  3030507626
-loop:  71  a.n 44  destination:  4364874302
-loop:  71  a.n 45  destination:  4364800510
-loop:  71  a.n 47  destination:  4365792707
-loop:  71  a.n 52  destination:  4364317784
-loop:  71  a.n 56  destination:  4364805216
-loop:  71  a.n 58  destination:  4365850061
-loop:  71  a.n 62  destination:  6164664506
-loop:  71  a.n 69  destination:  932299582
-loop:  71  a.n 72  destination:  932303950
-loop:  71  a.n 76  destination:  4365365265
-loop:  71  a.n 77  destination:  6164664733
-loop:  71  a.n 83  destination:  1232339906
-loop:  71  a.n 88  destination:  387949810
-loop:  71  a.n 89  destination:  4365792616
-loop:  71  a.n 92  destination:  4366104411
-loop:  71  a.n 93  destination:  4369745756
-loop:  71  a.n 98  destination:  4366119352
-Percentage of events seen: 5.93%
-
-Iteration 72
-loop:  72  a.n 1  destination:  4379091954
-loop:  72  a.n 10  destination:  4366920584
-loop:  72  a.n 11  destination:  387950263
-loop:  72  a.n 14  destination:  4367462101
-loop:  72  a.n 20  destination:  4364805701
-loop:  72  a.n 21  destination:  4367664971
-loop:  72  a.n 24  destination:  2278398466
-loop:  72  a.n 26  destination:  3030507613
-loop:  72  a.n 27  destination:  4364758915
-loop:  72  a.n 28  destination:  4365792407
-loop:  72  a.n 34  destination:  6138160968
-loop:  72  a.n 38  destination:  4364317168
-loop:  72  a.n 40  destination:  4365277035
-Cls at distance 0
-Only one class at distance 1
-loop:  72  a.n 46  destination:  4365701307
-loop:  72  a.n 50  destination:  6140707142
-loop:  72  a.n 60  destination:  3918522947
-loop:  72  a.n 63  destination:  4365792438
-loop:  72  a.n 70  destination:  3030507590
-loop:  72  a.n 73  destination:  4364431365
-loop:  72  a.n 74  destination:  2279298714
-loop:  72  a.n 79  destination:  9669878427
-loop:  72  a.n 80  destination:  3918474195
-loop:  72  a.n 81  destination:  4364431357
-loop:  72  a.n 82  destination:  4365926625
-loop:  72  a.n 85  destination:  4369745769
-loop:  72  a.n 87  destination:  8481021820
-loop:  72  a.n 96  destination:  4365365259
-loop:  72  a.n 99  destination:  4365328830
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.93%
-
-Iteration 73
-loop:  73  a.n 4  destination:  3102359231
-loop:  73  a.n 17  destination:  6139565303
-loop:  73  a.n 19  destination:  3057607169
-loop:  73  a.n 22  destination:  6139565467
-loop:  73  a.n 30  destination:  932300994
-loop:  73  a.n 33  destination:  4365371031
-loop:  73  a.n 41  destination:  4366956861
-loop:  73  a.n 48  destination:  4364796713
-loop:  73  a.n 49  destination:  4369820212
-loop:  73  a.n 54  destination:  932299872
-loop:  73  a.n 55  destination:  6129374817
-loop:  73  a.n 57  destination:  1818071569
-loop:  73  a.n 65  destination:  3787942133
-loop:  73  a.n 67  destination:  4364865854
-loop:  73  a.n 68  destination:  8388334388
-loop:  73  a.n 84  destination:  4365849714
-loop:  73  a.n 91  destination:  1251733179
-loop:  73  a.n 97  destination:  6139565595
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.93%
-
-Iteration 74
-loop:  74  a.n 7  destination:  6139565287
-loop:  74  a.n 9  destination:  932304242
-loop:  74  a.n 16  destination:  4364758641
-loop:  74  a.n 32  destination:  4365325904
-loop:  74  a.n 42  destination:  3030507617
-loop:  74  a.n 45  destination:  4364800502
-loop:  74  a.n 47  destination:  4365792616
-loop:  74  a.n 51  destination:  5591153200
-loop:  74  a.n 52  destination:  2949090818
-loop:  74  a.n 58  destination:  4365850052
-loop:  74  a.n 62  destination:  6164664505
-loop:  74  a.n 64  destination:  4365399240
-loop:  74  a.n 76  destination:  4365365259
-loop:  74  a.n 77  destination:  6164664734
-loop:  74  a.n 78  destination:  4364757324
-Cls at distance 0
-Cls at distance 0
-loop:  74  a.n 86  destination:  4365985673
-loop:  74  a.n 92  destination:  4366104441
-Percentage of events seen: 5.93%
-
-Iteration 75
-loop:  75  a.n 0  destination:  6139565358
-loop:  75  a.n 1  destination:  4379092044
-loop:  75  a.n 8  destination:  4365377319
-loop:  75  a.n 12  destination:  3787956251
-loop:  75  a.n 13  destination:  82604134
-loop:  75  a.n 14  destination:  3787956727
-loop:  75  a.n 20  destination:  4364874291
-loop:  75  a.n 26  destination:  3030507620
-loop:  75  a.n 27  destination:  6140707306
-loop:  75  a.n 35  destination:  1232340612
-loop:  75  a.n 36  destination:  3787888844
-loop:  75  a.n 37  destination:  8491909365
-loop:  75  a.n 39  destination:  4364805216
-loop:  75  a.n 43  destination:  3918289514
-loop:  75  a.n 44  destination:  4364874289
-loop:  75  a.n 50  destination:  6140707143
-loop:  75  a.n 53  destination:  4366888821
-loop:  75  a.n 61  destination:  8567730108
-loop:  75  a.n 63  destination:  4365792435
-loop:  75  a.n 70  destination:  4364793650
-loop:  75  a.n 71  destination:  4366008849
-loop:  75  a.n 72  destination:  932300080
-loop:  75  a.n 73  destination:  4364431359
-loop:  75  a.n 75  destination:  932299733
-loop:  75  a.n 79  destination:  4365412705
-loop:  75  a.n 81  destination:  4365361355
-loop:  75  a.n 83  destination:  6139565287
-loop:  75  a.n 85  destination:  4369745768
-loop:  75  a.n 87  destination:  4364886867
-loop:  75  a.n 88  destination:  387949811
-loop:  75  a.n 96  destination:  4365365265
-Percentage of events seen: 5.93%
-
-Iteration 76
-loop:  76  a.n 2  destination:  4367640340
-Cls at distance 0
-Cls at distance 0
-loop:  76  a.n 3  destination:  4364330625
-loop:  76  a.n 5  destination:  4364515230
-loop:  76  a.n 10  destination:  4377754042
-loop:  76  a.n 11  destination:  1415549941
-loop:  76  a.n 21  destination:  4367664921
-loop:  76  a.n 22  destination:  6139565463
-loop:  76  a.n 30  destination:  4364757297
-loop:  76  a.n 33  destination:  4364330636
-Only one class at distance 1
-Cls at distance 0
-loop:  76  a.n 38  destination:  4364796719
-loop:  76  a.n 40  destination:  3789303362
-loop:  76  a.n 41  destination:  4366956847
-Only one class at distance 1
-Cls at distance 0
-loop:  76  a.n 46  destination:  4364515238
-loop:  76  a.n 55  destination:  932302448
-loop:  76  a.n 59  destination:  4365491501
-loop:  76  a.n 66  destination:  3787887062
-loop:  76  a.n 67  destination:  1204808948
-loop:  76  a.n 68  destination:  8388334382
-Cls at distance 0
-Cls at distance 0
-loop:  76  a.n 82  destination:  8682647261
-loop:  76  a.n 84  destination:  4365849757
-loop:  76  a.n 89  destination:  4365792654
-loop:  76  a.n 91  destination:  4365926318
-loop:  76  a.n 95  destination:  3722074779
-loop:  76  a.n 97  destination:  6139565596
-loop:  76  a.n 98  destination:  4365985744
-loop:  76  a.n 99  destination:  4365814045
-Percentage of events seen: 5.93%
-
-Iteration 77
-loop:  77  a.n 4  destination:  1232340402
-loop:  77  a.n 7  destination:  1232340620
-loop:  77  a.n 17  destination:  1232339906
-loop:  77  a.n 31  destination:  4366920835
-loop:  77  a.n 32  destination:  4365325905
-loop:  77  a.n 34  destination:  4365464604
-loop:  77  a.n 42  destination:  3030507590
-loop:  77  a.n 45  destination:  4364800494
-loop:  77  a.n 52  destination:  4364317784
-loop:  77  a.n 58  destination:  4365850068
-loop:  77  a.n 62  destination:  6164664485
-loop:  77  a.n 65  destination:  6131583073
-loop:  77  a.n 76  destination:  4365365265
-loop:  77  a.n 77  destination:  6164664733
-loop:  77  a.n 80  destination:  4364796713
-loop:  77  a.n 92  destination:  4366104411
-loop:  77  a.n 94  destination:  1818074451
-Percentage of events seen: 5.93%
-
-Iteration 78
-loop:  78  a.n 0  destination:  1232340428
-loop:  78  a.n 1  destination:  4379091954
-loop:  78  a.n 12  destination:  4366104283
-loop:  78  a.n 14  destination:  3787956722
-loop:  78  a.n 16  destination:  4366920853
-loop:  78  a.n 19  destination:  3918523077
-loop:  78  a.n 20  destination:  4364805701
-loop:  78  a.n 25  destination:  4364340076
-loop:  78  a.n 26  destination:  4364713144
-loop:  78  a.n 27  destination:  6140707303
-loop:  78  a.n 28  destination:  4365792187
-loop:  78  a.n 36  destination:  3787888854
-loop:  78  a.n 50  destination:  6140707142
-loop:  78  a.n 57  destination:  3787892648
-loop:  78  a.n 63  destination:  4365792426
-loop:  78  a.n 69  destination:  932300319
-loop:  78  a.n 70  destination:  3030507590
-loop:  78  a.n 73  destination:  4379099888
-loop:  78  a.n 78  destination:  4364758625
-loop:  78  a.n 81  destination:  4364431357
-loop:  78  a.n 83  destination:  1232339906
-loop:  78  a.n 85  destination:  4369745752
-loop:  78  a.n 86  destination:  4366119185
-loop:  78  a.n 87  destination:  1232340265
-loop:  78  a.n 90  destination:  4365387840
-loop:  78  a.n 96  destination:  4365365266
-Percentage of events seen: 5.93%
-
-Iteration 79
-loop:  79  a.n 5  destination:  4366030200
-loop:  79  a.n 8  destination:  4365365266
-loop:  79  a.n 29  destination:  4364317148
-loop:  79  a.n 30  destination:  932300994
-loop:  79  a.n 33  destination:  4365371031
-loop:  79  a.n 35  destination:  4369497558
-loop:  79  a.n 41  destination:  4366956861
-loop:  79  a.n 44  destination:  4364874302
-loop:  79  a.n 47  destination:  4365792654
-loop:  79  a.n 48  destination:  6855880458
-loop:  79  a.n 49  destination:  3787942019
-loop:  79  a.n 53  destination:  4364759284
-loop:  79  a.n 55  destination:  6129374817
-loop:  79  a.n 61  destination:  3722107650
-loop:  79  a.n 64  destination:  3057607169
-loop:  79  a.n 68  destination:  4368756420
-loop:  79  a.n 72  destination:  932303084
-loop:  79  a.n 82  destination:  4369456013
-loop:  79  a.n 84  destination:  4365849286
-loop:  79  a.n 88  destination:  387949810
-loop:  79  a.n 97  destination:  1232340207
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.93%
-
-Iteration 80
-loop:  80  a.n 3  destination:  4364330623
-loop:  80  a.n 6  destination:  1251733412
-loop:  80  a.n 9  destination:  4365792407
-loop:  80  a.n 11  destination:  387950263
-loop:  80  a.n 13  destination:  4365985968
-loop:  80  a.n 21  destination:  4367664971
-loop:  80  a.n 22  destination:  6139565467
-Only one class at distance 1
-Cls at distance 0
-loop:  80  a.n 23  destination:  6139565216
-loop:  80  a.n 31  destination:  4365352054
-loop:  80  a.n 32  destination:  4365325907
-loop:  80  a.n 34  destination:  6138160968
-loop:  80  a.n 37  destination:  6139565216
-loop:  80  a.n 38  destination:  4364796724
-loop:  80  a.n 40  destination:  4364881768
-Cls at distance 0
-Cls at distance 0
-loop:  80  a.n 42  destination:  4364793650
-loop:  80  a.n 45  destination:  3918245338
-loop:  80  a.n 46  destination:  6135932488
-loop:  80  a.n 52  destination:  2949090818
-loop:  80  a.n 58  destination:  4367663303
-loop:  80  a.n 60  destination:  4364725047
-loop:  80  a.n 62  destination:  4364521906
-loop:  80  a.n 67  destination:  4364875538
-loop:  80  a.n 75  destination:  4365256524
-loop:  80  a.n 76  destination:  4365365266
-loop:  80  a.n 77  destination:  6164664734
-loop:  80  a.n 89  destination:  4365792616
-loop:  80  a.n 92  destination:  4366104499
-loop:  80  a.n 93  destination:  4369745752
-loop:  80  a.n 95  destination:  8567730086
-loop:  80  a.n 99  destination:  4365328830
-Cls at distance 0
-Cls at distance 0
-Percentage of events seen: 5.93%
-
-Iteration 81
-loop:  81  a.n 0  destination:  6139565588
-loop:  81  a.n 1  destination:  4379092044
-loop:  81  a.n 4  destination:  3102359231
-loop:  81  a.n 14  destination:  3787956713
-loop:  81  a.n 17  destination:  6139565303
-loop:  81  a.n 20  destination:  4364805724
-loop:  81  a.n 26  destination:  4364702218
-loop:  81  a.n 27  destination:  4364757034
-loop:  81  a.n 43  destination:  6855902397
-loop:  81  a.n 50  destination:  6140707136
-loop:  81  a.n 54  destination:  4364317665
-loop:  81  a.n 59  destination:  4365491589
-loop:  81  a.n 63  destination:  4365792424
-loop:  81  a.n 66  destination:  6139565248
-loop:  81  a.n 70  destination:  3030507617
-loop:  81  a.n 73  destination:  4369487711
-loop:  81  a.n 78  destination:  4365792069
-loop:  81  a.n 79  destination:  4365412713
-loop:  81  a.n 81  destination:  4365361337
-loop:  81  a.n 83  destination:  6139565303
-loop:  81  a.n 96  destination:  4365365265
-Percentage of events seen: 5.93%
-
-Iteration 82
-loop:  82  a.n 7  destination:  4364569022
-loop:  82  a.n 16  destination:  4364757375
-loop:  82  a.n 30  destination:  4364757297
-loop:  82  a.n 33  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  82  a.n 41  destination:  3030507593
-Cls at distance 0
-Cls at distance 0
-loop:  82  a.n 49  destination:  3787942006
-loop:  82  a.n 53  destination:  4366888821
-loop:  82  a.n 55  destination:  932302448
-loop:  82  a.n 56  destination:  4364805092
-loop:  82  a.n 68  destination:  3787877912
-loop:  82  a.n 69  destination:  932299517
-loop:  82  a.n 85  destination:  8443675826
-loop:  82  a.n 94  destination:  1818074460
-Percentage of events seen: 5.93%
-
-Iteration 83
-loop:  83  a.n 2  destination:  4367640321
-loop:  83  a.n 8  destination:  4365365287
-loop:  83  a.n 12  destination:  4366104274
-loop:  83  a.n 19  destination:  3057607169
-loop:  83  a.n 29  destination:  4364317146
-loop:  83  a.n 31  destination:  4365352042
-loop:  83  a.n 32  destination:  4365325891
-loop:  83  a.n 34  destination:  6138161293
-loop:  83  a.n 42  destination:  82604271
-loop:  83  a.n 44  destination:  4365046980
-loop:  83  a.n 45  destination:  3722107627
-loop:  83  a.n 46  destination:  4364515238
-loop:  83  a.n 47  destination:  4365792707
-loop:  83  a.n 48  destination:  4364796713
-loop:  83  a.n 52  destination:  4364796769
-loop:  83  a.n 62  destination:  4364521907
-loop:  83  a.n 65  destination:  3787942133
-loop:  83  a.n 72  destination:  932300080
-loop:  83  a.n 76  destination:  4365377319
-loop:  83  a.n 77  destination:  6164664735
-loop:  83  a.n 80  destination:  3918474195
-loop:  83  a.n 82  destination:  8682647261
-loop:  83  a.n 87  destination:  3787878004
-loop:  83  a.n 88  destination:  387949811
-loop:  83  a.n 92  destination:  4366104504
-Percentage of events seen: 5.93%
-
-Iteration 84
-loop:  84  a.n 0  destination:  1232340428
-loop:  84  a.n 1  destination:  4379092043
-loop:  84  a.n 3  destination:  4364330625
-loop:  84  a.n 10  destination:  4366920584
-loop:  84  a.n 11  destination:  1415549943
-loop:  84  a.n 21  destination:  4367664921
-loop:  84  a.n 22  destination:  4365090839
-loop:  84  a.n 26  destination:  3030507592
-loop:  84  a.n 27  destination:  4364757379
-loop:  84  a.n 28  destination:  4365792190
-loop:  84  a.n 35  destination:  1232340612
-loop:  84  a.n 50  destination:  6140707138
-loop:  84  a.n 58  destination:  4367675012
-loop:  84  a.n 63  destination:  4365792426
-loop:  84  a.n 64  destination:  932301698
-loop:  84  a.n 66  destination:  3787887062
-loop:  84  a.n 67  destination:  4364875530
-loop:  84  a.n 70  destination:  3030507590
-loop:  84  a.n 71  destination:  4366008822
-loop:  84  a.n 73  destination:  4369487710
-loop:  84  a.n 75  destination:  4365256617
-loop:  84  a.n 81  destination:  4364431357
-loop:  84  a.n 89  destination:  4365792604
-loop:  84  a.n 96  destination:  4365365259
-loop:  84  a.n 98  destination:  4365985763
-loop:  84  a.n 99  destination:  2279298885
-Percentage of events seen: 5.93%
-
-Iteration 85
-loop:  85  a.n 4  destination:  1232340612
-loop:  85  a.n 6  destination:  1251733551
-loop:  85  a.n 7  destination:  8593026712
-loop:  85  a.n 13  destination:  4365985935
-loop:  85  a.n 17  destination:  1232339906
-loop:  85  a.n 18  destination:  1818078872
-loop:  85  a.n 23  destination:  8491909365
-loop:  85  a.n 30  destination:  4364757702
-loop:  85  a.n 33  destination:  4365371031
-loop:  85  a.n 37  destination:  8491909365
-loop:  85  a.n 40  destination:  3789303362
-loop:  85  a.n 41  destination:  932301437
-loop:  85  a.n 53  destination:  4364759284
-loop:  85  a.n 55  destination:  4365370526
-loop:  85  a.n 78  destination:  4364758625
-loop:  85  a.n 79  destination:  4365412734
-loop:  85  a.n 83  destination:  1232339906
-loop:  85  a.n 93  destination:  8443675826
-loop:  85  a.n 97  destination:  4471887163
-Percentage of events seen: 5.93%
-
-Iteration 86
-loop:  86  a.n 12  destination:  4366104292
-loop:  86  a.n 32  destination:  4365325906
-loop:  86  a.n 36  destination:  3787892562
-loop:  86  a.n 39  destination:  1204810030
-loop:  86  a.n 42  destination:  292929625
-loop:  86  a.n 44  destination:  4364874302
-Only one class at distance 1
-Cls at distance 0
-loop:  86  a.n 45  destination:  3722112837
-loop:  86  a.n 46  destination:  6135932502
-loop:  86  a.n 52  destination:  2949090816
-loop:  86  a.n 59  destination:  4365491501
-loop:  86  a.n 62  destination:  4364521906
-loop:  86  a.n 77  destination:  6164664734
-loop:  86  a.n 92  destination:  4366104499
-loop:  86  a.n 94  destination:  1818074451
-Percentage of events seen: 5.93%
-
-Iteration 87
-loop:  87  a.n 0  destination:  6139565358
-loop:  87  a.n 1  destination:  4379092044
-loop:  87  a.n 5  destination:  4364515230
-loop:  87  a.n 8  destination:  4365365489
-Cls at distance 0
-Cls at distance 0
-loop:  87  a.n 11  destination:  1415549941
-loop:  87  a.n 22  destination:  6139565462
-loop:  87  a.n 25  destination:  4364340191
-loop:  87  a.n 26  destination:  4364534530
-loop:  87  a.n 27  destination:  4364759552
-loop:  87  a.n 28  destination:  4365792197
-loop:  87  a.n 29  destination:  4364317148
-loop:  87  a.n 31  destination:  4365352054
-loop:  87  a.n 38  destination:  4364522051
-loop:  87  a.n 43  destination:  3918289514
-loop:  87  a.n 47  destination:  932302382
-loop:  87  a.n 48  destination:  6855880458
-loop:  87  a.n 50  destination:  6140707140
-loop:  87  a.n 63  destination:  4365792435
-loop:  87  a.n 66  destination:  3787887070
-loop:  87  a.n 67  destination:  4364875538
-loop:  87  a.n 69  destination:  932300985
-loop:  87  a.n 70  destination:  3030507617
-loop:  87  a.n 72  destination:  932303084
-loop:  87  a.n 73  destination:  4369487711
-loop:  87  a.n 75  destination:  4365256655
-loop:  87  a.n 76  destination:  4366920885
-loop:  87  a.n 81  destination:  4364796484
-loop:  87  a.n 82  destination:  4365926625
-loop:  87  a.n 84  destination:  1204810885
-loop:  87  a.n 86  destination:  4365985673
-loop:  87  a.n 88  destination:  387949810
-loop:  87  a.n 96  destination:  4365365265
-Percentage of events seen: 5.93%
-
-Iteration 88
-loop:  88  a.n 3  destination:  4364330623
-loop:  88  a.n 7  destination:  4364569022
-loop:  88  a.n 14  destination:  4366040618
-loop:  88  a.n 15  destination:  4367462048
-loop:  88  a.n 18  destination:  1818078869
-loop:  88  a.n 19  destination:  932301698
-loop:  88  a.n 20  destination:  4365047066
-loop:  88  a.n 21  destination:  4367664863
-loop:  88  a.n 33  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  88  a.n 34  destination:  4365370402
-loop:  88  a.n 41  destination:  3030507593
-loop:  88  a.n 51  destination:  4364209078
-loop:  88  a.n 53  destination:  4364758651
-loop:  88  a.n 58  destination:  2299251320
-loop:  88  a.n 71  destination:  4366008849
-loop:  88  a.n 74  destination:  7603585118
-loop:  88  a.n 89  destination:  4365792616
-loop:  88  a.n 97  destination:  1232340207
-loop:  88  a.n 98  destination:  4366119333
-Percentage of events seen: 5.93%
-
-Iteration 89
-loop:  89  a.n 4  destination:  4364725019
-loop:  89  a.n 13  destination:  4365985968
-loop:  89  a.n 16  destination:  4366920853
-loop:  89  a.n 17  destination:  6139565303
-loop:  89  a.n 30  destination:  4364757297
-loop:  89  a.n 32  destination:  4365325891
-loop:  89  a.n 35  destination:  4369497558
-loop:  89  a.n 39  destination:  3788835288
-loop:  89  a.n 42  destination:  932301224
-loop:  89  a.n 44  destination:  4365046980
-loop:  89  a.n 45  destination:  4364800242
-loop:  89  a.n 46  destination:  4364515217
-loop:  89  a.n 49  destination:  3787942019
-Cls at distance 0
-Only one class at distance 1
-loop:  89  a.n 54  destination:  4364317675
-loop:  89  a.n 55  destination:  932302448
-loop:  89  a.n 62  destination:  4364521907
-loop:  89  a.n 65  destination:  3787942077
-loop:  89  a.n 68  destination:  4368756420
-loop:  89  a.n 77  destination:  82604266
-loop:  89  a.n 78  destination:  4365792069
-loop:  89  a.n 80  destination:  4364796713
-loop:  89  a.n 83  destination:  1232339846
-loop:  89  a.n 87  destination:  4364317129
-loop:  89  a.n 91  destination:  1251733412
-loop:  89  a.n 92  destination:  4365421495
-Percentage of events seen: 6.78%
-
-Iteration 90
-loop:  90  a.n 0  destination:  3787878004
-loop:  90  a.n 1  destination:  4379092164
-loop:  90  a.n 2  destination:  1204808509
-Cls at distance 0
-Cls at distance 0
-loop:  90  a.n 6  destination:  1251733412
-loop:  90  a.n 8  destination:  4364757375
-loop:  90  a.n 11  destination:  387950263
-loop:  90  a.n 12  destination:  4366104295
-loop:  90  a.n 22  destination:  6139565459
-loop:  90  a.n 23  destination:  6139565216
-loop:  90  a.n 26  destination:  3030507592
-loop:  90  a.n 28  destination:  4365792203
-Cls at distance 0
-Cls at distance 0
-loop:  90  a.n 37  destination:  6139565216
-loop:  90  a.n 40  destination:  4364881768
-Only one class at distance 1
-Cls at distance 0
-loop:  90  a.n 47  destination:  4365792719
-loop:  90  a.n 50  destination:  6140707136
-loop:  90  a.n 52  destination:  4364796767
-loop:  90  a.n 61  destination:  3722074779
-loop:  90  a.n 63  destination:  4365792438
-loop:  90  a.n 67  destination:  4364875530
-loop:  90  a.n 70  destination:  3030507626
-loop:  90  a.n 73  destination:  4365361355
-loop:  90  a.n 79  destination:  4365412713
-loop:  90  a.n 81  destination:  4364796481
-loop:  90  a.n 82  destination:  8682647261
-loop:  90  a.n 94  destination:  1818074460
-loop:  90  a.n 96  destination:  4365352054
-Percentage of events seen: 6.78%
-
-Iteration 91
-loop:  91  a.n 7  destination:  8593026712
-loop:  91  a.n 18  destination:  1251733817
-loop:  91  a.n 20  destination:  4364805724
-loop:  91  a.n 27  destination:  6140707302
-loop:  91  a.n 29  destination:  4364317158
-loop:  91  a.n 31  destination:  4366920835
-loop:  91  a.n 33  destination:  4365371031
-loop:  91  a.n 34  destination:  4365421539
-loop:  91  a.n 38  destination:  4364796724
-loop:  91  a.n 41  destination:  4366956861
-loop:  91  a.n 48  destination:  4365325888
-loop:  91  a.n 53  destination:  4364759284
-loop:  91  a.n 59  destination:  4365491589
-loop:  91  a.n 64  destination:  3057607169
-loop:  91  a.n 72  destination:  932302116
-loop:  91  a.n 85  destination:  4365097467
-loop:  91  a.n 88  destination:  4364482611
-loop:  91  a.n 97  destination:  8504899896
-Percentage of events seen: 6.78%
-
-Iteration 92
-loop:  92  a.n 3  destination:  4364330625
-loop:  92  a.n 4  destination:  6139565665
-loop:  92  a.n 10  destination:  4366920567
-loop:  92  a.n 21  destination:  4367664921
-loop:  92  a.n 32  destination:  4365325907
-loop:  92  a.n 44  destination:  1232340378
-Cls at distance 0
-loop:  92  a.n 45  destination:  3722112837
-loop:  92  a.n 54  destination:  4364317665
-loop:  92  a.n 57  destination:  3787941964
-loop:  92  a.n 58  destination:  4365454707
-loop:  92  a.n 62  destination:  4364521906
-loop:  92  a.n 66  destination:  3787887062
-loop:  92  a.n 69  destination:  4364757088
-loop:  92  a.n 71  destination:  4366008822
-loop:  92  a.n 77  destination:  6164664734
-loop:  92  a.n 89  destination:  4365792707
-loop:  92  a.n 90  destination:  3787866112
-loop:  92  a.n 98  destination:  4365985763
-loop:  92  a.n 99  destination:  4365328830
-Percentage of events seen: 6.78%
-
-Iteration 93
-loop:  93  a.n 0  destination:  6139565358
-loop:  93  a.n 1  destination:  4379092044
-loop:  93  a.n 8  destination:  4366920853
-loop:  93  a.n 12  destination:  4366104292
-loop:  93  a.n 13  destination:  4365985887
-loop:  93  a.n 17  destination:  1232339906
-loop:  93  a.n 22  destination:  6139565462
-loop:  93  a.n 26  destination:  3030512734
-loop:  93  a.n 28  destination:  4365792197
-loop:  93  a.n 30  destination:  932300994
-loop:  93  a.n 42  destination:  3030507628
-loop:  93  a.n 43  destination:  6855902397
-loop:  93  a.n 50  destination:  6140707142
-loop:  93  a.n 51  destination:  4364209079
-loop:  93  a.n 55  destination:  4364777901
-loop:  93  a.n 56  destination:  4364805216
-loop:  93  a.n 63  destination:  4365792435
-loop:  93  a.n 67  destination:  4364875538
-loop:  93  a.n 70  destination:  4364212237
-loop:  93  a.n 73  destination:  4364431357
-loop:  93  a.n 76  destination:  4366920886
-loop:  93  a.n 78  destination:  4364758625
-loop:  93  a.n 82  destination:  3787887070
-loop:  93  a.n 83  destination:  1232339906
-loop:  93  a.n 87  destination:  6139565352
-Percentage of events seen: 6.78%
-
-Iteration 94
-loop:  94  a.n 7  destination:  8481021820
-loop:  94  a.n 11  destination:  1415549943
-loop:  94  a.n 20  destination:  4364805701
-loop:  94  a.n 27  destination:  4364759552
-loop:  94  a.n 29  destination:  4364317148
-loop:  94  a.n 31  destination:  932304089
-loop:  94  a.n 33  destination:  4364330636
-Cls at distance 0
-Cls at distance 0
-loop:  94  a.n 35  destination:  1232340612
-loop:  94  a.n 41  destination:  4366956847
-Cls at distance 0
-Cls at distance 0
-loop:  94  a.n 47  destination:  932302382
-loop:  94  a.n 53  destination:  4366888821
-loop:  94  a.n 61  destination:  3722107650
-loop:  94  a.n 65  destination:  3787942072
-loop:  94  a.n 72  destination:  932303084
-loop:  94  a.n 91  destination:  4365926318
-loop:  94  a.n 93  destination:  4369745752
-loop:  94  a.n 94  destination:  1818074451
-loop:  94  a.n 96  destination:  4365365265
-Percentage of events seen: 6.78%
-
-Iteration 95
-loop:  95  a.n 4  destination:  4364725003
-loop:  95  a.n 5  destination:  4366030200
-loop:  95  a.n 6  destination:  1251733551
-loop:  95  a.n 14  destination:  4366040626
-loop:  95  a.n 15  destination:  4367455039
-loop:  95  a.n 19  destination:  3057607169
-loop:  95  a.n 23  destination:  8491909365
-loop:  95  a.n 32  destination:  4365325891
-loop:  95  a.n 37  destination:  8491909365
-loop:  95  a.n 38  destination:  4364522051
-loop:  95  a.n 40  destination:  3789303362
-loop:  95  a.n 44  destination:  4364805724
-loop:  95  a.n 45  destination:  4364800242
-loop:  95  a.n 46  destination:  6135932574
-loop:  95  a.n 54  destination:  4364317675
-loop:  95  a.n 62  destination:  6164664485
-loop:  95  a.n 77  destination:  6164664733
-loop:  95  a.n 79  destination:  4365412734
-loop:  95  a.n 80  destination:  3918474195
-loop:  95  a.n 81  destination:  4364209137
-loop:  95  a.n 88  destination:  387949810
-loop:  95  a.n 97  destination:  6139565592
-Percentage of events seen: 6.78%
-
-Iteration 96
-loop:  96  a.n 0  destination:  1232340428
-loop:  96  a.n 1  destination:  4379091954
-loop:  96  a.n 3  destination:  4364330623
-loop:  96  a.n 9  destination:  932304242
-loop:  96  a.n 10  destination:  4366920584
-loop:  96  a.n 12  destination:  4366104295
-loop:  96  a.n 16  destination:  4366920857
-loop:  96  a.n 18  destination:  1818074469
-loop:  96  a.n 21  destination:  4367664971
-loop:  96  a.n 22  destination:  4365090839
-loop:  96  a.n 25  destination:  4366963876
-loop:  96  a.n 26  destination:  3030507592
-loop:  96  a.n 28  destination:  4365792190
-Cls at distance 0
-Cls at distance 0
-loop:  96  a.n 30  destination:  4364758910
-loop:  96  a.n 36  destination:  3787888854
-loop:  96  a.n 42  destination:  932301224
-loop:  96  a.n 49  destination:  4367529300
-loop:  96  a.n 50  destination:  6140707144
-loop:  96  a.n 52  destination:  2949090816
-loop:  96  a.n 55  destination:  932299717
-Cls at distance 0
-Cls at distance 0
-loop:  96  a.n 58  destination:  4365454586
-loop:  96  a.n 59  destination:  4365491501
-loop:  96  a.n 60  destination:  3918522947
-loop:  96  a.n 63  destination:  4365792428
-loop:  96  a.n 67  destination:  1204808948
-loop:  96  a.n 68  destination:  3787877901
-loop:  96  a.n 69  destination:  932300985
-loop:  96  a.n 70  destination:  3030507626
-loop:  96  a.n 71  destination:  1818071569
-loop:  96  a.n 73  destination:  4365361355
-loop:  96  a.n 76  destination:  4366921009
-loop:  96  a.n 86  destination:  4366119185
-loop:  96  a.n 87  destination:  4364317138
-loop:  96  a.n 90  destination:  4365273137
-loop:  96  a.n 92  destination:  4365421521
-loop:  96  a.n 98  destination:  4366119333
-Percentage of events seen: 6.78%
-
-Iteration 97
-loop:  97  a.n 2  destination:  4224196444
-loop:  97  a.n 11  destination:  387950263
-loop:  97  a.n 17  destination:  1232339846
-loop:  97  a.n 27  destination:  4364757379
-loop:  97  a.n 29  destination:  4364317158
-loop:  97  a.n 31  destination:  2733765945
-loop:  97  a.n 33  destination:  4365371031
-loop:  97  a.n 41  destination:  4366956861
-loop:  97  a.n 51  destination:  932303466
-loop:  97  a.n 53  destination:  4366888826
-loop:  97  a.n 65  destination:  3787942077
-loop:  97  a.n 66  destination:  3787887070
-loop:  97  a.n 72  destination:  932300080
-loop:  97  a.n 75  destination:  4364304759
-loop:  97  a.n 78  destination:  4364758910
-loop:  97  a.n 83  destination:  1232339846
-loop:  97  a.n 85  destination:  8443675826
-loop:  97  a.n 89  destination:  4365792654
-loop:  97  a.n 95  destination:  3722081387
-Percentage of events seen: 6.78%
-
-Iteration 98
-loop:  98  a.n 32  destination:  4365325906
-loop:  98  a.n 44  destination:  4364805701
-loop:  98  a.n 45  destination:  3722112837
-loop:  98  a.n 47  destination:  4365792707
-loop:  98  a.n 48  destination:  4364332189
-Cls at distance 0
-Cls at distance 0
-loop:  98  a.n 54  destination:  4364317655
-loop:  98  a.n 57  destination:  3787934851
-loop:  98  a.n 61  destination:  3722074779
-loop:  98  a.n 62  destination:  4364521906
-loop:  98  a.n 64  destination:  4377754042
-loop:  98  a.n 77  destination:  6164664734
-loop:  98  a.n 81  destination:  4364796481
-loop:  98  a.n 94  destination:  1818074460
-loop:  98  a.n 96  destination:  4365365259
-Percentage of events seen: 7.63%
-
-Iteration 99
-loop:  99  a.n 0  destination:  6139565358
-loop:  99  a.n 1  destination:  4379092044
-loop:  99  a.n 4  destination:  6139565665
-loop:  99  a.n 12  destination:  4366104292
-loop:  99  a.n 18  destination:  6138161306
-loop:  99  a.n 22  destination:  6139565467
-loop:  99  a.n 26  destination:  3030512734
-loop:  99  a.n 28  destination:  4365792187
-loop:  99  a.n 30  destination:  4364759521
-loop:  99  a.n 35  destination:  4364725019
-loop:  99  a.n 38  destination:  4364796724
-loop:  99  a.n 42  destination:  3030507628
-loop:  99  a.n 43  destination:  3918289514
-loop:  99  a.n 50  destination:  6140707142
-loop:  99  a.n 55  destination:  4364777916
-loop:  99  a.n 58  destination:  4365454707
-loop:  99  a.n 63  destination:  4365792435
-loop:  99  a.n 70  destination:  4371254364
-loop:  99  a.n 73  destination:  4369487711
-loop:  99  a.n 82  destination:  3787887071
-loop:  99  a.n 87  destination:  6139565352
-loop:  99  a.n 88  destination:  387949811
-loop:  99  a.n 90  destination:  3787866112
-loop:  99  a.n 91  destination:  1251733179
-Percentage of events seen: 7.63%
+Agent 3714 node 4365447711
+Agent 3715 node 4364277843
+Agent 3716 node 6139565459
+Agent 3717 node 7476442954
+Agent 3718 node 4365365266
+Agent 3719 node 4367665225
+Agent 3720 node 4367569521
+Agent 3721 node 932299647
+Agent 3722 node 4364209136
+Agent 3723 node 4365027200
+Agent 3724 node 4364796756
+Agent 3725 node 4364758625
+Agent 3726 node 4364725065
+Agent 3727 node 6140707292
+Agent 3728 node 3787994339
+Agent 3729 node 3722074779
+Agent 3730 node 4357784257
+Agent 3731 node 4365421615
+Agent 3732 node 4365908661
+Agent 3733 node 4364759521
+Agent 3734 node 4365233575
+Agent 3735 node 1232340264
+Agent 3736 node 8623053565
+Agent 3737 node 4364317701
+Agent 3738 node 4364395483
+Agent 3739 node 4365792169
+Agent 3740 node 4367664971
+Agent 3741 node 6140707128
+Agent 3742 node 4364761175
+Agent 3743 node 8504899911
+Agent 3744 node 4365701306
+Agent 3745 node 932300861
+Agent 3746 node 4365865089
+Agent 3747 node 932301888
+Agent 3748 node 4364498250
+Agent 3749 node 6140707282
+Agent 3750 node 4364534530
+Agent 3751 node 6140707310
+Agent 3752 node 4364317709
+Agent 3753 node 932299124
+Agent 3754 node 6126218640
+Agent 3755 node 4364726525
+Agent 3756 node 4364317798
+Agent 3757 node 3788835257
+Agent 3758 node 4365792915
+Agent 3759 node 4365372635
+Agent 3760 node 4365399221
+Agent 3761 node 4364726542
+Agent 3762 node 4365818896
+Agent 3763 node 4365401236
+Agent 3764 node 8388334388
+Agent 3765 node 932302699
+Agent 3766 node 6140707089
+Agent 3767 node 4364759533
+Agent 3768 node 3918522913
+Agent 3769 node 4365879240
+Agent 3770 node 6138160912
+Agent 3771 node 4368719443
+Agent 3772 node 4365791139
+Agent 3773 node 4371254364
+Agent 3774 node 1818088073
+Agent 3775 node 4365296674
+Agent 3776 node 1204809169
+Agent 3777 node 4366889518
+Agent 3778 node 3722107650
+Agent 3779 node 4365792110
+Agent 3780 node 3030507564
+Agent 3781 node 4364886885
+Agent 3782 node 2733765939
+Agent 3783 node 4365792358
+Agent 3784 node 4366770441
+Agent 3785 node 4367640304
+Agent 3786 node 4364881768
+Agent 3787 node 4365969594
+Agent 3788 node 4364341634
+Agent 3789 node 4364725005
+Agent 3790 node 6138160931
+Agent 3791 node 4367545794
+Agent 3792 node 4365908615
+Agent 3793 node 4365987935
+Agent 3794 node 4364317665
+Agent 3795 node 1204811244
+Agent 3796 node 4364758976
+Agent 3797 node 4364521951
+Agent 3798 node 4366119152
+Agent 3799 node 6139565364
+Agent 3800 node 932299632
+Agent 3801 node 6140626872
+Agent 3802 node 4364317880
+Agent 3803 node 4364796746
+Agent 3804 node 4367455148
+Agent 3805 node 8423338509
+Agent 3806 node 3787866122
+Agent 3807 node 6164664506
+Agent 3808 node 4364802049
+Agent 3809 node 4510559417
+Agent 3810 node 4364549040
+Agent 3811 node 4364519588
+Agent 3812 node 1818078872
+Agent 3813 node 4364401693
+Agent 3814 node 6139565585
+Agent 3815 node 6140626839
+Agent 3816 node 932299464
+Agent 3817 node 4365047066
+Agent 3818 node 6139565459
+Agent 3819 node 6140626834
+Agent 3820 node 4364881724
+Agent 3821 node 4365791131
+Agent 3822 node 3787994356
+Agent 3823 node 8379327159
+Agent 3824 node 4365299721
+Agent 3825 node 4365792438
+Agent 3826 node 4365233568
+Agent 3827 node 6140707128
+Agent 3828 node 6129374814
+Agent 3829 node 4364758606
+Agent 3830 node 6029944154
+Agent 3831 node 4365792126
+Agent 3832 node 6139565433
+Agent 3833 node 2279298714
+Agent 3834 node 3722106190
+Agent 3835 node 932303977
+Agent 3836 node 2202332162
+Agent 3837 node 4365870945
+Agent 3838 node 4365792536
+Agent 3839 node 4366988824
+Agent 3840 node 4364756689
+Agent 3841 node 932303977
+Agent 3842 node 4365879180
+Agent 3843 node 1204809685
+Agent 3844 node 3789298343
+Agent 3845 node 8325961477
+Agent 3846 node 4364411774
+Agent 3847 node 1232340694
+Agent 3848 node 6140707280
+Agent 3849 node 4364467915
+Agent 3850 node 4364340077
+Agent 3851 node 6139497442
+Agent 3852 node 3787887118
+Agent 3853 node 4365814383
+Agent 3854 node 1818074456
+Agent 3855 node 4364395480
+Agent 3856 node 4364340046
+Agent 3857 node 6135931179
+Agent 3858 node 6139565241
+Agent 3859 node 4364571524
+Agent 3860 node 6131582997
+Agent 3861 node 1232340264
+Agent 3862 node 4365454586
+Agent 3863 node 4366008776
+Agent 3864 node 8758137657
+Agent 3865 node 4366104333
+Agent 3866 node 6139565364
+Agent 3867 node 4365908450
+Agent 3868 node 4369455795
+Agent 3869 node 4365908604
+Agent 3870 node 932301295
+Agent 3871 node 4367462048
+Agent 3872 node 387949781
+Agent 3873 node 1232340623
+Agent 3874 node 4365464180
+Agent 3875 node 4365879098
+Agent 3876 node 4366104499
+Agent 3877 node 4366233312
+Agent 3878 node 4364796484
+Agent 3879 node 8668995686
+Agent 3880 node 2299251320
+Agent 3881 node 4364764788
+Agent 3882 node 4228877925
+Agent 3883 node 4364875530
+Agent 3884 node 1818071569
+Agent 3885 node 4364777899
+Agent 3886 node 4365299446
+Agent 3887 node 4364757755
+Agent 3888 node 4366008765
+Agent 3889 node 3787877816
+Agent 3890 node 4365370737
+Agent 3891 node 4369250926
+Agent 3892 node 4365849688
+Agent 3893 node 4365879056
+Agent 3894 node 4364340057
+Agent 3895 node 4365354722
+Agent 3896 node 4366004551
+Agent 3897 node 4366104515
+Agent 3898 node 4364209082
+Agent 3899 node 6139565592
+Agent 3900 node 4365233568
+Agent 3901 node 4365849762
+Agent 3902 node 8382000020
+Agent 3903 node 1885276830
+Agent 3904 node 4365792267
+Agent 3905 node 4367663330
+Agent 3906 node 4364726526
+Agent 3907 node 932302116
+Agent 3908 node 4369175374
+Agent 3909 node 4471887147
+Agent 3910 node 4364483676
+Agent 3911 node 4364726532
+Agent 3912 node 4365147693
+Agent 3913 node 3787892622
+Agent 3914 node 3057607178
+Agent 3915 node 4364209085
+Agent 3916 node 2915264609
+Agent 3917 node 3722107650
+Agent 3918 node 4368726289
+Agent 3919 node 4364787407
+Agent 3920 node 3787875655
+Agent 3921 node 932304211
+Agent 3922 node 3918522915
+Agent 3923 node 4366921009
+Agent 3924 node 4367569567
+Agent 3925 node 4366104529
+Agent 3926 node 4364332189
+Agent 3927 node 4364866141
+Agent 3928 node 6140707290
+Agent 3929 node 6140707282
+Agent 3930 node 7578194891
+Agent 3931 node 4366920886
+Agent 3932 node 1232340232
+Agent 3933 node 4365985841
+Agent 3934 node 9452381734
+Agent 3935 node 6139565418
+Agent 3936 node 4365235080
+Agent 3937 node 4365381559
+Agent 3938 node 4369745769
+Agent 3939 node 4364759192
+Agent 3940 node 4364467911
+Agent 3941 node 387950276
+Agent 3942 node 8481021726
+Agent 3943 node 6139565348
+Agent 3944 node 932300797
+Agent 3945 node 1415549934
+Agent 3946 node 4369497600
+Agent 3947 node 7603585161
+Agent 3948 node 932301106
+Agent 3949 node 6139565426
+Agent 3950 node 4365252931
+Agent 3951 node 932303950
+Agent 3952 node 932299925
+Agent 3953 node 7597453138
+Agent 3954 node 6139565203
+Agent 3955 node 4364792292
+Agent 3956 node 6129374817
+Agent 3957 node 3787892622
+Agent 3958 node 4365027225
+Agent 3959 node 6139565481
+Agent 3960 node 82604022
+Agent 3961 node 4364725047
+Agent 3962 node 1232339940
+Agent 3963 node 4365985574
+Agent 3964 node 4369745756
+Agent 3965 node 4365991250
+Agent 3966 node 4365421521
+Agent 3967 node 4366888821
+Agent 3968 node 1204810230
+Agent 3969 node 4365233575
+Agent 3970 node 4364341638
+Agent 3971 node 4364793656
+Agent 3972 node 6139565422
+Agent 3973 node 4369175867
+Agent 3974 node 4364802157
+Agent 3975 node 4364726532
+Agent 3976 node 6029951369
+Agent 3977 node 4365878318
+Agent 3978 node 4364340002
+Agent 3979 node 4364796461
+Agent 3980 node 4364340006
+Agent 3981 node 4364522002
+Agent 3982 node 4366920866
+Agent 3983 node 4366920886
+Agent 3984 node 4365252985
+Agent 3985 node 932299679
+Agent 3986 node 4364340036
+Agent 3987 node 4366048729
+Agent 3988 node 4365985990
+Agent 3989 node 4367529463
+Agent 3990 node 4364425735
+Agent 3991 node 6140707290
+Agent 3992 node 3918245484
+Agent 3993 node 932300319
+Agent 3994 node 4365814045
+Agent 3995 node 4367640305
+Agent 3996 node 932302448
+Agent 3997 node 4364317689
+Agent 3998 node 6140707291
+Agent 3999 node 1204809933
+Agent 4000 node 4364764758
+Agent 4001 node 1232340402
+Agent 4002 node 4365977369
+Agent 4003 node 4364777916
+Agent 4004 node 4364498301
+Agent 4005 node 4364805209
+Agent 4006 node 4365792904
+Agent 4007 node 4365792915
+Agent 4008 node 4366136252
+Agent 4009 node 4364805724
+Agent 4010 node 4365299727
+Agent 4011 node 4366104391
+Agent 4012 node 7709851959
+Agent 4013 node 4369958754
+Agent 4014 node 4364886885
+Agent 4015 node 3030507564
+Agent 4016 node 4366104333
+Agent 4017 node 1204809652
+Agent 4018 node 8504899911
+Agent 4019 node 4364800494
+Agent 4020 node 4364796724
+Agent 4021 node 3787942207
+Agent 4022 node 82604271
+Agent 4023 node 4365359206
+Agent 4024 node 6135932658
+Agent 4025 node 4365849907
+Agent 4026 node 4364745331
+Agent 4027 node 4365908693
+Agent 4028 node 6139565240
+Agent 4029 node 4366004493
+Agent 4030 node 82604259
+Agent 4031 node 8927033686
+Agent 4032 node 3788835293
+Agent 4033 node 4365908682
+Agent 4034 node 4365233577
+Agent 4035 node 8504899870
+Agent 4036 node 4366104482
+Agent 4037 node 4365926592
+Agent 4038 node 387949872
+Agent 4039 node 6139565463
+Agent 4040 node 4364317727
+Agent 4041 node 932300985
+Agent 4042 node 4369353543
+Agent 4043 node 4365985882
+Agent 4044 node 4365371031
+Agent 4045 node 4365814383
+Agent 4046 node 4379091319
+Agent 4047 node 4367663373
+Agent 4048 node 4367678612
+Agent 4049 node 4364429857
+Agent 4050 node 6139565704
+Agent 4051 node 4367455217
+Agent 4052 node 1232340709
+Agent 4053 node 3918522915
+Agent 4054 node 4365296666
+Agent 4055 node 3787877912
+Agent 4056 node 4365464710
+Agent 4057 node 3787942228
+Agent 4058 node 1204810230
+Agent 4059 node 2279298885
+Agent 4060 node 4364796769
+Agent 4061 node 4364800510
+Agent 4062 node 4364401585
+Agent 4063 node 4365299721
+Agent 4064 node 6135932537
+Agent 4065 node 6164664735
+Agent 4066 node 4365421495
+Agent 4067 node 4364483794
+Agent 4068 node 4364796438
+Agent 4069 node 3787887071
+Agent 4070 node 4364317655
+Agent 4071 node 4366008849
+Agent 4072 node 932299733
+Agent 4073 node 6139565452
+Agent 4074 node 4367569521
+Agent 4075 node 4364515230
+Agent 4076 node 6140707212
+Agent 4077 node 1251733236
+Agent 4078 node 4365926625
+Agent 4079 node 3030507583
+Agent 4080 node 4364726526
+Agent 4081 node 4364212244
+Agent 4082 node 4365926570
+Agent 4083 node 4365870577
+Agent 4084 node 4369250818
+Agent 4085 node 932304089
+Agent 4086 node 4365401124
+Agent 4087 node 4369745769
+Agent 4088 node 4365361355
+Agent 4089 node 4365401236
+Agent 4090 node 8443675730
+Agent 4091 node 932302908
+Agent 4092 node 4369250809
+Agent 4093 node 4380193897
+Agent 4094 node 932303502
+Agent 4095 node 4370114874
+Agent 4096 node 3787941981
+Agent 4097 node 4364317675
+Agent 4098 node 4365325907
+Agent 4099 node 4365920460
+Agent 4100 node 4364569022
+Agent 4101 node 4367462090
+Agent 4102 node 8622947743
+Agent 4103 node 4365920457
+Agent 4104 node 4366104470
+Agent 4105 node 6140626852
+Agent 4106 node 1232339856
+Agent 4107 node 3722107627
+Agent 4108 node 6139565459
+Agent 4109 node 8593026669
+Agent 4110 node 932301295
+Agent 4111 node 4365792654
+Agent 4112 node 3787886793
+Agent 4113 node 4366029664
+Agent 4114 node 4365273137
+Agent 4115 node 932302699
+Agent 4116 node 6164664545
+Agent 4117 node 932303543
+Agent 4118 node 4365264533
+Agent 4119 node 932299647
+Agent 4120 node 932302976
+Agent 4121 node 3794670343
+Agent 4122 node 3918274107
+Agent 4123 node 4365369985
+Agent 4124 node 6139565291
+Agent 4125 node 4369497600
+Agent 4126 node 4365792917
+Agent 4127 node 4367461585
+Agent 4128 node 1232340264
+Agent 4129 node 4366988811
+Agent 4130 node 3918245344
+Agent 4131 node 4365421495
+Agent 4132 node 4365976773
+Agent 4133 node 5591153200
+Agent 4134 node 3787892559
+Agent 4135 node 3030507571
+Agent 4136 node 932301064
+Agent 4137 node 1818078872
+Agent 4138 node 6140707282
+Agent 4139 node 4364726560
+Agent 4140 node 6140707281
+Agent 4141 node 4367640293
+Agent 4142 node 6139565203
+Agent 4143 node 4368101094
+Agent 4144 node 4365985744
+Agent 4145 node 6135932658
+Agent 4146 node 4365792161
+Agent 4147 node 6139497462
+Agent 4148 node 4365792917
+Agent 4149 node 6135932487
+Agent 4150 node 4364212882
+Agent 4151 node 4365256617
+Agent 4152 node 4366103935
+Agent 4153 node 6164664729
+Agent 4154 node 6855880403
+Agent 4155 node 4366888854
+Agent 4156 node 4365290633
+Agent 4157 node 4365421731
+Agent 4158 node 4365462326
+Agent 4159 node 4365850063
+Agent 4160 node 4365299438
+Agent 4161 node 4365365266
+Agent 4162 node 6138160931
+Agent 4163 node 4366956861
+Agent 4164 node 4366988827
+Agent 4165 node 6140707294
+Agent 4166 node 4367546040
+Agent 4167 node 932300080
+Agent 4168 node 3787887060
+Agent 4169 node 4365464752
+Agent 4170 node 4366921003
+Agent 4171 node 4364340002
+Agent 4172 node 4366104362
+Agent 4173 node 932299378
+Agent 4174 node 4365090842
+Agent 4175 node 4364332214
+Agent 4176 node 4365264566
+Agent 4177 node 6139565370
+Agent 4178 node 4364332274
+Agent 4179 node 4364317661
+Agent 4180 node 3918276061
+Agent 4181 node 3787892559
+Agent 4182 node 1204809408
+Agent 4183 node 4365871008
+Agent 4184 node 6140707302
+Agent 4185 node 4365879519
+Agent 4186 node 8443675730
+Agent 4187 node 4366888841
+Agent 4188 node 4365908497
+Agent 4189 node 4364317727
+Agent 4190 node 932304211
+Agent 4191 node 4367455291
+Agent 4192 node 4364317623
+Agent 4193 node 1232340914
+Agent 4194 node 4365792683
+Agent 4195 node 6139565414
+Agent 4196 node 4364759548
+Agent 4197 node 4369456013
+Agent 4198 node 1818074469
+Agent 4199 node 4366030200
+Agent 4200 node 4364703149
+Agent 4201 node 4364515012
+Agent 4202 node 932300396
+Agent 4203 node 4365279112
+Agent 4204 node 4365912190
+Agent 4205 node 387949811
+Agent 4206 node 932300260
+Agent 4207 node 4364726526
+Agent 4208 node 4367665225
+Agent 4209 node 6140707259
+Agent 4210 node 3787887129
+Agent 4211 node 4366104295
+Agent 4212 node 932299479
+Agent 4213 node 6140707306
+Agent 4214 node 4365352042
+Agent 4215 node 4367665434
+Agent 4216 node 4357786066
+Agent 4217 node 3787994339
+Agent 4218 node 8504899896
+Agent 4219 node 6139565666
+Agent 4220 node 6140707277
+Agent 4221 node 4364758271
+Agent 4222 node 4365464579
+Agent 4223 node 3030507603
+Agent 4224 node 4365421615
+Agent 4225 node 4364758976
+Agent 4226 node 4366040618
+Agent 4227 node 4365920451
+Agent 4228 node 4364726542
+Agent 4229 node 4365372635
+Agent 4230 node 4365296677
+Agent 4231 node 4364787470
+Agent 4232 node 4365926565
+Agent 4233 node 6139565481
+Agent 4234 node 8508034490
+Agent 4235 node 4364317709
+Agent 4236 node 6135932495
+Agent 4237 node 4365325928
+Agent 4238 node 6139565452
+Agent 4239 node 4365371080
+Agent 4240 node 7603585161
+Agent 4241 node 4364519588
+Agent 4242 node 4365818896
+Agent 4243 node 4364332189
+Agent 4244 node 4368726176
+Agent 4245 node 6164704065
+Agent 4246 node 6139565411
+Agent 4247 node 4367665434
+Agent 4248 node 4365147712
+Agent 4249 node 4365898481
+Agent 4250 node 4367640328
+Agent 4251 node 6140707234
+Agent 4252 node 4365369984
+Agent 4253 node 4364759515
+Agent 4254 node 4364209081
+Agent 4255 node 4365985805
+Agent 4256 node 4365277035
+Agent 4257 node 4365361365
+Agent 4258 node 6140626882
+Agent 4259 node 4365792931
+Agent 4260 node 4365491324
+Agent 4261 node 1818074456
+Agent 4262 node 3787994344
+Agent 4263 node 4367639475
+Agent 4264 node 3030507584
+Agent 4265 node 8416536349
+Agent 4266 node 6140707089
+Agent 4267 node 4364297200
+Agent 4268 node 4366921003
+Agent 4269 node 4364468284
+Agent 4270 node 4364765544
+Agent 4271 node 932302529
+Agent 4272 node 4364304984
+Agent 4273 node 4365792344
+Agent 4274 node 4365370728
+Agent 4275 node 4364724571
+Agent 4276 node 6140707212
+Agent 4277 node 4364340009
+Agent 4278 node 3787999908
+Agent 4279 node 3787956727
+Agent 4280 node 6119949795
+Agent 4281 node 932303977
+Agent 4282 node 4365421710
+Agent 4283 node 4365849371
+Agent 4284 node 3789303380
+Agent 4285 node 4364796749
+Agent 4286 node 4364777895
+Agent 4287 node 3787866108
+Agent 4288 node 4364724572
+Agent 4289 node 4365870546
+Agent 4290 node 6135932501
+Agent 4291 node 4365235193
+Agent 4292 node 6140707259
+Agent 4293 node 4471887163
+Agent 4294 node 4365871195
+Agent 4295 node 6135932574
+Agent 4296 node 4365365265
+Agent 4297 node 4365908456
+Agent 4298 node 3030507574
+Agent 4299 node 4364800537
+Agent 4300 node 4364317168
+Agent 4301 node 3787956577
+Agent 4302 node 1204809685
+Agent 4303 node 3787892622
+Agent 4304 node 4364569022
+Agent 4305 node 4365792710
+Agent 4306 node 4365792599
+Agent 4307 node 6140707142
+Agent 4308 node 6140707188
+Agent 4309 node 4365814002
+Agent 4310 node 1204809144
+Agent 4311 node 4364332222
+Agent 4312 node 4365290630
+Agent 4313 node 3030507593
+Agent 4314 node 6140707299
+Agent 4315 node 6140707142
+Agent 4316 node 3787866098
+Agent 4317 node 4364317696
+Agent 4318 node 4365879221
+Agent 4319 node 1232340428
+Agent 4320 node 4365792604
+Agent 4321 node 3787892657
+Agent 4322 node 4365102536
+Agent 4323 node 4365352042
+Agent 4324 node 4365370828
+Agent 4325 node 8255361002
+Agent 4326 node 6164664734
+Agent 4327 node 4364209136
+Agent 4328 node 4365850068
+Agent 4329 node 2279298810
+Agent 4330 node 6139565451
+Agent 4331 node 4365849371
+Agent 4332 node 6139565678
+Agent 4333 node 932302229
+Agent 4334 node 4367663331
+Agent 4335 node 4365369981
+Agent 4336 node 3787999672
+Agent 4337 node 932299733
+Agent 4338 node 6139565239
+Agent 4339 node 1251733412
+Agent 4340 node 4364800242
+Agent 4341 node 4364758963
+Agent 4342 node 4364212880
+Agent 4343 node 1204809652
+Agent 4344 node 8443675801
+Agent 4345 node 3030507626
+Agent 4346 node 4365252927
+Agent 4347 node 4364886868
+Agent 4348 node 4365926570
+Agent 4349 node 4367663373
+Agent 4350 node 4365792736
+Agent 4351 node 2202332162
+Agent 4352 node 4365372632
+Agent 4353 node 4364340008
+Agent 4354 node 4364745334
+Agent 4355 node 3030507614
+Agent 4356 node 1818078920
+Agent 4357 node 4369630232
+Agent 4358 node 4365985673
+Agent 4359 node 8623053565
+Agent 4360 node 4365878754
+Agent 4361 node 2278398245
+Agent 4362 node 6139565587
+Agent 4363 node 4365337698
+Agent 4364 node 932299665
+Agent 4365 node 4365792571
+Agent 4366 node 4365215598
+Agent 4367 node 4365865089
+Agent 4368 node 2279298855
+Agent 4369 node 932299548
+Agent 4370 node 2279298962
+Agent 4371 node 3787942212
+Agent 4372 node 6139497453
+Agent 4373 node 3030507609
+Agent 4374 node 4364875538
+Agent 4375 node 4364212244
+Agent 4376 node 4364696196
+Agent 4377 node 4365985882
+Agent 4378 node 6139565596
+Agent 4379 node 3787877984
+Agent 4380 node 6140626852
+Agent 4381 node 4365335405
+Agent 4382 node 6140707299
+Agent 4383 node 1818078872
+Agent 4384 node 2733765953
+Agent 4385 node 3918245337
+Agent 4386 node 4364515238
+Agent 4387 node 4365401168
+Agent 4388 node 6139565443
+Agent 4389 node 4364759223
+Agent 4390 node 6855880551
+Agent 4391 node 4364340009
+Agent 4392 node 4364800517
+Agent 4393 node 932300396
+Agent 4394 node 4364725005
+Agent 4395 node 534148900
+Agent 4396 node 4364431359
+Agent 4397 node 4510559169
+Agent 4398 node 6126218647
+Agent 4399 node 26863873
+Agent 4400 node 4365491060
+Agent 4401 node 4367529300
+Agent 4402 node 10137726749
+Agent 4403 node 3787956722
+Agent 4404 node 4365401237
+Agent 4405 node 6139565481
+Agent 4406 node 6140626846
+Agent 4407 node 4367640328
+Agent 4408 node 6140707289
+Agent 4409 node 932302688
+Agent 4410 node 6139565459
+Agent 4411 node 4364756722
+Agent 4412 node 3787956251
+Agent 4413 node 3787942126
+Agent 4414 node 4364330673
+Agent 4415 node 4365791184
+Agent 4416 node 4364785498
+Agent 4417 node 4369250809
+Agent 4418 node 4365911071
+Agent 4419 node 1251733236
+Agent 4420 node 4365325891
+Agent 4421 node 3787878004
+Agent 4422 node 4364332189
+Agent 4423 node 6131582997
+Agent 4424 node 3787877889
+Agent 4425 node 4365870544
+Agent 4426 node 4367569567
+Agent 4427 node 4364317806
+Agent 4428 node 3787942077
+Agent 4429 node 4364340077
+Agent 4430 node 4366988808
+Agent 4431 node 4365792218
+Agent 4432 node 4365491611
+Agent 4433 node 2949090804
+Agent 4434 node 4365421670
+Agent 4435 node 4367665239
+Agent 4436 node 2733798746
+Agent 4437 node 4365399230
+Agent 4438 node 8388334382
+Agent 4439 node 932299167
+Agent 4440 node 4366104531
+Agent 4441 node 6140707180
+Agent 4442 node 4367664851
+Agent 4443 node 8508034490
+Agent 4444 node 4365412713
+Agent 4445 node 3918522991
+Agent 4446 node 4365215593
+Agent 4447 node 6140626869
+Agent 4448 node 4364317824
+Agent 4449 node 932299464
+Agent 4450 node 4364887089
+Agent 4451 node 3030507617
+Agent 4452 node 4364757023
+Agent 4453 node 4365371150
+Agent 4454 node 6135932537
+Agent 4455 node 4365401229
+Agent 4456 node 4364787470
+Agent 4457 node 6139565319
+Agent 4458 node 4366030200
+Agent 4459 node 8388334388
+Agent 4460 node 932301434
+Agent 4461 node 3787875655
+Agent 4462 node 4364304763
+Agent 4463 node 4365299721
+Agent 4464 node 4367703160
+Agent 4465 node 6139565666
+Agent 4466 node 3787866149
+Agent 4467 node 4365299795
+Agent 4468 node 4364483685
+Agent 4469 node 4365491071
+Agent 4470 node 4364796448
+Agent 4471 node 1204810935
+Agent 4472 node 6140707142
+Agent 4473 node 4364317126
+Agent 4474 node 4364796769
+Agent 4475 node 6129374791
+Agent 4476 node 6119949742
+Agent 4477 node 4364787470
+Agent 4478 node 1204808752
+Agent 4479 node 8325961470
+Agent 4480 node 4365421761
+Agent 4481 node 387949810
+Agent 4482 node 4365876911
+Agent 4483 node 4364317148
+Agent 4484 node 6140707143
+Agent 4485 node 7881465153
+Agent 4486 node 4364761173
+Agent 4487 node 4367639487
+Agent 4488 node 4365792264
+Agent 4489 node 4364777925
+Agent 4490 node 932302009
+Agent 4491 node 4364802052
+Agent 4492 node 4365792435
+Agent 4493 node 4365299409
+Agent 4494 node 4365920475
+Agent 4495 node 4364796768
+Agent 4496 node 4365792190
+Agent 4497 node 4365849762
+Agent 4498 node 4365447711
+Agent 4499 node 6139565480
+Agent 4500 node 6139565593
+Agent 4501 node 1232339940
+Agent 4502 node 4364317824
+Agent 4503 node 4364330659
+Agent 4504 node 6140707303
+Agent 4505 node 4365814347
+Agent 4506 node 6139565657
+Agent 4507 node 6164664528
+Agent 4508 node 4380193897
+Agent 4509 node 8567730108
+Agent 4510 node 4364802077
+Agent 4511 node 4364317187
+Agent 4512 node 4365047066
+Agent 4513 node 3030507599
+Agent 4514 node 4365397483
+Agent 4515 node 387949898
+Agent 4516 node 1204811032
+Agent 4517 node 4364802052
+Agent 4518 node 4364304761
+Agent 4519 node 6139565418
+Agent 4520 node 4364534530
+Agent 4521 node 4364406023
+Agent 4522 node 932301448
+Agent 4523 node 4365299409
+Agent 4524 node 4365920451
+Agent 4525 node 932301250
+Agent 4526 node 3787942046
+Agent 4527 node 4367665239
+Agent 4528 node 4365792095
+Agent 4529 node 387949781
+Agent 4530 node 4365985859
+Agent 4531 node 932299679
+Agent 4532 node 4364209088
+Agent 4533 node 4364522012
+Agent 4534 node 4365849671
+Agent 4535 node 3787866112
+Agent 4536 node 4383648158
+Agent 4537 node 3787877984
+Agent 4538 node 4364796787
+Agent 4539 node 4364330623
+Agent 4540 node 932299653
+Agent 4541 node 4364332276
+Agent 4542 node 2278397927
+Agent 4543 node 4364796464
+Agent 4544 node 8654672728
+Agent 4545 node 2279299002
+Agent 4546 node 4364425735
+Agent 4547 node 932304169
+Agent 4548 node 4365299795
+Agent 4549 node 4367807498
+Agent 4550 node 4364761173
+Agent 4551 node 4364317655
+Agent 4552 node 6140626860
+Agent 4553 node 8623053523
+Agent 4554 node 4364431359
+Agent 4555 node 4369487711
+Agent 4556 node 4365325905
+Agent 4557 node 8567738058
+Agent 4558 node 8682492278
+Agent 4559 node 6133646351
+Agent 4560 node 6131583673
+Agent 4561 node 3787866122
+Agent 4562 node 4364704241
+Agent 4563 node 4364802049
+Agent 4564 node 4364446714
+Agent 4565 node 4365792558
+Agent 4566 node 6140707330
+Agent 4567 node 3918523137
+Agent 4568 node 4364277791
+Agent 4569 node 4364340031
+Agent 4570 node 4366004493
+Agent 4571 node 4364304728
+Agent 4572 node 4364757379
+Agent 4573 node 4367640293
+Agent 4574 node 4366988816
+Agent 4575 node 4365985935
+Agent 4576 node 8623053523
+Agent 4577 node 4365911064
+Agent 4578 node 4366008811
+Agent 4579 node 4364317647
+Agent 4580 node 4365986016
+Agent 4581 node 6164664729
+Agent 4582 node 4364802127
+Agent 4583 node 4366988799
+Agent 4584 node 1232340879
+Agent 4585 node 4369958754
+Agent 4586 node 3722107642
+Agent 4587 node 3918522991
+Agent 4588 node 4364521937
+Agent 4589 node 3787887129
+Agent 4590 node 1204809933
+Agent 4591 node 4365290633
+Agent 4592 node 4365792724
+Agent 4593 node 4365879090
+Agent 4594 node 932300133
+Agent 4595 node 4365421409
+Agent 4596 node 4365792161
+Agent 4597 node 4365701311
+Agent 4598 node 4365233575
+Agent 4599 node 4365792315
+Agent 4600 node 387949851
+Agent 4601 node 4365871195
+Agent 4602 node 4366888833
+Agent 4603 node 4367675012
+Agent 4604 node 4365401243
+Agent 4605 node 4364521974
+Agent 4606 node 3787956728
+Agent 4607 node 4369456209
+Agent 4608 node 4365447711
+Agent 4609 node 4366888833
+Agent 4610 node 4365371080
+Agent 4611 node 4364865858
+Agent 4612 node 6135932495
+Agent 4613 node 4365792571
+Agent 4614 node 4365792187
+Agent 4615 node 4365792424
+Agent 4616 node 4366956847
+Agent 4617 node 6164704544
+Agent 4618 node 82604271
+Agent 4619 node 4364777945
+Agent 4620 node 4367462048
+Agent 4621 node 932300976
+Agent 4622 node 4365381551
+Agent 4623 node 4365464579
+Agent 4624 node 4366888826
+Agent 4625 node 6140626868
+Agent 4626 node 4364703168
+Agent 4627 node 932304241
+Agent 4628 node 4357784397
+Agent 4629 node 4365920456
+Agent 4630 node 1204809685
+Agent 4631 node 2733765942
+Agent 4632 node 6164704075
+Agent 4633 node 4364251073
+Agent 4634 node 6164664523
+Agent 4635 node 4365370787
+Agent 4636 node 4369487711
+Agent 4637 node 3722106190
+Agent 4638 node 6140626881
+Agent 4639 node 4364317786
+Agent 4640 node 3787956570
+Agent 4641 node 4365879258
+Agent 4642 node 4364796735
+Agent 4643 node 4228877925
+Agent 4644 node 3787999847
+Agent 4645 node 4364297200
+Agent 4646 node 6140626862
+Agent 4647 node 4365328830
+Agent 4648 node 4365027225
+Agent 4649 node 4365361381
+Agent 4650 node 4366104520
+Agent 4651 node 4369487710
+Agent 4652 node 4368567451
+Agent 4653 node 6140707253
+Agent 4654 node 4365372635
+Agent 4655 node 1688871543
+Agent 4656 node 82604022
+Agent 4657 node 4364759230
+Agent 4658 node 4365871195
+Agent 4659 node 4365849426
+Agent 4660 node 6140707277
+Agent 4661 node 6140626874
+Agent 4662 node 4365849292
+Agent 4663 node 8491909365
+Agent 4664 node 4364704228
+Agent 4665 node 1204811553
+Agent 4666 node 4365290632
+Agent 4667 node 4365878318
+Agent 4668 node 4365326237
+Agent 4669 node 4364802056
+Agent 4670 node 4374915631
+Agent 4671 node 8382000020
+Agent 4672 node 4365193558
+Agent 4673 node 8382000062
+Agent 4674 node 4365421725
+Agent 4675 node 6140707181
+Agent 4676 node 1818074457
+Agent 4677 node 4364332189
+Agent 4678 node 4365264561
+Agent 4679 node 6135932550
+Agent 4680 node 4365849825
+Agent 4681 node 4364304728
+Agent 4682 node 4366104419
+Agent 4683 node 4365147714
+Agent 4684 node 4365849714
+Agent 4685 node 4365870945
+Agent 4686 node 6140707234
+Agent 4687 node 4367663385
+Agent 4688 node 4365401237
+Agent 4689 node 932299678
+Agent 4690 node 932303084
+Agent 4691 node 4364881724
+Agent 4692 node 4364212880
+Agent 4693 node 4364599027
+Agent 4694 node 6139565432
+Agent 4695 node 6138160962
+Agent 4696 node 4364521972
+Agent 4697 node 4365328179
+Agent 4698 node 4365985871
+Agent 4699 node 4365299409
+Agent 4700 node 4364209091
+Agent 4701 node 4364765544
+Agent 4702 node 6139565248
+Agent 4703 node 4364865852
+Agent 4704 node 932300319
+Agent 4705 node 4364317185
+Agent 4706 node 4368100928
+Agent 4707 node 4365985862
+Agent 4708 node 6164704533
+Agent 4709 node 1248527518
+Agent 4710 node 4365849650
+Agent 4711 node 4366119245
+Agent 4712 node 3787886793
+Agent 4713 node 932299733
+Agent 4714 node 4364522012
+Agent 4715 node 4364521903
+Agent 4716 node 4366104292
+Agent 4717 node 4369353556
+Agent 4718 node 7476422931
+Agent 4719 node 4365792736
+Agent 4720 node 6135932502
+Agent 4721 node 4364796768
+Agent 4722 node 4364332219
+Agent 4723 node 4364725019
+Agent 4724 node 82604140
+Agent 4725 node 4364330681
+Agent 4726 node 4379092209
+Agent 4727 node 4365252927
+Agent 4728 node 4365370569
+Agent 4729 node 6855881524
+Agent 4730 node 3787942126
+Agent 4731 node 6140707155
+Agent 4732 node 4365299700
+Agent 4733 node 932303862
+Agent 4734 node 4367807496
+Agent 4735 node 3787866149
+Agent 4736 node 932300693
+Agent 4737 node 2299251334
+Agent 4738 node 4369745768
+Agent 4739 node 6855880545
+Agent 4740 node 4364865852
+Agent 4741 node 4364521906
+Agent 4742 node 4369745752
+Agent 4743 node 932299559
+Agent 4744 node 4367639487
+Agent 4745 node 4365370569
+Agent 4746 node 2279298810
+Agent 4747 node 3030507617
+Agent 4748 node 932301453
+Agent 4749 node 4365421539
+Agent 4750 node 6140707282
+Agent 4751 node 4364519587
+Agent 4752 node 4364340066
+Agent 4753 node 3787956620
+Agent 4754 node 4365879156
+Agent 4755 node 4364304762
+Agent 4756 node 6138188331
+Agent 4757 node 4365264533
+Agent 4758 node 4364317786
+Agent 4759 node 4365926592
+Agent 4760 node 1885276815
+Agent 4761 node 4367678874
+Agent 4762 node 1204809273
+Agent 4763 node 932303977
+Agent 4764 node 932301448
+Agent 4765 node 4366920886
+Agent 4766 node 292929625
+Agent 4767 node 6139565446
+Agent 4768 node 4364787470
+Agent 4769 node 4365985776
+Agent 4770 node 6140707323
+Agent 4771 node 6139565585
+Agent 4772 node 6140707291
+Agent 4773 node 4364874289
+Agent 4774 node 4365985859
+Agent 4775 node 4366254880
+Agent 4776 node 7709851959
+Agent 4777 node 4365464193
+Agent 4778 node 4364787440
+Agent 4779 node 4364726531
+Agent 4780 node 4366104274
+Agent 4781 node 932299733
+Agent 4782 node 6140626860
+Agent 4783 node 3787934851
+Agent 4784 node 3030512735
+Agent 4785 node 6139497442
+Agent 4786 node 1818066398
+Agent 4787 node 4364340076
+Agent 4788 node 4364758278
+Agent 4789 node 4369599667
+Agent 4790 node 4365421615
+Agent 4791 node 4364758278
+Agent 4792 node 932300022
+Agent 4793 node 387949784
+Agent 4794 node 4364429862
+Agent 4795 node 4366104414
+Agent 4796 node 7603585161
+Agent 4797 node 4365370828
+Agent 4798 node 4365908492
+Agent 4799 node 6139565377
+Agent 4800 node 4364209081
+Agent 4801 node 4364304902
+Agent 4802 node 4369497617
+Agent 4803 node 4369497571
+Agent 4804 node 4365911072
+Agent 4805 node 4366008849
+Agent 4806 node 4364759515
+Agent 4807 node 4365195298
+Agent 4808 node 7578143729
+Agent 4809 node 4365911071
+Agent 4810 node 4364796464
+Agent 4811 node 4365195298
+Agent 4812 node 932299739
+Agent 4813 node 4357784263
+Agent 4814 node 2278398575
+Agent 4815 node 4369251155
+Agent 4816 node 4366875371
+Agent 4817 node 2915264633
+Agent 4818 node 4367663373
+Agent 4819 node 4369820212
+Agent 4820 node 4365381560
+Agent 4821 node 4369125213
+Agent 4822 node 4364805701
+Agent 4823 node 3787886793
+Agent 4824 node 2915256275
+Agent 4825 node 4364759496
+Agent 4826 node 4364431357
+Agent 4827 node 4365464752
+Agent 4828 node 6140707272
+Agent 4829 node 6164664734
+Agent 4830 node 8593026712
+Agent 4831 node 4365792537
+Agent 4832 node 4365791992
+Agent 4833 node 8757963738
+Agent 4834 node 6138188298
+Agent 4835 node 4365178274
+Agent 4836 node 2299251334
+Agent 4837 node 6131583026
+Agent 4838 node 4364800242
+Agent 4839 node 4365871028
+Agent 4840 node 6140707166
+Agent 4841 node 4364787421
+Agent 4842 node 6139565685
+Agent 4843 node 4365850068
+Agent 4844 node 4368616471
+Agent 4845 node 4365908450
+Agent 4846 node 4365235080
+Agent 4847 node 4364796462
+Agent 4848 node 6139565462
+Agent 4849 node 4365337612
+Agent 4850 node 4364304741
+Agent 4851 node 4367664790
+Agent 4852 node 6126218618
+Agent 4853 node 4367703402
+Agent 4854 node 6140626862
+Agent 4855 node 4365792161
+Agent 4856 node 4364521904
+Agent 4857 node 387949784
+Agent 4858 node 4365296666
+Agent 4859 node 4369250863
+Agent 4860 node 4364341634
+Agent 4861 node 4365908497
+Agent 4862 node 7709851959
+Agent 4863 node 4364759552
+Agent 4864 node 1232340914
+Agent 4865 node 4364498301
+Agent 4866 node 8872757795
+Agent 4867 node 82604022
+Agent 4868 node 387949805
+Agent 4869 node 4365337597
+Agent 4870 node 4369487710
+Agent 4871 node 4364777945
+Agent 4872 node 932303303
+Agent 4873 node 8927033690
+Agent 4874 node 3918523002
+Agent 4875 node 4366136286
+Agent 4876 node 4365337696
+Agent 4877 node 6139565309
+Agent 4878 node 2733765953
+Agent 4879 node 1818078920
+Agent 4880 node 3918274136
+Agent 4881 node 932304016
+Agent 4882 node 3787888856
+Agent 4883 node 4366920866
+Agent 4884 node 6135932574
+Agent 4885 node 4364838928
+Agent 4886 node 4365235193
+Agent 4887 node 4365335378
+Agent 4888 node 4364406023
+Agent 4889 node 6139565657
+Agent 4890 node 1818078869
+Agent 4891 node 4367546040
+Agent 4892 node 4365296674
+Agent 4893 node 4367807496
+Agent 4894 node 4364757042
+Agent 4895 node 3722081600
+Agent 4896 node 6139565592
+Agent 4897 node 4364802415
+Agent 4898 node 4364719818
+Agent 4899 node 932300396
+Agent 4900 node 8481021726
+Agent 4901 node 4364317824
+Agent 4902 node 4365920455
+Agent 4903 node 4364777898
+Agent 4904 node 4365792719
+Agent 4905 node 4365370737
+Agent 4906 node 4364796694
+Agent 4907 node 6139565451
+Agent 4908 node 4364777901
+Agent 4909 node 4365849818
+Agent 4910 node 4366233312
+Agent 4911 node 3787994317
+Agent 4912 node 4364796713
+Agent 4913 node 6139565245
+Agent 4914 node 7603585102
+Agent 4915 node 2733765953
+Agent 4916 node 6140626865
+Agent 4917 node 1232339940
+Agent 4918 node 4365090856
+Agent 4919 node 4364317168
+Agent 4920 node 4364759525
+Agent 4921 node 6139565685
+Agent 4922 node 932304442
+Agent 4923 node 4364802049
+Agent 4924 node 3030507592
+Agent 4925 node 4365361345
+Agent 4926 node 932300464
+Agent 4927 node 4366770434
+Agent 4928 node 4365464754
+Agent 4929 node 4369599606
+Agent 4930 node 4366888887
+Agent 4931 node 4365849757
+Agent 4932 node 4365792905
+Agent 4933 node 6138161377
+Agent 4934 node 4364704211
+Agent 4935 node 4365813989
+Agent 4936 node 4365920475
+Agent 4937 node 4365911072
+Agent 4938 node 4365296677
+Agent 4939 node 4364802415
+Agent 4940 node 4366988831
+Agent 4941 node 6135932507
+Agent 4942 node 4365256655
+Agent 4943 node 4364317798
+Agent 4944 node 3918245344
+Agent 4945 node 4365792654
+Agent 4946 node 4366888826
+Agent 4947 node 4364521902
+Agent 4948 node 4366103903
+Agent 4949 node 4365985574
+Agent 4950 node 4365215597
+Agent 4951 node 4369745769
+Agent 4952 node 4364431358
+Agent 4953 node 4364704189
+Agent 4954 node 4365421718
+Agent 4955 node 3030507571
+Agent 4956 node 6164664518
+Agent 4957 node 2202332162
+Agent 4958 node 4364317802
+Agent 4959 node 4364759212
+Agent 4960 node 3787888854
+Agent 4961 node 3722112837
+Agent 4962 node 6139565398
+Agent 4963 node 4367678874
+Agent 4964 node 4366008776
+Agent 4965 node 6140707143
+Agent 4966 node 4364796726
+Agent 4967 node 6139565329
+Agent 4968 node 6139565657
+Agent 4969 node 6164664726
+Agent 4970 node 4364446708
+Agent 4971 node 4364549039
+Agent 4972 node 3787942207
+Agent 4973 node 4364796697
+Agent 4974 node 4364723501
+Agent 4975 node 2279299002
+Agent 4976 node 4366104187
+Agent 4977 node 4364724572
+Agent 4978 node 4365381559
+Agent 4979 node 4365328830
+Agent 4980 node 3918276067
+Agent 4981 node 4366008776
+Agent 4982 node 4364467892
+Agent 4983 node 4366920866
+Agent 4984 node 4374915631
+Agent 4985 node 4367664921
+Agent 4986 node 4369751896
+Agent 4987 node 6140707289
+Agent 4988 node 4365224572
+Agent 4989 node 4365381554
+Agent 4990 node 4364317158
+Agent 4991 node 932302191
+Agent 4992 node 4365231344
+Agent 4993 node 4369751896
+Agent 4994 node 3788835288
+Agent 4995 node 6139565467
+Agent 4996 node 1818088080
+Agent 4997 node 4367678992
+Agent 4998 node 4371633396
+Agent 4999 node 4365421539
