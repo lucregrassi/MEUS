@@ -95,14 +95,11 @@ The csv files are named with the id of specific nodes. Each file contains the fo
 
 Every row in the file represent a new observation being reported for that event in that node.
 
-The experiments should be run by setting the -st flag to True. 
-```bash
-python main.py -st True
-```
-There are 3 possible experiments that you can choose to perform:
+There are 4 possible experiments that you can choose to perform:
 1. Varying the percentage of gateway agents (6 simulations)
 2. Varying the hub coverage radius (6 simulations)
 3. Varying the standard deviation of the agents (9 simulations)
+4. Varying the number of agents (3 simulations)
 
 The data of each simulation will be saved in a folder called "exp#" where # corresponds to the number of the simulation.
 
