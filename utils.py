@@ -356,11 +356,12 @@ def parse_args():
     parser.add_argument('-radius_4g', default=2, type=int,
                         help='magnitude of the radius of each internet hub.')
 
-    parser.add_argument('-n_agents', default=5000, type=int,
+    parser.add_argument('-n_agents', default=10000, type=int,
                         help='number of agents present in the environment.')
 
-    parser.add_argument('-gateway_ratio', default=0.02, type=float,
-                        help='percentage of gateways agents present in the environment. Ex. if I want 30 percent of gateways agents: -n_gateways 0.3')
+    parser.add_argument('-gateway_ratio', default=0.01, type=float,
+                        help='ratio of gateways agents present in the environment. '
+                             'Ex. if I want 30 percent of gateways agents: -n_gateways 0.3')
 
     parser.add_argument('-loop_distance', default=100, type=int,
                         help='distance in meters an agent travels each loop.')

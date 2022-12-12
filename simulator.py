@@ -16,6 +16,7 @@ import math
 import json
 import csv
 
+# filename = "movementlog1.txt"
 logging.basicConfig(filename="logfile.log",
                     level=logging.DEBUG)
 
@@ -61,8 +62,9 @@ class Simulator:
         self.gateway_agents_errors = []
         self.normal_agents_errors = []
         self.agents_do_log = {}
+        self.rand_numbers = []
 
-    def compute_destination(self, current_node, ag_n):
+    def compute_destination(self, current_node, ag_n, loop):
         # if len([n for n in self.G.neighbors(current_node)])==0:
         #     print([n for n in self.G.neighbors(current_node)])
         source_nodes = []
@@ -77,18 +79,19 @@ class Simulator:
 
         adj_nodes = source_nodes + target_nodes
         # Choose the index of the destination node using the randomly generated numbers
-        # rand_n_index = (self.n_agents * loop + int(agent_number)) % self.halfnorm_size
-        # rand_number = self.rand_numbers[rand_n_index]
-        # dest_node_index = rand_number % len(adj_nodes)
-        # destination_node = adj_nodes[dest_node_index]
+        rand_n_index = (self.n_agents * loop + int(ag_n)) % self.halfnorm_size
+        rand_number = self.rand_numbers[rand_n_index]
+        dest_node_index = rand_number % len(adj_nodes)
+        destination_node = adj_nodes[dest_node_index]
         # destination_node = rand_lucre(adj_nodes)
-        if ag_n == 23:
-            print("Adjacent nodes:", adj_nodes)
-            print("Random generator", np.random.get_state()[1][0])
-        destination_node = int(np.random.choice(adj_nodes))
-        if ag_n == 23:
-            print("Chosen node:", destination_node)
-        # print("Chosen destination node", destination_node)
+        # with open(filename, 'a') as f:
+        #     f.write("\n\nAgent " + str(ag_n))
+        #     f.write("\nAdjacent nodes " + str(adj_nodes))
+        #     f.write("\nRand n index " + str(rand_n_index) +
+        #             "\nRand number " + str(rand_number) +
+        #             "\nDest node idx " + str(dest_node_index) +
+        #             "\nChosen node " + str(dest_node_index) +
+        #             "\nChosen dest node " + str(destination_node))
         if destination_node in target_nodes:
             edges_of_interest = self.G[current_node][destination_node]
         else:
@@ -149,7 +152,7 @@ class Simulator:
                                         if self.epidemic or not same_root:
                                             # Append the new IE to the listener (making a deepcopy of the IE of the teller)
                                             listener.ies.append(copy.deepcopy(IE_teller))
-                                            listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                            # listener.ies[-1].append((teller.n, listener.n, int(k), loop))
                                         else:
                                             if len(IE_teller[1:]) > 0:
                                                 target_extend = [(teller.n, listener.n, int(k), loop)]
@@ -169,7 +172,7 @@ class Simulator:
             # Arrived to destination node
             previous_node = a.curr_node
             a.curr_node = a.dest_node
-            destination_node, distance = self.compute_destination(a.dest_node, a.n)
+            destination_node, distance = self.compute_destination(a.dest_node, a.n, loop)
             a.dest_node = destination_node
             a.distance = distance
             a.moving = True
@@ -296,6 +299,8 @@ class Simulator:
         mu, sigma = 0, 1
         l = [n[0] for n in self.G.nodes.data()]
 
+        self.rand_numbers = np.random.randint(0, self.halfnorm_size, self.halfnorm_size)
+
         # Generate random errors for gateway agents
         rv = halfnorm.rvs(loc=0, scale=self.std_dev_gateway, size=self.halfnorm_size)
         for elem in rv:
@@ -319,9 +324,15 @@ class Simulator:
 
         # Initialize agents
         for i in range(self.n_agents):
-            rand_index = np.random.randint(0, len(l))
+            # rand_index = np.random.randint(0, len(l))
+            rand_index = self.rand_numbers[i % self.halfnorm_size] % len(l)
             curr_node = l[rand_index]
-            dest_node, dist = self.compute_destination(curr_node, i)
+            dest_node, dist = self.compute_destination(curr_node, i, 0)
+
+            # with open(filename, 'a') as f:
+            #     f.write("\n\nAgent " + str(i))
+            #     f.write("\ncurrent node " + str(curr_node))
+            #     f.write("\ndestina node " + str(dest_node))
             # The error of an agent is initialized to zero
             agent = Agent(i, curr_node, dest_node, dist, mu=mu, sigma=sigma)
             # Initialize the connections and the error of the agents
@@ -358,8 +369,6 @@ class Simulator:
                         else:
                             agent.error_list.append((self.std_dev, 0))
                         agent.err_distances.append((agent.error, 0))
-                        if i == 4460:
-                            print("Rand generator at the end", np.random.get_state()[1][0])
             # Initialize array of local connections
             agent.local_conn = [1, 2, 3]
             self.agents_dict[str(i)] = agent
@@ -372,14 +381,14 @@ class Simulator:
         # Run the simulation until a certain percentage of seen events is reached or a certain number of loops
         while (self.simulation_steps == 0 and self.perc_seen_ev < self.threshold) or (count < self.simulation_steps):
             # Reset the seed of the random at every loop with a random number
-            print("\nIteration " + str(count))
+            # with open(filename, 'a') as f:
+            #     f.write("\n\n\nIteration " + str(count))
+            print("\nIteration", count)
             start_time = time.time()
             # Loop on agents' dictionary to store number of DOs and jumps
             do_dict = {}
             for n_ag, ag in self.agents_dict.items():
-                if n_ag == '23':
-                    print("loop", count, "ag", n_ag, "rand", np.random.get_state()[1][0], "curr node", ag.curr_node, "dest node", ag.dest_node)
-
+                # print("loop", count, "ag", n_ag, "rand", np.random.get_state()[1][0], "curr node", ag.curr_node, "dest node", ag.dest_node)
                 n_do = len(ag.ies)
                 n_jumps = 0
                 # Count total jumps in the IEs of the agent

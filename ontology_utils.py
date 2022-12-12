@@ -110,7 +110,7 @@ def get_cls_at_dist(start_cls_name, distance):
     if len(dictionary[distance]) == 1:
         # print("Only one class at distance", distance)
         np.random.randint(2)
-        cls_at_dist = dictionary[distance]
+        cls_at_dist = dictionary[distance][0]
         # print(cls_at_dist)
         return cls_at_dist
 

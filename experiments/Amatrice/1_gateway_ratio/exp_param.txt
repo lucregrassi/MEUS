@@ -1,0 +1,8 @@
+1K agents
+50,100,150,200 GA
+3 hubs
+radius 2km
+std dev 0.5
+std dev GA 0.2
+threshold of seen events 30%
+epidemic

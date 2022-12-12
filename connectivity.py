@@ -89,7 +89,6 @@ def setup_connection(graph, connection, hubs, radius):
 # nc = color(G)
 # ox.plot_graph(G, node_color=nc, node_size=20, show=True, save=True, filepath="images/conn.png")
 
-
 # conn_nodes = []
 # for node in G.nodes(data=True):
 #     # print(node[1])
@@ -103,8 +102,10 @@ def setup_connection(graph, connection, hubs, radius):
 
 def build_graph(hubs_4g, radius_4g):
     G = ox.load_graphml('graph/graph_temp.graphml')
+    print("Setting up connections")
     G = setup_connection(G, 1, hubs_4g, radius_4g)
     # Save the graph with the connections initialized
+    print("Saving graph")
     ox.save_graphml(G, filepath='graph/graph.graphml')
     # Plot and save the image showing the areas covered by the connections
     # Note: red=4g, green=5g, blue=Wi-Fi

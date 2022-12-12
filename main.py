@@ -31,7 +31,7 @@ def main():
     if user_input == "1":
         build_graph(args.hubs_4g, args.radius_4g)
         for i in range(4):
-            gateway_ratio = 0.005 + (0.005 * i)
+            gateway_ratio = 0.05 + (0.05 * i)
             print("Experiment " + str(i) + "\nAgents: " + str(args.n_agents) + "\nGateway ratio: " + str(gateway_ratio))
             simulator = Simulator(num_exp=i,
                                   n_agents=args.n_agents,
@@ -100,14 +100,14 @@ def main():
         build_graph(args.hubs_4g, args.radius_4g)
         for i in range(3):
             if i == 0:
-                n_agents = 5000
-                gateway_ratio = 0.02
+                n_agents = 500
+                gateway_ratio = 0.2
             elif i == 1:
-                n_agents = 10000
-                gateway_ratio = 0.01
+                n_agents = 1000
+                gateway_ratio = 0.1
             else:
-                n_agents = 20000
-                gateway_ratio = 0.005
+                n_agents = 2000
+                gateway_ratio = 0.05
 
             print("Experiment: " + str(i) + "\nNumber of agents:", n_agents, "\nGateway ratio:", gateway_ratio)
             simulator = Simulator(num_exp=i,
