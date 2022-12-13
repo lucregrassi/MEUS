@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1248,3,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'Family'}",0,1,1
+12,4637,4,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,4284,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,5310,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,5928,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,9348,14,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,3145,11,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,1,1,0.504
+48,8078,11,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.558
+54,1017,13,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.601
+60,2767,13,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 54}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.637

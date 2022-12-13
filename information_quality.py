@@ -3,7 +3,7 @@ import os
 import json
 from ontology_utils import distance_between_two_classes
 
-city = "Assisi"
+city = "Amatrice"
 root_dir = os.getcwd() + "/experiments/" + city + "/3_information_quality/"
 
 

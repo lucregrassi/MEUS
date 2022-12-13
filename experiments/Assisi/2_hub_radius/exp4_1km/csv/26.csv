@@ -1,0 +1,14 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2574,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'OldPerson'}",0,1,1
+12,6332,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
+18,6350,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,1
+24,8209,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 24}]",,0,1,1
+30,4258,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 30}]",,0,1,1
+36,8062,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 36}]",,0,1,1
+42,1398,3,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 42}]",,0,1,1
+48,3968,6,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 48}]",,0,1,1
+54,8063,6,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 54}]",,0,1,1
+60,1178,12,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 60}]",,0,1,1
+66,8279,10,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 66}]",,0,1,1
+72,6200,9,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 72}]",,0,1,1
+78,4270,10,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 78}]",,0,1,1

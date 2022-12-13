@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,1519,0,0,"[{'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 3}]","{'situation': 'DeadPeople', 'object': 'Crossroad'}",1,-2,1
+6,4359,0,1,"[{'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 3}]",,0,0,-0.1
+9,9082,0,1,"[{'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 6}]",,0,0,0.056

@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3061,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson'}",0,1,1
+12,306,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,239,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,431,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,630,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,3722,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1

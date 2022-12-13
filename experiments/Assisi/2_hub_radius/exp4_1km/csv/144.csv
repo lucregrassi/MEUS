@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,528,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson'}",0,1,1
+12,7201,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,9917,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,1952,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,2299,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,2464,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 30}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,1,1,0.437
+42,3061,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 36}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.504
+48,9568,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.558
+54,9834,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'MiddleAgePerson', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.601

@@ -1,0 +1,6 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,8069,0,0,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 2}]","{'situation': 'DeadPeople', 'object': 'MiddleAgePerson'}",2,-2,1
+4,5844,0,1,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 2}, {'situation': 'PanickedPeople', 'object': 'Object', 'coders': 2}]",,2,-2,-0.167
+6,9412,0,2,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 2}, {'situation': 'PanickedPeople', 'object': 'Object', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 2}]",,1,0,-0.133
+8,2652,0,3,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 2}, {'situation': 'PanickedPeople', 'object': 'Object', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 2}]",,0,0,-0.107
+10,3568,0,3,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 2}, {'situation': 'PanickedPeople', 'object': 'Object', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 4}]",,0,0,-0.04

@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,89,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 15}]","{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson'}",0,1,1
+18,1423,0,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 15}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 3}]",,1,1,0.428
+21,3339,0,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 3}]",,0,1,0.498
+24,5278,0,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,1,1,0.234
+27,6777,0,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 21}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.295
+30,9716,3,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.349
+33,5066,3,2,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'People', 'coders': 3}]",,1,1,0.342
+36,7401,3,2,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 27}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'People', 'coders': 3}]",,0,1,0.384
+39,801,12,2,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'People', 'coders': 3}]",,0,1,0.422
+42,735,6,2,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 33}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'People', 'coders': 3}]",,0,1,0.456
+45,1613,12,2,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'People', 'coders': 3}]",,0,1,0.486
+48,6988,12,2,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 39}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'People', 'coders': 3}]",,0,1,0.513

@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,87,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 15}]","{'situation': 'NoFoodPeople', 'object': 'OldPerson'}",0,1,1
+21,537,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 21}]",,0,1,1
+27,1873,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 27}]",,0,1,1
+33,2812,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 33}]",,0,1,1
+39,3695,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 39}]",,0,1,1
+45,4591,6,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 45}]",,0,1,1
+51,2308,10,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 51}]",,0,1,1
+57,1659,10,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 57}]",,0,1,1

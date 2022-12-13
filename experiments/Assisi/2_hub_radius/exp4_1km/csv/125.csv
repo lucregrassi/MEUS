@@ -1,0 +1,15 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,7275,0,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson'}",0,1,1
+12,8272,0,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,7182,3,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,2012,3,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,8673,3,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,156,0,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1
+42,368,9,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 42}]",,0,1,1
+48,2572,9,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 48}]",,0,1,1
+63,94,6,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 63}]",,0,1,1
+69,3584,15,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 69}]",,0,1,1
+75,7711,12,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 75}]",,0,1,1
+81,664,18,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 81}]",,0,1,1
+87,5758,24,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 87}]",,0,1,1
+93,7502,30,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 93}]",,0,1,1

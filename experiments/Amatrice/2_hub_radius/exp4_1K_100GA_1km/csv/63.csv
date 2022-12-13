@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,282,3,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'Hospital'}",0,1,1
+12,843,27,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 12}]",,0,1,1
+27,19,111,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 27}]",,0,1,1
+42,95,125,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 42}]",,0,1,1
+48,686,108,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 48}]",,0,1,1
+54,871,134,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 54}]",,0,1,1

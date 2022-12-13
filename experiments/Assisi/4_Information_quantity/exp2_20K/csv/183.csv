@@ -1,0 +1,23 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,10,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 15}]","{'situation': 'PanickedPeople', 'object': 'OldPerson'}",0,1,1
+21,11240,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 21}]",,0,1,1
+27,12459,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 27}]",,0,1,1
+33,14738,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 33}]",,0,1,1
+39,17381,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 39}]",,0,1,1
+45,6432,5,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 45}]",,0,1,1
+51,7502,4,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 51}]",,0,1,1
+57,7375,5,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 57}]",,0,1,1
+63,6603,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 63}]",,0,1,1
+69,6748,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 69}]",,0,1,1
+75,8106,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 75}]",,0,1,1
+81,10837,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 81}]",,0,1,1
+87,17726,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 87}]",,0,1,1
+93,18540,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 93}]",,0,1,1
+99,18842,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 99}]",,0,1,1
+105,19379,0,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 105}]",,0,1,1
+111,14734,8,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 111}]",,0,1,1
+117,5316,8,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 117}]",,0,1,1
+123,6666,8,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 123}]",,0,1,1
+129,12998,3,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 129}]",,0,1,1
+135,11724,19,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 135}]",,0,1,1
+141,10411,19,0,"[{'situation': 'PanickedPeople', 'object': 'OldPerson', 'coders': 141}]",,0,1,1

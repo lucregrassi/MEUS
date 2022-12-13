@@ -1,0 +1,8 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,4552,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Street'}",0,1,1
+12,5677,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 12}]",,0,1,1
+18,173,12,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 18}]",,0,1,1
+24,9649,12,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 24}]",,0,1,1
+30,1987,3,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 30}]",,0,1,1
+36,121,4,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 36}]",,0,1,1
+42,982,9,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 42}]",,0,1,1

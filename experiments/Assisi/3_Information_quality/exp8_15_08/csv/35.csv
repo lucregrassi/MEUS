@@ -1,0 +1,2 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,9838,0,0,"[{'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 2}]","{'situation': 'BlockedBuilding', 'object': 'Students'}",3,-2,1

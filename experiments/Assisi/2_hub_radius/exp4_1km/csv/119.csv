@@ -1,0 +1,16 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,5582,0,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'House'}",0,1,1
+12,1528,0,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 12}]",,0,1,1
+18,6485,0,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 18}]",,0,1,1
+24,8374,0,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 24}]",,0,1,1
+30,4056,0,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 30}]",,0,1,1
+36,4791,0,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 36}]",,0,1,1
+42,2092,6,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 42}]",,0,1,1
+48,846,6,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 48}]",,0,1,1
+54,2911,6,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 54}]",,0,1,1
+60,2015,12,0,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 60}]",,0,1,1
+66,206,12,1,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 60}, {'situation': 'EmergencyPeople', 'object': 'House', 'coders': 6}]",,1,1,0.667
+72,4172,3,1,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 66}, {'situation': 'EmergencyPeople', 'object': 'House', 'coders': 6}]",,0,1,0.692
+78,3281,9,1,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 72}, {'situation': 'EmergencyPeople', 'object': 'House', 'coders': 6}]",,0,1,0.714
+84,1766,18,1,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 78}, {'situation': 'EmergencyPeople', 'object': 'House', 'coders': 6}]",,0,1,0.733
+90,6577,18,2,"[{'situation': 'DeadPeople', 'object': 'House', 'coders': 78}, {'situation': 'EmergencyPeople', 'object': 'House', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Building', 'coders': 6}]",,1,1,0.637

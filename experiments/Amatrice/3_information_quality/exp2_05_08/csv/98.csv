@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+4,97,18,0,"[{'situation': 'NoMedicinePeople', 'object': 'YoungPerson', 'coders': 4}]","{'situation': 'NoMedicinePeople', 'object': 'YoungPerson'}",0,-2,1
+10,833,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'YoungPerson', 'coders': 10}]",,0,1,1
+16,107,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'YoungPerson', 'coders': 16}]",,0,1,1
+22,287,15,0,"[{'situation': 'NoMedicinePeople', 'object': 'YoungPerson', 'coders': 22}]",,0,1,1

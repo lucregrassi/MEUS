@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,34,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 15}]","{'situation': 'BlockedBuilding', 'object': 'Students'}",0,1,1
+21,1953,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 21}]",,0,1,1
+27,5779,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 27}]",,0,1,1
+33,7601,0,1,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 27}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.396
+39,7726,0,1,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 33}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.472
+45,8512,0,1,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 39}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.533
+51,11205,0,1,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 45}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.581
+57,11406,0,1,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 51}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.62

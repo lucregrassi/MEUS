@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,9273,3,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'MildlyInjuredPeople', 'object': 'Family'}",0,1,1
+12,9804,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 6}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,0,-0.045
+18,4987,3,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 12}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,0,0.085
+24,8872,3,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 18}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.234
+30,9446,3,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 24}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.349
+36,8442,0,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 24}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.236
+42,6134,0,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 30}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.316
+48,6808,0,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 36}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.382
+54,2494,6,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 42}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
+60,5641,15,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 48}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.484
+66,6034,27,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Family', 'coders': 54}, {'situation': 'InjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.524

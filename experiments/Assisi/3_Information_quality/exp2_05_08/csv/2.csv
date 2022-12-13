@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+4,95,12,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 4}]","{'situation': 'PanickedPeople', 'object': 'Family'}",0,-2,1
+10,3182,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 10}]",,0,1,1
+16,1315,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 16}]",,0,1,1
+22,1279,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 22}]",,0,1,1
+28,1285,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 28}]",,0,1,1
+34,8504,3,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 34}]",,0,1,1
+40,4429,3,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 40}]",,0,1,1
+46,5807,3,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 46}]",,0,1,1
+52,8476,4,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 52}]",,0,1,1

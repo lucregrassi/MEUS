@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,2469,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 3}]","{'situation': 'BlockedByDebris', 'object': 'BakeryShop'}",0,-2,1
+6,9167,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 6}]",,0,1,1
+9,9173,0,1,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 6}, {'situation': 'EmergencyOutdoor', 'object': 'Shop', 'coders': 3}]",,1,0,0.056

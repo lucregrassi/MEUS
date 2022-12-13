@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+4,85,0,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 4}]","{'situation': 'BlockedByDebris', 'object': 'CityHall'}",0,-2,1
+7,496,39,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 7}]",,0,1,1
+10,192,54,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 10}]",,0,1,1

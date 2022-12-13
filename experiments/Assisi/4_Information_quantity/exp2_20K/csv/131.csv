@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8070,0,0,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}]","{'situation': 'MildlyInjuredPeople', 'object': 'OldPerson'}",1,1,1
+12,430,0,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 6}]",,0,0,-0.045
+18,1895,0,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 12}]",,0,0,0.085
+24,9629,0,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 18}]",,0,1,0.234
+30,10697,0,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 24}]",,0,1,0.349
+36,15323,0,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 30}]",,0,1,0.437
+42,11634,3,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 36}]",,0,1,0.504
+48,872,3,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 42}]",,0,1,0.558
+54,2237,3,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 48}]",,0,1,0.601
+60,7279,3,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 54}]",,0,1,0.637
+66,10048,3,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 60}]",,0,1,0.667
+72,10364,3,1,"[{'situation': 'InjuredPeople', 'object': 'People', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'OldPerson', 'coders': 66}]",,0,1,0.692

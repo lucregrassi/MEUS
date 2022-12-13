@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,58,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'PoliceStation'}",0,1,1
+12,5620,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 12}]",,0,1,1
+18,6281,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 18}]",,0,1,1
+24,6756,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 24}]",,0,1,1
+30,4994,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 30}]",,0,1,1
+36,5705,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 36}]",,0,1,1
+42,1636,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 42}]",,0,1,1
+48,4670,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 48}]",,0,1,1
+54,4783,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 54}]",,0,1,1
+60,6802,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 60}]",,0,1,1
+66,886,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 66}]",,0,1,1
+72,3362,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 72}]",,0,1,1
+78,7225,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 78}]",,0,1,1
+84,9276,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 84}]",,0,1,1
+90,3491,12,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 84}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,1,1,0.75
+96,7860,12,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 90}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,1,0.764
+102,8285,16,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 96}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,1,0.777
+108,1121,18,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 102}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,1,0.789

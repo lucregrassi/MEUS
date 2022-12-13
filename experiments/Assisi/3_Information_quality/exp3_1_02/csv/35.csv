@@ -1,0 +1,2 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,9838,0,0,"[{'situation': 'OnFireBuilding', 'object': 'People', 'coders': 3}]","{'situation': 'BlockedBuilding', 'object': 'Students'}",2,-2,1

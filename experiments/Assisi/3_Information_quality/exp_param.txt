@@ -1,4 +1,4 @@
-5K agents
+10K agents
 100 GA
 3 hubs
 radius 2km

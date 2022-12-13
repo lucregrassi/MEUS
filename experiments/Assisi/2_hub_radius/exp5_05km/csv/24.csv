@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3987,0,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'Street'}",0,1,1
+12,579,0,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 12}]",,0,1,1
+18,5672,0,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 18}]",,0,1,1
+24,7157,0,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 24}]",,0,1,1
+30,8866,0,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 30}]",,0,1,1
+36,8955,0,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 36}]",,0,1,1
+42,5518,0,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 42}]",,0,1,1
+48,5515,5,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 48}]",,0,1,1
+54,4057,8,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 54}]",,0,1,1
+60,5474,8,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 60}]",,0,1,1
+66,6625,15,0,"[{'situation': 'PanickedPeople', 'object': 'Street', 'coders': 66}]",,0,1,1

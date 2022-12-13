@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,220,12,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 2}]","{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop'}",0,-2,1
+4,248,24,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 2}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 2}]",,1,-2,-0.167
+6,292,27,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 4}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 2}]",,0,0,0.022

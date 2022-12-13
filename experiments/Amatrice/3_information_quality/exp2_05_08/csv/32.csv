@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+4,94,7,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 4}]","{'situation': 'OnFireBuilding', 'object': 'PoliceStation'}",0,-2,1
+10,987,14,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 10}]",,0,1,1
+16,149,29,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 16}]",,0,1,1

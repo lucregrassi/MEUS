@@ -1,0 +1,17 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3047,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Family'}",0,1,1
+12,5418,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,6002,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,5802,12,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,8504,12,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,9030,12,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,2742,6,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,7831,6,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 48}]",,0,1,1
+54,95,21,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 54}]",,0,1,1
+60,166,18,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 60}]",,0,1,1
+66,2932,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 66}]",,0,1,1
+72,1497,3,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 72}]",,0,1,1
+78,6817,14,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 78}]",,0,1,1
+84,5289,11,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 84}]",,0,1,1
+90,725,11,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 90}]",,0,1,1
+96,8343,15,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 96}]",,0,1,1

@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,2529,8,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 3}]","{'situation': 'NoFoodPeople', 'object': 'Family'}",0,-2,1
+6,7654,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 6}]",,0,1,1
+9,9815,15,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 3}]",,1,0,0.056
+12,1865,15,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 9}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 3}]",,0,0,0.216

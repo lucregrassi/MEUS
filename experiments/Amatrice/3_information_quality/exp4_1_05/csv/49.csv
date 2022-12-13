@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,220,0,0,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}]","{'situation': 'NoWaterPeople', 'object': 'Crossroad'}",1,-2,1
+6,793,0,1,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 3}]",,0,0,-0.1
+12,17,18,1,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 9}]",,0,0,0.216
+15,347,23,1,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 12}]",,0,1,0.337
+18,771,5,2,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 12}, {'situation': 'StarvingPeople', 'object': 'Crossroad', 'coders': 3}]",,1,0,0.221
+21,755,70,2,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 12}, {'situation': 'StarvingPeople', 'object': 'Crossroad', 'coders': 6}]",,1,0,0.114
+27,18,85,2,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 18}, {'situation': 'StarvingPeople', 'object': 'Crossroad', 'coders': 6}]",,0,0,0.24
+30,709,66,2,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 3}, {'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 21}, {'situation': 'StarvingPeople', 'object': 'Crossroad', 'coders': 6}]",,0,1,0.294

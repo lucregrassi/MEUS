@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,1536,0,0,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 2}]","{'situation': 'NoMedicinePeople', 'object': 'Street'}",1,-2,1
+4,3097,0,1,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 2}, {'situation': 'NoFoodPeople', 'object': 'Square', 'coders': 2}]",,2,-2,-0.167
+6,9535,0,2,"[{'situation': 'StarvingPeople', 'object': 'Outdoor', 'coders': 2}, {'situation': 'NoFoodPeople', 'object': 'Square', 'coders': 2}, {'situation': 'NoFoodPeople', 'object': 'Crossroad', 'coders': 2}]",,2,0,-0.133

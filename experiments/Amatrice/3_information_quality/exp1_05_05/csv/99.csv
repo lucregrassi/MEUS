@@ -1,0 +1,3 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3,5,0,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'OldPerson'}",0,1,1
+12,236,10,0,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 12}]",,0,1,1

@@ -1,0 +1,8 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,978,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'Family'}",0,1,1
+12,684,9,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,162,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 18}]",,0,1,1
+22,11,49,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 22}]",,0,1,1
+28,953,20,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 28}]",,0,1,1
+34,915,67,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 34}]",,0,1,1
+40,765,81,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 40}]",,0,1,1

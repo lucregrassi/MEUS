@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,551,0,0,"[{'situation': 'TrafficJam', 'object': 'OldPerson', 'coders': 2}]","{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson'}",2,-2,1
+4,173,55,1,"[{'situation': 'TrafficJam', 'object': 'OldPerson', 'coders': 2}, {'situation': 'BlockedByDebris', 'object': 'Object', 'coders': 2}]",,2,-2,-0.167
+10,58,78,2,"[{'situation': 'TrafficJam', 'object': 'OldPerson', 'coders': 2}, {'situation': 'BlockedByDebris', 'object': 'Object', 'coders': 2}, {'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,0,0.098

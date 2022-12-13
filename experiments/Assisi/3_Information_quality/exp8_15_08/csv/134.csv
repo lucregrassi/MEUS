@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,2450,0,0,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 2}]","{'situation': 'NoFoodPeople', 'object': 'BakeryShop'}",1,-2,1
+4,7944,0,0,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}]",,1,-2,1
+6,5117,3,1,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 2}]",,0,0,0.022
+8,201,6,1,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 4}]",,0,0,-0.071
+10,547,0,1,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,0,-0.013
+12,1548,6,1,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 8}]",,0,0,0.071
+14,6556,6,1,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 10}]",,0,0,0.152
+16,8522,27,2,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 10}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 2}]",,1,0,0.168
+18,9692,27,2,"[{'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 12}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 2}]",,0,0,0.23

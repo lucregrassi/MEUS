@@ -1,0 +1,24 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,5310,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'Family'}",0,1,1
+12,5928,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,3145,11,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 12}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,1,0,0.085
+24,4284,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.234
+30,1248,3,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.349
+36,4637,4,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.437
+42,8078,11,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.504
+48,2767,13,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.558
+54,1017,13,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.601
+60,9348,14,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 54}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.637
+66,5536,25,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 60}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.667
+72,1488,33,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 66}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.692
+78,2455,33,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 72}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.714
+84,6380,33,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 78}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.733
+90,4257,31,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 84}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.75
+96,3421,30,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 90}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.764
+102,2567,35,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 96}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.777
+108,6551,36,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 96}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 12}]",,1,1,0.603
+114,9395,41,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 102}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 12}]",,0,1,0.622
+120,7996,39,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 108}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 12}]",,0,1,0.638
+126,6547,38,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 114}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 12}]",,0,1,0.654
+132,4595,42,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 120}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 12}]",,0,1,0.668
+138,8524,52,1,"[{'situation': 'OnFireBuilding', 'object': 'Family', 'coders': 126}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 12}]",,0,1,0.681

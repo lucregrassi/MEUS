@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,4432,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'Crossroad'}",0,1,1
+12,6514,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 12}]",,0,1,1
+18,8122,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 18}]",,0,1,1
+24,106,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 24}]",,0,1,1
+30,4101,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 30}]",,0,1,1
+36,7591,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 36}]",,0,1,1
+42,8523,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 42}]",,0,1,1
+48,8144,3,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 48}]",,0,1,1
+54,8980,3,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 54}]",,0,1,1
+60,6531,6,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 60}]",,0,1,1
+66,6594,6,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 66}]",,0,1,1

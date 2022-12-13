@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1968,0,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Square'}",0,1,1
+12,168,0,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 12}]",,0,1,1
+18,3059,0,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 18}]",,0,1,1
+24,1518,11,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 24}]",,0,1,1

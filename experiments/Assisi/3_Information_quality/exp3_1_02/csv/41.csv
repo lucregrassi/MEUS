@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,500,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 3}]","{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson'}",1,-2,1
+6,821,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 3}]",,0,0,-0.1
+9,2970,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,0,0.056
+12,6194,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,1,0,-0.045
+15,7295,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 9}, {'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,1,0,0.006
+18,9020,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 9}, {'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 9}]",,0,0,-0.029

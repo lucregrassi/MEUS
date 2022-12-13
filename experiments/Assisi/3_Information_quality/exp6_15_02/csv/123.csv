@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,931,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 2}]","{'situation': 'MildlyInjuredPeople', 'object': 'Hospital'}",0,-2,1
+4,2533,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 4}]",,0,-2,1
+6,5670,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 4}, {'situation': 'SeverelyInjuredPeople', 'object': 'PoliceStation', 'coders': 2}]",,2,0,0.022
+8,6989,0,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 4}, {'situation': 'SeverelyInjuredPeople', 'object': 'PoliceStation', 'coders': 2}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 2}]",,1,0,-0.027

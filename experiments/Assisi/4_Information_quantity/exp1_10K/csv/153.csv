@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,6931,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson'}",0,1,1
+12,1627,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,1,0,-0.045
+18,1149,6,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 12}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,0,0.085
+24,6528,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 18}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.234
+30,6044,6,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 24}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.349
+36,9224,6,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 30}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.437
+42,7378,7,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 36}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.504
+48,2760,9,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 42}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.558
+54,9866,15,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 48}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.601

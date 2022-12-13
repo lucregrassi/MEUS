@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2395,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'GreenGrocery'}",0,1,1
+12,2224,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 12}]",,0,1,1
+18,3893,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 18}]",,0,1,1
+24,7728,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 24}]",,0,1,1
+30,4487,3,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 30}]",,0,1,1
+36,7126,14,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 36}]",,0,1,1
+51,42,34,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 51}]",,0,1,1
+57,7478,20,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 57}]",,0,1,1
+63,6038,15,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 63}]",,0,1,1
+69,4768,26,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 69}]",,0,1,1
+75,5271,28,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 75}]",,0,1,1
+81,5560,28,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 81}]",,0,1,1
+87,4911,37,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 87}]",,0,1,1
+93,3160,47,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 93}]",,0,1,1
+99,3592,57,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 99}]",,0,1,1
+105,8685,63,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 105}]",,0,1,1
+111,9721,36,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 111}]",,0,1,1
+117,4321,54,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 117}]",,0,1,1

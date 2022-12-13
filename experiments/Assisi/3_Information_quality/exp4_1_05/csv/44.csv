@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,2948,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 3}]","{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery'}",0,-2,1
+6,3228,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,1
+9,4329,8,0,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 9}]",,0,1,1
+12,5020,8,0,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 12}]",,0,1,1
+15,5345,8,0,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 15}]",,0,1,1
+18,9001,8,0,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 18}]",,0,1,1
+21,9862,8,1,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 18}, {'situation': 'CollapsedBuilding', 'object': 'Shop', 'coders': 3}]",,1,1,0.498
+24,8517,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 21}, {'situation': 'CollapsedBuilding', 'object': 'Shop', 'coders': 3}]",,0,1,0.553
+27,3817,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 24}, {'situation': 'CollapsedBuilding', 'object': 'Shop', 'coders': 3}]",,0,1,0.597
+30,4661,4,1,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 24}, {'situation': 'CollapsedBuilding', 'object': 'Shop', 'coders': 6}]",,1,1,0.349
+33,5264,4,1,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 27}, {'situation': 'CollapsedBuilding', 'object': 'Shop', 'coders': 6}]",,0,1,0.396
+36,5454,4,1,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 30}, {'situation': 'CollapsedBuilding', 'object': 'Shop', 'coders': 6}]",,0,1,0.437

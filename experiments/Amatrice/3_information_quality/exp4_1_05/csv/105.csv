@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,578,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 3}]","{'situation': 'CollapsedBuilding', 'object': 'Students'}",1,-2,1
+6,438,49,1,"[{'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 3}]",,0,0,-0.1
+12,47,52,1,"[{'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 9}]",,0,0,0.216
+18,72,52,1,"[{'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 15}]",,0,1,0.428

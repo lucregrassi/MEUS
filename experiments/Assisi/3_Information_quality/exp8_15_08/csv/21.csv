@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,9128,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 2}]","{'situation': 'CollapsedBuilding', 'object': 'Students'}",0,-2,1
+4,538,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 4}]",,0,-2,1
+6,9842,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 6}]",,0,1,1
+8,9817,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 6}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 2}]",,1,0,0.196
+10,5753,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 8}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 2}]",,0,0,0.324
+12,7625,13,1,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 10}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 2}]",,0,1,0.419
+14,8935,6,1,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 12}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 2}]",,0,1,0.491
+16,3096,6,2,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 12}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 2}, {'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 2}]",,2,1,0.364
+18,3400,10,2,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 12}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 4}, {'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 2}]",,1,0,0.23
+20,7406,0,2,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 14}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 4}, {'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 2}]",,0,0,0.286
+22,8706,0,2,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 16}, {'situation': 'CollapsedBuilding', 'object': 'GroupOfPeople', 'coders': 4}, {'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 2}]",,0,1,0.335

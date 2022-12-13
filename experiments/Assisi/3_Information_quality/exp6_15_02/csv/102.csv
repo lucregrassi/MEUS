@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,5988,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'CityHall', 'coders': 2}]","{'situation': 'CollapsedBuilding', 'object': 'Hospital'}",2,-2,1
+4,985,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'CityHall', 'coders': 2}, {'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 2}]",,0,-2,-0.167
+6,9280,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'CityHall', 'coders': 2}, {'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 4}]",,0,0,0.022

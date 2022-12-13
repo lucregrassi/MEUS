@@ -1,0 +1,6 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,4622,13,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'Family'}",0,1,1
+12,3343,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,4813,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,2978,15,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 24}]",,0,1,1
+39,96,32,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 39}]",,0,1,1

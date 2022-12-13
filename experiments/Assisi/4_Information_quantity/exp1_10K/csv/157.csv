@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,87,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 15}]","{'situation': 'NoFoodPeople', 'object': 'OldPerson'}",0,1,1
+21,537,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 21}]",,0,1,1
+27,1873,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 27}]",,0,1,1
+33,2812,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 33}]",,0,1,1
+39,3695,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 39}]",,0,1,1
+45,6489,0,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 39}, {'situation': 'NoFoodPeople', 'object': 'People', 'coders': 6}]",,1,1,0.533
+51,6964,0,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 45}, {'situation': 'NoFoodPeople', 'object': 'People', 'coders': 6}]",,0,1,0.581
+57,7605,0,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 51}, {'situation': 'NoFoodPeople', 'object': 'People', 'coders': 6}]",,0,1,0.62
+63,1963,0,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 57}, {'situation': 'NoFoodPeople', 'object': 'People', 'coders': 6}]",,0,1,0.653
+69,542,9,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 63}, {'situation': 'NoFoodPeople', 'object': 'People', 'coders': 6}]",,0,1,0.68
+75,175,12,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 69}, {'situation': 'NoFoodPeople', 'object': 'People', 'coders': 6}]",,0,1,0.704

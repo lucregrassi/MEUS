@@ -1,0 +1,2 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,324,6,0,"[{'situation': 'DeadPeople', 'object': 'PublicBuilding', 'coders': 3}]","{'situation': 'DeadPeople', 'object': 'PoliceStation'}",1,-2,1

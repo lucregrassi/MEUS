@@ -1,0 +1,3 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,741,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 2}]","{'situation': 'CollapsedBuilding', 'object': 'PoliceStation'}",0,-2,1
+4,438,20,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 4}]",,0,-2,1

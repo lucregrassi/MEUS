@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,2851,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 3}]","{'situation': 'BlockedBuilding', 'object': 'Crowded'}",1,-2,1
+6,5482,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}]",,1,1,1
+9,6092,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 3}]",,0,0,0.056
+12,6591,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 9}, {'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 3}]",,1,0,0.216
+15,5683,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 9}, {'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 6}]",,0,0,0.006
+18,284,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 9}, {'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 9}]",,0,0,-0.029
+21,3864,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 9}, {'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 12}]",,0,0,-0.004
+24,9442,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 9}, {'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 15}]",,0,0,0.042

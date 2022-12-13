@@ -1,0 +1,14 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,17812,0,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'Students'}",0,1,1
+12,633,0,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,5720,0,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 18}]",,0,1,1
+24,16155,0,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 24}]",,0,1,1
+30,18726,0,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 30}]",,0,1,1
+36,3321,3,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 36}]",,0,1,1
+42,12441,3,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 42}]",,0,1,1
+48,14278,3,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 48}]",,0,1,1
+54,18986,3,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 54}]",,0,1,1
+60,12380,4,0,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 60}]",,0,1,1
+66,8252,4,1,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 60}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.667
+72,16946,4,1,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 60}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,1,1,0.441
+78,12518,9,1,"[{'situation': 'PanickedPeople', 'object': 'Students', 'coders': 66}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.476

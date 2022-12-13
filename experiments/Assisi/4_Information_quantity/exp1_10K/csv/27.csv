@@ -1,0 +1,16 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,40,3,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 15}]","{'situation': 'MildlyInjuredPeople', 'object': 'Hospital'}",0,1,1
+21,3443,3,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 21}]",,0,1,1
+27,6292,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 27}]",,0,1,1
+33,1175,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 33}]",,0,1,1
+39,4539,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 39}]",,0,1,1
+45,5237,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 45}]",,0,1,1
+51,7588,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 51}]",,0,1,1
+66,64,15,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 66}]",,0,1,1
+72,4766,13,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 72}]",,0,1,1
+78,7550,7,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 78}]",,0,1,1
+84,3527,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 84}]",,0,1,1
+90,6823,12,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 90}]",,0,1,1
+96,928,12,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 96}]",,0,1,1
+102,6075,21,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 102}]",,0,1,1
+108,2163,28,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 108}]",,0,1,1

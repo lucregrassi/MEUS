@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,1101,0,0,"[{'situation': 'OnFireBuilding', 'object': 'GasStation', 'coders': 2}]","{'situation': 'OnFireBuilding', 'object': 'GasStation'}",0,-2,1
+4,1467,0,1,"[{'situation': 'OnFireBuilding', 'object': 'GasStation', 'coders': 2}, {'situation': 'BlockedBuilding', 'object': 'ButcheryShop', 'coders': 2}]",,2,-2,-0.167
+6,2434,0,2,"[{'situation': 'OnFireBuilding', 'object': 'GasStation', 'coders': 2}, {'situation': 'BlockedBuilding', 'object': 'ButcheryShop', 'coders': 2}, {'situation': 'EmergencyBuilding', 'object': 'Shop', 'coders': 2}]",,1,0,-0.133

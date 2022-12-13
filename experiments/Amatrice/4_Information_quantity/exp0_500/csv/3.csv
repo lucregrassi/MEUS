@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,459,0,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'PoliceStation'}",0,1,1
+21,60,12,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 21}]",,0,1,1
+27,281,3,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 27}]",,0,1,1
+42,38,72,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 42}]",,0,1,1
+48,316,78,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 48}]",,0,1,1
+54,335,95,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 54}]",,0,1,1

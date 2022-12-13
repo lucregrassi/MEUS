@@ -1,0 +1,6 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,283,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'YoungPerson'}",0,1,1
+12,4550,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 12}]",,0,1,1
+18,2611,6,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 12}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,1,0,0.085
+24,8890,6,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 18}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.234
+30,2786,0,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 24}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.349

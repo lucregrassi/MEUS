@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,996,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 2}]","{'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson'}",3,-2,1
+4,587,0,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 2}]",,3,-2,-0.167
+6,365,20,2,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 2}, {'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 2}]",,0,0,-0.133
+8,187,18,3,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 2}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 2}, {'situation': 'MildlyInjuredPeople', 'object': 'MiddleAgePerson', 'coders': 2}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 2}]",,1,0,-0.107

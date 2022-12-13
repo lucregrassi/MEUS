@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1461,8,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'CityHall'}",0,1,1
+12,2625,8,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 12}]",,0,1,1
+18,6331,5,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 18}]",,0,1,1
+24,8640,5,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 24}]",,0,1,1
+30,9505,5,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 30}]",,0,1,1
+36,4153,0,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 36}]",,0,1,1
+42,1193,0,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 42}]",,0,1,1
+48,4302,0,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 48}]",,0,1,1
+54,6187,0,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 54}]",,0,1,1
+60,1577,6,0,"[{'situation': 'BlockedByDebris', 'object': 'CityHall', 'coders': 60}]",,0,1,1

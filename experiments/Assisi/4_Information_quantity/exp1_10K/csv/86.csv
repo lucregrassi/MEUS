@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,71,3,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 15}]","{'situation': 'CollapsedBuilding', 'object': 'House'}",0,1,1
+21,732,3,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 21}]",,0,1,1
+27,8981,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 27}]",,0,1,1
+33,1184,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 33}]",,0,1,1
+39,1421,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 39}]",,0,1,1
+45,3953,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 45}]",,0,1,1
+51,7614,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 51}]",,0,1,1
+57,8013,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 57}]",,0,1,1
+63,6647,7,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 63}]",,0,1,1
+69,1708,6,0,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 69}]",,0,1,1
+75,6363,6,1,"[{'situation': 'CollapsedBuilding', 'object': 'House', 'coders': 69}, {'situation': 'EmergencyBuilding', 'object': 'House', 'coders': 6}]",,1,1,0.704

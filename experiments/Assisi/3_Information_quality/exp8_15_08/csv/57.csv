@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,8425,0,0,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 2}]","{'situation': 'NoFoodPeople', 'object': 'GreenGrocery'}",1,-2,1
+4,811,0,0,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 4}]",,1,-2,1
+6,817,0,1,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 2}]",,0,0,0.022
+8,5529,0,1,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 4}]",,0,0,-0.071
+10,5651,0,1,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 4}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,0,-0.013
+12,4128,6,1,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 6}]",,1,0,-0.045
+14,7655,6,1,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 8}]",,0,0,-0.017
+16,3475,3,1,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 10}]",,0,0,0.031
+18,6280,0,1,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 12}]",,0,0,0.085
+20,4442,3,2,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 12}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 2}]",,2,0,0.162
+22,8309,3,2,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 14}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 2}]",,0,0,0.207
+24,9781,3,2,"[{'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 16}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 2}]",,0,0,0.25

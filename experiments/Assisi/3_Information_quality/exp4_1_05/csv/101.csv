@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,890,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}]","{'situation': 'CollapsedBuilding', 'object': 'PoliceStation'}",1,-2,1
+6,2392,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 3}]",,0,0,-0.1
+9,2723,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,0,0.056
+12,9787,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 9}]",,0,0,0.216
+15,8433,3,1,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 12}]",,0,1,0.337
+18,2938,4,1,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 15}]",,0,1,0.428
+21,3674,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 18}]",,0,1,0.498
+24,9734,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 3}, {'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 21}]",,0,1,0.553

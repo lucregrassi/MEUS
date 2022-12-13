@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2574,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'OldPerson'}",0,1,1
+12,6332,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
+18,6350,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,1
+24,8209,0,1,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}]",,1,1,0.234
+30,4258,0,1,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}]",,0,1,0.349
+36,8062,0,2,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,1,1,0.236
+42,3968,6,2,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.316
+48,8063,6,2,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.382
+54,6200,9,2,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.437
+60,4270,10,2,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.484
+66,8279,10,2,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 54}, {'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.524

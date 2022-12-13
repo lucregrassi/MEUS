@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8926,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'Hospital'}",0,1,1
+12,1844,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 12}]",,0,1,1
+18,4122,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 18}]",,0,1,1
+24,7835,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,1,1,0.234
+30,8810,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.349
+36,6446,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.437
+42,9783,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.504
+48,11001,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.558
+54,221,9,1,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.601
+60,18905,9,1,"[{'situation': 'CollapsedBuilding', 'object': 'Hospital', 'coders': 54}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.637

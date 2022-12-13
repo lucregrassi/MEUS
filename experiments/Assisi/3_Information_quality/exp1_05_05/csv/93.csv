@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2395,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'GreenGrocery'}",0,1,1
+12,2224,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 12}]",,0,1,1
+18,3893,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 18}]",,0,1,1
+24,7728,0,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 24}]",,0,1,1
+30,4487,3,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 30}]",,0,1,1
+36,7126,14,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 36}]",,0,1,1

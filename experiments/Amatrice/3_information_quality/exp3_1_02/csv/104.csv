@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,442,0,0,"[{'situation': 'TrafficJam', 'object': 'CityHall', 'coders': 3}]","{'situation': 'TrafficJam', 'object': 'CityHall'}",0,-2,1
+6,120,0,0,"[{'situation': 'TrafficJam', 'object': 'CityHall', 'coders': 6}]",,0,1,1
+9,182,0,0,"[{'situation': 'TrafficJam', 'object': 'CityHall', 'coders': 9}]",,0,1,1

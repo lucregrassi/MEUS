@@ -1,0 +1,25 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,7268,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'CityHall'}",0,1,1
+12,4592,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 12}]",,0,1,1
+18,945,6,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 18}]",,0,1,1
+24,1871,6,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 24}]",,0,1,1
+30,2883,6,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 30}]",,0,1,1
+36,3172,12,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 36}]",,0,1,1
+42,386,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 42}]",,0,1,1
+48,318,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 48}]",,0,1,1
+54,779,3,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 54}]",,0,1,1
+60,4127,3,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 60}]",,0,1,1
+66,9093,3,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 66}]",,0,1,1
+72,6567,15,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 72}]",,0,1,1
+78,9120,15,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 78}]",,0,1,1
+84,6889,17,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 78}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,1,1,0.733
+90,7720,28,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 84}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.75
+96,9882,28,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 90}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.764
+102,7698,33,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 96}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.777
+108,9170,33,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 102}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.789
+114,9434,23,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 108}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.8
+120,123,30,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 114}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.809
+126,1802,30,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 120}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.818
+132,5347,32,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 126}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.826
+138,7902,42,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 132}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.833
+144,9851,40,1,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 138}, {'situation': 'EmergencyPeople', 'object': 'CityHall', 'coders': 6}]",,0,1,0.84

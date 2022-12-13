@@ -1,0 +1,17 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+3,3047,0,0,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 3}]","{'situation': 'TrafficJam', 'object': 'Family'}",1,-2,1
+6,5418,0,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 3}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 3}]",,0,0,-0.1
+9,6002,0,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 3}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 6}]",,0,0,0.056
+12,5802,12,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 3}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 9}]",,0,0,0.216
+15,8504,12,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 3}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 12}]",,0,1,0.337
+18,9030,12,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 3}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 15}]",,0,1,0.428
+21,2742,6,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 15}]",,1,1,0.163
+24,7831,6,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 18}]",,0,1,0.234
+28,95,21,1,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 22}]",,0,1,0.314
+31,166,18,2,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 22}, {'situation': 'TrafficJam', 'object': 'GroupOfPeople', 'coders': 3}]",,1,1,0.311
+34,2932,0,2,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 25}, {'situation': 'TrafficJam', 'object': 'GroupOfPeople', 'coders': 3}]",,0,1,0.357
+37,1497,3,2,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 28}, {'situation': 'TrafficJam', 'object': 'GroupOfPeople', 'coders': 3}]",,0,1,0.397
+40,6817,14,2,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 31}, {'situation': 'TrafficJam', 'object': 'GroupOfPeople', 'coders': 3}]",,0,1,0.434
+43,5289,11,2,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 34}, {'situation': 'TrafficJam', 'object': 'GroupOfPeople', 'coders': 3}]",,0,1,0.466
+46,725,11,2,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 37}, {'situation': 'TrafficJam', 'object': 'GroupOfPeople', 'coders': 3}]",,0,1,0.495
+49,8343,15,2,"[{'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}, {'situation': 'TrafficJam', 'object': 'Family', 'coders': 40}, {'situation': 'TrafficJam', 'object': 'GroupOfPeople', 'coders': 3}]",,0,1,0.521

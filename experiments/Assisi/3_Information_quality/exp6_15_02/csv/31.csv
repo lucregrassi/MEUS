@@ -1,0 +1,6 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+2,5295,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 2}]","{'situation': 'NoWaterPeople', 'object': 'Students'}",0,-2,1
+4,8112,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 2}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 2}]",,1,-2,-0.167
+6,4483,6,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 2}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 2}, {'situation': 'NoMedicinePeople', 'object': 'GroupOfPeople', 'coders': 2}]",,3,0,-0.133
+8,4141,12,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 4}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 2}, {'situation': 'NoMedicinePeople', 'object': 'GroupOfPeople', 'coders': 2}]",,0,0,-0.027
+10,9627,12,3,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 4}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 2}, {'situation': 'NoMedicinePeople', 'object': 'GroupOfPeople', 'coders': 2}, {'situation': 'NoWaterPeople', 'object': 'Object', 'coders': 2}]",,3,0,-0.04

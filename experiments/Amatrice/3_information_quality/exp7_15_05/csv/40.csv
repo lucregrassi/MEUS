@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,14,33,0,"[{'situation': 'NoWaterPeople', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'BakeryShop'}",0,1,1
+8,964,26,1,"[{'situation': 'NoWaterPeople', 'object': 'BakeryShop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 2}]",,2,0,0.196
+10,982,17,2,"[{'situation': 'NoWaterPeople', 'object': 'BakeryShop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 2}, {'situation': 'NoWaterPeople', 'object': 'Building', 'coders': 2}]",,2,0,0.098

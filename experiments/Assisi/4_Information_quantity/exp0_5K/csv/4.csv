@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,34,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 15}]","{'situation': 'BlockedBuilding', 'object': 'Students'}",0,1,1
+21,1953,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 21}]",,0,1,1
+27,4496,3,0,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 27}]",,0,1,1
+33,2989,9,0,"[{'situation': 'BlockedBuilding', 'object': 'Students', 'coders': 33}]",,0,1,1

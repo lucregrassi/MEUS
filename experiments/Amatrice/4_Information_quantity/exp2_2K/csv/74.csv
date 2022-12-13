@@ -1,0 +1,3 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1720,9,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop'}",0,1,1
+12,292,27,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,0,1,1

@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3051,0,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'YoungPerson'}",0,1,1
+12,8920,0,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 12}]",,0,1,1
+18,1560,0,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 18}]",,0,1,1
+24,4110,4,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 24}]",,0,1,1
+30,1257,8,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 30}]",,0,1,1
+36,151,15,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 36}]",,0,1,1
+42,9858,17,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 42}]",,0,1,1
+48,1993,24,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 48}]",,0,1,1
+54,8614,31,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 54}]",,0,1,1
+60,7274,30,0,"[{'situation': 'NoWaterPeople', 'object': 'YoungPerson', 'coders': 60}]",,0,1,1

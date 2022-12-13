@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,201,6,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'BakeryShop'}",0,1,1
+12,547,0,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 12}]",,0,1,1
+18,1548,6,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 18}]",,0,1,1
+24,6556,6,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 24}]",,0,1,1
+30,2450,0,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 30}]",,0,1,1
+36,7944,0,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 36}]",,0,1,1
+42,5117,3,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 42}]",,0,1,1
+48,7322,16,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 42}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,1,1,0.558
+54,5338,24,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 48}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.601
+60,8522,27,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 54}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.637
+66,9692,27,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 60}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.667
+72,2926,43,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 66}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.692
+78,1560,43,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 72}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.714
+84,1858,43,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 78}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.733
+90,6628,43,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 78}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,1,1,0.637
+96,5770,36,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 84}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.658
+102,5828,35,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 90}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.676
+117,25,33,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 105}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.714

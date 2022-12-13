@@ -1,0 +1,14 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,7268,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'CityHall'}",0,1,1
+12,4592,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 12}]",,0,1,1
+18,945,6,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 18}]",,0,1,1
+24,1871,6,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 24}]",,0,1,1
+30,2883,6,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 30}]",,0,1,1
+36,3172,12,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 36}]",,0,1,1
+42,386,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 42}]",,0,1,1
+48,318,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 48}]",,0,1,1
+54,779,3,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 54}]",,0,1,1
+60,4127,3,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 60}]",,0,1,1
+66,9093,3,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 66}]",,0,1,1
+72,6567,15,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 72}]",,0,1,1
+78,9120,15,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 78}]",,0,1,1

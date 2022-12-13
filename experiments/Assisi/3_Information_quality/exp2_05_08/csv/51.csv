@@ -1,0 +1,16 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2489,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'Hospital'}",0,1,1
+12,503,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 12}]",,0,1,1
+18,3888,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 18}]",,0,1,1
+24,4348,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 24}]",,0,1,1
+30,6466,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 30}]",,0,1,1
+36,6564,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 36}]",,0,1,1
+42,6639,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 42}]",,0,1,1
+48,7458,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 48}]",,0,1,1
+54,9007,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 54}]",,0,1,1
+58,15,12,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 58}]",,0,1,1
+64,9225,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 64}]",,0,1,1
+70,974,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 70}]",,0,1,1
+76,8754,3,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 76}]",,0,1,1
+82,7024,20,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 82}]",,0,1,1
+88,1750,19,0,"[{'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 88}]",,0,1,1

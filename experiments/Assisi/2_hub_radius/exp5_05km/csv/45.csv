@@ -1,0 +1,37 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,9151,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 6}]","{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson'}",0,1,1
+12,544,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 12}]",,0,1,1
+18,7099,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 18}]",,0,1,1
+24,8048,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 24}]",,0,1,1
+30,4234,13,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 30}]",,0,1,1
+36,8721,12,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 36}]",,0,1,1
+42,830,9,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 42}]",,0,1,1
+48,3288,3,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 48}]",,0,1,1
+54,447,9,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 54}]",,0,1,1
+60,3741,9,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 60}]",,0,1,1
+66,4143,9,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 66}]",,0,1,1
+72,1395,15,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 72}]",,0,1,1
+78,5419,20,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 78}]",,0,1,1
+84,4846,21,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 84}]",,0,1,1
+90,6496,21,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 90}]",,0,1,1
+96,7070,21,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 96}]",,0,1,1
+102,5497,19,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 102}]",,0,1,1
+108,7587,19,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 108}]",,0,1,1
+114,3492,18,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 114}]",,0,1,1
+120,9939,18,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 120}]",,0,1,1
+126,9949,18,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 126}]",,0,1,1
+132,3781,25,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 132}]",,0,1,1
+138,7576,25,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 138}]",,0,1,1
+144,7002,23,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 144}]",,0,1,1
+150,191,23,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 150}]",,0,1,1
+156,7216,26,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 156}]",,0,1,1
+162,3214,27,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 162}]",,0,1,1
+168,3510,33,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 168}]",,0,1,1
+174,7205,45,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 174}]",,0,1,1
+180,5923,45,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 180}]",,0,1,1
+186,8954,48,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 186}]",,0,1,1
+192,3766,47,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 192}]",,0,1,1
+198,5050,36,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 198}]",,0,1,1
+204,9584,49,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 204}]",,0,1,1
+210,7555,52,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 210}]",,0,1,1
+216,6614,54,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 216}]",,0,1,1

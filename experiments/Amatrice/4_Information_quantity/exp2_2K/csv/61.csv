@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1525,9,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'School'}",0,1,1
+12,1567,7,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 12}]",,0,1,1
+18,739,12,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 18}]",,0,1,1
+24,695,12,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 24}]",,0,1,1
+30,1507,0,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 30}]",,0,1,1
+36,174,19,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 36}]",,0,1,1
+42,717,21,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 42}]",,0,1,1
+48,1589,34,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 48}]",,0,1,1
+54,263,41,0,"[{'situation': 'BlockedByDebris', 'object': 'School', 'coders': 54}]",,0,1,1

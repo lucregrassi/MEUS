@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,7990,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Street'}",0,1,1
+12,4404,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 12}]",,0,1,1
+18,15109,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 18}]",,0,1,1
+24,16057,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 24}]",,0,1,1
+30,16307,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 30}]",,0,1,1
+36,17546,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 36}]",,0,1,1
+42,1374,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 42}]",,0,1,1
+48,4593,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 48}]",,0,1,1
+54,17240,0,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 54}]",,0,1,1
+60,9605,3,0,"[{'situation': 'TrafficJam', 'object': 'Street', 'coders': 60}]",,0,1,1

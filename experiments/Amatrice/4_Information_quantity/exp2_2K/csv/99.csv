@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1555,0,0,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'OldPerson'}",0,1,1
+21,3,5,0,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 21}]",,0,1,1
+27,1073,10,0,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 27}]",,0,1,1
+33,236,20,0,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 33}]",,0,1,1
+39,508,22,0,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 39}]",,0,1,1
+45,1281,32,1,"[{'situation': 'BlockedByDebris', 'object': 'OldPerson', 'coders': 39}, {'situation': 'BlockedByDebris', 'object': 'People', 'coders': 6}]",,1,1,0.533

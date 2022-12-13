@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,85,0,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 15}]","{'situation': 'BlockedBuilding', 'object': 'YoungPerson'}",0,1,1
+21,859,0,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 21}]",,0,1,1
+27,3353,0,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 27}]",,0,1,1
+33,4343,0,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 33}]",,0,1,1
+39,3307,0,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 39}]",,0,1,1
+45,3072,6,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 45}]",,0,1,1
+51,7898,6,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 51}]",,0,1,1
+57,4024,12,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 57}]",,0,1,1
+63,7503,12,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 63}]",,0,1,1
+69,9945,9,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 69}]",,0,1,1
+75,7360,18,0,"[{'situation': 'BlockedBuilding', 'object': 'YoungPerson', 'coders': 75}]",,0,1,1

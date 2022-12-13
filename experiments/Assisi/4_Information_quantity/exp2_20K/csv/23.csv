@@ -1,0 +1,8 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,863,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'MiddleAgePerson'}",0,1,1
+12,2454,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,12141,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,13458,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,13993,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,18643,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1
+42,19442,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 42}]",,0,1,1

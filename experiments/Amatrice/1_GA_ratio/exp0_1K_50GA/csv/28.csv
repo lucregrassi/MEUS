@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,10,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 15}]","{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson'}",0,1,1
+21,828,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 15}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,1,1,0.163
+27,305,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 21}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.295
+33,439,3,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'YoungPerson', 'coders': 27}, {'situation': 'MildlyInjuredPeople', 'object': 'People', 'coders': 6}]",,0,1,0.396
