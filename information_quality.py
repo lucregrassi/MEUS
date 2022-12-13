@@ -3,8 +3,8 @@ import os
 import json
 from ontology_utils import distance_between_two_classes
 
-city = "Amatrice"
-root_dir = os.getcwd() + "/experiments/" + city + "/3_Error/"
+city = "Assisi"
+root_dir = os.getcwd() + "/experiments/" + city + "/3_information_quality/"
 
 
 def first_valid_observation():
@@ -14,7 +14,7 @@ def first_valid_observation():
     for exp_folder in exp_folders:
         # Exclude files from processing
         if not os.path.isfile(root_dir + "/" + exp_folder):
-            outcomes_dict = {"correct": 0, "wrong": 0, "distances": []}
+            outcomes_dict = {"correct": 0, "wrong": 0, "avg_kalpha": 0, "distances": []}
             csv_folder = root_dir + "/" + exp_folder + "/csv/"
             # For each file in the csv folder of the experiment compute tp and fp
             for file in os.listdir(csv_folder):
@@ -38,7 +38,9 @@ def first_valid_observation():
                             distance = sit_dist + obj_dist
                             outcomes_dict["distances"].append(distance)
                             outcomes_dict["wrong"] = outcomes_dict["wrong"] + 1
+                        outcomes_dict["avg_kalpha"] = outcomes_dict["avg_kalpha"] + csv_file["Kalpha"][i]
                         break
+            outcomes_dict["avg_kalpha"] = outcomes_dict["avg_kalpha"] / len(outcomes_dict["distances"])
             result[exp_number] = outcomes_dict
             exp_number = exp_number + 1
 
@@ -56,7 +58,7 @@ def all_valid_observations():
     for exp_folder in exp_folders:
         # Exclude files from processing
         if not os.path.isfile(root_dir + "/" + exp_folder):
-            outcomes_dict = {"correct": 0, "wrong": 0, "distances": []}
+            outcomes_dict = {"correct": 0, "wrong": 0, "avg_kalpha": 0, "distances": []}
             csv_folder = root_dir + "/" + exp_folder + "/csv/"
             # For each file in the csv folder of the experiment compute tp and fp
             for file in os.listdir(csv_folder):
@@ -80,7 +82,8 @@ def all_valid_observations():
                             distance = sit_dist + obj_dist
                             outcomes_dict["distances"].append(distance)
                             outcomes_dict["wrong"] = outcomes_dict["wrong"] + 1
-
+                        outcomes_dict["avg_kalpha"] = outcomes_dict["avg_kalpha"] + csv_file["Kalpha"][i]
+            outcomes_dict["avg_kalpha"] = outcomes_dict["avg_kalpha"] / len(outcomes_dict["distances"])
             result[exp_number] = outcomes_dict
             exp_number = exp_number + 1
 
@@ -98,7 +101,7 @@ def all_majority_observations():
     for exp_folder in exp_folders:
         # Exclude files from processing
         if not os.path.isfile(root_dir + "/" + exp_folder):
-            outcomes_dict = {"correct": 0, "wrong": 0, "distances": []}
+            outcomes_dict = {"correct": 0, "wrong": 0, "avg_kalpha": 0, "distances": []}
             csv_folder = root_dir + "/" + exp_folder + "/csv/"
             # For each file in the csv folder of the experiment compute tp and fp
             for file in os.listdir(csv_folder):
@@ -119,7 +122,8 @@ def all_majority_observations():
                         distance = sit_dist + obj_dist
                         outcomes_dict["distances"].append(distance)
                         outcomes_dict["wrong"] = outcomes_dict["wrong"] + 1
-
+                    outcomes_dict["avg_kalpha"] = outcomes_dict["avg_kalpha"] + csv_file["Kalpha"][i]
+            outcomes_dict["avg_kalpha"] = round((outcomes_dict["avg_kalpha"] / len(outcomes_dict["distances"])), 2)
             result[exp_number] = outcomes_dict
             exp_number = exp_number + 1
 
