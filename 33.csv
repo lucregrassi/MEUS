@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,181,13,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Family'}",0,1,1
+12,838,36,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,561,8,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,648,18,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,609,76,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,447,56,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,911,104,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,629,123,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 48}]",,0,1,1

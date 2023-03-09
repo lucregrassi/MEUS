@@ -1,0 +1,3 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,289,35,0,"[{'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson'}",1,1,1
+12,485,61,1,"[{'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,0,-0.045

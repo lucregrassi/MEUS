@@ -1,0 +1,21 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1381,0,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'House'}",0,1,1
+12,7006,0,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 12}]",,0,1,1
+18,1293,0,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 18}]",,0,1,1
+24,2364,6,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 24}]",,0,1,1
+30,1075,6,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 30}]",,0,1,1
+36,2763,18,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 36}]",,0,1,1
+42,6082,9,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 42}]",,0,1,1
+48,2893,26,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 48}]",,0,1,1
+54,4561,21,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 54}]",,0,1,1
+60,5417,15,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 60}]",,0,1,1
+66,9965,32,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 66}]",,0,1,1
+72,6761,36,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 72}]",,0,1,1
+78,3114,36,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 78}]",,0,1,1
+84,7180,33,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 84}]",,0,1,1
+90,3481,48,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 90}]",,0,1,1
+96,1891,42,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 96}]",,0,1,1
+102,1305,43,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 102}]",,0,1,1
+108,1309,37,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 108}]",,0,1,1
+114,8125,50,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 114}]",,0,1,1
+120,5207,54,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 120}]",,0,1,1

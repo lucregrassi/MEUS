@@ -1,0 +1,26 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8305,3,0,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Students'}",1,1,1
+12,1017,3,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 6}]",,0,0,-0.045
+18,4257,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 12}]",,0,0,0.085
+24,5310,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 18}]",,0,1,0.234
+30,5928,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 24}]",,0,1,0.349
+36,5828,11,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 30}]",,0,1,0.437
+42,6522,11,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 36}]",,0,1,0.504
+48,9348,10,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 42}]",,0,1,0.558
+54,2455,12,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 48}]",,0,1,0.601
+60,9934,13,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 54}]",,0,1,0.637
+66,4637,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 60}]",,0,1,0.667
+72,7745,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 66}]",,0,1,0.692
+78,547,18,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 72}]",,0,1,0.714
+84,2767,17,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 78}]",,0,1,0.733
+90,8078,15,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 84}]",,0,1,0.75
+96,1993,7,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 90}]",,0,1,0.764
+102,3145,7,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 96}]",,0,1,0.777
+108,7395,9,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 102}]",,0,1,0.789
+114,9395,37,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 108}]",,0,1,0.8
+120,6547,34,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 114}]",,0,1,0.809
+126,6380,43,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 120}]",,0,1,0.818
+132,9780,32,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 126}]",,0,1,0.826
+138,4452,33,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 132}]",,0,1,0.833
+144,4284,31,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 138}]",,0,1,0.84
+150,5536,29,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 144}]",,0,1,0.846

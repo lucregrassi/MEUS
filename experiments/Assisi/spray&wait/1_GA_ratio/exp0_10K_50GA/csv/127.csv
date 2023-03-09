@@ -1,0 +1,17 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,5374,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery'}",0,1,1
+12,8478,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 12}]",,0,1,1
+18,9870,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 18}]",,0,1,1
+24,8452,9,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 24}]",,0,1,1
+30,5344,9,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 30}]",,0,1,1
+36,5658,9,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 36}]",,0,1,1
+42,7174,9,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 42}]",,0,1,1
+48,1573,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 48}]",,0,1,1
+54,494,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 54}]",,0,1,1
+60,9003,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 60}]",,0,1,1
+66,6740,24,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 66}]",,0,1,1
+72,1071,22,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 72}]",,0,1,1
+78,6252,22,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 78}]",,0,1,1
+84,319,3,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 84}]",,0,1,1
+90,8113,3,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 90}]",,0,1,1
+96,9892,3,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 96}]",,0,1,1

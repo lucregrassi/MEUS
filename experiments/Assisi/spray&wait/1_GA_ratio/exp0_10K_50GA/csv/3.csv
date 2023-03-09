@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8616,0,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'PoliceStation'}",0,1,1
+12,4540,0,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 12}]",,0,1,1
+18,8790,0,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 18}]",,0,1,1
+24,3944,12,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 24}]",,0,1,1
+30,5122,11,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 30}]",,0,1,1
+36,3309,0,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 36}]",,0,1,1
+42,9786,18,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 42}]",,0,1,1
+48,9449,43,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 48}]",,0,1,1
+54,6620,32,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 54}]",,0,1,1
+60,182,48,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 60}]",,0,1,1
+66,8180,24,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 66}]",,0,1,1
+72,4633,32,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 72}]",,0,1,1

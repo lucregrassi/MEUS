@@ -1,0 +1,25 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2794,0,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson'}",0,1,1
+12,2452,0,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,5771,15,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,1455,15,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,7551,15,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,9618,15,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1
+42,2902,0,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 42}]",,0,1,1
+48,986,0,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 48}]",,0,1,1
+54,4888,0,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 54}]",,0,1,1
+60,9650,0,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 60}]",,0,1,1
+66,1345,6,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 66}]",,0,1,1
+81,22,12,0,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 81}]",,0,1,1
+87,505,12,1,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 81}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,1,1,0.742
+93,8738,18,1,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 87}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.757
+99,9530,18,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 87}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,1,1,0.667
+105,726,30,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 93}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.685
+111,2230,42,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 99}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.7
+117,2482,42,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 105}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.714
+123,4353,0,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 111}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.727
+129,3143,3,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 117}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.739
+135,8395,3,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 123}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.75
+141,8719,3,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 129}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.76
+147,4490,0,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 135}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.769
+153,4252,0,2,"[{'situation': 'NoWaterPeople', 'object': 'MiddleAgePerson', 'coders': 141}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'People', 'coders': 6}]",,0,1,0.778

@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,4552,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Street'}",0,1,1
+12,5677,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 12}]",,0,1,1
+18,982,9,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 18}]",,0,1,1
+24,1987,9,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 24}]",,0,1,1
+30,6765,16,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 30}]",,0,1,1
+36,6891,55,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 36}]",,0,1,1
+42,1421,31,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 42}]",,0,1,1
+48,3920,30,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 48}]",,0,1,1
+54,2757,31,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 54}]",,0,1,1
+60,3274,31,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 60}]",,0,1,1
+66,121,4,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 66}]",,0,1,1
+72,9649,12,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 72}]",,0,1,1
+78,173,12,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 78}]",,0,1,1
+84,2777,22,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 84}]",,0,1,1
+90,8693,19,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 90}]",,0,1,1
+96,875,19,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 96}]",,0,1,1
+102,7270,37,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 102}]",,0,1,1
+108,4128,43,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 108}]",,0,1,1

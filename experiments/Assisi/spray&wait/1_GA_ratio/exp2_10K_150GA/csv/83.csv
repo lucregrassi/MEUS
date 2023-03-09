@@ -1,0 +1,17 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,106,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 15}]","{'situation': 'BlockedByDebris', 'object': 'Crossroad'}",0,1,1
+21,4101,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 21}]",,0,1,1
+27,7591,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 27}]",,0,1,1
+33,8523,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 27}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,1,1,0.396
+39,8122,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 33}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.472
+45,4432,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 39}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.533
+51,6514,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 45}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.581
+57,8980,3,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 51}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.62
+63,8144,3,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 57}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.653
+69,6531,6,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 63}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.68
+75,6594,6,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 69}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.704
+90,96,12,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 84}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.75
+96,3408,12,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 90}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.764
+102,3004,18,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 96}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.777
+108,6818,18,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 102}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.789
+114,3746,15,1,"[{'situation': 'BlockedByDebris', 'object': 'Crossroad', 'coders': 108}, {'situation': 'BlockedByDebris', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.8

@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,979,5,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'Family'}",0,1,1
+12,645,9,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,543,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,956,55,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,748,121,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,148,118,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,601,130,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,844,130,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 48}]",,0,1,1
+54,399,91,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 54}]",,0,1,1
+60,409,155,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 60}]",,0,1,1
+66,323,143,0,"[{'situation': 'BlockedBuilding', 'object': 'Family', 'coders': 66}]",,0,1,1

@@ -1,0 +1,2 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,816,20,0,"[{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'GreenGrocery'}",0,1,1

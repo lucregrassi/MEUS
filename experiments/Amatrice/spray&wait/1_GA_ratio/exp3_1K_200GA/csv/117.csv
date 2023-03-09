@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,149,9,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 15}]","{'situation': 'NoWaterPeople', 'object': 'Students'}",0,1,1
+21,299,41,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 21}]",,0,1,1
+36,94,49,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 36}]",,0,1,1

@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,5167,6,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'Street'}",0,1,1
+21,61,17,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 21}]",,0,1,1
+27,7841,19,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 27}]",,0,1,1
+33,2276,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 33}]",,0,1,1
+39,2371,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 33}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}]",,1,1,0.472
+45,2186,34,1,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 39}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.533
+51,7179,33,1,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 45}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.581
+57,7092,41,2,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 45}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}, {'situation': 'OnFireBuilding', 'object': 'Outdoor', 'coders': 6}]",,1,1,0.462
+63,2224,48,2,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 51}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}, {'situation': 'OnFireBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.505
+69,1101,48,2,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 57}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}, {'situation': 'OnFireBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.542

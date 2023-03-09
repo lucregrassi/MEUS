@@ -1,0 +1,46 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,95,12,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 15}]","{'situation': 'PanickedPeople', 'object': 'Family'}",0,1,1
+21,3182,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 21}]",,0,1,1
+27,1315,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 27}]",,0,1,1
+33,1279,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 33}]",,0,1,1
+39,1285,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 39}]",,0,1,1
+45,8504,3,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 45}]",,0,1,1
+51,4429,3,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 51}]",,0,1,1
+57,5807,3,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 57}]",,0,1,1
+63,8476,4,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 63}]",,0,1,1
+69,5964,26,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 69}]",,0,1,1
+75,7017,28,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 75}]",,0,1,1
+81,9393,28,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 75}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.724
+87,1177,18,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 81}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.742
+93,9086,17,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 87}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.757
+99,8534,35,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 93}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.771
+105,5258,42,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 99}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.783
+111,9275,22,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 105}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.795
+117,1496,42,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 111}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.805
+123,3818,42,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 117}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.814
+129,7197,19,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 123}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.822
+135,8544,19,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 129}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.829
+141,629,29,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 135}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.836
+147,7264,29,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 141}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.843
+153,2692,9,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 147}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.849
+159,8239,22,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 153}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.854
+165,4979,34,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 159}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.859
+171,6984,20,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 165}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.864
+177,5608,21,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 171}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.869
+183,5602,38,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 177}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.873
+189,5239,64,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 183}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.877
+195,2105,64,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 189}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.88
+201,2648,63,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 195}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.884
+207,3002,71,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 195}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,1,1,0.833
+213,5802,65,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 201}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.838
+219,4927,73,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 207}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.842
+225,4894,7,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 213}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.846
+231,9700,43,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 219}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.85
+237,166,37,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 225}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.853
+243,7820,37,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 231}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.857
+249,5026,71,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 237}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.86
+255,5220,94,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 243}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.863
+261,8036,94,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 249}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.866
+267,5289,93,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 255}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.869
+273,6604,67,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 261}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.872
+279,2596,53,2,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 267}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.875

@@ -1,0 +1,15 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2606,9,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'YoungPerson'}",0,1,1
+12,6197,15,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 12}]",,0,1,1
+18,3214,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 18}]",,0,1,1
+24,911,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 24}]",,0,1,1
+30,3843,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 30}]",,0,1,1
+36,8932,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 36}]",,0,1,1
+42,393,9,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 42}]",,0,1,1
+48,2231,3,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 48}]",,0,1,1
+54,7473,9,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 54}]",,0,1,1
+60,6987,6,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 60}]",,0,1,1
+66,6614,12,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 66}]",,0,1,1
+72,8336,12,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 72}]",,0,1,1
+78,3621,15,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 78}]",,0,1,1
+84,2615,27,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 84}]",,0,1,1

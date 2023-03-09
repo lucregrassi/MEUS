@@ -1,0 +1,16 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,606,3,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'School'}",0,1,1
+12,1865,3,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 12}]",,0,1,1
+27,72,9,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 27}]",,0,1,1
+33,8981,5,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 27}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,1,1,0.396
+39,1777,6,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 33}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.472
+45,4178,8,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 39}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.533
+51,8203,8,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 45}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.581
+57,4286,0,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 51}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.62
+63,7707,0,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 57}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.653
+69,3264,20,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 63}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.68
+75,9439,15,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 69}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.704
+81,1940,14,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 75}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.724
+87,1450,14,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 81}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.742
+93,7539,24,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 87}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.757
+99,9815,30,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 93}, {'situation': 'EmergencyBuilding', 'object': 'School', 'coders': 6}]",,0,1,0.771

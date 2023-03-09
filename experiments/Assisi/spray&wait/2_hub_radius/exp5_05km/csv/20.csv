@@ -1,0 +1,14 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1716,0,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Square'}",0,1,1
+12,8765,7,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 12}]",,0,1,1
+18,3404,29,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 18}]",,0,1,1
+24,253,37,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 24}]",,0,1,1
+30,1944,35,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 30}]",,0,1,1
+36,6008,56,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 36}]",,0,1,1
+42,318,57,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 42}]",,0,1,1
+48,7383,11,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 48}]",,0,1,1
+54,4546,14,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 54}]",,0,1,1
+60,9789,75,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 60}]",,0,1,1
+66,3076,101,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 66}]",,0,1,1
+72,7659,69,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 72}]",,0,1,1
+78,7178,101,0,"[{'situation': 'DeadPeople', 'object': 'Square', 'coders': 78}]",,0,1,1

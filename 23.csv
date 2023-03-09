@@ -1,0 +1,2 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,763,59,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'MiddleAgePerson'}",0,1,1

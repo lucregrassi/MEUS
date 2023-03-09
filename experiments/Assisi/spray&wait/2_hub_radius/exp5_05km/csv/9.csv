@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,5269,69,0,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson'}",0,1,1
+12,3053,33,0,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,6311,57,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 12}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,1,0,0.085
+24,3717,57,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 18}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.234
+30,8811,63,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 24}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.349
+36,1533,69,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 30}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.437
+42,2598,69,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 36}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.504
+48,2956,69,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.558
+54,3077,60,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.601
+60,712,60,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.637
+66,317,61,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 60}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.667
+72,8749,51,1,"[{'situation': 'NoFoodPeople', 'object': 'MiddleAgePerson', 'coders': 66}, {'situation': 'StarvingPeople', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.692

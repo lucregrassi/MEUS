@@ -1,0 +1,3 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,551,0,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson'}",0,1,1
+21,173,55,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 21}]",,0,1,1

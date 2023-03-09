@@ -1,0 +1,46 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8954,5,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'MiddleAgePerson'}",0,1,1
+12,9893,4,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,9584,18,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,7780,22,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,4370,28,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,4281,28,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1
+42,5485,34,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 42}]",,0,1,1
+48,705,37,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 48}]",,0,1,1
+54,4509,40,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 54}]",,0,1,1
+60,992,40,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 60}]",,0,1,1
+66,6969,40,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 66}]",,0,1,1
+72,7593,32,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 72}]",,0,1,1
+78,1360,32,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 78}]",,0,1,1
+84,7611,30,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 84}]",,0,1,1
+90,9151,29,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 90}]",,0,1,1
+96,3801,15,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 96}]",,0,1,1
+102,4394,6,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 102}]",,0,1,1
+108,1678,0,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 108}]",,0,1,1
+114,8402,21,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 114}]",,0,1,1
+120,7687,13,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 120}]",,0,1,1
+126,8339,17,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 126}]",,0,1,1
+132,5932,58,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 132}]",,0,1,1
+138,1297,64,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 138}]",,0,1,1
+144,8946,64,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 144}]",,0,1,1
+150,7587,67,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 150}]",,0,1,1
+156,3641,68,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 156}]",,0,1,1
+162,8721,72,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 162}]",,0,1,1
+168,5494,74,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 168}]",,0,1,1
+174,1785,82,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 174}]",,0,1,1
+180,6205,82,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 180}]",,0,1,1
+186,3621,83,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 186}]",,0,1,1
+192,1575,83,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 192}]",,0,1,1
+198,3766,65,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 198}]",,0,1,1
+204,7863,75,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 204}]",,0,1,1
+210,219,80,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 210}]",,0,1,1
+216,763,81,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 216}]",,0,1,1
+222,5079,94,0,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 222}]",,0,1,1
+228,2125,95,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 222}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,1,1,0.897
+234,4327,106,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 228}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,0,1,0.9
+240,9949,89,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 234}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,0,1,0.902
+246,6441,106,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 240}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,0,1,0.905
+252,4800,108,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 246}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,0,1,0.907
+258,1800,90,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 252}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,0,1,0.909
+264,5500,92,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 258}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,0,1,0.911
+270,742,116,1,"[{'situation': 'TrafficJam', 'object': 'MiddleAgePerson', 'coders': 264}, {'situation': 'TrafficJam', 'object': 'People', 'coders': 6}]",,0,1,0.913

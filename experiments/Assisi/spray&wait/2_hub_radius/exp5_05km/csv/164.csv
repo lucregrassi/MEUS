@@ -1,0 +1,44 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2606,9,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'YoungPerson'}",0,1,1
+12,6197,15,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 12}]",,0,1,1
+18,3214,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 18}]",,0,1,1
+24,911,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 24}]",,0,1,1
+30,3843,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 30}]",,0,1,1
+36,8932,0,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 36}]",,0,1,1
+42,393,9,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 42}]",,0,1,1
+48,2231,3,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 48}]",,0,1,1
+54,7473,9,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 54}]",,0,1,1
+60,6987,6,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 60}]",,0,1,1
+66,6614,12,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 66}]",,0,1,1
+72,8336,12,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 72}]",,0,1,1
+78,3621,15,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 78}]",,0,1,1
+84,2615,27,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 84}]",,0,1,1
+90,6103,21,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 90}]",,0,1,1
+96,614,66,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 96}]",,0,1,1
+102,2487,51,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 102}]",,0,1,1
+108,2260,51,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 108}]",,0,1,1
+114,3641,24,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 114}]",,0,1,1
+120,351,75,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 120}]",,0,1,1
+126,6856,74,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 126}]",,0,1,1
+132,424,18,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 132}]",,0,1,1
+138,3288,30,0,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 138}]",,0,1,1
+144,4118,30,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 138}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,1,1,0.84
+150,6626,30,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 144}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.846
+156,7512,30,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 150}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.852
+162,9791,30,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 156}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.857
+168,7070,53,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 162}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.862
+174,3697,87,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 168}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.866
+180,3047,86,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 174}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.871
+186,9958,87,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 180}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.875
+192,3921,33,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 186}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.879
+198,5481,39,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 192}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.882
+204,4441,39,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 198}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.886
+210,7216,59,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 204}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.889
+216,2460,72,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 210}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.892
+222,3152,89,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 216}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.895
+228,1084,69,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 222}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.897
+234,3182,91,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 228}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.9
+240,1793,97,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 234}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.902
+246,177,99,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 240}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.905
+252,5831,103,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 246}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.907
+258,7077,60,1,"[{'situation': 'DeadPeople', 'object': 'YoungPerson', 'coders': 252}, {'situation': 'EmergencyPeople', 'object': 'YoungPerson', 'coders': 6}]",,0,1,0.909

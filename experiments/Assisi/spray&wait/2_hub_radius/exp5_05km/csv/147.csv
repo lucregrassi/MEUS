@@ -1,0 +1,37 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2549,15,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'Family'}",0,1,1
+12,6637,0,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 6}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,0,-0.045
+18,496,0,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 12}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,0,0.085
+24,3240,24,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 18}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.234
+30,6227,31,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 24}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.349
+36,6915,26,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 30}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
+42,4588,27,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 36}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.504
+48,4744,27,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 42}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.558
+54,2462,39,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 48}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.601
+60,5592,21,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 54}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.637
+66,5417,3,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 60}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.667
+72,8757,48,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 66}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.692
+78,9717,54,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 72}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.714
+93,31,64,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 87}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.757
+99,4506,55,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 87}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,1,1,0.572
+105,2763,75,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 93}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.593
+111,8025,77,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 99}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.613
+117,1305,79,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 105}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.63
+123,4439,72,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 111}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.646
+129,7712,85,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 117}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.661
+135,2593,68,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 123}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.675
+141,5837,68,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 129}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.687
+147,4743,86,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 135}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.699
+153,8634,87,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 141}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.71
+159,6779,89,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 147}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.72
+165,6531,94,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 153}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.729
+171,3194,101,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 159}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.738
+177,8736,106,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 165}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.746
+183,2498,112,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 171}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.754
+189,3256,112,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 177}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.762
+195,7065,111,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 183}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.768
+201,9632,108,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 183}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 18}]",,1,1,0.673
+207,1309,118,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 189}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 18}]",,0,1,0.682
+213,106,113,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 195}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 18}]",,0,1,0.69
+219,6082,121,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 201}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 18}]",,0,1,0.698
+225,6998,121,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 207}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 18}]",,0,1,0.705

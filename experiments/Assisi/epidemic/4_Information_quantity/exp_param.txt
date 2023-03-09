@@ -1,0 +1,8 @@
+5K, 10K, 20K agents
+100 GA
+3 hubs
+radius 2km
+std dev 0.5
+std dev GA 0.2
+threshold of seen events 30%
+non epidemic (tengo tutti i salti)

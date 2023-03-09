@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,317,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'Crossroad'}",0,1,1
+12,9725,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 12}]",,0,1,1
+18,6815,3,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 18}]",,0,1,1
+24,3784,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 24}]",,0,1,1
+30,671,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 30}]",,0,1,1
+36,3053,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 36}]",,0,1,1
+42,8983,0,1,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'Crossroad', 'coders': 6}]",,1,1,0.504
+48,5644,15,1,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'Crossroad', 'coders': 6}]",,0,1,0.558
+54,3633,11,1,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'Crossroad', 'coders': 6}]",,0,1,0.601
+60,2546,21,1,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 54}, {'situation': 'EmergencyBuilding', 'object': 'Crossroad', 'coders': 6}]",,0,1,0.637
+66,8117,21,1,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 60}, {'situation': 'EmergencyBuilding', 'object': 'Crossroad', 'coders': 6}]",,0,1,0.667

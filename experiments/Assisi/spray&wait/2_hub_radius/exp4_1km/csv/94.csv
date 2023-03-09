@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1536,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 6}]","{'situation': 'NoMedicinePeople', 'object': 'Street'}",0,1,1
+12,3097,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 12}]",,0,1,1
+18,9535,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 18}]",,0,1,1
+24,999,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 24}]",,0,1,1
+30,2611,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 30}]",,0,1,1
+36,868,12,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 36}]",,0,1,1
+42,6619,12,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 42}]",,0,1,1
+48,7675,6,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 48}]",,0,1,1
+54,2791,6,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 54}]",,0,1,1
+60,9925,6,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 60}]",,0,1,1
+66,2815,27,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 66}]",,0,1,1

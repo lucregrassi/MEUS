@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,6716,0,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson'}",0,1,1
+12,3958,0,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,4624,0,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,9391,0,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,9968,0,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,517,4,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1
+42,7052,4,0,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 42}]",,0,1,1
+48,7747,5,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 42}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,1,1,0.558
+54,8714,5,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 48}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.601
+60,4584,16,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 54}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.637
+66,8357,0,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 60}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.667
+72,8083,16,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 66}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.692
+78,268,12,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 72}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.714
+84,3665,0,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 78}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.733
+90,3365,19,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 84}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.75
+96,8918,20,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 90}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.764
+102,8187,25,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 96}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.777
+108,6090,46,1,"[{'situation': 'BlockedByDebris', 'object': 'MiddleAgePerson', 'coders': 102}, {'situation': 'EmergencyOutdoor', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.789

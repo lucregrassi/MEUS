@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3152,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 6}]","{'situation': 'SeverelyInjuredPeople', 'object': 'Students'}",0,1,1
+12,152,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,4441,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 18}]",,0,1,1
+24,8469,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 24}]",,0,1,1
+30,5399,23,1,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 24}, {'situation': 'SeverelyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.349
+36,7569,3,1,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 30}, {'situation': 'SeverelyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
+42,217,14,2,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 30}, {'situation': 'SeverelyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'InjuredPeople', 'object': 'Students', 'coders': 6}]",,1,1,0.316
+48,742,14,2,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 36}, {'situation': 'SeverelyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'InjuredPeople', 'object': 'Students', 'coders': 6}]",,0,1,0.382
+54,1297,21,2,"[{'situation': 'SeverelyInjuredPeople', 'object': 'Students', 'coders': 36}, {'situation': 'SeverelyInjuredPeople', 'object': 'GroupOfPeople', 'coders': 12}, {'situation': 'InjuredPeople', 'object': 'Students', 'coders': 6}]",,1,1,0.25

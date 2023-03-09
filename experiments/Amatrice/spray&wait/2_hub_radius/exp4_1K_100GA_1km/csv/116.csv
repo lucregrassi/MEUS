@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,664,18,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson'}",0,1,1
+12,635,88,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,886,116,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1

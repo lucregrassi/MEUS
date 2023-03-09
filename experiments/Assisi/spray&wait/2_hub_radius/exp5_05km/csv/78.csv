@@ -1,0 +1,23 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,72,19,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 15}]","{'situation': 'OnFireBuilding', 'object': 'School'}",0,1,1
+21,4286,10,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 21}]",,0,1,1
+27,8981,17,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 27}]",,0,1,1
+33,1450,14,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 33}]",,0,1,1
+39,1940,14,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 39}]",,0,1,1
+45,4178,14,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 45}]",,0,1,1
+51,2113,27,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 51}]",,0,1,1
+57,9815,40,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 57}]",,0,1,1
+63,236,53,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 63}]",,0,1,1
+69,7713,54,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 69}]",,0,1,1
+75,9439,15,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 75}]",,0,1,1
+81,7707,16,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 81}]",,0,1,1
+87,3264,20,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 87}]",,0,1,1
+93,8203,8,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 93}]",,0,1,1
+99,1865,3,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 99}]",,0,1,1
+105,606,3,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 105}]",,0,1,1
+111,7539,24,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 111}]",,0,1,1
+117,8772,50,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 117}]",,0,1,1
+123,7082,63,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 123}]",,0,1,1
+129,7654,79,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 129}]",,0,1,1
+135,8237,39,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 135}]",,0,1,1
+141,1777,6,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 141}]",,0,1,1

@@ -1,0 +1,8 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,671,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'Crossroad'}",0,1,1
+12,3053,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 12}]",,0,1,1
+18,3784,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 18}]",,0,1,1
+24,8983,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 24}]",,0,1,1
+30,3633,17,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 30}]",,0,1,1
+36,5644,15,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 36}]",,0,1,1
+42,9680,18,0,"[{'situation': 'FloodedBuilding', 'object': 'Crossroad', 'coders': 42}]",,0,1,1

@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,735,74,0,"[{'situation': 'TrafficJam', 'object': 'Students', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Students'}",0,1,1
+12,339,3,0,"[{'situation': 'TrafficJam', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,477,79,0,"[{'situation': 'TrafficJam', 'object': 'Students', 'coders': 18}]",,0,1,1
+24,663,108,0,"[{'situation': 'TrafficJam', 'object': 'Students', 'coders': 24}]",,0,1,1
+30,927,192,0,"[{'situation': 'TrafficJam', 'object': 'Students', 'coders': 30}]",,0,1,1
+36,836,264,0,"[{'situation': 'TrafficJam', 'object': 'Students', 'coders': 36}]",,0,1,1

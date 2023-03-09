@@ -1,0 +1,32 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,4768,12,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'Family'}",0,1,1
+12,4704,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,560,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,4187,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 18}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.234
+30,9266,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 24}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.349
+36,2901,17,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 30}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
+42,8865,41,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 36}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.504
+48,9497,24,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.558
+54,3734,24,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.601
+60,6971,32,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.637
+66,6105,25,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 60}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.667
+72,3800,26,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 66}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.692
+78,9136,33,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 72}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.714
+84,3646,51,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 78}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.733
+90,9498,3,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 84}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.75
+96,5921,3,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 90}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.764
+102,7287,3,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 96}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.777
+108,7890,3,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 102}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.789
+114,9285,27,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 108}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.8
+120,1535,50,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 114}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.809
+126,490,53,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 120}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.818
+132,8909,54,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 126}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.826
+138,515,38,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 132}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.833
+144,3733,40,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 138}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.84
+150,2625,67,1,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 144}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.846
+156,7126,67,2,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 144}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,1,1,0.782
+162,7009,89,2,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 150}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.789
+168,9651,90,2,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 156}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.796
+174,8640,100,2,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 162}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.803
+180,6213,106,2,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 168}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.809
+186,8936,103,2,"[{'situation': 'NoWaterPeople', 'object': 'Family', 'coders': 174}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.815

@@ -1,0 +1,2 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,9913,22,0,"[{'situation': 'OnFireBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'MiddleAgePerson'}",0,1,1

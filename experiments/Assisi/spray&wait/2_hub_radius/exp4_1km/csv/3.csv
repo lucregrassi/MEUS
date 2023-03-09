@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8616,0,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'PoliceStation'}",0,1,1
+12,4540,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,1,0,-0.045
+18,8790,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 12}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,0,0.085
+24,3944,12,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 18}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.234
+30,5122,11,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 24}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.349
+36,3309,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 30}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.437
+42,9786,18,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 36}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.504
+48,9449,43,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.558
+54,6620,32,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.601
+60,182,48,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.637
+66,8180,24,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 60}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.667
+72,4633,32,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 66}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.692

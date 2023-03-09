@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,438,37,0,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'House'}",0,1,1
+21,47,58,0,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 21}]",,0,1,1
+36,72,92,0,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 36}]",,0,1,1
+42,763,89,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 36}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,1,1,0.504
+48,254,104,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 42}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,0,1,0.558
+54,578,54,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 48}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,0,1,0.601
+60,647,122,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 54}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,0,1,0.637
+66,910,228,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 60}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,0,1,0.667
+72,461,228,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 66}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,0,1,0.692
+78,128,224,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 72}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,0,1,0.714
+84,915,274,1,"[{'situation': 'TrafficJam', 'object': 'House', 'coders': 78}, {'situation': 'TrafficJam', 'object': 'Building', 'coders': 6}]",,0,1,0.733

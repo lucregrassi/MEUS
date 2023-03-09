@@ -1,0 +1,23 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2970,18,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson'}",0,1,1
+12,8417,21,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,821,6,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,578,18,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
+30,6194,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
+36,500,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1
+42,7295,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 42}]",,0,1,1
+48,9020,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 48}]",,0,1,1
+54,5511,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 54}]",,0,1,1
+60,1554,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 60}]",,0,1,1
+66,5301,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 66}]",,0,1,1
+72,8457,48,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 72}]",,0,1,1
+78,1223,9,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 78}]",,0,1,1
+84,4152,33,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 84}]",,0,1,1
+90,8496,70,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 90}]",,0,1,1
+96,1222,74,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 96}]",,0,1,1
+102,1938,75,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 102}]",,0,1,1
+108,7161,75,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 108}]",,0,1,1
+114,1076,81,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 114}]",,0,1,1
+129,91,96,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 129}]",,0,1,1
+135,6325,96,0,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 135}]",,0,1,1
+141,677,83,1,"[{'situation': 'CollapsedBuilding', 'object': 'MiddleAgePerson', 'coders': 135}, {'situation': 'CollapsedBuilding', 'object': 'People', 'coders': 6}]",,1,1,0.836

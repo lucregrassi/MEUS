@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,5633,32,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'Square'}",0,1,1
+12,409,33,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 12}]",,0,1,1
+18,6625,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 18}]",,0,1,1
+24,9492,22,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 24}]",,0,1,1
+30,4124,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 30}]",,0,1,1
+36,1727,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 36}]",,0,1,1
+42,7427,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 42}]",,0,1,1
+48,8385,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 48}]",,0,1,1
+54,9304,42,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 54}]",,0,1,1
+60,8903,49,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 60}]",,0,1,1
+66,7157,50,0,"[{'situation': 'CollapsedBuilding', 'object': 'Square', 'coders': 66}]",,0,1,1

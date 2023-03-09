@@ -1,0 +1,29 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,5117,15,0,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'BakeryShop'}",0,1,1
+12,7322,16,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 6}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,1,0,-0.045
+18,547,0,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 12}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,0,0.085
+24,201,6,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 18}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.234
+30,1548,6,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 24}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.349
+36,6556,6,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 30}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.437
+42,2450,0,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 36}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.504
+48,7944,0,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 42}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.558
+54,5338,24,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 48}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.601
+60,2926,43,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 54}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.637
+66,1560,43,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 60}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.667
+72,1858,43,1,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 66}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.692
+78,6628,43,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 66}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,1,1,0.588
+84,5770,36,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 72}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.614
+90,5828,35,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 78}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.637
+105,25,33,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 93}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.685
+111,9692,27,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 99}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.7
+117,8522,27,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 105}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.714
+123,6377,38,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 111}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.727
+129,9780,44,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 117}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.739
+135,7833,63,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 123}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.75
+141,5151,53,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 129}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.76
+147,6380,61,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 135}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.769
+153,1257,59,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 141}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.778
+159,1893,64,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 147}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.785
+165,9964,76,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 153}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.793
+171,8044,72,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 159}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.8
+177,6478,73,2,"[{'situation': 'NoFoodPeople', 'object': 'BakeryShop', 'coders': 165}, {'situation': 'NoFoodPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.806

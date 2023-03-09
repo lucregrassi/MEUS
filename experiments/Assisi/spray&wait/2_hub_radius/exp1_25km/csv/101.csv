@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,890,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'PoliceStation'}",0,1,1
+12,2392,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 12}]",,0,1,1
+18,2723,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 18}]",,0,1,1
+24,9787,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 24}]",,0,1,1
+30,8433,3,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 30}]",,0,1,1
+36,2938,4,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 36}]",,0,1,1
+42,3674,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 42}]",,0,1,1
+48,9734,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'PoliceStation', 'coders': 48}]",,0,1,1

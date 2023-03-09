@@ -1,0 +1,18 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8886,6,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'BakeryShop'}",0,1,1
+12,769,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 12}]",,0,1,1
+18,7742,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 18}]",,0,1,1
+24,8700,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 24}]",,0,1,1
+30,3092,13,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 30}]",,0,1,1
+36,2458,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 36}]",,0,1,1
+42,322,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 42}]",,0,1,1
+48,8109,9,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 48}]",,0,1,1
+54,8606,9,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 54}]",,0,1,1
+60,2857,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 60}]",,0,1,1
+66,7506,45,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 66}]",,0,1,1
+72,1272,38,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 72}]",,0,1,1
+78,849,45,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 78}]",,0,1,1
+84,7536,51,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 84}]",,0,1,1
+90,3408,52,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 90}]",,0,1,1
+96,8273,48,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 96}]",,0,1,1
+102,1506,48,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 102}]",,0,1,1

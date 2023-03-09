@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,284,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'Crowded'}",0,1,1
+12,3864,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 12}]",,0,1,1
+18,5683,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 18}]",,0,1,1
+24,9442,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 24}]",,0,1,1
+30,1144,6,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 30}]",,0,1,1
+36,6092,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 36}]",,0,1,1
+42,2851,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 42}]",,0,1,1
+48,5482,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 48}]",,0,1,1
+54,6591,0,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 54}]",,0,1,1
+60,5513,15,0,"[{'situation': 'BlockedBuilding', 'object': 'Crowded', 'coders': 60}]",,0,1,1

@@ -1,0 +1,15 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2549,15,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'Family'}",0,1,1
+12,6637,0,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 6}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,0,-0.045
+18,496,0,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 12}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,0,0.085
+24,3240,24,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 18}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.234
+30,6227,31,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 24}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.349
+36,6915,26,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 30}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
+42,4588,27,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 36}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.504
+48,4744,27,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 42}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.558
+54,2462,39,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 48}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.601
+60,5592,21,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 54}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.637
+66,5417,3,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 60}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.667
+72,8757,48,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 66}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.692
+78,9717,54,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 72}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.714
+93,31,64,1,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 87}, {'situation': 'PanickedPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.757
