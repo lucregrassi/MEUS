@@ -6,3 +6,4 @@ std dev 0.5, 1, 1.5
 std dev GA 0.2, 0.5, 0.8
 threshold of seen events 30%
 epidemic
+no jumps

@@ -1,4 +1,4 @@
-from InformationElement import NewInformationElement, NewDirectObservation
+from InformationElement import InformationElement, DirectObservation
 from utils import NewIEtoDict, getIndexOfTuple
 from ontology_utils import get_cls_at_dist
 from scipy.stats import halfnorm
@@ -22,9 +22,9 @@ logging.basicConfig(filename="logfile.log",
 
 
 class Simulator:
-    def __init__(self, num_exp=0, n_agents=100, gateway_ratio=0.3, loop_distance=100, seed=69, threshold=30, std_dev=0.5,
-                 std_dev_gateway=0.2, path=os.path.abspath(os.getcwd()), radius=2, nl=0,
-                 epidemic=True):
+    def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.1, loop_distance=100, seed=69,
+                 threshold=30, std_dev=0.5, std_dev_gateway=0.2, path=os.path.abspath(os.getcwd()), radius=2, nl=0,
+                 routing="epidemic", jumps=False):
         self.n_agents = n_agents
         self.gateway_ratio = gateway_ratio
         self.perc_seen_ev = 0
@@ -56,13 +56,14 @@ class Simulator:
         self.simulation_steps = nl
         self.num_exp = num_exp
         self.G = None
-        self.epidemic = epidemic
         self.halfnorm_size = 20011
         self.n_gateway_agents = 0
         self.gateway_agents_errors = []
         self.normal_agents_errors = []
         self.agents_do_log = {}
         self.rand_numbers = []
+        self.routing = routing
+        self.jumps = jumps
 
     def compute_destination(self, current_node, ag_n, loop):
         # if len([n for n in self.G.neighbors(current_node)])==0:
@@ -123,20 +124,25 @@ class Simulator:
                                 listener.met_in_node.append(int(k))
                                 listener.met_in_loop.append(loop)
 
+                                # This is useful only with spray & wait when there is one copy left and the info is
+                                # passed to a gateway agent
+                                ie_teller_idxs_to_delete = []
                                 # Loop through all Information Elements of the teller
-                                for IE_teller in teller.ies:
+                                for ie_teller_idx, IE_teller in enumerate(teller.ies):
                                     same_root = False
                                     already_told = False
-                                    # print("teller: ", IE_teller[0],", ",IE_teller[1:])
-                                    for i, IE_lis in enumerate(listener.ies):
-                                        # If the IEs have the same root
+                                    # Loop through all IEs of the listener
+                                    for ie_listener_idx, IE_lis in enumerate(listener.ies):
+                                        # If the IEs have the same root, epidemic and spray and wait have no difference
                                         if IE_teller[0] == IE_lis[0]:
                                             same_root = True
-                                            # If epidemic and two IEs have same DO, do not communicate it
-                                            if self.epidemic:
+                                            # If we don't have to store all jumps
+                                            if not self.jumps:
+                                                # Do not communicate further info
                                                 already_told = True
+                                            # If we have to store all jumps, look for those that the listener doesn't have
                                             else:
-                                                index = i
+                                                index = ie_listener_idx
                                                 # For each quadrupla in the IE
                                                 for quadrupla in IE_teller[1:]:
                                                     # If the listener is not a teller in a tuple of the IE,
@@ -145,23 +151,55 @@ class Simulator:
                                                         already_told = True
                                                         break
                                                 for tup in IE_lis[1:]:
+                                                    # TODO: check why there is only one element sometimes
+                                                    print(tup)
                                                     if tup[0] == teller.n and tup[1] == listener.n:
                                                         already_told = True
                                                         break
                                     if not already_told:
-                                        if self.epidemic or not same_root:
-                                            # Append the new IE to the listener (making a deepcopy of the IE of the teller)
-                                            listener.ies.append(copy.deepcopy(IE_teller))
-                                            # listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                        # If the listener does not have the IE, just deepcopy it as it is.
+                                        if not same_root:
+                                            # If the routing is epidemic, the IE should be communicated (without bothering
+                                            # about copy limits)
+                                            if self.routing == "epidemic":
+                                                # Append the new IE to the listener (making a deepcopy of the IE of the teller)
+                                                listener.ies.append(copy.deepcopy(IE_teller))
+                                                listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                            # If the routing is spray & wait
+                                            else:
+                                                copies = IE_teller[0].toJson()["ie_copies"]
+                                                # If there are at least 2 copies
+                                                if copies > 1:
+                                                    # Halve the copies and communicate the other half to the listener
+                                                    IE_teller[0].toJson()["ie_copies"] = copies/2
+                                                    listener.ies.append(copy.deepcopy(IE_teller))
+                                                    listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                                # If there is only one copy of the IE left and the agent is not a GA
+                                                # and the listener is a GA
+                                                elif copies < 2 and teller.n >= self.n_gateway_agents > listener.n:
+                                                    print("To delete IE at idx", ie_teller_idx)
+                                                    ie_teller_idxs_to_delete.append(ie_teller_idx)
+                                                    listener.ies.append(copy.deepcopy(IE_teller))
+                                                    listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                                else:
+                                                    print("Do not exchange!")
+                                        # If the listener already has the IE with the same root, and we want to keep
+                                        # track of all jumps, add the missing jumps
                                         else:
                                             if len(IE_teller[1:]) > 0:
                                                 target_extend = [(teller.n, listener.n, int(k), loop)]
-                                                target_extend.extend(
-                                                    elem for elem in IE_teller[1:] if elem not in listener.ies[index])
+                                                for elem in IE_teller[1:]:
+                                                    if elem not in listener.ies[index]:
+                                                        target_extend.extend(elem)
                                                 # communicating the information to the listener
                                                 listener.ies[index].extend(target_extend)
                                             else:
                                                 listener.ies[index].append((teller.n, listener.n, int(k), loop))
+
+                                # Delete the IEs of the teller that have been passed to the listener in case of
+                                # spray and wait when only one copy is left and the teller is not a GA
+                                for idx in sorted(ie_teller_idxs_to_delete, reverse=True):
+                                    del teller.ies[idx]
 
         # Avoid that they can meet again once they exchange their info, and they are still in the same node
         for k in delete:
@@ -217,7 +255,7 @@ class Simulator:
                 seen_ev = (seen_sit, seen_obj)
 
                 a.seen_events.append(seen_ev)
-                a.ies.append([NewInformationElement(a.n, a.curr_node, loop, NewDirectObservation(seen_ev, a.error))])
+                a.ies.append([InformationElement(a.n, a.curr_node, loop, what=DirectObservation(seen_ev, a.error))])
                 if a.n < self.n_agents * self.gateway_ratio:
                     a.error_list.append((self.std_dev_gateway, loop))
                 else:
@@ -359,11 +397,8 @@ class Simulator:
                         seen_sit = get_cls_at_dist(situation, distance=agent.error)
                         seen_obj = get_cls_at_dist(obj, distance=agent.error)
                         seen_ev = (seen_sit, seen_obj)
-
                         agent.seen_events.append(seen_ev)
-
-                        agent.ies.append(
-                            [NewInformationElement(i, curr_node, 0, NewDirectObservation(seen_ev, agent.error))])
+                        agent.ies.append([InformationElement(i, curr_node, 0, what=DirectObservation(seen_ev, agent.error))])
                         if i < self.n_gateway_agents:
                             agent.error_list.append((self.std_dev_gateway, 0))
                         else:

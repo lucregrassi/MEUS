@@ -356,10 +356,10 @@ def parse_args():
     parser.add_argument('-radius_4g', default=2, type=int,
                         help='magnitude of the radius of each internet hub.')
 
-    parser.add_argument('-n_agents', default=10000, type=int,
+    parser.add_argument('-n_agents', default=1000, type=int,
                         help='number of agents present in the environment.')
 
-    parser.add_argument('-gateway_ratio', default=0.01, type=float,
+    parser.add_argument('-gateway_ratio', default=0.1, type=float,
                         help='ratio of gateways agents present in the environment. '
                              'Ex. if I want 30 percent of gateways agents: -n_gateways 0.3')
 
@@ -381,8 +381,12 @@ def parse_args():
     parser.add_argument('-nl', default=0, type=int,
                         help='The simulation will stop upon reaching nl number of loops instead of the percentage of seen events.')
 
-    parser.add_argument('-epidemic', action='store_true',
-                        help='If set to True, agents will not exchange IEs with the same DO.')
+    parser.add_argument('-routing', default='epidemic', type=str,
+                        help='Type of routing algorithm (epidemic or spray and wait)')
+
+    parser.add_argument('-jumps', action='store_true',
+                        help="If set to True, all the jumps of the teller's IE that the listener doesn't have will be"
+                             "exchanged! (our algorithm)")
 
     args = parser.parse_args()
     return args

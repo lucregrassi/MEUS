@@ -92,6 +92,14 @@ def show_mean_and_stddev():
             avg = sum(lats) / len(lats)
             f.write(str(avg))
 
+        with open(avg_path + '/stats/total_latency.csv', 'w') as f:
+            lats = []
+            with open(folder + '/sent_to_db_loop.csv', 'r') as file:
+                for line in file.readlines()[1:]:
+                    lats.append(int(line))
+            avg = sum(lats) / len(lats)
+            f.write(str(avg))
+
 
 def plot_metrics():
     folders = sorted(glob(os.getcwd() + '/exp[0-8]'))

@@ -1,58 +1,31 @@
 import json
+import copy
 
 
 class InformationElement:
-    def __init__(self, n, history=None, where=0, when=0, what=None, root=None):
+    def __init__(self, n, where=0, when=0, what=None, ie_copies=64):
         super().__init__()
         self.n = n
-        self.history = history
         self.where = where
         self.when = when
-        # Information element or direct observation
         self.what = what
-        self.root = root
+        self.ie_copies = ie_copies
 
     def __str__(self):
-        return "[Information Element: " + str(self.n) + ", " + str(self.history) + ", " + str(self.where) + ", " + str(
-            self.when) + ", " \
-               + str(self.what) + "]"
+        return "[Information Element: " + str(self.n) + ", " + str(self.where) + ", " + str(self.when) + ", " \
+               + str(self.what) + ", " + str(self.ie_copies) + "]"
 
     def __eq__(self, other):
         if isinstance(other, InformationElement):
-            if self.n == other.n and self.where == other.where and self.what == other.what and \
-                    self.history == other.history and self.when == other.when:
+            if self.n == other.n and self.where == other.where and self.when == other.when and self.what == other.what:
                 return True
         return False
 
     def asdict(self):
-        return {'id': self.n, 'history': self.history, 'where': self.where, 'when': self.when,
-                'what': self.what}
-
-
-class NewInformationElement:
-    def __init__(self, n, where=0, when=0, what=None):
-        super().__init__()
-        self.n = n
-        self.where = where
-        self.when = when
-        self.what = what
-
-    def __str__(self):
-        return "IE: " + str(self.n) + ", " + str(self.where) + ", " + str(self.when) + ", " \
-               + str(self.what)
-
-    def __eq__(self, other):
-        if isinstance(other, NewInformationElement):
-            if self.n == other.n and self.where == other.where and self.what == other.what and \
-                    self.when == other.when:
-                return True
-        return False
-
-    def asdict(self):
-        return {'id': self.n, 'where': self.where, 'when': self.when, 'what': self.what}
+        return {'id': self.n, 'where': self.where, 'when': self.when, 'what': self.what, "ie_copies": self.ie_copies}
 
     def toJson(self):
-        return json.dumps(self, default=lambda o: o.__dict__)
+        return self.__dict__
 
 
 class DirectObservation:
@@ -72,23 +45,5 @@ class DirectObservation:
     def asdict(self):
         return {'event': self.event, 'error': self.error}
 
-
-class NewDirectObservation:
-    def __init__(self, event=None, error=0):
-        super().__init__()
-        self.event = event
-        self.error = error
-
-    def __str__(self):
-        return "DO: " + str(self.event) + ", " + str(self.error)
-
-    def __eq__(self, other):
-        if self.event == other.event and self.error == other.error:
-            return True
-        return False
-
-    def asdict(self):
-        return {'event': self.event, 'error': self.error}
-
     def toJson(self):
-        return json.dumps(self, default=lambda o: o.__dict__)
+        return self.__dict__

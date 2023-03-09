@@ -19,7 +19,6 @@ def main():
     if not os.path.isfile("graph/graph_temp.graphml"):
         print("Saving graph...")
         save_graph(args.place)
-    print("Epidemic", args.epidemic)
 
     user_input = input("Choose the experiment to perform:\n"
                        "1 - Gateway ratio\n"
@@ -31,10 +30,19 @@ def main():
     if user_input == "1":
         build_graph(args.hubs_4g, args.radius_4g)
         for i in range(4):
-            gateway_ratio = 0.05 + (0.05 * i)
-            print("Experiment " + str(i) + "\nAgents: " + str(args.n_agents) + "\nGateway ratio: " + str(gateway_ratio))
+            if args.place == "Amatrice, Rieti, Lazio":
+                n_agents = 1000
+                gateway_ratio = 0.05 + (0.05 * i)
+            else:
+                n_agents = 10000
+                gateway_ratio = 0.005 + (0.005 * i)
+            print("Place:", str(args.place) + "\n"
+                  "Experiment:", str(i) + "\n"
+                  "Agents:", str(n_agents) + "\n"
+                  "Gateway ratio:", str(gateway_ratio) + "\n"
+                  "Routing type:", str(args.routing))
             simulator = Simulator(num_exp=i,
-                                  n_agents=args.n_agents,
+                                  n_agents=n_agents,
                                   gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
                                   seed=args.seed,
@@ -43,18 +51,30 @@ def main():
                                   std_dev_gateway=args.std_dev_gateway,
                                   radius=args.radius_4g,
                                   nl=args.nl,
-                                  epidemic=args.epidemic)
+                                  routing=args.routing,
+                                  jumps=args.jumps)
             simulator.run()
     elif user_input == "2":
         for i in range(6):
+            if args.place == "Amatrice, Rieti, Lazio":
+                n_agents = 1000
+                gateway_ratio = 0.1
+            else:
+                n_agents = 10000
+                gateway_ratio = 0.01
             radius = round(3 - 0.5 * i, 1)
             # Rebuild graph with different hub radius
             print("Rebuilding graph with a different hub radius")
             build_graph(args.hubs_4g, radius)
-            print("Experiment: " + str(i) + "\nRadius: " + str(radius))
+            print("Place:", str(args.place) + "\n"
+                  "Experiment: " + str(i) + "\n"
+                  "Agents:", str(n_agents) + "\n"
+                  "Gateway ratio:", str(gateway_ratio) + "\n"
+                  "Radius:", str(radius) + "\n"
+                  "Routing type:", str(args.routing))
             simulator = Simulator(num_exp=i,
-                                  n_agents=args.n_agents,
-                                  gateway_ratio=args.gateway_ratio,
+                                  n_agents=n_agents,
+                                  gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
                                   seed=args.seed,
                                   threshold=args.threshold,
@@ -62,9 +82,16 @@ def main():
                                   std_dev_gateway=args.std_dev_gateway,
                                   radius=radius,
                                   nl=args.nl,
-                                  epidemic=args.epidemic)
+                                  routing=args.routing,
+                                  jumps=args.jumps)
             simulator.run()
     elif user_input == '3':
+        if args.place == "Amatrice, Rieti, Lazio":
+            n_agents = 1000
+            gateway_ratio = 0.1
+        else:
+            n_agents = 10000
+            gateway_ratio = 0.01
         build_graph(args.hubs_4g, args.radius_4g)
         for i in range(9):
             if i < 3:
@@ -81,11 +108,16 @@ def main():
             else:
                 std_dev_gateway = 0.8
 
-            print("Experiment " + str(i) + "\nAgent's std: " + str(std_dev) + "\nGateway agent's std: "
-                  + str(std_dev_gateway))
+            print("Place:", str(args.place) + "\n"
+                  "Experiment " + str(i) + "\n"
+                  "Agents:", str(n_agents) + "\n"
+                  "Gateway ratio:", str(gateway_ratio) + "\n"
+                  "Agent's std: ", str(std_dev) + "\n"
+                  "Gateway agent's std:", str(std_dev_gateway) + "\n"
+                  "Routing type:", str(args.routing))
             simulator = Simulator(num_exp=i,
-                                  n_agents=args.n_agents,
-                                  gateway_ratio=args.gateway_ratio,
+                                  n_agents=n_agents,
+                                  gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
                                   seed=args.seed,
                                   threshold=args.threshold,
@@ -93,7 +125,8 @@ def main():
                                   std_dev_gateway=std_dev_gateway,
                                   radius=args.radius_4g,
                                   nl=args.nl,
-                                  epidemic=args.epidemic)
+                                  routing=args.routing,
+                                  jumps=args.jumps)
             simulator.run()
     elif user_input == '4':
         print("Rebuilding graph")
@@ -109,7 +142,11 @@ def main():
                 n_agents = 2000
                 gateway_ratio = 0.05
 
-            print("Experiment: " + str(i) + "\nNumber of agents:", n_agents, "\nGateway ratio:", gateway_ratio)
+            print("Place:", str(args.place) + "\n"
+                  "Experiment:", str(i) + "\n"
+                  "Agents:", str(n_agents), "\n"
+                  "Gateway ratio:", str(gateway_ratio) + "\n"
+                  "Routing type:", str(args.routing))
             simulator = Simulator(num_exp=i,
                                   n_agents=n_agents,
                                   gateway_ratio=gateway_ratio,
@@ -120,7 +157,8 @@ def main():
                                   std_dev_gateway=args.std_dev_gateway,
                                   radius=args.radius_4g,
                                   nl=args.nl,
-                                  epidemic=args.epidemic)
+                                  routing=args.routing,
+                                  jumps=args.jumps)
             simulator.run()
     else:
         print(f"The simulation will take place in {args.place}.")
@@ -134,7 +172,8 @@ def main():
                Hub number          {args.hubs_4g}\n\
                Hub radius          {args.radius_4g}\n\
                Seed:               {args.seed}\n\
-               Epidemic:           {args.epidemic}")
+               Routing type:       {args.routing}\n\
+               Store jumps:        {args.jumps}\n\f")
         print("Building graph")
         build_graph(args.hubs_4g, args.radius_4g)
 
@@ -148,7 +187,8 @@ def main():
                               std_dev_gateway=args.std_dev_gateway,
                               radius=args.radius_4g,
                               nl=args.nl,
-                              epidemic=args.epidemic)
+                              routing=args.routing,
+                              jumps=args.jumps)
         simulator.run()
 
 
