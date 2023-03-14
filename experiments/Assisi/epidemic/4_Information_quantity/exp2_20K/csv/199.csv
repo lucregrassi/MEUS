@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,506,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'Family'}",0,1,1
+12,674,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,1278,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,3434,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,10771,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,15793,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,360,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,1830,3,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,1,1,0.558
+54,4215,3,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.601
+60,5904,3,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.637
+66,6854,3,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 60}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.667
+72,13355,3,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 66}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.692
+78,18348,3,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 72}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.714
+84,19373,0,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 78}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.733
+90,11657,9,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 84}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.75
+96,15553,9,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 90}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.764
+102,19721,9,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 96}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.777
+117,41,27,1,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 111}, {'situation': 'StarvingPeople', 'object': 'Family', 'coders': 6}]",,0,1,0.805

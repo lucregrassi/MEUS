@@ -1,12 +1,27 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,554,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'Students'}",0,1,1
-12,1686,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 12}]",,0,1,1
-18,2019,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 18}]",,0,1,1
-24,3289,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 24}]",,0,1,1
-30,5430,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 30}]",,0,1,1
-36,5686,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 36}]",,0,1,1
-42,8096,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 42}]",,0,1,1
-48,9331,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 48}]",,0,1,1
-54,10418,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 54}]",,0,1,1
-60,12941,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 60}]",,0,1,1
-66,15272,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 66}]",,0,1,1
+6,10192,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'Students'}",0,1,1
+12,2753,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,10667,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 18}]",,0,1,1
+24,11302,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 18}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.234
+30,11722,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 24}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.349
+36,12079,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 30}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
+42,16176,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 36}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.504
+48,17422,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.558
+54,5295,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.601
+60,8112,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.637
+66,16055,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 60}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.667
+72,19070,0,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 66}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.692
+78,5824,6,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 72}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.714
+84,715,6,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 78}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.733
+90,2429,6,1,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 84}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.75
+96,6603,6,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 84}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}]",,1,1,0.658
+102,15694,6,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 90}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}]",,0,1,0.676
+108,16376,6,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 96}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}]",,0,1,0.693
+114,18195,6,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 102}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}]",,0,1,0.707
+120,11819,12,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 108}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}]",,0,1,0.721
+126,6742,12,2,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 114}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}]",,0,1,0.733
+132,15741,12,3,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 114}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.668
+138,16897,12,3,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 120}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.681
+144,5719,18,3,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 126}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.693
+150,8831,18,3,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 126}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,1,1,0.618
+156,15719,18,3,"[{'situation': 'NoWaterPeople', 'object': 'Students', 'coders': 132}, {'situation': 'StarvingPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'Students', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'GroupOfPeople', 'coders': 12}]",,0,1,0.631

@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,967,3,0,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'School'}",0,1,1
+12,4390,3,0,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 12}]",,0,1,1
+18,6001,3,0,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 18}]",,0,1,1
+24,4860,6,0,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 24}]",,0,1,1
+30,7612,0,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 24}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,1,1,0.349
+36,8439,0,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 30}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,0,1,0.437
+42,2746,11,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 36}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,0,1,0.504
+48,3254,12,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 42}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,0,1,0.558
+54,5973,10,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 48}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,0,1,0.601
+60,4048,22,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 54}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,0,1,0.637
+66,3139,22,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 60}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,0,1,0.667
+72,1926,29,1,"[{'situation': 'DeadPeople', 'object': 'School', 'coders': 66}, {'situation': 'EmergencyPeople', 'object': 'School', 'coders': 6}]",,0,1,0.692

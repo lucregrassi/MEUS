@@ -1,0 +1,14 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,506,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'Family'}",0,1,1
+12,674,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,1278,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,3434,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,360,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,1830,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,4215,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,5904,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 48}]",,0,1,1
+54,6854,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 54}]",,0,1,1
+60,9289,9,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 60}]",,0,1,1
+66,4627,15,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 66}]",,0,1,1
+72,9383,21,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 72}]",,0,1,1
+78,4026,27,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 78}]",,0,1,1

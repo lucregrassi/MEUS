@@ -1,10 +1,11 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-15,33,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 15}]","{'situation': 'OnFireBuilding', 'object': 'PoliceStation'}",0,1,1
-21,4213,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 21}]",,0,1,1
-27,3808,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 27}]",,0,1,1
-33,169,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 33}]",,0,1,1
-39,4888,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 39}]",,0,1,1
-45,2727,9,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 45}]",,0,1,1
-51,2777,28,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 45}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,1,1,0.581
-57,1738,30,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 51}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.62
-72,0,39,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 66}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.692
+15,58,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 15}]","{'situation': 'OnFireBuilding', 'object': 'PoliceStation'}",0,1,1
+21,4994,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 21}]",,0,1,1
+27,3667,9,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 27}]",,0,1,1
+33,4670,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 33}]",,0,1,1
+39,1636,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 39}]",,0,1,1
+45,4783,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 45}]",,0,1,1
+51,886,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 51}]",,0,1,1
+57,3491,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 57}]",,0,1,1
+63,3695,21,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 63}]",,0,1,1
+69,3283,21,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 69}]",,0,1,1

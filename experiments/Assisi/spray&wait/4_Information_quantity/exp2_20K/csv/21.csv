@@ -1,0 +1,15 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8706,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'Students'}",0,1,1
+12,7406,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,10851,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 18}]",,0,1,1
+24,17427,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 24}]",,0,1,1
+30,17435,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 30}]",,0,1,1
+36,9128,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 36}]",,0,1,1
+42,538,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 42}]",,0,1,1
+48,9842,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 48}]",,0,1,1
+54,10259,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 54}]",,0,1,1
+60,13931,11,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 60}]",,0,1,1
+66,11692,11,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 66}]",,0,1,1
+72,14064,15,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 72}]",,0,1,1
+78,4270,15,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 78}]",,0,1,1
+84,17617,20,0,"[{'situation': 'CollapsedBuilding', 'object': 'Students', 'coders': 84}]",,0,1,1

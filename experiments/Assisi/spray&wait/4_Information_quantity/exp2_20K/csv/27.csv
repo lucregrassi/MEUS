@@ -1,0 +1,2 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,14653,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 6}]","{'situation': 'MildlyInjuredPeople', 'object': 'Hospital'}",0,1,1

@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,220,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'Crossroad'}",0,1,1
+12,793,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 12}]",,0,1,1
+18,292,44,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 18}]",,0,1,1
+24,1964,13,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 24}]",,0,1,1
+30,347,13,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 30}]",,0,1,1
+36,771,5,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 36}]",,0,1,1
+42,1835,46,1,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 36}, {'situation': 'NoWaterPeople', 'object': 'Outdoor', 'coders': 6}]",,1,1,0.504
+57,17,73,1,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 51}, {'situation': 'NoWaterPeople', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.62

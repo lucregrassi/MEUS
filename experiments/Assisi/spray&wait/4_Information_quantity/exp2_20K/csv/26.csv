@@ -1,0 +1,24 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2574,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'OldPerson'}",0,1,1
+12,6332,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
+18,6350,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,1
+24,8209,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 24}]",,0,1,1
+30,15037,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 30}]",,0,1,1
+36,16555,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 36}]",,0,1,1
+42,4258,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 42}]",,0,1,1
+48,8062,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 48}]",,0,1,1
+54,11759,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 54}]",,0,1,1
+60,15343,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 60}]",,0,1,1
+66,17622,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 66}]",,0,1,1
+72,19197,0,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 72}]",,0,1,1
+78,8934,6,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 78}]",,0,1,1
+84,10532,10,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 84}]",,0,1,1
+90,1398,11,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 90}]",,0,1,1
+96,14635,3,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 96}]",,0,1,1
+102,17023,3,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 102}]",,0,1,1
+108,17286,3,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 108}]",,0,1,1
+114,14055,9,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 114}]",,0,1,1
+120,17309,9,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 120}]",,0,1,1
+126,534,15,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 126}]",,0,1,1
+132,15878,15,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 132}]",,0,1,1
+138,6135,22,0,"[{'situation': 'OnFireBuilding', 'object': 'OldPerson', 'coders': 138}]",,0,1,1

@@ -1,3 +1,5 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,424,0,0,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'OldPerson'}",0,1,1
-12,1097,0,0,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
+6,1007,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'OldPerson'}",1,1,1
+12,862,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 6}]",,0,0,-0.045
+18,122,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,0,0.085
+24,657,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,0.234

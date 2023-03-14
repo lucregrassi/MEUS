@@ -1,0 +1,8 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1602,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 6}]","{'situation': 'MildlyInjuredPeople', 'object': 'Hospital'}",0,1,1
+12,789,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 12}]",,0,1,1
+18,1062,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 18}]",,0,1,1
+24,2699,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 24}]",,0,1,1
+30,2354,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 30}]",,0,1,1
+36,957,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 36}]",,0,1,1
+42,3990,29,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 42}]",,0,1,1

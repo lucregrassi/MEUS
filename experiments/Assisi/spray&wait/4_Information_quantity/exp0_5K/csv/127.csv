@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1573,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery'}",0,1,1
+12,494,0,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 12}]",,0,1,1
+18,4952,6,0,"[{'situation': 'SeverelyInjuredPeople', 'object': 'GreenGrocery', 'coders': 18}]",,0,1,1

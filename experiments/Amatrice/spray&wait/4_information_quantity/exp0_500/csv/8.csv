@@ -1,0 +1,4 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,248,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Hospital', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'Hospital'}",0,1,1
+12,220,12,0,"[{'situation': 'NoFoodPeople', 'object': 'Hospital', 'coders': 12}]",,0,1,1
+18,292,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Hospital', 'coders': 18}]",,0,1,1

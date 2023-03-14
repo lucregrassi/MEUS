@@ -1,21 +1,19 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,12827,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'BakeryShop'}",0,1,1
-12,18248,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 12}]",,0,1,1
-18,19090,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 18}]",,0,1,1
-24,6500,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 24}]",,0,1,1
-30,17254,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 30}]",,0,1,1
-45,78,6,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 45}]",,0,1,1
-51,2862,6,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 51}]",,0,1,1
-66,49,9,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 66}]",,0,1,1
-72,2859,9,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 72}]",,0,1,1
-78,18533,12,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 78}]",,0,1,1
-84,15777,7,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 84}]",,0,1,1
-90,5929,7,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 90}]",,0,1,1
-105,63,21,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 105}]",,0,1,1
-111,3165,15,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 111}]",,0,1,1
-117,16287,21,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 117}]",,0,1,1
-123,17886,21,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 123}]",,0,1,1
-129,14740,10,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 129}]",,0,1,1
-135,6950,10,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 135}]",,0,1,1
-141,14258,17,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 141}]",,0,1,1
-147,14697,17,1,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 141}, {'situation': 'FloodedBuilding', 'object': 'Shop', 'coders': 6}]",,1,1,0.843
+6,322,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'BakeryShop'}",0,1,1
+12,2458,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 12}]",,0,1,1
+18,2857,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 18}]",,0,1,1
+24,15154,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 24}]",,0,1,1
+30,15884,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 30}]",,0,1,1
+36,18375,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 36}]",,0,1,1
+42,19947,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 42}]",,0,1,1
+48,19151,3,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 48}]",,0,1,1
+54,8606,3,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 54}]",,0,1,1
+60,14399,3,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 60}]",,0,1,1
+66,18232,3,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 66}]",,0,1,1
+72,7742,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 72}]",,0,1,1
+78,769,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 78}]",,0,1,1
+84,8700,0,0,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 84}]",,0,1,1
+90,8886,0,1,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 84}, {'situation': 'EmergencyBuilding', 'object': 'BakeryShop', 'coders': 6}]",,1,1,0.75
+96,2770,16,1,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 90}, {'situation': 'EmergencyBuilding', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.764
+102,13098,16,1,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 96}, {'situation': 'EmergencyBuilding', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.777
+108,16522,16,1,"[{'situation': 'FloodedBuilding', 'object': 'BakeryShop', 'coders': 102}, {'situation': 'EmergencyBuilding', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.789

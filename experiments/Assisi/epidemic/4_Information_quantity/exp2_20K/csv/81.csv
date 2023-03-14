@@ -1,5 +1,16 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,8319,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'Hospital'}",0,1,1
-12,6447,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 12}]",,0,1,1
-18,9168,0,1,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 12}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,1,0,0.085
-24,14356,0,1,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.234
+6,10586,5,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'Hospital'}",0,1,1
+12,1330,5,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 12}]",,0,1,1
+18,3982,5,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 18}]",,0,1,1
+24,9953,5,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 24}]",,0,1,1
+30,11464,5,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 30}]",,0,1,1
+45,8,14,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 45}]",,0,1,1
+51,8989,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 51}]",,0,1,1
+57,404,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 57}]",,0,1,1
+63,9103,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 63}]",,0,1,1
+69,11217,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 69}]",,0,1,1
+75,11693,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 75}]",,0,1,1
+81,10967,12,0,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 81}]",,0,1,1
+87,11639,12,1,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 81}, {'situation': 'EmergencyBuilding', 'object': 'Hospital', 'coders': 6}]",,1,1,0.742
+93,11812,12,1,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 87}, {'situation': 'EmergencyBuilding', 'object': 'Hospital', 'coders': 6}]",,0,1,0.757
+99,2695,0,1,"[{'situation': 'FloodedBuilding', 'object': 'Hospital', 'coders': 93}, {'situation': 'EmergencyBuilding', 'object': 'Hospital', 'coders': 6}]",,0,1,0.771

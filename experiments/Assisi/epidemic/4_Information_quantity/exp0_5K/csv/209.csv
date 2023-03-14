@@ -1,4 +1,5 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,1195,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'Street'}",0,1,1
-12,2369,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 12}]",,0,1,1
-18,4906,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 18}]",,0,1,1
+6,2276,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'Street'}",0,1,1
+12,2371,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}]",,1,0,-0.045
+27,61,23,1,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 21}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.295
+33,1942,6,1,"[{'situation': 'OnFireBuilding', 'object': 'Street', 'coders': 27}, {'situation': 'EmergencyBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.396

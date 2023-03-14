@@ -1,0 +1,14 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3875,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'BakeryShop'}",0,1,1
+12,6921,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 12}]",,0,1,1
+18,19479,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 18}]",,0,1,1
+24,5046,6,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 24}]",,0,1,1
+30,9713,6,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 30}]",,0,1,1
+36,13779,6,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 36}]",,0,1,1
+42,14021,6,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 42}]",,0,1,1
+48,11159,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 48}]",,0,1,1
+54,617,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 54}]",,0,1,1
+60,2993,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 60}]",,0,1,1
+66,3425,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 66}]",,0,1,1
+72,10430,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 66}, {'situation': 'EmergencyBuilding', 'object': 'Shop', 'coders': 6}]",,1,1,0.692
+78,12264,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'BakeryShop', 'coders': 72}, {'situation': 'EmergencyBuilding', 'object': 'Shop', 'coders': 6}]",,0,1,0.714

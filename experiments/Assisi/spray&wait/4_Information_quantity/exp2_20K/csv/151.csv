@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,11327,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'Crowded'}",0,1,1
+12,14826,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 6}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,1,0,-0.045
+18,8306,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 12}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,0,0.085
+24,257,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 18}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.234
+30,583,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 24}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.349
+36,19828,9,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 30}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.437
+42,19568,12,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 36}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.504
+48,401,18,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 42}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.558
+54,9530,24,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 48}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.601
+60,5063,21,1,"[{'situation': 'CollapsedBuilding', 'object': 'Crowded', 'coders': 54}, {'situation': 'CollapsedBuilding', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.637

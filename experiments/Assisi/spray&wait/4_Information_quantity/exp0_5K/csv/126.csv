@@ -1,0 +1,8 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1007,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'OldPerson'}",1,1,1
+12,862,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 6}]",,0,0,-0.045
+18,122,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,0,0.085
+24,657,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,0.234
+30,2485,11,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 24}]",,0,1,0.349
+36,4939,21,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 30}]",,0,1,0.437
+42,2929,20,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 36}]",,0,1,0.504

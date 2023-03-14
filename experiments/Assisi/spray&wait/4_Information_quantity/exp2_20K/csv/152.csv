@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,15241,0,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'GasStation'}",0,1,1
+12,9217,0,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 12}]",,0,1,1
+18,16964,0,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 18}]",,0,1,1
+24,5334,3,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 24}]",,0,1,1
+30,5749,3,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 30}]",,0,1,1
+36,6011,0,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 36}]",,0,1,1
+42,10695,0,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 42}]",,0,1,1
+48,6348,6,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 48}]",,0,1,1
+54,4169,15,0,"[{'situation': 'DeadPeople', 'object': 'GasStation', 'coders': 54}]",,0,1,1

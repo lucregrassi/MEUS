@@ -1,13 +1,19 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,13659,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Family'}",0,1,1
-12,1291,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 12}]",,0,1,1
-18,6690,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 18}]",,0,1,1
-24,8033,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 24}]",,0,1,1
-30,17297,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 30}]",,0,1,1
-36,5555,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 36}]",,0,1,1
-42,469,0,1,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 36}, {'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}]",,1,1,0.504
-48,10172,0,1,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 42}, {'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}]",,0,1,0.558
-54,13467,0,1,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 48}, {'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}]",,0,1,0.601
-60,17226,0,1,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 54}, {'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 6}]",,0,1,0.637
-66,18414,0,1,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 54}, {'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 12}]",,1,1,0.4
-72,18560,0,1,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 60}, {'situation': 'EmergencyOutdoor', 'object': 'Family', 'coders': 12}]",,0,1,0.441
+6,2932,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Family'}",0,1,1
+12,10868,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,11527,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,11699,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,16475,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,16889,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,17088,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,1497,3,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 48}]",,0,1,1
+54,10891,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 54}]",,0,1,1
+60,3047,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 60}]",,0,1,1
+66,5418,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 66}]",,0,1,1
+72,6002,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 72}]",,0,1,1
+78,19626,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 78}]",,0,1,1
+84,2742,6,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 84}]",,0,1,1
+90,5702,6,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 90}]",,0,1,1
+96,7831,6,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 96}]",,0,1,1
+102,725,11,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 102}]",,0,1,1
+108,12826,11,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 108}]",,0,1,1

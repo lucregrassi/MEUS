@@ -1,7 +1,17 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,8033,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Family'}",0,1,1
-12,1291,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 12}]",,0,1,1
-18,6690,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 18}]",,0,1,1
-24,4823,21,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 24}]",,0,1,1
-30,7670,21,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 30}]",,0,1,1
-36,8931,21,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 36}]",,0,1,1
+6,3047,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 6}]","{'situation': 'TrafficJam', 'object': 'Family'}",0,1,1
+12,5418,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,6002,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,5802,12,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,8504,12,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,9030,12,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,2742,6,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,7831,6,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 48}]",,0,1,1
+63,95,21,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 63}]",,0,1,1
+69,166,18,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 69}]",,0,1,1
+75,2932,0,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 75}]",,0,1,1
+81,1497,3,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 81}]",,0,1,1
+87,6817,14,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 87}]",,0,1,1
+93,5289,11,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 93}]",,0,1,1
+99,725,11,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 99}]",,0,1,1
+105,8343,15,0,"[{'situation': 'TrafficJam', 'object': 'Family', 'coders': 105}]",,0,1,1

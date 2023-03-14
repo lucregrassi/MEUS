@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,16706,0,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Crossroad'}",0,1,1
+12,4359,0,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 12}]",,0,1,1
+18,1519,0,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 18}]",,0,1,1
+24,9082,0,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 24}]",,0,1,1
+30,15645,0,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 30}]",,0,1,1
+36,19276,0,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 36}]",,0,1,1
+42,18781,10,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 42}]",,0,1,1
+48,2310,7,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 48}]",,0,1,1
+54,16143,7,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 54}]",,0,1,1
+60,10744,13,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 60}]",,0,1,1
+66,3964,14,0,"[{'situation': 'DeadPeople', 'object': 'Crossroad', 'coders': 66}]",,0,1,1

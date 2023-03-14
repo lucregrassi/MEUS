@@ -1,0 +1,18 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,9634,7,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop'}",0,1,1
+12,6963,7,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,0,1,1
+18,3045,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 18}]",,0,1,1
+24,1196,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 24}]",,0,1,1
+30,2215,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 30}]",,0,1,1
+36,3483,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 36}]",,0,1,1
+42,2882,3,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 42}]",,0,1,1
+48,7102,9,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 6}]",,1,1,0.558
+54,9854,8,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 6}]",,0,1,0.601
+60,278,6,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 54}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 6}]",,0,1,0.637
+66,2480,6,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 60}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 6}]",,0,1,0.667
+72,5273,15,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 66}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 6}]",,0,1,0.692
+78,5746,12,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 66}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,1,1,0.476
+84,7371,18,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 72}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,0,1,0.507
+90,8240,22,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 78}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,0,1,0.535
+96,3368,23,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 84}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,0,1,0.56
+102,7989,24,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 90}, {'situation': 'EmergencyBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,0,1,0.583

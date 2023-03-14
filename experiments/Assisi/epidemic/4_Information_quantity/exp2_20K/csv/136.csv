@@ -1,10 +1,6 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,11191,0,0,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'OldPerson'}",0,1,1
-12,7554,0,0,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
-18,8727,0,0,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,1
-24,10959,0,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,1,1,0.234
-30,15455,0,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.349
-36,10185,3,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.437
-42,19994,3,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.504
-48,1975,0,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.558
-54,14897,6,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.601
+6,10623,0,0,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'OldPerson'}",0,1,1
+12,13608,0,0,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
+18,15988,0,0,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,1
+24,16136,0,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,1,1,0.234
+30,18561,0,1,"[{'situation': 'FloodedBuilding', 'object': 'OldPerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.349

@@ -1,0 +1,3 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,7268,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'CityHall'}",0,1,1
+12,4592,0,0,"[{'situation': 'PanickedPeople', 'object': 'CityHall', 'coders': 12}]",,0,1,1

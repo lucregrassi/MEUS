@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,2996,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'School'}",0,1,1
+12,1518,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 12}]",,0,1,1
+18,3422,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 18}]",,0,1,1
+24,6109,3,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 24}]",,0,1,1
+30,2935,3,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 30}]",,0,1,1
+36,8904,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 36}]",,0,1,1
+42,2629,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 42}]",,0,1,1
+48,979,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 48}]",,0,1,1
+54,2895,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 54}]",,0,1,1
+60,9228,0,0,"[{'situation': 'NoFoodPeople', 'object': 'School', 'coders': 60}]",,0,1,1

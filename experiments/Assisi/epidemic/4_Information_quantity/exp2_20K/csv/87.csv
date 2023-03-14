@@ -1,7 +1,18 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,3637,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'Students'}",0,1,1
-12,1050,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,1,0,-0.045
-18,3699,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 12}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,0,0.085
-24,4395,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.234
-30,11701,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.349
-36,12531,0,1,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
+6,5824,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 6}]","{'situation': 'OnFireBuilding', 'object': 'Students'}",0,1,1
+12,858,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,11221,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 18}]",,0,1,1
+24,15999,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 24}]",,0,1,1
+30,16376,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 30}]",,0,1,1
+36,16897,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 36}]",,0,1,1
+42,18195,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 42}]",,0,1,1
+48,18473,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 48}]",,0,1,1
+54,14028,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 54}]",,0,1,1
+60,2707,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 60}]",,0,1,1
+66,9121,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 66}]",,0,1,1
+72,17827,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 72}]",,0,1,1
+78,15741,6,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 78}]",,0,1,1
+84,9270,6,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 84}]",,0,1,1
+90,18386,6,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 90}]",,0,1,1
+96,19070,6,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 96}]",,0,1,1
+102,19387,6,0,"[{'situation': 'OnFireBuilding', 'object': 'Students', 'coders': 102}]",,0,1,1

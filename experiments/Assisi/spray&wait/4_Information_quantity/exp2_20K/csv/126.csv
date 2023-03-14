@@ -1,0 +1,22 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,9343,0,0,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'OldPerson'}",0,1,1
+12,862,0,0,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
+18,1007,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 12}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,1,0,0.085
+24,5717,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 18}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.234
+30,6686,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 24}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.349
+36,6945,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 30}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.437
+42,6077,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 36}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.504
+48,657,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 42}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.558
+54,122,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 48}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.601
+60,7132,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 54}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.637
+66,8925,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 60}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.667
+72,15204,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 66}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.692
+78,19005,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 72}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.714
+84,11718,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 78}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.733
+90,10026,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 84}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.75
+96,10653,0,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 90}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.764
+102,14988,6,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 96}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.777
+108,18677,6,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 102}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.789
+114,11944,18,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 108}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.8
+120,5806,17,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 114}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.809
+126,8963,18,1,"[{'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 120}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.818

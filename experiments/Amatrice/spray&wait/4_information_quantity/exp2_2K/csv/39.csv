@@ -1,0 +1,6 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,822,0,0,"[{'situation': 'FloodedBuilding', 'object': 'Students', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'Students'}",0,1,1
+12,1715,4,0,"[{'situation': 'FloodedBuilding', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,1942,6,0,"[{'situation': 'FloodedBuilding', 'object': 'Students', 'coders': 18}]",,0,1,1
+24,249,13,0,"[{'situation': 'FloodedBuilding', 'object': 'Students', 'coders': 24}]",,0,1,1
+30,745,19,0,"[{'situation': 'FloodedBuilding', 'object': 'Students', 'coders': 30}]",,0,1,1

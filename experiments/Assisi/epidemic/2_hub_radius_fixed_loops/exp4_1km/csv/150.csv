@@ -1,0 +1,11 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8745,0,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Family'}",0,1,1
+12,1875,0,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,3664,0,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,1778,0,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,2952,0,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,9006,0,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,9792,3,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,4190,6,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 48}]",,0,1,1
+54,1896,6,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 54}]",,0,1,1
+60,4530,6,0,"[{'situation': 'DeadPeople', 'object': 'Family', 'coders': 60}]",,0,1,1

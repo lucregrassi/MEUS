@@ -1,0 +1,14 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,931,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 6}]","{'situation': 'MildlyInjuredPeople', 'object': 'Hospital'}",0,1,1
+12,2533,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 12}]",,0,1,1
+18,5670,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 18}]",,0,1,1
+24,6989,0,0,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 24}]",,0,1,1
+30,12238,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 24}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}]",,1,1,0.349
+36,15748,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 30}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.437
+42,15896,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 36}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.504
+48,12231,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 42}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.558
+54,14620,0,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 48}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.601
+60,6274,9,1,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 54}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.637
+66,11211,9,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 54}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'InjuredPeople', 'object': 'Hospital', 'coders': 6}]",,1,1,0.524
+72,15517,9,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 60}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'InjuredPeople', 'object': 'Hospital', 'coders': 6}]",,0,1,0.558
+78,17476,9,2,"[{'situation': 'MildlyInjuredPeople', 'object': 'Hospital', 'coders': 66}, {'situation': 'InjuredPeople', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'InjuredPeople', 'object': 'Hospital', 'coders': 6}]",,0,1,0.588

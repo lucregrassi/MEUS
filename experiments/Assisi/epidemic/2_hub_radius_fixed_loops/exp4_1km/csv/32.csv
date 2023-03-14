@@ -1,0 +1,22 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,58,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 15}]","{'situation': 'OnFireBuilding', 'object': 'PoliceStation'}",0,1,1
+21,5620,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 21}]",,0,1,1
+27,6281,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 27}]",,0,1,1
+33,6756,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 33}]",,0,1,1
+39,4994,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 39}]",,0,1,1
+45,5705,3,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 45}]",,0,1,1
+51,1636,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 51}]",,0,1,1
+57,4670,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 57}]",,0,1,1
+63,4783,0,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 63}]",,0,1,1
+69,6802,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 69}]",,0,1,1
+75,886,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 75}]",,0,1,1
+81,3362,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 81}]",,0,1,1
+87,7225,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 87}]",,0,1,1
+93,9276,6,0,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 93}]",,0,1,1
+99,3491,12,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 93}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,1,1,0.771
+105,7860,12,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 99}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,1,0.783
+111,8285,16,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 105}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,1,0.795
+117,1121,18,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 111}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,1,0.805
+123,3695,9,1,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 117}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}]",,0,1,0.814
+129,3283,15,2,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 117}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,1,1,0.739
+135,9135,24,2,"[{'situation': 'OnFireBuilding', 'object': 'PoliceStation', 'coders': 123}, {'situation': 'EmergencyBuilding', 'object': 'PoliceStation', 'coders': 6}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.75

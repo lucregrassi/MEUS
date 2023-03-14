@@ -1,0 +1,23 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,12219,0,0,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'PoliceStation'}",0,1,1
+12,4540,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,1,0,-0.045
+18,8616,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 12}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,0,0.085
+24,8790,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 18}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.234
+30,13390,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 24}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.349
+36,14350,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 30}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.437
+42,16256,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 36}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.504
+48,3309,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.558
+54,12278,0,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.601
+60,14942,9,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.637
+66,3513,13,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 60}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.667
+72,2520,13,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 66}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.692
+78,13354,15,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 72}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.714
+84,19101,14,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 78}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.733
+90,14460,14,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 84}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.75
+96,7135,11,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 90}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.764
+102,8177,11,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 96}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.777
+108,19322,6,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 102}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.789
+114,5049,6,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 108}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.8
+120,9786,6,1,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 114}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.809
+126,11459,6,2,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 114}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'PublicBuilding', 'coders': 6}]",,1,1,0.733
+132,15322,9,2,"[{'situation': 'NoWaterPeople', 'object': 'PoliceStation', 'coders': 120}, {'situation': 'StarvingPeople', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'NoWaterPeople', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.745

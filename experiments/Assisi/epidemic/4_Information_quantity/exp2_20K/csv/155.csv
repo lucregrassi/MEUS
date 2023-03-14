@@ -1,0 +1,9 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,12107,0,0,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'School'}",1,1,1
+12,11390,0,1,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'School', 'coders': 6}]",,0,0,-0.045
+18,19051,0,1,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'School', 'coders': 12}]",,0,0,0.085
+24,6094,0,1,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'School', 'coders': 18}]",,0,1,0.234
+30,5798,0,1,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'School', 'coders': 24}]",,0,1,0.349
+36,8373,0,1,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'School', 'coders': 30}]",,0,1,0.437
+42,15220,0,1,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'School', 'coders': 36}]",,0,1,0.504
+48,16785,0,1,"[{'situation': 'FloodedBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'FloodedBuilding', 'object': 'School', 'coders': 42}]",,0,1,0.558

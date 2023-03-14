@@ -1,0 +1,23 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,16542,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'Family'}",0,1,1
+12,12412,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,17512,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,18295,8,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,13288,14,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,2529,22,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 36}]",,0,1,1
+51,72,30,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 51}]",,0,1,1
+57,7926,6,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 57}]",,0,1,1
+63,606,29,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 63}]",,0,1,1
+69,5661,30,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 69}]",,0,1,1
+75,10180,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 75}]",,0,1,1
+81,17633,3,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 81}]",,0,1,1
+87,14903,12,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 87}]",,0,1,1
+93,9467,24,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 93}]",,0,1,1
+99,7934,30,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 99}]",,0,1,1
+105,13186,30,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 105}]",,0,1,1
+111,16357,6,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 111}]",,0,1,1
+117,7654,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 117}]",,0,1,1
+123,15725,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 123}]",,0,1,1
+129,18266,0,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 129}]",,0,1,1
+135,10660,12,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 135}]",,0,1,1
+141,18674,18,0,"[{'situation': 'NoFoodPeople', 'object': 'Family', 'coders': 141}]",,0,1,1

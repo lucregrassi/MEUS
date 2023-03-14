@@ -1,19 +1,26 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,6608,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson'}",0,1,1
-12,19419,6,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
-18,11608,6,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
-24,11394,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 24}]",,0,1,1
-30,8419,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 30}]",,0,1,1
-36,10706,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 36}]",,0,1,1
-42,14065,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 42}]",,0,1,1
-48,15543,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 48}]",,0,1,1
-54,16466,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 54}]",,0,1,1
-60,18133,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 60}]",,0,1,1
-66,19647,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 66}]",,0,1,1
-72,5501,11,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 72}]",,0,1,1
-78,14625,12,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 78}]",,0,1,1
-84,18745,12,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 84}]",,0,1,1
-90,19788,12,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 90}]",,0,1,1
-96,9909,3,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 96}]",,0,1,1
-102,16135,18,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 102}]",,0,1,1
-117,89,24,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 117}]",,0,1,1
+15,89,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 15}]","{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson'}",0,1,1
+21,1423,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 21}]",,0,1,1
+27,3339,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 27}]",,0,1,1
+33,5278,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 33}]",,0,1,1
+39,6777,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 39}]",,0,1,1
+45,14557,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 45}]",,0,1,1
+51,15179,0,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 51}]",,0,1,1
+57,7401,3,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 57}]",,0,1,1
+63,5066,3,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 63}]",,0,1,1
+69,9716,3,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 69}]",,0,1,1
+75,10760,3,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 75}]",,0,1,1
+81,13112,3,0,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 81}]",,0,1,1
+87,14705,3,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 81}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,1,1,0.742
+93,15986,3,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 87}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.757
+99,18799,3,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 93}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.771
+105,12113,7,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 99}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.783
+111,2499,0,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 105}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.795
+117,13442,0,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 111}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.805
+123,11693,19,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 117}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.814
+129,735,6,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 123}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.822
+135,952,6,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 129}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.829
+141,17799,12,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 135}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.836
+147,17596,12,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 141}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.843
+153,2313,25,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 147}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.849
+159,7325,27,1,"[{'situation': 'FloodedBuilding', 'object': 'MiddleAgePerson', 'coders': 153}, {'situation': 'EmergencyBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]",,0,1,0.854

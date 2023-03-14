@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,35,23,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 15}]","{'situation': 'DeadPeople', 'object': 'MiddleAgePerson'}",0,1,1
+21,156,23,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 21}]",,0,1,1
+27,18277,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 27}]",,0,1,1
+33,3568,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 33}]",,0,1,1
+39,2652,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 39}]",,0,1,1
+45,9412,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 45}]",,0,1,1
+51,10067,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 51}]",,0,1,1
+57,12971,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 57}]",,0,1,1
+63,16033,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 63}]",,0,1,1
+69,16505,0,0,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 69}]",,0,1,1
+75,16851,8,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 69}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,1,1,0.704
+81,11604,0,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 75}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.724
+87,5844,0,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 81}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.742
+93,8069,0,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 87}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.757
+99,18264,0,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 93}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.771
+105,13950,9,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 99}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.783
+111,2772,12,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 105}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.795
+117,5679,26,1,"[{'situation': 'DeadPeople', 'object': 'MiddleAgePerson', 'coders': 111}, {'situation': 'DeadPeople', 'object': 'People', 'coders': 6}]",,0,1,0.805

@@ -1,0 +1,23 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8272,0,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson'}",0,1,1
+12,7275,0,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1
+18,11524,0,0,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}]",,0,1,1
+24,15709,0,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,1,1,0.234
+30,15822,0,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.349
+36,19059,0,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,1,1,0.098
+42,11866,0,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.174
+48,156,0,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 36}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.242
+54,13411,0,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 42}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.302
+60,18640,0,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 48}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.355
+75,94,6,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 63}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.459
+81,647,6,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 69}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.492
+87,5448,6,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 75}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.522
+93,10246,6,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 81}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.548
+99,13662,6,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 87}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.572
+105,17269,3,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 93}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.593
+111,2012,3,1,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 99}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}]",,0,1,0.613
+117,7182,3,2,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 99}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,1,1,0.591
+123,8673,3,2,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 105}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.609
+129,11405,3,2,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 111}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.625
+135,4924,12,2,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 117}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.64
+141,664,12,2,"[{'situation': 'BlockedBuilding', 'object': 'MiddleAgePerson', 'coders': 123}, {'situation': 'EmergencyBuilding', 'object': 'People', 'coders': 12}, {'situation': 'BlockedBuilding', 'object': 'People', 'coders': 6}]",,0,1,0.653

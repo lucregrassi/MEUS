@@ -1,0 +1,10 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,72,15,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 15}]","{'situation': 'OnFireBuilding', 'object': 'School'}",0,1,1
+21,1865,3,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 21}]",,0,1,1
+27,4286,0,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 27}]",,0,1,1
+33,606,3,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 33}]",,0,1,1
+39,1777,6,0,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 39}]",,0,1,1
+45,236,11,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 39}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,1,1,0.533
+51,4621,12,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 45}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.581
+57,4178,34,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 51}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.62
+63,3875,35,1,"[{'situation': 'OnFireBuilding', 'object': 'School', 'coders': 57}, {'situation': 'OnFireBuilding', 'object': 'PublicBuilding', 'coders': 6}]",,0,1,0.653

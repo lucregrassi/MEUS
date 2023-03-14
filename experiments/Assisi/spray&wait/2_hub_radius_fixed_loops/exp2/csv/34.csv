@@ -1,0 +1,7 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8139,0,0,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'YoungPerson'}",0,1,1
+12,7497,10,0,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 12}]",,0,1,1
+18,1180,0,0,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 18}]",,0,1,1
+24,3781,0,0,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 24}]",,0,1,1
+30,7587,0,0,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 30}]",,0,1,1
+36,9939,0,0,"[{'situation': 'PanickedPeople', 'object': 'YoungPerson', 'coders': 36}]",,0,1,1

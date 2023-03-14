@@ -1,9 +1,14 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,14924,6,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Street'}",0,1,1
-12,5975,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 12}]",,0,1,1
-18,5893,0,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 12}, {'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 6}]",,1,0,0.085
-24,16210,0,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 18}, {'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.234
-30,18377,0,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 24}, {'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.349
-36,9283,4,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 30}, {'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.437
-42,286,6,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 36}, {'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.504
-48,3177,6,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 42}, {'situation': 'EmergencyPeople', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.558
+6,5677,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Street'}",0,1,1
+12,4552,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 12}]",,0,1,1
+18,11750,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 18}]",,0,1,1
+24,12182,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 24}]",,0,1,1
+30,14024,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 30}]",,0,1,1
+36,15134,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 36}]",,0,1,1
+42,15849,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 42}]",,0,1,1
+48,14253,0,0,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 48}]",,0,1,1
+54,19365,0,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 48}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 6}]",,1,1,0.601
+60,982,9,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 54}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 6}]",,0,1,0.637
+66,16547,3,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 54}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 12}]",,1,1,0.4
+72,1987,3,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 60}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 12}]",,0,1,0.441
+78,16598,9,1,"[{'situation': 'DeadPeople', 'object': 'Street', 'coders': 66}, {'situation': 'DeadPeople', 'object': 'Outdoor', 'coders': 12}]",,0,1,0.476

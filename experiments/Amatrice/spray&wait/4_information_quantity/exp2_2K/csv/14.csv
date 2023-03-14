@@ -1,0 +1,5 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+15,72,0,0,"[{'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 15}]","{'situation': 'NoFoodPeople', 'object': 'GreenGrocery'}",0,1,1
+21,1505,0,0,"[{'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 21}]",,0,1,1
+27,1420,0,1,"[{'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 21}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,1,1,0.295
+33,302,28,1,"[{'situation': 'NoFoodPeople', 'object': 'GreenGrocery', 'coders': 27}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.396

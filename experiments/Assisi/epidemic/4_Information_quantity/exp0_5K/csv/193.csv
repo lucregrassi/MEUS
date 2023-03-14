@@ -1,0 +1,3 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,3882,0,0,"[{'situation': 'PanickedPeople', 'object': 'MiddleAgePerson', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'MiddleAgePerson'}",0,1,1
+12,2280,0,0,"[{'situation': 'PanickedPeople', 'object': 'MiddleAgePerson', 'coders': 12}]",,0,1,1

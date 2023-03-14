@@ -1,9 +1,4 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,7238,3,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Students'}",0,1,1
-12,1567,3,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 12}]",,0,1,1
-18,1782,4,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 18}]",,0,1,1
-24,1099,6,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 24}]",,0,1,1
-30,3754,6,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 30}]",,0,1,1
-36,5989,11,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 36}]",,0,1,1
-42,3996,17,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 42}]",,0,1,1
-48,408,19,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 48}]",,0,1,1
+6,4257,0,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Students'}",0,1,1
+12,5310,0,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 12}]",,0,1,1
+18,5928,0,0,"[{'situation': 'DeadPeople', 'object': 'Students', 'coders': 18}]",,0,1,1

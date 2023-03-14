@@ -1,0 +1,9 @@
+10K agents
+100 GA
+3 hubs
+radius 3, 2.5, 2, 1.5, 1, 0.5 km
+std dev 0.5
+std dev GA 0.2
+40 simulation loops
+epidemic
+no jumps

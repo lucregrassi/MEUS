@@ -1,0 +1,12 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,7818,8,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'Crossroad'}",0,1,1
+12,508,4,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 12}]",,0,1,1
+18,2431,0,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 18}]",,0,1,1
+24,2934,4,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 24}]",,0,1,1
+30,4328,12,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 30}]",,0,1,1
+36,6693,13,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 36}]",,0,1,1
+42,550,14,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 42}]",,0,1,1
+48,854,14,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 48}]",,0,1,1
+54,8060,18,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 54}]",,0,1,1
+69,12,31,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 69}]",,0,1,1
+75,3388,31,0,"[{'situation': 'NoWaterPeople', 'object': 'Crossroad', 'coders': 75}]",,0,1,1

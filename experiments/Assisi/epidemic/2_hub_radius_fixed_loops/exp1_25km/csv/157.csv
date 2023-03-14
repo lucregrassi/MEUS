@@ -1,0 +1,15 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,7438,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'NoFoodPeople', 'object': 'OldPerson'}",0,1,1
+12,557,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 12}]",,0,1,1
+18,913,0,0,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 18}]",,0,1,1
+24,4053,0,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 18}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,1,1,0.234
+30,1874,0,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 24}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.349
+36,9914,0,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 30}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.437
+51,19,18,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 45}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.581
+57,761,9,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 51}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.62
+63,2210,9,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 57}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.653
+69,659,5,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 63}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.68
+75,7069,20,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 69}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.704
+81,4195,19,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 75}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.724
+87,3830,29,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 81}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.742
+93,9421,31,1,"[{'situation': 'NoFoodPeople', 'object': 'OldPerson', 'coders': 87}, {'situation': 'StarvingPeople', 'object': 'People', 'coders': 6}]",,0,1,0.757

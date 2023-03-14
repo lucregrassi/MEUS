@@ -1,9 +1,5 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-15,0,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 15}]","{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery'}",0,1,1
-21,1169,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 21}]",,0,1,1
-27,3334,3,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 27}]",,0,1,1
-33,3808,21,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 33}]",,0,1,1
-39,2727,15,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 39}]",,0,1,1
-45,3185,15,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 45}]",,0,1,1
-51,1738,12,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 51}]",,0,1,1
-57,4213,12,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 57}]",,0,1,1
+6,3283,3,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery'}",0,1,1
+12,2192,9,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,1,0,-0.045
+27,58,21,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 21}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.295
+33,3667,15,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 27}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.396

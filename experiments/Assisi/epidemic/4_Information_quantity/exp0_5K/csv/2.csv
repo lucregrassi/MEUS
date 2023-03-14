@@ -1,11 +1,5 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-15,84,17,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 15}]","{'situation': 'PanickedPeople', 'object': 'Family'}",0,1,1
-21,3815,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 21}]",,0,1,1
-27,1842,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 27}]",,0,1,1
-33,4081,15,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 33}]",,0,1,1
-39,2318,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 39}]",,0,1,1
-45,3958,6,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 45}]",,0,1,1
-51,3789,9,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 51}]",,0,1,1
-57,3631,13,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 57}]",,0,1,1
-63,2226,37,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 63}]",,0,1,1
-69,3627,37,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 69}]",,0,1,1
+6,1315,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'Family'}",0,1,1
+12,3182,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,1279,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,1285,0,0,"[{'situation': 'PanickedPeople', 'object': 'Family', 'coders': 24}]",,0,1,1

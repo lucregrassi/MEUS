@@ -1,0 +1,13 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,8305,3,0,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}]","{'situation': 'DeadPeople', 'object': 'Students'}",1,1,1
+12,1017,3,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 6}]",,0,0,-0.045
+18,4257,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 12}]",,0,0,0.085
+24,5310,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 18}]",,0,1,0.234
+30,5928,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 24}]",,0,1,0.349
+36,5828,11,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 30}]",,0,1,0.437
+42,6522,11,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 36}]",,0,1,0.504
+48,9348,10,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 42}]",,0,1,0.558
+54,2455,12,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 48}]",,0,1,0.601
+60,9934,13,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 54}]",,0,1,0.637
+66,4637,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 60}]",,0,1,0.667
+72,7745,0,1,"[{'situation': 'DeadPeople', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'DeadPeople', 'object': 'Students', 'coders': 66}]",,0,1,0.692

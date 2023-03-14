@@ -1,0 +1,19 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,6520,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'Family'}",0,1,1
+12,7430,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 12}]",,0,1,1
+18,8623,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 18}]",,0,1,1
+24,9986,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 24}]",,0,1,1
+30,14982,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 30}]",,0,1,1
+36,2886,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 36}]",,0,1,1
+42,2829,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 42}]",,0,1,1
+48,8317,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 48}]",,0,1,1
+54,8960,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 54}]",,0,1,1
+60,9543,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 54}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,1,1,0.637
+66,17828,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 60}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.667
+72,7708,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 66}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.692
+78,8293,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 72}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.714
+84,8321,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 78}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.733
+90,10391,3,1,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 84}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.75
+96,16156,10,2,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 84}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,1,1,0.658
+102,5053,6,2,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 90}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.676
+108,11661,15,2,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 96}, {'situation': 'EmergencyBuilding', 'object': 'GroupOfPeople', 'coders': 6}, {'situation': 'EmergencyBuilding', 'object': 'Family', 'coders': 6}]",,0,1,0.693

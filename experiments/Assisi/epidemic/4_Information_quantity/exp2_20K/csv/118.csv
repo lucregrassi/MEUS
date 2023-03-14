@@ -1,28 +1,22 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-15,0,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 15}]","{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery'}",0,1,1
-21,1169,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 21}]",,0,1,1
-27,7938,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 27}]",,0,1,1
-33,11586,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 33}]",,0,1,1
-39,18398,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 39}]",,0,1,1
-45,18796,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 45}]",,0,1,1
-51,13079,3,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 51}]",,0,1,1
-57,611,3,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 57}]",,0,1,1
-63,5955,3,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 63}]",,0,1,1
-69,12226,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 69}]",,0,1,1
-75,5791,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 75}]",,0,1,1
-81,13161,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 81}]",,0,1,1
-87,16068,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 87}]",,0,1,1
-93,17397,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 93}]",,0,1,1
-99,18670,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 99}]",,0,1,1
-105,169,15,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 105}]",,0,1,1
-111,12604,15,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 111}]",,0,1,1
-117,17388,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 117}]",,0,1,1
-123,11559,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 117}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,1,1,0.814
-129,15312,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 123}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.822
-135,8847,6,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 129}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.829
-141,5216,6,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 135}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.836
-147,13172,6,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 141}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.843
-153,2636,12,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 147}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.849
-159,4213,12,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 153}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.854
-165,12168,12,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 159}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.859
-171,19782,12,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 165}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.864
+6,13019,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery'}",0,1,1
+12,9416,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 12}]",,0,1,1
+18,13577,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 18}]",,0,1,1
+24,15158,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 24}]",,0,1,1
+30,15172,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 30}]",,0,1,1
+36,16111,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 36}]",,0,1,1
+42,16113,0,0,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 42}]",,0,1,1
+48,19688,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 42}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}]",,1,1,0.558
+54,19726,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 48}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.601
+60,3876,0,1,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.637
+66,12376,0,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 54}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,1,1,0.524
+72,16601,0,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 60}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.558
+78,19583,0,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 66}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.588
+84,886,6,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 72}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.614
+90,7860,6,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 78}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.637
+96,10917,6,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 84}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.658
+102,16606,6,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 90}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.676
+108,18984,6,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 96}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.693
+114,3283,3,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 102}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.707
+120,6396,3,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 108}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.721
+126,7193,3,2,"[{'situation': 'NoMedicinePeople', 'object': 'GreenGrocery', 'coders': 114}, {'situation': 'StarvingPeople', 'object': 'Shop', 'coders': 6}, {'situation': 'StarvingPeople', 'object': 'GreenGrocery', 'coders': 6}]",,0,1,0.733

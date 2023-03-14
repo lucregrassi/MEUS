@@ -1,8 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,5124,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop'}",0,1,1
-12,836,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 12}]",,0,1,1
-18,4139,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 18}]",,0,1,1
-24,5808,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 18}, {'situation': 'EmergencyBuilding', 'object': 'Shop', 'coders': 6}]",,1,1,0.234
-30,7285,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 24}, {'situation': 'EmergencyBuilding', 'object': 'Shop', 'coders': 6}]",,0,1,0.349
-36,15626,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'Shop', 'coders': 6}]",,0,1,0.437
-42,17350,0,1,"[{'situation': 'CollapsedBuilding', 'object': 'ButcheryShop', 'coders': 30}, {'situation': 'EmergencyBuilding', 'object': 'Shop', 'coders': 12}]",,1,1,0.174

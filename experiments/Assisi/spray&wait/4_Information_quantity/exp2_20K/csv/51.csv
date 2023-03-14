@@ -1,0 +1,27 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,14847,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'Hospital'}",1,1,1
+12,974,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 6}]",,0,0,-0.045
+18,9225,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 12}]",,0,0,0.085
+24,14315,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 18}]",,0,1,0.234
+30,14993,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 24}]",,0,1,0.349
+36,19986,4,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 30}]",,0,1,0.437
+42,503,6,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 36}]",,0,1,0.504
+48,7458,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 42}]",,0,1,0.558
+54,2489,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 48}]",,0,1,0.601
+60,3888,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 54}]",,0,1,0.637
+66,4348,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 60}]",,0,1,0.667
+72,6466,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 66}]",,0,1,0.692
+78,6564,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 72}]",,0,1,0.714
+84,6639,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 78}]",,0,1,0.733
+90,9007,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 84}]",,0,1,0.75
+96,14554,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 90}]",,0,1,0.764
+102,17586,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 96}]",,0,1,0.777
+108,18932,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 102}]",,0,1,0.789
+114,19557,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 108}]",,0,1,0.8
+120,15565,11,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 114}]",,0,1,0.809
+126,8754,3,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 120}]",,0,1,0.818
+132,11751,3,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 126}]",,0,1,0.826
+138,19187,7,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 132}]",,0,1,0.833
+144,7081,7,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 138}]",,0,1,0.84
+150,13268,7,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 144}]",,0,1,0.846
+156,16375,7,1,"[{'situation': 'EmergencyBuilding', 'object': 'PublicBuilding', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'Hospital', 'coders': 150}]",,0,1,0.852

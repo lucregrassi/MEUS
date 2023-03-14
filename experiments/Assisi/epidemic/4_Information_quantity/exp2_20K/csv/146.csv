@@ -1,13 +1,18 @@
 Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,400,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'BakeryShop'}",0,1,1
-12,817,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 12}]",,0,1,1
-18,2159,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 18}]",,0,1,1
-24,3827,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 24}]",,0,1,1
-30,13959,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 30}]",,0,1,1
-36,15517,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 36}]",,0,1,1
-42,7383,3,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 42}]",,0,1,1
-48,19119,3,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 48}]",,0,1,1
-54,12297,15,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 54}]",,0,1,1
-69,73,21,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 69}]",,0,1,1
-75,2759,6,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 75}]",,0,1,1
-81,6307,6,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 81}]",,0,1,1
+6,356,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'BakeryShop'}",0,1,1
+12,3314,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 12}]",,0,1,1
+18,5394,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 18}]",,0,1,1
+24,6886,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 24}]",,0,1,1
+30,11038,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 30}]",,0,1,1
+36,8303,6,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 36}]",,0,1,1
+42,2469,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 42}]",,0,1,1
+48,9167,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 48}]",,0,1,1
+54,9173,0,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 54}]",,0,1,1
+60,2870,3,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 60}]",,0,1,1
+66,9024,3,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 66}]",,0,1,1
+72,9183,3,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 72}]",,0,1,1
+78,14401,3,0,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 78}]",,0,1,1
+84,15634,3,1,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 78}, {'situation': 'EmergencyOutdoor', 'object': 'BakeryShop', 'coders': 6}]",,1,1,0.733
+90,6376,9,1,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 84}, {'situation': 'EmergencyOutdoor', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.75
+96,11954,9,1,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 90}, {'situation': 'EmergencyOutdoor', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.764
+102,13009,9,1,"[{'situation': 'BlockedByDebris', 'object': 'BakeryShop', 'coders': 96}, {'situation': 'EmergencyOutdoor', 'object': 'BakeryShop', 'coders': 6}]",,0,1,0.777

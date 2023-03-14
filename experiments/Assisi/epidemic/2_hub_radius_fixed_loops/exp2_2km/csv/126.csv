@@ -1,0 +1,15 @@
+Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
+6,1007,0,0,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}]","{'situation': 'BlockedBuilding', 'object': 'OldPerson'}",1,1,1
+12,862,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 6}]",,0,0,-0.045
+18,5717,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 12}]",,0,0,0.085
+24,6686,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 18}]",,0,1,0.234
+30,6945,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 24}]",,0,1,0.349
+36,9343,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 30}]",,0,1,0.437
+42,657,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 36}]",,0,1,0.504
+48,122,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 42}]",,0,1,0.558
+54,6077,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 48}]",,0,1,0.601
+60,7132,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 54}]",,0,1,0.637
+66,8925,0,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 60}]",,0,1,0.667
+72,4603,12,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 66}]",,0,1,0.692
+78,6081,17,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 72}]",,0,1,0.714
+84,9604,26,1,"[{'situation': 'EmergencyBuilding', 'object': 'OldPerson', 'coders': 6}, {'situation': 'BlockedBuilding', 'object': 'OldPerson', 'coders': 78}]",,0,1,0.733

@@ -1,2 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,7078,0,0,"[{'situation': 'CollapsedBuilding', 'object': 'Family', 'coders': 6}]","{'situation': 'CollapsedBuilding', 'object': 'Family'}",0,1,1
