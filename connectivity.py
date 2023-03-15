@@ -100,13 +100,13 @@ def setup_connection(graph, connection, hubs, radius):
 
 # print(conn_nodes)
 
-def build_graph(hubs_4g, radius_4g):
-    G = ox.load_graphml('graph/graph_temp.graphml')
+def build_graph(place, hubs_4g, radius_4g):
+    G = ox.load_graphml('graph/' + place + '_temp.graphml')
     print("Setting up connections")
     G = setup_connection(G, 1, hubs_4g, radius_4g)
     # Save the graph with the connections initialized
     print("Saving graph")
-    ox.save_graphml(G, filepath='graph/graph.graphml')
+    ox.save_graphml(G, filepath='graph/' + place + '.graphml')
     # Plot and save the image showing the areas covered by the connections
     # Note: red=4g, green=5g, blue=Wi-Fi
     # nc = color(G)

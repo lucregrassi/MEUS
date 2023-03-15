@@ -1,12 +1,13 @@
 import os
 import json
 
-city = "Amatrice"
-root_dir = os.getcwd() + "/experiments/" + city + "/4_information_quantity/"
+city = "Assisi"
+routing = "spray&wait"
+root_dir = os.getcwd() + "/experiments/" + city + "/" + routing + "/4_Information_quantity/"
 
 
 def compute_information_load():
-    exp_folders = sorted(os.listdir(root_dir))
+    exp_folders = [f for f in sorted(os.listdir(root_dir)) if os.path.isdir(os.path.join(root_dir, f))]
     print(exp_folders)
     for folder in exp_folders:
         average_do = []

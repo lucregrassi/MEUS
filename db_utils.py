@@ -4,22 +4,21 @@ import pandas as pd
 import csv
 
 
-def from_db_table_to_csv():
-    # creating file path
+def from_db_table_to_csv(csv_filename):
     dbfile = "databaseMEUS.db"
-    # Create a SQL connection to our SQLite database
+    # Create a SQL connection to the database
     conn = sqlite3.connect(dbfile)
 
-    # reading all table names
+    # Get the info_history_table and export it to csv
     sql_query = pd.read_sql_query("SELECT * FROM info_history_tab", conn)
-    sql_query.to_csv("info_history_tab.csv", index=False)
+    sql_query.to_csv(csv_filename, index=False)
 
-    # Be sure to close the connection
+    # Close the connection
     conn.close()
 
 
-def count_contributing_agents():
-    with open('info_history_tab.csv') as f:
+def count_contributing_agents(csv_filename, output_filename):
+    with open(csv_filename) as f:
         csv_file = csv.DictReader(f)
         observers = []
         contributing_agents = []
@@ -34,16 +33,12 @@ def count_contributing_agents():
         n_observers = len(set(observers))
         n_contributing_agents = len(set(contributing_agents))
 
-    header = ['n_observers', 'contributing_agents']
+    header = ['n_observers', 'n_contributors']
     data = [n_observers, n_contributing_agents]
 
-    with open('contributing_agents.csv', 'w', encoding='UTF8') as f:
+    with open(output_filename, 'w', encoding='UTF8') as f:
         writer = csv.writer(f)
         # write the header
         writer.writerow(header)
         # write the data
         writer.writerow(data)
-
-
-from_db_table_to_csv()
-count_contributing_agents()

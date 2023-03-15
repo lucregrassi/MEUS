@@ -8,6 +8,10 @@ from ontology_utils import random_event
 # Specify the name that is used to search for the data
 
 def save_graph(place):
+    if place == "amatrice":
+        place = "Amatrice, Rieti, Lazio"
+    else:
+        place = "Assisi, Perugia, Umbria"
     utn = ox.settings.useful_tags_node
     oxna = ox.settings.osm_xml_node_attrs
     oxnt = ox.settings.osm_xml_node_tags

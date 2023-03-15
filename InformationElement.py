@@ -1,7 +1,3 @@
-import json
-import copy
-
-
 class InformationElement:
     def __init__(self, n, where=0, when=0, what=None, ie_copies=64):
         super().__init__()

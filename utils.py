@@ -347,8 +347,8 @@ def parse_args():
 
     # Amatrice, Rieti, Lazio
     # Assisi, Perugia, Umbria
-    parser.add_argument('-place', default='Amatrice, Rieti, Lazio', type=str,
-                        help='Place where to run the simulation in the format (Town, Province, Region). Example: "Amatrice, Rieti, Lazio".')
+    parser.add_argument('-place', default='amatrice', type=str,
+                        help='Place where to run the simulation (amatrice or assisi.')
 
     parser.add_argument('-hubs_4g', default=3, type=int,
                         help='number of hub for the 4g internet connection.')

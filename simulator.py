@@ -1,4 +1,6 @@
+import db_utils
 from InformationElement import InformationElement, DirectObservation
+from db_utils import *
 from utils import NewIEtoDict, getIndexOfTuple
 from ontology_utils import get_cls_at_dist
 from scipy.stats import halfnorm
@@ -22,9 +24,10 @@ logging.basicConfig(filename="logfile.log",
 
 
 class Simulator:
-    def __init__(self, num_exp=0, n_agents=1000, gateway_ratio=0.1, loop_distance=100, seed=69,
+    def __init__(self, place="amatrice", num_exp=0, n_agents=1000, gateway_ratio=0.1, loop_distance=100, seed=69,
                  threshold=30, std_dev=0.5, std_dev_gateway=0.2, path=os.path.abspath(os.getcwd()), radius=2, nl=0,
                  routing="epidemic", jumps=False):
+        self.place = place
         self.n_agents = n_agents
         self.gateway_ratio = gateway_ratio
         self.perc_seen_ev = 0
@@ -131,17 +134,13 @@ class Simulator:
                                 for ie_teller_idx, IE_teller in enumerate(teller.ies):
                                     same_root = False
                                     already_told = False
-                                    # Loop through all IEs of the listener
+                                    # Loop through all IEs of the listener to check if there is something to be communicated
                                     for ie_listener_idx, IE_lis in enumerate(listener.ies):
                                         # If the IEs have the same root, epidemic and spray and wait have no difference
                                         if IE_teller[0] == IE_lis[0]:
                                             same_root = True
-                                            # If we don't have to store all jumps
-                                            if not self.jumps:
-                                                # Do not communicate further info
-                                                already_told = True
-                                            # If we have to store all jumps, look for those that the listener doesn't have
-                                            else:
+                                            # If we have to store all jumps
+                                            if self.jumps:
                                                 index = ie_listener_idx
                                                 # For each quadrupla in the IE
                                                 for quadrupla in IE_teller[1:]:
@@ -151,20 +150,24 @@ class Simulator:
                                                         already_told = True
                                                         break
                                                 for tup in IE_lis[1:]:
-                                                    # TODO: check why there is only one element sometimes
-                                                    print(tup)
                                                     if tup[0] == teller.n and tup[1] == listener.n:
                                                         already_told = True
                                                         break
+                                            else:
+                                                # Do not communicate further info
+                                                already_told = True
+                                    # IF there are no IE with the same root, or we have to store all jumps for the IE
+                                    # with the same root
                                     if not already_told:
-                                        # If the listener does not have the IE, just deepcopy it as it is.
+                                        # If the listener does not have the IE
                                         if not same_root:
                                             # If the routing is epidemic, the IE should be communicated (without bothering
                                             # about copy limits)
                                             if self.routing == "epidemic":
                                                 # Append the new IE to the listener (making a deepcopy of the IE of the teller)
                                                 listener.ies.append(copy.deepcopy(IE_teller))
-                                                listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                                if self.jumps:
+                                                    listener.ies[-1].append((teller.n, listener.n, int(k), loop))
                                             # If the routing is spray & wait
                                             else:
                                                 copies = IE_teller[0].toJson()["ie_copies"]
@@ -173,24 +176,26 @@ class Simulator:
                                                     # Halve the copies and communicate the other half to the listener
                                                     IE_teller[0].toJson()["ie_copies"] = copies/2
                                                     listener.ies.append(copy.deepcopy(IE_teller))
-                                                    listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                                    if self.jumps:
+                                                        listener.ies[-1].append((teller.n, listener.n, int(k), loop))
                                                 # If there is only one copy of the IE left and the agent is not a GA
                                                 # and the listener is a GA
                                                 elif copies < 2 and teller.n >= self.n_gateway_agents > listener.n:
                                                     print("To delete IE at idx", ie_teller_idx)
                                                     ie_teller_idxs_to_delete.append(ie_teller_idx)
                                                     listener.ies.append(copy.deepcopy(IE_teller))
-                                                    listener.ies[-1].append((teller.n, listener.n, int(k), loop))
+                                                    if self.jumps:
+                                                        listener.ies[-1].append((teller.n, listener.n, int(k), loop))
                                                 else:
                                                     print("Do not exchange!")
                                         # If the listener already has the IE with the same root, and we want to keep
                                         # track of all jumps, add the missing jumps
                                         else:
+                                            # If there is at least one jump in the IE of the teller, copy the missing ones
                                             if len(IE_teller[1:]) > 0:
                                                 target_extend = [(teller.n, listener.n, int(k), loop)]
-                                                for elem in IE_teller[1:]:
-                                                    if elem not in listener.ies[index]:
-                                                        target_extend.extend(elem)
+                                                target_extend.extend(
+                                                    elem for elem in IE_teller[1:] if elem not in listener.ies[index])
                                                 # communicating the information to the listener
                                                 listener.ies[index].extend(target_extend)
                                             else:
@@ -449,7 +454,7 @@ class Simulator:
         return count
 
     def run(self):
-        self.G = ox.load_graphml('graph/graph.graphml')
+        self.G = ox.load_graphml("graph/" + self.place + ".graphml")
         self.onto.load()
         # Initial seed used to initialize agent's position, generate errors with halfnorm and sequence of random
         # numbers used to reset the seed at every loop
@@ -513,6 +518,12 @@ class Simulator:
         for csv_f in csv_files:
             shutil.move(csv_f, './exp{0}/csv/'.format(self.num_exp))
 
-        response = requests.delete(self.BASE + "IE/1")
-        res = response.json()
-        # pprint(res)
+        # Save the info_history_tab from the database to compute the number of unique observers and
+        # unique agents who contributed to the spreading of the info
+        csv_filepath = self.path + '/exp{0}/info_history_tab.csv'.format(self.num_exp)
+        db_utils.from_db_table_to_csv(csv_filepath)
+        output_filepath = self.path + '/exp{0}/contributing_agents.csv'.format(self.num_exp)
+        db_utils.count_contributing_agents(csv_filepath, output_filepath)
+
+        # Delete data from database
+        requests.delete(self.BASE + "IE/1")

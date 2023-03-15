@@ -14,9 +14,12 @@ def main():
         print("Saving graph...")
         save_graph(args.place)
         print("Setting up connections...")
-        build_graph(args.hubs_4g, args.radius_4g)
+        build_graph(args.place, args.hubs_4g, args.radius_4g)
 
-    if not os.path.isfile("graph/graph_temp.graphml"):
+    # Amatrice, Rieti, Lazio
+    # Assisi, Perugia, Umbria
+
+    if not os.path.isfile("graph/" + args.place + ".graphml"):
         print("Saving graph...")
         save_graph(args.place)
 
@@ -28,9 +31,9 @@ def main():
                        "5 - Single experiment\n")
 
     if user_input == "1":
-        build_graph(args.hubs_4g, args.radius_4g)
+        build_graph(args.place, args.hubs_4g, args.radius_4g)
         for i in range(4):
-            if args.place == "Amatrice, Rieti, Lazio":
+            if args.place == "amatrice":
                 n_agents = 1000
                 gateway_ratio = 0.05 + (0.05 * i)
             else:
@@ -41,7 +44,8 @@ def main():
                   "Agents:", str(n_agents) + "\n"
                   "Gateway ratio:", str(gateway_ratio) + "\n"
                   "Routing type:", str(args.routing))
-            simulator = Simulator(num_exp=i,
+            simulator = Simulator(place=args.place,
+                                  num_exp=i,
                                   n_agents=n_agents,
                                   gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
@@ -56,7 +60,7 @@ def main():
             simulator.run()
     elif user_input == "2":
         for i in range(6):
-            if args.place == "Amatrice, Rieti, Lazio":
+            if args.place == "amatrice":
                 n_agents = 1000
                 gateway_ratio = 0.1
             else:
@@ -65,14 +69,15 @@ def main():
             radius = round(3 - 0.5 * i, 1)
             # Rebuild graph with different hub radius
             print("Rebuilding graph with a different hub radius")
-            build_graph(args.hubs_4g, radius)
+            build_graph(args.place, args.hubs_4g, radius)
             print("Place:", str(args.place) + "\n"
                   "Experiment: " + str(i) + "\n"
                   "Agents:", str(n_agents) + "\n"
                   "Gateway ratio:", str(gateway_ratio) + "\n"
                   "Radius:", str(radius) + "\n"
                   "Routing type:", str(args.routing))
-            simulator = Simulator(num_exp=i,
+            simulator = Simulator(place=args.place,
+                                  num_exp=i,
                                   n_agents=n_agents,
                                   gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
@@ -86,13 +91,13 @@ def main():
                                   jumps=args.jumps)
             simulator.run()
     elif user_input == '3':
-        if args.place == "Amatrice, Rieti, Lazio":
+        if args.place == "amatrice":
             n_agents = 1000
             gateway_ratio = 0.1
         else:
             n_agents = 10000
             gateway_ratio = 0.01
-        build_graph(args.hubs_4g, args.radius_4g)
+        build_graph(args.place, args.hubs_4g, args.radius_4g)
         for i in range(9):
             if i < 3:
                 std_dev = 0.5
@@ -115,7 +120,8 @@ def main():
                   "Agent's std: ", str(std_dev) + "\n"
                   "Gateway agent's std:", str(std_dev_gateway) + "\n"
                   "Routing type:", str(args.routing))
-            simulator = Simulator(num_exp=i,
+            simulator = Simulator(place=args.place,
+                                  num_exp=i,
                                   n_agents=n_agents,
                                   gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
@@ -130,24 +136,35 @@ def main():
             simulator.run()
     elif user_input == '4':
         print("Rebuilding graph")
-        build_graph(args.hubs_4g, args.radius_4g)
+        build_graph(args.place, args.hubs_4g, args.radius_4g)
         for i in range(3):
-            if i == 0:
-                n_agents = 500
-                gateway_ratio = 0.2
-            elif i == 1:
-                n_agents = 1000
-                gateway_ratio = 0.1
+            if args.place == "amatrice":
+                if i == 0:
+                    n_agents = 500
+                    gateway_ratio = 0.2
+                elif i == 1:
+                    n_agents = 1000
+                    gateway_ratio = 0.1
+                else:
+                    n_agents = 2000
+                    gateway_ratio = 0.05
             else:
-                n_agents = 2000
-                gateway_ratio = 0.05
-
+                if i == 0:
+                    n_agents = 5000
+                    gateway_ratio = 0.02
+                elif i == 1:
+                    n_agents = 10000
+                    gateway_ratio = 0.01
+                else:
+                    n_agents = 20000
+                    gateway_ratio = 0.005
             print("Place:", str(args.place) + "\n"
                   "Experiment:", str(i) + "\n"
                   "Agents:", str(n_agents), "\n"
                   "Gateway ratio:", str(gateway_ratio) + "\n"
                   "Routing type:", str(args.routing))
-            simulator = Simulator(num_exp=i,
+            simulator = Simulator(place=args.place,
+                                  num_exp=i,
                                   n_agents=n_agents,
                                   gateway_ratio=gateway_ratio,
                                   loop_distance=args.loop_distance,
@@ -175,9 +192,10 @@ def main():
                Routing type:       {args.routing}\n\
                Store jumps:        {args.jumps}\n\f")
         print("Building graph")
-        build_graph(args.hubs_4g, args.radius_4g)
+        build_graph(args.place, args.hubs_4g, args.radius_4g)
 
-        simulator = Simulator(num_exp=0,
+        simulator = Simulator(place=args.place,
+                              num_exp=0,
                               n_agents=args.n_agents,
                               gateway_ratio=args.gateway_ratio,
                               loop_distance=args.loop_distance,

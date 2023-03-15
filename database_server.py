@@ -167,9 +167,7 @@ def receiving_events_list():
 @app.route("/IE/<int:e_id>/<sit>/<obj>", methods=['GET'])
 def get(e_id, sit, obj):
     event_query = EventsTab.query.filter_by(id=id).first()
-
     outcome = True if event_query.situation == sit and event_query.obj == obj else False
-
     return {'coorect_event': outcome}
 
 
@@ -433,4 +431,4 @@ if __name__ == "__main__":
     if os.path.exists("databaseMEUS.db"):
         os.remove("databaseMEUS.db")
     db.create_all()
-    app.run(debug=True)
+    app.run()
