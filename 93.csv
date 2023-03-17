@@ -1,5 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-15,42,40,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 15}]","{'situation': 'BlockedBuilding', 'object': 'GreenGrocery'}",0,1,1
-21,490,53,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 21}]",,0,1,1
-27,826,113,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 27}]",,0,1,1
-33,942,85,0,"[{'situation': 'BlockedBuilding', 'object': 'GreenGrocery', 'coders': 33}]",,0,1,1

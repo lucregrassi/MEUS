@@ -1,2 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-15,57,9,0,"[{'situation': 'NoMedicinePeople', 'object': 'Street', 'coders': 15}]","{'situation': 'NoMedicinePeople', 'object': 'Street'}",0,1,1
