@@ -1,3 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,496,15,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 6}]","{'situation': 'PanickedPeople', 'object': 'House'}",0,1,1
-12,770,100,0,"[{'situation': 'PanickedPeople', 'object': 'House', 'coders': 12}]",,0,1,1

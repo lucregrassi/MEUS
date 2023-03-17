@@ -1,7 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,554,0,0,"[{'situation': 'NoWaterPeople', 'object': 'GreenGrocery', 'coders': 6}]","{'situation': 'NoWaterPeople', 'object': 'GreenGrocery'}",0,1,1
-12,578,27,0,"[{'situation': 'NoWaterPeople', 'object': 'GreenGrocery', 'coders': 12}]",,0,1,1
-18,821,33,0,"[{'situation': 'NoWaterPeople', 'object': 'GreenGrocery', 'coders': 18}]",,0,1,1
-24,594,42,1,"[{'situation': 'NoWaterPeople', 'object': 'GreenGrocery', 'coders': 18}, {'situation': 'NoWaterPeople', 'object': 'Shop', 'coders': 6}]",,1,1,0.234
-30,299,69,1,"[{'situation': 'NoWaterPeople', 'object': 'GreenGrocery', 'coders': 24}, {'situation': 'NoWaterPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.349
-36,663,105,1,"[{'situation': 'NoWaterPeople', 'object': 'GreenGrocery', 'coders': 30}, {'situation': 'NoWaterPeople', 'object': 'Shop', 'coders': 6}]",,0,1,0.437

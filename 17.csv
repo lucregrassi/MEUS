@@ -1,9 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-6,7578,0,0,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 6}]","{'situation': 'BlockedByDebris', 'object': 'Family'}",0,1,1
-12,1761,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 6}, {'situation': 'EmergencyOutdoor', 'object': 'GroupOfPeople', 'coders': 6}]",,1,0,-0.045
-18,2295,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 12}, {'situation': 'EmergencyOutdoor', 'object': 'GroupOfPeople', 'coders': 6}]",,0,0,0.085
-24,2433,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 18}, {'situation': 'EmergencyOutdoor', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.234
-30,5339,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 24}, {'situation': 'EmergencyOutdoor', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.349
-36,8856,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 30}, {'situation': 'EmergencyOutdoor', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.437
-42,8975,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 36}, {'situation': 'EmergencyOutdoor', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.504
-48,9977,0,1,"[{'situation': 'BlockedByDebris', 'object': 'Family', 'coders': 42}, {'situation': 'EmergencyOutdoor', 'object': 'GroupOfPeople', 'coders': 6}]",,0,1,0.558

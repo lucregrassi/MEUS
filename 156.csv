@@ -1,4 +1,0 @@
-Ncoders,who,when,what,observations,ground_truth,distance,CVR,Kalpha
-15,137,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Square', 'coders': 15}]","{'situation': 'OnFireBuilding', 'object': 'Square'}",0,1,1
-21,1563,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Square', 'coders': 21}]",,0,1,1
-27,5961,0,0,"[{'situation': 'OnFireBuilding', 'object': 'Square', 'coders': 27}]",,0,1,1
