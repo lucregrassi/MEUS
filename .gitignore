@@ -4,15 +4,9 @@ venv/
 .vscode/
 .idea
 .DS_Store
-experiments
 *.db
-*.csv
 *.log
-*.json
-*.svg
-# simulator1.py
 #prova.py
 src/plotter.py
-# main_database3.py
 src/graph/*
 graph
